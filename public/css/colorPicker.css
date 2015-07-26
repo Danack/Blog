@@ -1,0 +1,67 @@
+.colorPicker_currentColor{
+	width: 256px;
+	height: 256px;
+	display: inline-block;
+	border: 1px solid #000000;
+}
+
+.colorPicker_hueSlider,
+.colorPicker_luminanceSlider,
+.colorPicker_saturationSlider{
+	width: 24px;
+	height: 258px;
+	display: inline-block;
+	padding: 0px;
+	cursor: ns-resize;
+}
+
+
+.colorPicker_hueSlider{
+	background: url(/images/colorPicker/hueSlider.png) no-repeat;
+}
+
+.colorPicker_luminanceSlider{
+	background: url(/images/colorPicker/luminanceSlider.png) no-repeat;
+}
+
+.colorPicker_saturationSlider{
+	background: url(/images/colorPicker/saturationSlider.png) no-repeat;
+}
+
+.colorPicker_draggerInactive{
+	background: url(/images/colorPicker/dragInactive.png);
+	width: 10px;
+	height: 20px;
+	display: inline-block;
+	cursor: ns-resize;
+}
+
+.colorPicker_draggerActive{
+	background: url(/images/colorPicker/dragActive.png);
+}
+
+
+.colorPicker_holder{
+	border: 2px solid #000000;
+	display: inline-block;
+}
+
+.colorPicker_hueSliderSelector,
+.colorPicker_luminanceSliderSelector,
+.colorPicker_saturationSliderSelector{
+	position: relative;
+	top: 20px;
+	left: -5px;
+	display: inline-block;
+
+	width: 35px;
+	height: 9px;
+	background: url(/images/colorPicker/sliderIndicatorActive.png);
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.colorPicker_sliderActive{
+	background: url(/images/colorPicker/sliderIndicatorInactive.png);
+}

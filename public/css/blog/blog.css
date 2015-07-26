@@ -1,0 +1,229 @@
+html, body, div, span, applet, object, iframe, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	/* font: inherit;*/
+	/* vertical-align: baseline; */
+}
+
+table {
+	/* color: -webkit-text;*/
+	color: inherit;
+}
+
+/* ol, ul, li, */
+
+/* blockquote, */
+/*  p, */
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	/* line-height: 1; */
+}
+/* ol, ul {
+	list-style: none;
+} */
+blockquote, q {
+	/* quotes: none; */
+	/* font-style: italic; */
+	font-family: Monaco, ProFont, "Bitstream Vera Sans Mono", "American Typewriter", "Andale Mono", monospace;
+	font-size: 0.91em;
+}
+/*blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '"';
+	content: none;
+}*/
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body{
+	/*color: #ffffff;*/
+	color: rgb(235, 235, 235);
+	/* font-family: Verdana, "Bitstream Vera Sans", sans-serif; */
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: rgb(48, 54, 60);
+	min-width: 760px;
+	font-size: 14px;
+}
+
+.title{
+	color: #dddddd;
+}
+
+a{
+	color: #dddddd;
+}
+
+code {
+
+}
+
+.blogTitle{
+	margin-left: 140px;
+	margin-top: 20px;
+	font-size: 36px;
+	padding-bottom: 20px;
+	display: inline-block;
+}
+
+.navBar{
+	min-width: 140px;
+}
+
+.blogTitle a{
+	text-decoration: none;
+}
+
+.standardWidth {
+	min-width: 400px;
+	max-width: 800px;
+}
+
+.blogPost{
+	min-width: 640px;
+	max-width: 75%;
+	margin-right: 40px;
+}
+.blogPostHR{
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 640px;
+}
+
+.blogPostTitle{
+	font-size: 24px;
+	padding-bottom: 20px;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.blogPostDate{
+	font-size: 12px;
+	padding-bottom: 20px;
+	display: inline-block;
+	float: right;
+	vertical-align: bottom;
+}
+
+.blogPostSummary{
+	border-style: dotted;
+	border-width: 1px;
+	border-color: #afafaf;
+	display: block;
+	padding: 4px;
+	margin-bottom: 10px;
+}
+
+
+
+.standardForm {
+
+}
+
+.standardForm label {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.blogEditForm{
+
+}
+
+.blogEditForm_element{
+	display: block;
+}
+
+.blogEditForm_collection{
+	/* display: block; */
+}
+
+h1{
+	font-size: 24px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+h2, h3, h4, h5, h6{
+	margin: 0;
+	padding: 0;
+	border: 0;
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3, h4, h5, h6 {
+    font-size: 16px;
+}
+
+
+pre{
+    background-color: #000000;
+    margin-left: 20px;
+    /* text-indent: 5px;*/
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    display: inline-block;
+}
+
+
+/*
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h5 { font-size: .83em; }
+h6 { font-size: .75em; } */
+
+
+.errorMessageContainer{
+    border: 2px solid #7f1f1f;
+    background-color: #ffcfcf;
+    margin-bottom: 5px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.errorMessage{
+    color: #000000;
+}
+
+.statusMessageContainer{
+    border: 2px solid #1f7f1f;
+    background-color: #cfffcf;
+    margin-bottom: 5px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.statusMessage{
+    color: #000000;
+}
+
+li .active {
+    color: #ffffff;
+}

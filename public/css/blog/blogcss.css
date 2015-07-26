@@ -1,0 +1,20 @@
+.siteTitle {
+    margin-top: 20px;
+    font-size: 40px;
+    padding-bottom: 20px;
+    text-decoration: none;
+}
+
+.activeColor {
+    color: #1ab2ff;
+}
+
+.blogPostDate {
+    color: #ffffff;
+    font-size: 12px;
+}
+
+li.active {
+    /* color: #ffffff; */
+    background-color: #4f4f4f;
+}

@@ -1,0 +1,37 @@
+<?php
+
+namespace BlogTest\Contorller;
+
+use BlogTest\BaseTestCase;
+use Mockery\Mock;
+use Arya\Response;
+
+class BlogRSTest extends BaseTestCase {
+
+    /**
+     * @var \Auryn\Injector
+     */
+    private $injector;
+    
+    /**
+     * 
+     */
+    function setUp()
+    {
+        parent::setUp();
+        $this->injector = createTestInjector();
+
+    }
+
+
+    function testRSSFeed()
+    {
+        $result = $this->injector->execute(['Blog\Controller\BlogRSS', 'rssFeed']);
+        //TODO - assertions.
+        //TODO - save file to VFS.
+    }
+}
+
+
+
+

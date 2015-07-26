@@ -1,0 +1,18 @@
+.toolPanelPopup{
+	border: 2px solid #333;
+	position: fixed;
+	top: 0; 
+	right: 0; 
+	width: 900px;
+	height: 400px;
+	z-index: 50;
+	margin: 0;
+	padding: 0;
+	background: white;
+}
+
+
+.dropHover{
+
+	border: 5px solid #afafaf;
+}
