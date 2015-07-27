@@ -2,13 +2,12 @@
 
 namespace Intahwebz;
 
-interface DisplayableContent {
+interface DisplayableContent
+{
+    public function displayPreview();
+    public function displayThumbnail();
+    public function getContentID();
+    public function getDOMID();
 
-
-    function displayPreview();
-    function displayThumbnail();
-    function getContentID();
-    function getDOMID();
-
-    function getDisplayableVersion();
+    public function getDisplayableVersion();
 }

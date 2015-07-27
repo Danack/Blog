@@ -2,11 +2,11 @@
 
 namespace Intahwebz;
 
-interface Displayable {
+interface Displayable
+{
+    public function display();
 
-    function display();
+    public function displayPreview();
 
-    function displayPreview();
-
-    function displayThumbnail($url);
+    public function displayThumbnail($url);
 }

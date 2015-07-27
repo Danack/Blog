@@ -3,7 +3,8 @@
 
 namespace Intahwebz;
 
-class File {
+class File
+{
 
     public $directory;
 
@@ -11,7 +12,8 @@ class File {
 
     private $extension;
 
-    public function __construct($directory, $filename, $extension) {
+    public function __construct($directory, $filename, $extension)
+    {
         $this->directory = $directory;
         $this->filename = $filename;
         $this->extension = $extension;
@@ -28,7 +30,8 @@ class File {
         );
     }
 
-    function getPath() {
+    public function getPath()
+    {
         $path = $this->directory.'/'.$this->filename;
 
         if ($this->extension != null) {
@@ -43,8 +46,10 @@ class File {
      * @param bool $prefix
      * @return File
      */
-    public function addExtension($extension, /** @noinspection PhpUnusedParameterInspection */
-                                 $prefix = true) {
+    public function addExtension(
+        $extension,
+        $prefix = true
+    ) {
         return new File($this->directory, $this->filename, $extension.'.'.$this->extension);
     }
 }

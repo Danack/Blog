@@ -6,7 +6,8 @@ use Intahwebz\Utils as Utils;
 
 use BaseReality\Content\BaseRealityConstant;
 
-class CSSVariable{
+class CSSVariable
+{
 
     public $cssVariableID;
 
@@ -14,25 +15,29 @@ class CSSVariable{
     public $value;
     public $type;
 
-    public function setValue($newValue){
+    public function setValue($newValue)
+    {
         $this->value = $newValue;
         $this->constrainValue();
     }
 
-    public function constrainValue(){
+    public function constrainValue()
+    {
         if($this->value < 0){
             $this->value = 0;
         }
     }
 
-    public function adjustValue($delta){
+    public function adjustValue($delta)
+    {
         $this->value = /*value*/$this->value + $delta;
         $this->constrainValue();
     }
 
-    public function		getValue(){
+    public function getValue()
+    {
 
-        switch($this->type){
+        switch($this->type) {
             case (BaseRealityConstant::$CSS_VARIABLE_COLOR):{
                 return str_pad($this->value, 6, '0', STR_PAD_LEFT);
             }
@@ -44,7 +49,8 @@ class CSSVariable{
         return $this->value;
     }
 
-    public function dirtyHack() {
+    public function dirtyHack()
+    {
         $id = "CSSVariable_".$this->cssVariableID;
 
         $jsonString = json_encode_object($this);
@@ -52,9 +58,4 @@ class CSSVariable{
         $jsString = "jQuery('#".$id."').data('serialized', '".$jsonString."');";
         return $jsString;
     }
-
 }
-
-
-
-

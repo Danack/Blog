@@ -2,9 +2,8 @@
 
 namespace BaseReality\Content;
 
-
-class BaseRealityConstant {
-
+class BaseRealityConstant
+{
     public static $CSS_VARIABLE_COLOR = 'CSS_VARIABLE_COLOR';
     public static $CSS_VARIABLE_SIZE = 'CSS_VARIABLE_SIZE';
 
@@ -13,9 +12,6 @@ class BaseRealityConstant {
     public static $THUMBNAIL_SIZE = 128;
     public static $THUMBNAIL = 'thumbnail';
 
-
     public static $FlashMessage = "FLASH_MESSAGE";
-
     public static $userRole = 'userRole';
 }
- 

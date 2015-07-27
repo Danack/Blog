@@ -2,8 +2,8 @@
 
 namespace Intahwebz;
 
-interface ContentName {
-    function getContentID();
-    function getDOMID();
+interface ContentName
+{
+    public function getContentID();
+    public function getDOMID();
 }
- 
