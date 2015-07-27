@@ -2,16 +2,26 @@
 
 namespace Intahwebz\Utils;
 
+use Intahwebz\FileFetcher;
 
-class MockFileFetcher implements \Intahwebz\FileFetcher {
+class MockFileFetcher implements FileFetcher
+{
 
-    function __construct($filename, $originalFilename) {
+    public function __construct($filename, $originalFilename) {
         $this->filename = $filename;
         $this->originalFilename = $originalFilename;
     }
 
+    public function hasUploadedFile($formFileName)
+    {
+        if (strcmp($formFileName, $this->filename) === 0) {
+            return true;
+        }
 
-    function getUploadedFile($formFileName) {
+        return false;
+    }
+
+    public function getUploadedFile($formFileName) {
         $tempFilename = tempnam ('/tmp', 'mockFileFetcher');
 
         if (file_exists($this->filename) == false) {
@@ -27,8 +37,3 @@ class MockFileFetcher implements \Intahwebz\FileFetcher {
         );
     }
 }
-
-
-
-
- 

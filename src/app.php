@@ -12,28 +12,37 @@ $autoloader = require_once realpath(__DIR__).'/../vendor/autoload.php';
 // Contains helper functions for the 'framework'.
 require_once "../lib/Tier/tierFunctions.php";
 
+set_error_handler('tierErrorHandler');
+register_shutdown_function('tierShutdownFunction');
+
 // We need to add the path Jig templates are compiled into to 
 // allow them to be autoloaded
 $autoloader->add('Jig', [realpath(__DIR__).'/../var/compile/']);
 $autoloader->add('Blog', [realpath(__DIR__).'/../var/compile/']);
 
-
 // Read application config params
 $injectionParams = require_once "injectionParams.php";
 
-
 require_once "../../clavis.php";
-
 // Contains helper functions for the application.
 require_once "appFunctions.php";
+require_once "makeCSHappy.php";
 
-define('SESSION_NAME', 'aosdjpoajdpoajspdojspodj');
+
 
 \Intahwebz\Functions::load();
 
 try {
-    $_input = empty($_SERVER['CONTENT-LENGTH']) ? NULL : fopen('php://input', 'r');
+    $_input = empty($_SERVER['CONTENT-LENGTH']) ? null : fopen('php://input', 'r');
     $request = new Request($_SERVER, $_GET, $_POST, $_FILES, $_COOKIE, $_input);
+}
+catch (\Exception $e) {
+    //TODO - exit quickly.
+    header("We totally failed", true, 501);
+    exit(0);
+}
+
+try {
     // Create the first Tier that needs to be run.
     $tier = new Tier('routeRequest', $injectionParams);
 

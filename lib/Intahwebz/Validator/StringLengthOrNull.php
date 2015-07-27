@@ -3,10 +3,10 @@
 
 namespace Intahwebz\Validator;
 
+use Zend\Validator\StringLength;
 
-
-class StringLengthOrNull extends \Zend\Validator\StringLength {
-
+class StringLengthOrNull extends StringLength
+{
     public function isValid($value)
     {
         if ($value == null || strlen(trim($value)) == 0) {
@@ -15,7 +15,4 @@ class StringLengthOrNull extends \Zend\Validator\StringLength {
      
         return parent::isValid($value);
     }
-
 }
-
- 

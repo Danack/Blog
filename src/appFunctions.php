@@ -107,8 +107,8 @@ function createScriptInclude()
  * @param Response $response
  * @return Tier
  */
-function routeRequest(Request $request,  Response $response) {
-
+function routeRequest(Request $request, Response $response)
+{
     $dispatcher = FastRoute\simpleDispatcher('routesFunction');
     $httpMethod = $request->getMethod();
     $uri = $request->get('REQUEST_URI_PATH');
@@ -121,7 +121,7 @@ function routeRequest(Request $request,  Response $response) {
     $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 
     switch ($routeInfo[0]) {
-        case FastRoute\Dispatcher::NOT_FOUND: {
+        case (FastRoute\Dispatcher::NOT_FOUND): {
             $response->setStatus(404);
             return getRenderTemplateTier('error/error404');
         }
@@ -198,10 +198,8 @@ function createSendFileTier($filename, $contentType)
         return $fileBody;
     };
 
-    return new Tier($fn); 
+    return new Tier($fn);
 }
-
-
 
 
 ///**
@@ -223,14 +221,16 @@ function createSendFileTier($filename, $contentType)
 //}
 
 
-function correctUmask($filename) {
+function correctUmask($filename)
+{
     $umask = umask();
     $correctMode = ( 0777 - $umask);
 
     return chmod($filename, $correctMode);
 }
     
-function saveTmpFile($tmpName, $destFilename) {
+function saveTmpFile($tmpName, $destFilename)
+{
     renameMultiplatform($tmpName, $destFilename);
     correctUmask($destFilename);
     //@unlink($tmpName);
@@ -269,65 +269,43 @@ function createTemplateList()
     return new TemplateList($templates);
 }
 
-
-
 /* Stops passwords from being put into log files.
  * Need to make it generate valid php arrays so make life easier.
  */
-function dump_table($var){
-
+function dump_table($var)
+{
     $forbiddenKeys = array(
         //'password',
     );
 
-    if(is_array($var) or is_object($var)){
-        foreach($var as $key => $value){
-            if(is_array($value) or is_object($value)){
+    if (is_array($var) or is_object($var)) {
+        foreach ($var as $key => $value) {
+            if (is_array($value) or is_object($value)) {
                 dump_table($value);
             }
-            else{
-                if(in_array($key, $forbiddenKeys) == true){
+            else {
+                if (in_array($key, $forbiddenKeys) == true) {
                     $value = '********';
                 }
                 echo "'$key' => '$value' ";
             }
         }
     }
-    else{
+    else {
         echo "'$var' ";
     }
 }
 
 
-//function getOffsetTime($supportedTimeZone){
-//
-//    if($supportedTimeZone == false){
-//        return false;
-//    }
-//
-//    $dateTime = new DateTime();
-//    $serverOffsetTime = $dateTime->getOffset();
-//    $dateTimeZone = new DateTimeZone($supportedTimeZone);
-//    $dateTime->setTimezone($dateTimeZone);
-//    $offsetTime = $dateTime->getOffset();
-//
-//    return $offsetTime - $serverOffsetTime;
-//}
-
-function getVar_DumpOutput($response){
-
+function getVar_DumpOutput($response)
+{
     ob_start();
-
     dump_table($response);
-
     $obContents = ob_get_contents();
-
     ob_end_clean();
 
     return $obContents;
 }
-
-
 
 
 
@@ -356,54 +334,6 @@ function createJigConfig()
 */
 
 
-//function prepareJig(
-//    Jig\Jig $jig, AurynInjector $provider) {
-//    $cachePath = $provider->make(CachePath::class);
-//    $storage = $provider->make(Storage::class); 
-//
-//    $jig->bindRenderBlock('markdown', 'markdownEnd');
-//    $jig->bindRenderBlock(
-//        'spoiler',
-//        'spoilerBlockEnd',
-//        'spoilerBlockStart'
-//    );
-//
-//    /**
-//     * @param JigConverter $jigConverter
-//     * @param $segmentText
-//     * @throws JigException
-//     */
-//    $processSyntaxHighlighterStart = function (JigConverter $jigConverter, $segmentText) use ($cachePath, $storage) {
-//        processSyntaxHighlighterStartFoo($jigConverter, $segmentText, $cachePath, $storage);
-//    };
-//
-//    $jig->bindCompileBlock(
-//        'syntaxHighlighter',
-//        $processSyntaxHighlighterStart,
-//        'processSyntaxHighlighterEnd'
-//    );
-//    
-//    $request = $provider->make(Intahwebz\Request::class);
-//
-//    $viewTypeMappings = array(
-//        'page' => array(
-//            'framework/standardContent' => 'framework/standardContentLayout'
-//        ),
-//        'panel' => array(
-//            'framework/standardContent' => 'framework/standardContentPanel'
-//        ),
-//    );
-//    //TODO - detect panel requests
-//    $viewType = $request->getVariable('view', 'page');
-//
-//    if (array_key_exists($viewType, $viewTypeMappings) == false) {
-//        throw new \Exception("viewType [$viewType] has no mapping.");
-//    }
-//
-//    $jig->mapClasses($viewTypeMappings[$viewType]);    
-//
-//    return $jig;
-//}
 
 
 /**
@@ -415,15 +345,19 @@ function routesFunction(FastRoute\RouteCollector $r)
     $r->addRoute('GET', "/css/{cssInclude}", ['Blog\Controller\ScriptServer', 'getPackedCSS']);
     $r->addRoute('GET', '/js/{jsInclude}', ['Blog\Controller\ScriptServer', 'getPackedJavascript']);
     $r->addRoute('GET', '/rss', ['Blog\Controller\BlogRSS', 'rssFeed' ]);
-    $r->addRoute('GET', '/blog/{blogPostID:\d+}[/{title:[^\./]+}{separator:\.?}{format:\w+}]', ['Blog\Controller\Blog', 'display']);
-
+    $r->addRoute(
+        'GET',
+        '/blog/{blogPostID:\d+}[/{title:[^\./]+}{separator:\.?}{format:\w+}]',
+        ['Blog\Controller\Blog', 'display']
+    );
     $r->addRoute('GET', '/blogedit/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'showEdit']);
     $r->addRoute('POST', '/blogedit/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'processEdit']);
-    
-    
-    
     $r->addRoute('GET', '/staticFile/{filename:\w+}', ['Blog\Controller\ProxyController', 'staticFile']);
-    $r->addRoute('GET', '/staticImage/{filename:[^/]+}[/{size:\w+}]', ['Blog\Controller\ProxyController', 'staticImage']);
+    $r->addRoute(
+        'GET',
+        '/staticImage/{filename:[^/]+}[/{size:\w+}]',
+        ['Blog\Controller\ProxyController', 'staticImage']
+    );
     $r->addRoute('GET', '/templateViewer', ['Blog\Controller\TemplateViewer', 'index']);
     
     $r->addRoute('GET', '/login', ['Blog\Controller\Login', 'loginGet']);
@@ -449,7 +383,8 @@ function routeIndex()
     return "/";
 }
 
-function ensureAbsoluteFilename ($filename) {
+function ensureAbsoluteFilename($filename)
+{
     $filename = str_replace("..", "", $filename);
     $filename = str_replace("/", "", $filename);
     $filename = str_replace("\\", "", $filename);
@@ -461,7 +396,8 @@ function ensureAbsoluteFilename ($filename) {
  * @param string $size
  * @return string
  */
-function urlStaticImage($filename, $size = 'original') {
+function urlStaticImage($filename, $size = 'original')
+{
     $imageName = $filename;
     $sizeString = $size;
     return "/staticImage/".$sizeString."/".urlencode($imageName);
@@ -474,7 +410,8 @@ function urlStaticImage($filename, $size = 'original') {
  * @param bool $description
  * @return string
  */
-function articleImage($imageFilename, $size, $float = 'left', $description = false) {
+function articleImage($imageFilename, $size, $float = 'left', $description = false)
+{
     $output = '';
     $marginClass = '';
     if ($float == 'left') {
@@ -498,6 +435,7 @@ function articleImage($imageFilename, $size, $float = 'left', $description = fal
         $output .= "</div>";
     }
     $output .= "</a></div>";
+
     return $output;
 }
 
@@ -520,20 +458,15 @@ function routeBlogPostWithFormat($blogPostID, $format)
 
 function routeJSInclude($url)
 {
-    return "/js/".$url;        
+    return "/js/".$url;
 }
 
 function routeBlogEdit($blogPostID)
 {
-    return "/blogedit/".$blogPostID;        
+    return "/blogedit/".$blogPostID;
 }
 
 function routeBlogReplace($blogPostID)
 {
-    return "/blogreplace/".$blogPostID;        
+    return "/blogreplace/".$blogPostID;
 }
-
-            
-
-            
-            

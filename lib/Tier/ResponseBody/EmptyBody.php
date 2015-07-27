@@ -4,9 +4,11 @@ namespace Tier\ResponseBody;
 
 use Arya\Body;
 
-class EmptyBody implements Body {
-
-    public function __construct() {}
+class EmptyBody implements Body
+{
+    public function __construct()
+    {
+    }
 
     public function __toString()
     {
@@ -23,4 +25,3 @@ class EmptyBody implements Body {
         return [];
     }
 }
-

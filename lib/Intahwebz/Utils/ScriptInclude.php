@@ -3,21 +3,20 @@
 
 namespace Intahwebz\Utils;
 
-    
-abstract class ScriptInclude {
-
-    var $useCDNForScripts = true;
+abstract class ScriptInclude
+{
+    private $useCDNForScripts = true;
 
     protected $scriptVersion;
 
-    var $includeJSArray = array();
+    protected $includeJSArray = array();
 
     /**
      * @var CSSFile[]
      */
     protected $cssFiles = [];
 
-    var $onBodyLoadJavascript = array();
+    private $onBodyLoadJavascript = array();
 
     /**
      * @var bool
@@ -31,29 +30,22 @@ abstract class ScriptInclude {
      * @param $liveServer
      * @param $siteScriptVersion
      */
-    function __construct(
-        //\Intahwebz\Domain $domain//,
-//        $useCDNForScripts,
-//        $packScripts,
-//        $showJSErrors,
-//        $siteScriptVersion
-    ) {
-        
-        //$this->domain = $domain;
+    public function __construct()
+    {
         $this->useCDNForScripts = false;//$useCDNForScripts->getBool();
         $this->showJSErrors = true;//$showJSErrors->getBool();
         $this->scriptVersion = '1.2.3';//$siteScriptVersion->getString();
     }
 
-
-    abstract function includeCSS();
-    abstract function emitJSRequired();
+    abstract public function includeCSS();
+    abstract public function emitJSRequired();
 
     
     /**
      * @param \Intahwebz\DisplayableContent $object
      */
-    function addBodyLoadFunctionBindData(\Intahwebz\DisplayableContent $object) {
+    public function addBodyLoadFunctionBindData(\Intahwebz\DisplayableContent $object)
+    {
         $ID = $object->getDOMID();
         $jsonString = json_encode_object($object->getDisplayableVersion());
         $jsonString = addslashes($jsonString);
@@ -64,7 +56,8 @@ abstract class ScriptInclude {
     /**
      * @param $dataBindingJS
      */
-    public function addBodyLoadFunction($dataBindingJS) {
+    public function addBodyLoadFunction($dataBindingJS)
+    {
         $this->onBodyLoadJavascript[] = $dataBindingJS;
     }
 
@@ -72,7 +65,8 @@ abstract class ScriptInclude {
      * @param $cssFile
      * @param string $media
      */
-    function addCSS($cssFile, $media = 'screen') {
+    public function addCSS($cssFile, $media = 'screen')
+    {
         $this->cssFiles[] = new CSSFile($cssFile, $media);
     }
 
@@ -80,19 +74,21 @@ abstract class ScriptInclude {
     /**
      * @param $includeJS
      */
-    function addJSRequired($includeJS) {
+    public function addJSRequired($includeJS)
+    {
         $this->includeJSArray[] = $includeJS;
     }
 
     /**
      * @return string
      */
-    function emitOnBodyLoadJavascript() {
+    public function emitOnBodyLoadJavascript()
+    {
         $output = "";
         $output .= "<script type='text/javascript'>";
         $output .= "try {\n";
 
-        foreach($this->onBodyLoadJavascript as $functionToPerform){
+        foreach ($this->onBodyLoadJavascript as $functionToPerform) {
             $output .= $functionToPerform."\n";
         }
         $output .= "//hey we've loaded";
@@ -108,11 +104,10 @@ abstract class ScriptInclude {
      * @param $name
      * @param $object
      */
-    function addBodyLoadObjectInit($name, $object) {
+    public function addBodyLoadObjectInit($name, $object)
+    {
         $jsonString = json_encode_object($object);
         $jsString = "window.$name = json_decode_object('".addslashes($jsonString)."');\n";
         $this->addBodyLoadFunction($jsString);
     }
 }
-
- 

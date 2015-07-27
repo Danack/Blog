@@ -7,19 +7,19 @@ namespace Intahwebz\Utils;
 //use BaseReality\Value\UseCDNForScripts;
 //use BaseReality\Value\SiteScriptVersion;
 
-class ScriptIncludePacked extends ScriptInclude {
+class ScriptIncludePacked extends ScriptInclude
+{
+    private $closedJSBlocks = array();
 
-    var $closedJSBlocks = array();
-
-    var $useCDNForScripts = true;
+    private $useCDNForScripts = true;
 
 //    private $currentJSBlock = array();
 
     //private $scriptVersion;
     
-    var $includeJSArray = array();
+    private $includeJSArray = array();
 
-    var $onBodyLoadJavascript = array();
+    private $onBodyLoadJavascript = array();
 
 //    private $domain;
 
@@ -35,14 +35,8 @@ class ScriptIncludePacked extends ScriptInclude {
      * @param $liveServer
      * @param $siteScriptVersion
      */
-    function __construct(
-        //\Intahwebz\Domain $domain//,
-//        $useCDNForScripts,
-//        $packScripts,
-//        $showJSErrors,
-//        $siteScriptVersion
-    ) {
-        
+    public function __construct()
+    {
         //$this->domain = $domain;
         $this->useCDNForScripts = false;//$useCDNForScripts->getBool();
         $this->showJSErrors = true;//$showJSErrors->getBool();
@@ -50,12 +44,12 @@ class ScriptIncludePacked extends ScriptInclude {
     }
 
 
-    function emitJSRequired()
+    public function emitJSRequired()
     {
         $jsVersion = $this->scriptVersion;
         $separator = ',';
 
-        if(count($this->includeJSArray) == 0) {
+        if (count($this->includeJSArray) == 0) {
             return "";
         }
 
@@ -63,7 +57,7 @@ class ScriptIncludePacked extends ScriptInclude {
 
         $output = "<script type='text/javascript'>\n";
 
-        foreach($this->includeJSArray as $includeJS) {
+        foreach ($this->includeJSArray as $includeJS) {
             //$output .= "setJSLoaded('".basename($includeJS).".js', false);\n";
             $url .= $separator;
             $url .= urlencode($includeJS);
@@ -80,7 +74,7 @@ class ScriptIncludePacked extends ScriptInclude {
 
         $output .= "<script type='text/javascript' src='".$domain.$uri."'></script>";
 
-        return $output; 
+        return $output;
     }
 
 
@@ -89,7 +83,8 @@ class ScriptIncludePacked extends ScriptInclude {
      * @param $media
      * @param $cssList CSSFile[]
      */
-    function renderMediaCSS($mediaQuery, $cssList) {
+    private function renderMediaCSS($mediaQuery, $cssList)
+    {
 
         $fileList = '';
         $separator = '';
@@ -125,12 +120,11 @@ class ScriptIncludePacked extends ScriptInclude {
     /**
      * @return string
      */
-    function includeCSS() {
-
-        if(count($this->cssFiles) == 0){
+    public function includeCSS()
+    {
+        if (count($this->cssFiles) == 0) {
             return "";
         }
-
 
         $mediaCSS = [];
 

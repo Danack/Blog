@@ -3,7 +3,6 @@
 
 namespace Tier;
 
-
 class InjectionParams
 {
     public $shares;
@@ -16,9 +15,9 @@ class InjectionParams
         array $shares = [],
         array $aliases = [],
         array $delegates = [],
-        array $params = [], 
-        array $prepares = [])
-    {
+        array $params = [],
+        array $prepares = []
+    ) {
         $this->shares = $shares;
         $this->aliases = $aliases;
         $this->delegates = $delegates;
@@ -47,12 +46,12 @@ class InjectionParams
     
     public function defineParam($paramName, $value)
     {
-        $this->params[$paramName] = $value; 
+        $this->params[$paramName] = $value;
     }
 
     public function delegate($className, $delegate)
     {
-        $this->delegates[$className] = $delegate; 
+        $this->delegates[$className] = $delegate;
     }
     
     /**
@@ -94,8 +93,8 @@ class InjectionParams
     {
         return $this->prepares;
     }
-    
-    function mergeMocks($mocks)
+
+    public function mergeMocks($mocks)
     {
         $newAliases = [];
 
@@ -118,4 +117,3 @@ class InjectionParams
         $this->aliases = $newAliases;
     }
 }
-

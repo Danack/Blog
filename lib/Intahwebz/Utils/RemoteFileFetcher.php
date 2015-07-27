@@ -1,14 +1,13 @@
 <?php
 
-
 namespace Intahwebz\Utils;
 
 use Intahwebz\UnknownFileType;
 use Intahwebz\UploadedFile;
 
 //TODO - friends don't let friends use CURL
-function curlDownloadFileAndReturnHeaders($url, $fileHandle) {
-
+function curlDownloadFileAndReturnHeaders($url, $fileHandle)
+{
     $ch = curl_init();
 
     $headers = array();
@@ -17,7 +16,7 @@ function curlDownloadFileAndReturnHeaders($url, $fileHandle) {
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_NOPROGRESS, FALSE);
+    curl_setopt($ch, CURLOPT_NOPROGRESS, false);
     curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
     curl_setopt($ch, CURLOPT_LOW_SPEED_LIMIT, 1024);
     curl_setopt($ch, CURLOPT_LOW_SPEED_TIME, 5);
@@ -34,19 +33,17 @@ function curlDownloadFileAndReturnHeaders($url, $fileHandle) {
 }
 
 
-class RemoteFileFetcher {
-
+class RemoteFileFetcher
+{
     /**
      * @param $imageURL
      * @return UploadedFile
      */
-    function getImageFromLink($imageURL) {
+    public function getImageFromLink($imageURL)
+    {
         $tempFilename = tempnam(sys_get_temp_dir(), 'Tux');
-
         $fileHandle = fopen($tempFilename, 'w+');
-
         $headerArray = curlDownloadFileAndReturnHeaders($imageURL, $fileHandle);
-
         fclose($fileHandle);
 
         if (false) {
@@ -64,8 +61,8 @@ class RemoteFileFetcher {
     }
 
     //TODO move this to elsewhere - it's not anything to do with downloading the file
-    function calcFilenameFromFinfo($tempFilename, $imageURL) {
-
+    public function calcFilenameFromFinfo($tempFilename, $imageURL)
+    {
         $finfo = new \finfo(FILEINFO_MIME_TYPE);
         $mime = $finfo->file($tempFilename);
         
@@ -89,7 +86,7 @@ class RemoteFileFetcher {
 
         $filename = pathinfo($urlPath, PATHINFO_FILENAME);
 
-        if(mb_strlen($filename) == 0){
+        if (mb_strlen($filename) == 0) {
             $filename = date("Y_m_d_H_i_s");
         }
 
@@ -99,13 +96,13 @@ class RemoteFileFetcher {
     }
     
     
-    function calcFilename($headerArray, $imageURL) {
-
+    public function calcFilename($headerArray, $imageURL)
+    {
         $fileInfo = array();
 
-        foreach($headerArray as $headerKey => $headerValue){
-            if(mb_strcasecmp('Content-type', $headerKey) == 0 ||
-                mb_strcasecmp('content_type', $headerKey) == 0){
+        foreach ($headerArray as $headerKey => $headerValue) {
+            if (mb_strcasecmp('Content-type', $headerKey) == 0 ||
+                mb_strcasecmp('content_type', $headerKey) == 0) {
                 $fileInfo['contentType'] = $headerValue;
             }
         }
@@ -113,26 +110,24 @@ class RemoteFileFetcher {
         $urlInfo = parse_url($imageURL);
         $lastSlashPosition = mb_strrpos($urlInfo['path'], '/');
 
-        if($lastSlashPosition === FALSE){
+        if ($lastSlashPosition === FALSE) {
             $filename = $urlInfo['path'];
         }
-        else{
+        else {
             $filename = mb_substr($urlInfo['path'], $lastSlashPosition + 1);//+1 to exclude the slash
         }
 
-        if(mb_strlen($filename) == 0){
+        if (mb_strlen($filename) == 0){
             $filename = date("Y_m_d_H_i_s");
             //Cannot guess image type from made up file name.
 
-            if(array_key_exists('contentType', $fileInfo) == TRUE){
+            if (array_key_exists('contentType', $fileInfo) == true) {
                 $extension = getFileExtensionForMimeType($fileInfo['contentType']);
                 $filename .= ".".$extension;
             }
         }
-        
+
         return $filename;
     }
-    
 }
-
  

@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Tier\ResponseBody;
 
 use Arya\Response;
 
-
-class FileResponseCreator {
-    
+class FileResponseCreator
+{
     private $response;
     
     public function __construct(Response $response)
@@ -25,4 +23,3 @@ class FileResponseCreator {
         return $fileBody;
     }
 }
-

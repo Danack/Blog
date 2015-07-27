@@ -2,14 +2,14 @@
 
 namespace Intahwebz\Utils;
 
-class ScriptIncludeIndividual extends ScriptInclude {
-
-    function emitJSRequired() {
-        
+class ScriptIncludeIndividual extends ScriptInclude
+{
+    public function emitJSRequired()
+    {
         $jsVersion = $this->scriptVersion;
         $output = '';
 
-        foreach($this->includeJSArray as $includeJS) {
+        foreach ($this->includeJSArray as $includeJS) {
 //            $output .= "<script type='text/javascript'>\n";
 //            $output .= "setJSLoaded('".$includeJS."', false);\n";
 //            $output .= "</script>\n";
@@ -26,7 +26,7 @@ class ScriptIncludeIndividual extends ScriptInclude {
     /**
      * @return string
      */
-    function includeCSS()
+    public function includeCSS()
     {
         $output = "";
 
@@ -49,42 +49,39 @@ class ScriptIncludeIndividual extends ScriptInclude {
     }
     
     
-        /**
-     * @param $media
-     * @param $cssList CSSFile[]
-     */
-    function renderMediaCSS($mediaQuery, $cssList) {
-
-        $output = '';
-        $separator = ',';
-
-        foreach ($cssList as $cssFile) {
-            /** @var $cssFile CSSFile */
-            $output .= $separator;
-            $output .= urlencode($cssFile->getFile());
-        }
-
-        $domain = '';
-//        if ($this->useCDNForScripts == true) {
-//            $domain = $this->domain->getContentDomain(0);
+//        /**
+//     * @param $media
+//     * @param $cssList CSSFile[]
+//     */
+//    private function renderMediaCSS($mediaQuery, $cssList)
+//    {
+//        $output = '';
+//        $separator = ',';
+//
+//        foreach ($cssList as $cssFile) {
+//            /** @var $cssFile CSSFile */
+//            $output .= $separator;
+//            $output .= urlencode($cssFile->getFile());
 //        }
-
-        $mediaString = '';
-
-        if ($mediaQuery) {
-            $mediaString = " media='".$mediaQuery."' ";
-        }
-
-        $output .= sprintf(
-            "<link rel='stylesheet' type='text/css' %s href='/css/%s?'%s />\n",
-            $mediaString,
-            $output,
-            $this->scriptVersion
-        );
-
-        return $output;
-    }
-    
+//
+//        $domain = '';
+////        if ($this->useCDNForScripts == true) {
+////            $domain = $this->domain->getContentDomain(0);
+////        }
+//
+//        $mediaString = '';
+//
+//        if ($mediaQuery) {
+//            $mediaString = " media='".$mediaQuery."' ";
+//        }
+//
+//        $output .= sprintf(
+//            "<link rel='stylesheet' type='text/css' %s href='/css/%s?'%s />\n",
+//            $mediaString,
+//            $output,
+//            $this->scriptVersion
+//        );
+//
+//        return $output;
+//    }
 }
-
- 

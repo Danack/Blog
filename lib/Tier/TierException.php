@@ -1,8 +1,8 @@
 <?php
 
-
 namespace Tier;
 
+class TierException extends \Exception
+{
 
-class TierException extends \Exception {}
-
+}

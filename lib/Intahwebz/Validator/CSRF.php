@@ -13,29 +13,30 @@ use Intahwebz\FormElement\ElementValidator;
  * ZendSession.
  * @package Intahwebz\Validator
  */
-class CSRF extends AbstractValidator implements ElementValidator {
+class CSRF extends AbstractValidator implements ElementValidator
+{
 
-	const NOT_VALID           = 'csrfDoesntMatch';
+    const NOT_VALID           = 'csrfDoesntMatch';
 
-	protected $messageTemplates = array(
-		self::NOT_VALID           => "Please confirm submission.",
-	);
+    protected $messageTemplates = array(
+        self::NOT_VALID           => "Please confirm submission.",
+    );
 
-	/**
-	 * Compare the current value of the CSRF element with the stored value.
-	 * @param AbstractElement $element
-	 * @return bool|mixed
-	 */
-	function isValidElement(AbstractElement $element){
+    /**
+     * Compare the current value of the CSRF element with the stored value.
+     * @param AbstractElement $element
+     * @return bool|mixed
+     */
+    public function isValidElement(AbstractElement $element)
+    {
+        if ($element->getValidationValue() == $element->getCurrentValue()) {
+            return true;
+        }
 
-		if ($element->getValidationValue() == $element->getCurrentValue()) {
-			return true;
-		}
+        $this->error(self::NOT_VALID);
 
-		$this->error(self::NOT_VALID);
-
-		return false;
-	}
+        return false;
+    }
 
     /**
      * This should never be called, the version exposed through ElementValidator should be used.
@@ -43,9 +44,8 @@ class CSRF extends AbstractValidator implements ElementValidator {
      * @throws UnsupportedOperationException
      * @return bool
      */
-	function isValid($value){
-		throw new UnsupportedOperationException("Bad call, don't use isValid use isValidElement.");
-	}
+    public function isValid($value)
+    {
+        throw new UnsupportedOperationException("Bad call, don't use isValid use isValidElement.");
+    }
 }
-
-

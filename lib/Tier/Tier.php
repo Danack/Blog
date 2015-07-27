@@ -4,14 +4,14 @@ namespace Tier;
 
 /**
  * Class Tier
- * 
+ *
  * Defines a Tier of the application. The information it contains is used in the following
  * order:
- * 
+ *
  * i) The injection params are added to the injector
- * ii) The setup callable is called. 
+ * ii) The setup callable is called.
  * iii) The tier callable is called.
- * 
+ *
  * @package Tier
  */
 class Tier
@@ -36,8 +36,8 @@ class Tier
     public function __construct(
         $nextCallable,
         InjectionParams $injectionParams = null,
-        $setupCallable = null)
-    {
+        $setupCallable = null
+    ) {
         $this->tierCallable = $nextCallable;
         $this->injectionParams = $injectionParams;
         $this->setupCallable = $setupCallable;

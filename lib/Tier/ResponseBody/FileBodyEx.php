@@ -4,16 +4,16 @@ namespace Tier\ResponseBody;
 
 use Arya\Body;
 
-
-class FileBodyEx implements Body {
-
+class FileBodyEx implements Body
+{
     private $fileSize;
     private $fileHandle;
     private $appendString = '';
     
     private $options = [];
 
-    public function __construct($path, $appendString) {
+    public function __construct($path, $appendString)
+    {
         if (!is_string($path)) {
             throw new \RuntimeException(
                 sprintf('FileBody path must be a string filesystem path; %s specified', gettype($path))
@@ -26,7 +26,7 @@ class FileBodyEx implements Body {
             throw new \RuntimeException(
                 sprintf('FileBody path is not a file: %s', $path)
             );
-        } 
+        }
 
         $this->fileHandle = @fopen($path, 'rb');
         
@@ -48,12 +48,14 @@ class FileBodyEx implements Body {
         $this->appendString = $appendString;
     }
 
-    public function __invoke() {
+    public function __invoke()
+    {
         $this->send();
     }
 
-    public function send() {
-        if (@fpassthru($this->fileHandle) === FALSE) {
+    public function send()
+    {
+        if (@fpassthru($this->fileHandle) === false) {
             throw new \RuntimeException(
                 sprintf("FileBody could not fpassthru filehandle")
             );
@@ -66,7 +68,8 @@ class FileBodyEx implements Body {
      * @TODO Parse content-type from file extension
      * @TODO Add caching headers
      */
-    public function getHeaders() {
+    public function getHeaders()
+    {
         return [
             'Content-Length' => $this->fileSize + strlen($this->appendString)
         ];
@@ -75,12 +78,13 @@ class FileBodyEx implements Body {
     /**
      * @TODO Add ETag options
      */
-    public function setOptions() {}
-
-    
-
-    public function getFileHandle() {
-        return $this->fileHandle;
+    public function setOptions()
+    {
     }
 
+
+    public function getFileHandle()
+    {
+        return $this->fileHandle;
+    }
 }

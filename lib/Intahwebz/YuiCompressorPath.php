@@ -3,20 +3,20 @@
 
 namespace Intahwebz;
 
-
-class YuiCompressorPath {
-
+class YuiCompressorPath
+{
     private $path;
 
-    function __construct($yuicompressorPath) {
+    public function __construct($yuicompressorPath)
+    {
         $this->path = $yuicompressorPath;
     }
 
     /**
      * @return string
      */
-    public function getPath() {
+    public function getPath()
+    {
         return $this->path;
     }
 }
-

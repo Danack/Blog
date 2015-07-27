@@ -6,11 +6,10 @@ namespace Intahwebz\Utils;
 use Intahwebz\ViewModel;
 use Intahwebz\Router;
 use Intahwebz\Session;
-
 use BaseReality\Content\BaseRealityConstant;
 
-
-class RequestFowarder {
+class RequestFowarder
+{
 
     private $router;
 
@@ -27,8 +26,8 @@ class RequestFowarder {
     public function __construct(
         Session $session,
         Router $router,
-        ViewModel $viewModel) {
-
+        ViewModel $viewModel
+    ) {
         $this->session = $session;
         $this->router = $router;
         $this->viewModel = $viewModel;
@@ -40,7 +39,8 @@ class RequestFowarder {
      * @param $route
      * @param array $params
      */
-    function forward($message, $route, $params = array()) {
+    public function forward($message, $route, $params = array())
+    {
         $this->viewModel->addStatusMessage($message);
         $this->session->setSessionVariable(BaseRealityConstant::$FlashMessage, $this->viewModel->getStatusMessages());
 
@@ -50,5 +50,3 @@ class RequestFowarder {
         exit(0);
     }
 }
-
- 

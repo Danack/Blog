@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Tier\Data;
 
-
-class ErrorInfo {
-
+class ErrorInfo
+{
     public $title;
     public $description;
     
@@ -31,4 +29,3 @@ class ErrorInfo {
         return $this->description;
     }
 }
-

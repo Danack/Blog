@@ -8,9 +8,10 @@ use Arya\Response;
 use Auryn\Injector;
 
 /**
- * 
+ *
  */
-set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+function tierErrorHandler($errno, $errstr, $errfile, $errline)
+{
     if (error_reporting() == 0) {
         return true;
     }
@@ -25,7 +26,7 @@ set_error_handler(function ($errno, $errstr, $errfile, $errline) {
 
     $message = "Error: [$errno] $errstr in file $errfile on line $errline<br />\n";
     throw new \Exception($message);
-});
+}
 
 
 /**
@@ -33,7 +34,8 @@ set_error_handler(function ($errno, $errstr, $errfile, $errline) {
  * For this reason we have to include the application file externally here
  * so that our shutdown function can handle E_PARSE.
  */
-register_shutdown_function(function() {
+function tierShutdownFunction()
+{
     $fatals = [
         E_ERROR,
         E_PARSE,
@@ -54,20 +56,19 @@ register_shutdown_function(function() {
         header_remove();
         header("HTTP/1.0 500 Internal Server Error");
 
-        define('DEBUG', true);
-        
-        if (DEBUG) {
-            extract($lastError);
-            $msg = sprintf("Fatal error: %s in %s on line %d", $message, $file, $line);
-        } else {
-            $msg = "Oops! Something went terribly wrong :(";
-        }
+        //if (DEBUG) {
+        extract($lastError);
+        $msg = sprintf("Fatal error: %s in %s on line %d", $message, $file, $line);
+//        } else {
+//            $msg = "Oops! Something went terribly wrong :(";
+//        }
 
         $msg = "<pre style=\"color:red;\">{$msg}</pre>";
 
         echo "<html><body><h1>500 Internal Server Error</h1><hr/>{$msg}</body></html>";
     }
-});
+}
+
 
 /**
  * @param Request $request
@@ -106,7 +107,7 @@ function sendResponse(Request $request, Response $response, $autoAddReason = tru
     header($statusLine);
 
     foreach ($response->getAllHeaderLines() as $headerLine) {
-        header($headerLine, $replace = FALSE);
+        header($headerLine, $replace = false);
     }
 
     flush(); // Force header output
@@ -118,7 +119,7 @@ function sendResponse(Request $request, Response $response, $autoAddReason = tru
     }
     else if (is_string($body)) {
         echo $body;
-    } 
+    }
     elseif (is_callable($body)) {
         //$this->outputCallableBody($body);
         
@@ -152,7 +153,7 @@ function addInjectionParams(Injector $injector, InjectionParams $injectionParams
         $injector->defineParam($paramName, $value);
     }
     
-    foreach ($injectionParams->getDelegates() as $className => $callable) {        
+    foreach ($injectionParams->getDelegates() as $className => $callable) {
         $injector->delegate($className, $callable);
     }
     
@@ -165,8 +166,8 @@ function addInjectionParams(Injector $injector, InjectionParams $injectionParams
  * @param $result
  * @throws TierException
  */
-function throwWrongTypeException($result) {
-
+function throwWrongTypeException($result)
+{
     if ($result === null) {
         throw new TierException("Return value of tier must be either a response or a tier, null given.");
     }
@@ -185,5 +186,3 @@ function throwWrongTypeException($result) {
 
     throw new TierException($message);
 }
-
-

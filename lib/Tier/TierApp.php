@@ -8,13 +8,8 @@ use Arya\Request;
 use Arya\Response;
 use Arya\Body as ResponseBody;
 
-
-
-
-
-
-class TierApp {
-
+class TierApp
+{
     /**
      * @var Tier
      */
@@ -65,7 +60,7 @@ class TierApp {
             if (($injectionParams = $tier->getInjectionParams())) {
                 addInjectionParams($injector, $injectionParams);
             }
-            
+
             // If the next Tier has a setup function, call it
             $setupCallable = $tier->getSetupCallable();
             if ($setupCallable) {
@@ -93,4 +88,3 @@ class TierApp {
         }
     }
 }
-

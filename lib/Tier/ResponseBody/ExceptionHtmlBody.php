@@ -7,16 +7,16 @@ function getTrace($traceParts, $directory)
     $traceText = "";
     $i = 1;
 
-    foreach($traceParts as $node) {
+    foreach ($traceParts as $node) {
         $traceText .= "#$i ";
-        if(isset($node['file'])) {
+        if (isset($node['file'])) {
             $traceText .= $node['file']." ";
         }
-        if(isset($node['line'])) {
+        if (isset($node['line'])) {
             $traceText .= "(".$node['line']."): ";
         }
-        if(isset($node['class'])) {
-            $traceText .= $node['class'] . "->"; 
+        if (isset($node['class'])) {
+            $traceText .= $node['class'] . "->";
         }
         $traceText .= $node['function'] . "()\n";
         $i++;
@@ -30,14 +30,14 @@ function getTrace($traceParts, $directory)
 
 /**
  * Class ExceptionHtmlBody
- * 
+ *
  * We use this class to generate exception pages rather than the template renderer, to
  * avoid yo' dawging if the template renderer has an exception.
- * 
+ *
  * @package Tier\ResponseBody
  */
-class ExceptionHtmlBody extends HtmlBody {
-
+class ExceptionHtmlBody extends HtmlBody
+{
     public function __construct(\Exception $e)
     {
         $fullText = $this->getBeforeText();
@@ -60,7 +60,7 @@ class ExceptionHtmlBody extends HtmlBody {
 
     private function getBeforeText()
     {
-$text = <<< END
+        $text = <<< END
 
 <html>
 
@@ -111,7 +111,7 @@ END;
     
     private function getAfterText()
     {
-$text = <<< END
+        $text = <<< END
             </div>
         </div>
     </div> 
@@ -124,8 +124,4 @@ END;
 
         return $text;
     }
-    
-    
-
 }
-

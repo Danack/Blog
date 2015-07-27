@@ -3,9 +3,11 @@
 
 namespace Tier\ResponseBody;
 
-//TODO - extract just FileBody bits.
+use Arya\Body;
 
-//class NginxFileResponse implements Response { 
+class NginxFileResponseBody
+{
+//TODO - extract just FileBody bits.
 //
 //    private $fileNameToServe;
 //
@@ -93,7 +95,4 @@ namespace Tier\ResponseBody;
 //        exit(0);
 //    }
 //}
-
-
-
- 
+}
