@@ -33,6 +33,10 @@
         "oyejorge/less.php": "v1.7.0.1",
         "predis/predis": "^1.0.1",
         "rdlowrey/auryn": "v1.0.0 as 0.15.3",
+        "squizlabs/php_codesniffer": "^2.0.0",
+        "zendframework\/zend-inputfilter": ">=2.1.5",
+        "zendframework\/zend-filter": ">=2.1.5",
+        "zendframework\/zend-validator": ">=2.1.5",
         "zendframework/zend-permissions-acl": "^2.1.0",
         "zendframework/zend-stdlib": "~2.5"
     },

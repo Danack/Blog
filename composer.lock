@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7cf09ffe1354d3421e0a3a0a0c3f8038",
+    "hash": "7842933e0abca29f3d206f174c05ca64",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1495,61 +1495,6 @@
             "time": "2014-03-01 01:51:43"
         },
         {
-            "name": "intahwebz/form",
-            "version": "0.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/intahwebz-forms.git",
-                "reference": "f9215e41d93eb8e96213f63559cab0786389a097"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/intahwebz-forms/zipball/f9215e41d93eb8e96213f63559cab0786389a097",
-                "reference": "f9215e41d93eb8e96213f63559cab0786389a097",
-                "shasum": ""
-            },
-            "require": {
-                "intahwebz/core": "*",
-                "php": ">=5.4",
-                "psr/log": "~1.0",
-                "zendframework/zend-filter": ">=2.1.5",
-                "zendframework/zend-inputfilter": ">=2.1.5",
-                "zendframework/zend-validator": ">=2.1.5"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*",
-                "rdlowrey/auryn": "dev-danackExceptionRefactor as v0.8.1-dev"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Intahwebz\\Form": "src/",
-                    "Intahwebz\\FormElement": "src/",
-                    "Intahwebz\\Validator": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Form library for the intahwebz.",
-            "keywords": [
-                "core",
-                "form",
-                "intahwebz",
-                "library"
-            ],
-            "time": "2014-02-16 01:30:13"
-        },
-        {
             "name": "intahwebz/mb_extra",
             "version": "1.0.0",
             "source": {
@@ -2304,6 +2249,80 @@
             "time": "2015-07-03 13:48:55"
         },
         {
+            "name": "squizlabs/php_codesniffer",
+            "version": "2.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+                "reference": "c1a26c729508f73560c1a4f767f60b8ab6b4a666"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/c1a26c729508f73560c1a4f767f60b8ab6b4a666",
+                "reference": "c1a26c729508f73560c1a4f767f60b8ab6b4a666",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.1.2"
+            },
+            "bin": [
+                "scripts/phpcs",
+                "scripts/phpcbf"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "CodeSniffer.php",
+                    "CodeSniffer/CLI.php",
+                    "CodeSniffer/Exception.php",
+                    "CodeSniffer/File.php",
+                    "CodeSniffer/Fixer.php",
+                    "CodeSniffer/Report.php",
+                    "CodeSniffer/Reporting.php",
+                    "CodeSniffer/Sniff.php",
+                    "CodeSniffer/Tokens.php",
+                    "CodeSniffer/Reports/",
+                    "CodeSniffer/Tokenizers/",
+                    "CodeSniffer/DocGenerators/",
+                    "CodeSniffer/Standards/AbstractPatternSniff.php",
+                    "CodeSniffer/Standards/AbstractScopeSniff.php",
+                    "CodeSniffer/Standards/AbstractVariableSniff.php",
+                    "CodeSniffer/Standards/IncorrectPatternException.php",
+                    "CodeSniffer/Standards/Generic/Sniffs/",
+                    "CodeSniffer/Standards/MySource/Sniffs/",
+                    "CodeSniffer/Standards/PEAR/Sniffs/",
+                    "CodeSniffer/Standards/PSR1/Sniffs/",
+                    "CodeSniffer/Standards/PSR2/Sniffs/",
+                    "CodeSniffer/Standards/Squiz/Sniffs/",
+                    "CodeSniffer/Standards/Zend/Sniffs/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Sherwood",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+            "homepage": "http://www.squizlabs.com/php-codesniffer",
+            "keywords": [
+                "phpcs",
+                "standards"
+            ],
+            "time": "2015-06-24 03:16:23"
+        },
+        {
             "name": "symfony/browser-kit",
             "version": "v2.7.2",
             "source": {
@@ -2575,6 +2594,56 @@
             "time": "2015-06-03 15:32:01"
         },
         {
+            "name": "zendframework/zend-permissions-acl",
+            "version": "2.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-permissions-acl.git",
+                "reference": "7f1aac3bf99d0be8f71fe4ae79981338be8a08dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-permissions-acl/zipball/7f1aac3bf99d0be8f71fe4ae79981338be8a08dc",
+                "reference": "7f1aac3bf99d0be8f71fe4ae79981338be8a08dc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.23"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "zendframework/zend-di": "~2.5",
+                "zendframework/zend-servicemanager": "~2.5"
+            },
+            "suggest": {
+                "zendframework/zend-servicemanager": "To support Zend\\Permissions\\Acl\\Assertion\\AssertionManager plugin manager usage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev",
+                    "dev-develop": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Permissions\\Acl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a lightweight and flexible access control list (ACL) implementation for privileges management",
+            "homepage": "https://github.com/zendframework/zend-permissions-acl",
+            "keywords": [
+                "acl",
+                "zf2"
+            ],
+            "time": "2015-06-03 15:32:02"
+        },
+        {
             "name": "zendframework/zend-stdlib",
             "version": "2.5.1",
             "source": {
@@ -2820,16 +2889,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.1.8",
+            "version": "2.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "6044546998c7627ab997501a3d0db972b3db9790"
+                "reference": "5bd48b86cd282da411bb80baac1398ce3fefac41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6044546998c7627ab997501a3d0db972b3db9790",
-                "reference": "6044546998c7627ab997501a3d0db972b3db9790",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5bd48b86cd282da411bb80baac1398ce3fefac41",
+                "reference": "5bd48b86cd282da411bb80baac1398ce3fefac41",
                 "shasum": ""
             },
             "require": {
@@ -2878,7 +2947,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-07-13 11:25:58"
+            "time": "2015-07-26 12:54:47"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2968,16 +3037,16 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "1.0.6",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "83fe1bdc5d47658b727595c14da140da92b3d66d"
+                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/83fe1bdc5d47658b727595c14da140da92b3d66d",
-                "reference": "83fe1bdc5d47658b727595c14da140da92b3d66d",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
+                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
                 "shasum": ""
             },
             "require": {
@@ -3005,7 +3074,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2015-06-13 07:35:30"
+            "time": "2015-06-21 08:01:12"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -3130,22 +3199,23 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.5",
+            "version": "2.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "1c330b1b6e1ea8fd15f2fbea46770576e366855c"
+                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/1c330b1b6e1ea8fd15f2fbea46770576e366855c",
-                "reference": "1c330b1b6e1ea8fd15f2fbea46770576e366855c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
+                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "~1.0,>=1.0.2",
                 "php": ">=5.3.3",
-                "phpunit/php-text-template": "~1.2"
+                "phpunit/php-text-template": "~1.2",
+                "sebastian/exporter": "~1.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.4"
@@ -3181,20 +3251,20 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-07-04 05:41:32"
+            "time": "2015-07-10 06:54:24"
         },
         {
             "name": "sebastian/comparator",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "1dd8869519a225f7f2b9eb663e225298fade819e"
+                "reference": "937efb279bd37a375bcadf584dec0726f84dbf22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/1dd8869519a225f7f2b9eb663e225298fade819e",
-                "reference": "1dd8869519a225f7f2b9eb663e225298fade819e",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/937efb279bd37a375bcadf584dec0726f84dbf22",
+                "reference": "937efb279bd37a375bcadf584dec0726f84dbf22",
                 "shasum": ""
             },
             "require": {
@@ -3208,7 +3278,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -3245,7 +3315,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2015-01-29 16:28:08"
+            "time": "2015-07-26 15:48:44"
         },
         {
             "name": "sebastian/diff",
@@ -3301,16 +3371,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.2.2",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "5a8c7d31914337b69923db26c4221b81ff5a196e"
+                "reference": "4fe0a44cddd8cc19583a024bdc7374eb2fef0b87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/5a8c7d31914337b69923db26c4221b81ff5a196e",
-                "reference": "5a8c7d31914337b69923db26c4221b81ff5a196e",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/4fe0a44cddd8cc19583a024bdc7374eb2fef0b87",
+                "reference": "4fe0a44cddd8cc19583a024bdc7374eb2fef0b87",
                 "shasum": ""
             },
             "require": {
@@ -3347,20 +3417,20 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2015-01-01 10:01:08"
+            "time": "2015-07-26 06:42:57"
         },
         {
             "name": "sebastian/exporter",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "84839970d05254c73cde183a721c7af13aede943"
+                "reference": "7ae5513327cb536431847bcc0c10edba2701064e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/84839970d05254c73cde183a721c7af13aede943",
-                "reference": "84839970d05254c73cde183a721c7af13aede943",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/7ae5513327cb536431847bcc0c10edba2701064e",
+                "reference": "7ae5513327cb536431847bcc0c10edba2701064e",
                 "shasum": ""
             },
             "require": {
@@ -3413,7 +3483,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2015-01-27 07:23:06"
+            "time": "2015-06-21 07:55:53"
         },
         {
             "name": "sebastian/global-state",
@@ -3468,16 +3538,16 @@
         },
         {
             "name": "sebastian/recursion-context",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/recursion-context.git",
-                "reference": "3989662bbb30a29d20d9faa04a846af79b276252"
+                "reference": "994d4a811bafe801fb06dccbee797863ba2792ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/3989662bbb30a29d20d9faa04a846af79b276252",
-                "reference": "3989662bbb30a29d20d9faa04a846af79b276252",
+                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/994d4a811bafe801fb06dccbee797863ba2792ba",
+                "reference": "994d4a811bafe801fb06dccbee797863ba2792ba",
                 "shasum": ""
             },
             "require": {
@@ -3517,7 +3587,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2015-01-24 09:48:32"
+            "time": "2015-06-21 08:04:50"
         },
         {
             "name": "sebastian/version",
