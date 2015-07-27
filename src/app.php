@@ -12,8 +12,8 @@ $autoloader = require_once realpath(__DIR__).'/../vendor/autoload.php';
 // Contains helper functions for the 'framework'.
 require_once "../lib/Tier/tierFunctions.php";
 
-set_error_handler('tierErrorHandler');
-register_shutdown_function('tierShutdownFunction');
+set_error_handler('Tier\tierErrorHandler');
+register_shutdown_function('Tier\tierShutdownFunction');
 
 // We need to add the path Jig templates are compiled into to 
 // allow them to be autoloaded
@@ -26,7 +26,7 @@ $injectionParams = require_once "injectionParams.php";
 require_once "../../clavis.php";
 // Contains helper functions for the application.
 require_once "appFunctions.php";
-require_once "makeCSHappy.php";
+
 
 
 
@@ -39,6 +39,7 @@ try {
 catch (\Exception $e) {
     //TODO - exit quickly.
     header("We totally failed", true, 501);
+    echo "we ded ".$e->getMessage();
     exit(0);
 }
 
