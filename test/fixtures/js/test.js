@@ -1,0 +1,3 @@
+function shoaman() {
+    return "mofo";
+}
