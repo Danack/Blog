@@ -2,19 +2,13 @@
 
 namespace Blog\Tool;
 
-//\Intahwebz\Functions::load();
-//\Intahwebz\MBExtra\Functions::load();
-
-
 use Blog\GeneratedSourcePath;
 use Intahwebz\DB\Connection;
 use Intahwebz\TableMap\TableMapWriter;
 use Intahwebz\DBSync\DBSync;
 
-
-
-class Upgrade { 
-
+class Upgrade
+{
     private $dbConnection;
 
     /**
@@ -27,8 +21,8 @@ class Upgrade {
      */
     private $generatedSourcePath;
 
-    function __construct(
-        Connection $dbConnection, 
+    public function __construct(
+        Connection $dbConnection,
         GeneratedSourcePath $generatedSourcePath,
         DBSync $dbSync
     ) {
@@ -37,25 +31,23 @@ class Upgrade {
         $this->dbSync = $dbSync;
     }
 
-    function main()
+    public function main()
     {
         $this->upgradeDB();
         $this->writeObjectFiles();
-        
-        
     }
 
-    function  upgradeDB()
+    public function upgradeDB()
     {
         $tablesToUpgrade = $this->getKnownTables();
         //$this->dbSync->processUpgradeForSchema('basereality', $tablesToUpgrade);
     }
 
-    function getKnownTables()
+    public function getKnownTables()
     {
         $knownTables = array(
             new \Blog\DB\BlogPostTable($this->dbConnection),
-            new \Blog\DB\BlogPostTextTable($this->dbConnection),  
+            new \Blog\DB\BlogPostTextTable($this->dbConnection),
             new \Blog\DB\ContentTable($this->dbConnection),
             new \Blog\DB\LoginTable($this->dbConnection)
         );
@@ -63,18 +55,16 @@ class Upgrade {
         return $knownTables;
     }
 
-    function writeObjectFiles() 
+    public function writeObjectFiles()
     {
         $tableMapWriter = new TableMapWriter();
 
-        foreach($this->getKnownTables() as $knownTable){
+        foreach ($this->getKnownTables() as $knownTable) {
             $tableMapWriter->generateObjectFile(
                 $knownTable,
-               $this->generatedSourcePath."/Blog/DTO/",
+                $this->generatedSourcePath."/Blog/DTO/",
                 "Blog\\DTO"
             );
         }
-    }    
+    }
 }
-
-

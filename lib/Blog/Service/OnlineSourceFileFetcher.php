@@ -2,11 +2,9 @@
 
 namespace Blog\Service;
 
-
 use Intahwebz\FileFilter\StorageDownloadFilter;
 use Blog\Value\CachePath;
 use Intahwebz\Storage\Storage;
-
 
 class OnlineSourceFileFetcher implements SourceFileFetcher
 {
@@ -21,7 +19,7 @@ class OnlineSourceFileFetcher implements SourceFileFetcher
      */
     private $storage;
 
-    function __construct(CachePath $cachePath, Storage $storage)
+    public function __construct(CachePath $cachePath, Storage $storage)
     {
         $this->cachePath = $cachePath;
         $this->storage = $storage;
@@ -31,21 +29,18 @@ class OnlineSourceFileFetcher implements SourceFileFetcher
      * @param $srcFile
      * @return string
      */
-    function fetch($srcFile)
+    public function fetch($srcFile)
     {
         $filter = new StorageDownloadFilter(
             $this->storage,
             $this->cachePath->getFile("static/original", $srcFile, null),
-            'static.basereality.com',//STATIC_BUCKET,
+            'static.basereality.com', //STATIC_BUCKET,
             $srcFile
         );
 
         $filter->process();
-        $fileNameToServe = $filter->getFile()->getPath();    
+        $fileNameToServe = $filter->getFile()->getPath();
 
         return $fileNameToServe;
     }
 }
-
-
-

@@ -3,9 +3,8 @@
 
 namespace Blog\Data;
 
-
-class TemplateList {
-
+class TemplateList
+{
     private $list;
 
     public function __construct($list)
@@ -18,4 +17,3 @@ class TemplateList {
         return $this->list;
     }
 }
-

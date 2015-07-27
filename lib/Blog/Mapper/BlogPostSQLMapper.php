@@ -1,19 +1,16 @@
 <?php
 
-
 namespace Blog\Mapper;
 
 use Intahwebz\TableMap\SQLQueryFactory;
-
 use Blog\DB\ContentTable;
 use Blog\DB\BlogPostTable;
 use Blog\DB\BlogPostTextTable;
 use Blog\DTO\BlogPostTextDTO;
 use Blog\DTO\BlogPostDTO;
 
-
-class BlogPostSQLMapper implements BlogPostMapper {
-
+class BlogPostSQLMapper implements BlogPostMapper
+{
     /**
      * @var ContentTable
      */
@@ -35,7 +32,7 @@ class BlogPostSQLMapper implements BlogPostMapper {
      */
     private $sqlQueryFactory;
 
-    function __construct(
+    public function __construct(
         SQLQueryFactory $sqlQueryFactory,
         ContentTable $contentTable,
         BlogPostTable $blogPost,
@@ -51,7 +48,8 @@ class BlogPostSQLMapper implements BlogPostMapper {
      * @param $blogPostID
      * @return \BaseReality\Content\BlogPost
      */
-    function getBlogPost($blogPostID) {
+    public function getBlogPost($blogPostID)
+    {
         $sqlQuery = $this->sqlQueryFactory->create();
         $sqlQuery->table($this->blogPostTextTable);
         $sqlQuery->table($this->blogPostTable)->wherePrimary($blogPostID);
@@ -74,13 +72,14 @@ class BlogPostSQLMapper implements BlogPostMapper {
      * @throws \Exception
      * @throws \Intahwebz\DB\DBException
      */
-    function getBlogPostsForYear($year, $includeInactive) {
+    public function getBlogPostsForYear($year, $includeInactive)
+    {
         $sqlQuery = $this->sqlQueryFactory->create();
         $sqlQuery->table($this->blogPostTextTable);
         if ($includeInactive == true) {
             $sqlQuery->table($this->blogPostTable);
         }
-        else{
+        else {
             $sqlQuery->table($this->blogPostTable)->whereColumn('isActive', 1);
         }
 
@@ -98,11 +97,12 @@ class BlogPostSQLMapper implements BlogPostMapper {
      * @param $blogPostID
      * @throws \Exception
      */
-    function updateBlogPost($title, $isActive, $blogPostID){
+    public function updateBlogPost($title, $isActive, $blogPostID)
+    {
         $blogPostParams = array(
             'columns' => array(
-                'title'	=> $title,
-                'isActive'	=> $isActive,
+                'title' => $title,
+                'isActive' => $isActive,
             ),
             'where' => array(
                 'blogPostID' => $blogPostID
@@ -118,7 +118,8 @@ class BlogPostSQLMapper implements BlogPostMapper {
      * @return int
      * @throws \Exception
      */
-    function createBlogPost($title, $text) {
+    public function createBlogPost($title, $text)
+    {
         $blogPostTextDTO = new BlogPostTextDTO();
         $sqlQuery = $this->sqlQueryFactory->create();
 
@@ -141,7 +142,8 @@ class BlogPostSQLMapper implements BlogPostMapper {
      * @param $text
      * @throws \Exception
      */
-    function updateBlogPostText($blogPostID, $text) {
+    public function updateBlogPostText($blogPostID, $text)
+    {
         $blogPostText = new BlogPostTextDTO();
         $blogPostText->blogPostText = $text;
 
@@ -162,4 +164,3 @@ class BlogPostSQLMapper implements BlogPostMapper {
         $sqlQuery->updateMappedTable($this->blogPostTable, $blogPostParams);
     }
 }
-

@@ -5,9 +5,8 @@ namespace Blog\Bridge;
 use Intahwebz\Form\DataStore;
 use Intahwebz\Session;
 
-
-class SessionDataStore implements DataStore {
-
+class SessionDataStore implements DataStore
+{
     /**
      * @var Session
      */
@@ -28,4 +27,3 @@ class SessionDataStore implements DataStore {
         return $this->session->setSessionVariable($name, $data);
     }
 }
-

@@ -8,8 +8,8 @@ use Intahwebz\Utils\ScriptInclude;
 use Blog\Content\BlogPost;
 use Blog\Model\TemplateBlogPostFactory;
 
-class BlogPlugin extends BasicPlugin {
-
+class BlogPlugin extends BasicPlugin
+{
     /**
      * @var \Intahwebz\Utils\ScriptInclude
      */
@@ -20,7 +20,7 @@ class BlogPlugin extends BasicPlugin {
      */
     private $templateBlogPostFactory;
     
-    function __construct(
+    public function __construct(
         ScriptInclude $scriptInclude,
         TemplateBlogPostFactory $templateBlogPostFactory
     ) {
@@ -69,12 +69,14 @@ class BlogPlugin extends BasicPlugin {
         return $output;
     }
 
-    function showTweetButton()
+    public function showTweetButton()
     {
-        $text = "<a href='https://twitter.com/share' class='twitter-share-button' data-via='MrDanack' data-dnt='true'>Tweet</a>";
-
+        $text = <<< END
+<a href='https://twitter.com/share' class='twitter-share-button' data-via='MrDanack' data-dnt='true'>Tweet</a>
+END;
+ 
         $this->scriptInclude->addBodyLoadFunction("addTwitterDelayed();");
-    
+
         return $text;
     }
 
@@ -106,57 +108,54 @@ class BlogPlugin extends BasicPlugin {
     {
         return $this->templateBlogPostFactory->create($blogPost);
     }
-    
-    function routeIndex()
+
+    public function routeIndex()
     {
         return routeIndex();
     }
 
-    function routeBlogPost($blogPostID)
+    public function routeBlogPost($blogPostID)
     {
         return routeBlogPost($blogPostID);
     }
     
-    function routeBlogPostWithFormat($blogPostID, $format)
+    public function routeBlogPostWithFormat($blogPostID, $format)
     {
         return routeBlogPostWithFormat($blogPostID, $format);
     }
 
-    function routeJSInclude($jsFile)
+    public function routeJSInclude($jsFile)
     {
         return routeJSInclude($jsFile);
     }
     
-    function routeShowUpload()
+    public function routeShowUpload()
     {
         return "/upload";
     }
     
-    function routeShowDrafts()
+    public function routeShowDrafts()
     {
         return "/drafts";
     }
     
-    function routeDraft($draftFilename)
+    public function routeDraft($draftFilename)
     {
         return routeDraft($draftFilename);
     }
-    
-    
-    function routeBlogEdit($blogPostID)
+
+    public function routeBlogEdit($blogPostID)
     {
         return routeBlogEdit($blogPostID);
     }
     
-    function routeBlogReplace($blogPostID)
+    public function routeBlogReplace($blogPostID)
     {
         return routeBlogReplace($blogPostID);
     }
-    
-    
-    function articleImage($imageFilename, $size, $float = 'left', $description = false)
+
+    public function articleImage($imageFilename, $size, $float = 'left', $description = false)
     {
         return articleImage($imageFilename, $size, $float, $description);
     }
 }
-

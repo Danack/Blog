@@ -5,6 +5,6 @@ namespace Blog\Value;
 
 use Intahwebz\Path;
 
-class AutogenPath extends Path {
-
+class AutogenPath extends Path
+{
 }

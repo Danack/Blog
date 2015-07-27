@@ -4,20 +4,20 @@ namespace Blog\Content;
 
 use Intahwebz\Cache\KeyName;
 
-class BlogPost {
-
-    use     KeyName;
+class BlogPost
+{
+    use KeyName;
     
     //var     $contentID;
-    public     $datestamp;
+    public $datestamp;
 
-    public     $blogPostID;
-    public     $title;
+    public $blogPostID;
+    public $title;
     //public     $isActive;
     //public     $blogPostTextID;
-    public     $text;
+    public $text;
 
-    public      $blogPostText;
+    public $blogPostText;
     //public     $typeName = 'BlogPost';
 
     public static function create($blogPostID, $title, $text, $datestamp)
@@ -63,9 +63,6 @@ class BlogPost {
     {
         return $this->text;
     }
-    
-    
-    
 
 //    function getID(){
 //        return $this->blogPostID;
@@ -121,7 +118,8 @@ class BlogPost {
 //        return $output;
 //    }
 
-    function getCacheKey($name) {
+    public function getCacheKey($name)
+    {
         return $this->getClassKey($name.'_'.$this->blogPostID);
     }
 //

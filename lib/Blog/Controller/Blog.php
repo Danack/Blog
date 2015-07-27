@@ -11,17 +11,18 @@ use Arya\TextBody;
 use Blog\Model\ActiveBlogPost;
 use Blog\Content\BlogPost;
 
-class Blog {
-
+class Blog
+{
     /**
      * @return mixed
      */
-    function index() {
+    public function index()
+    {
         return getRenderTemplateTier('pages/index');
     }
 
-    function showDraft(
-        StoragePath $storagePath, 
+    public function showDraft(
+        StoragePath $storagePath,
         $filename
     ) {
         $draftDirectory = $storagePath->getSafePath('blogDraft');
@@ -41,7 +42,7 @@ class Blog {
         return getRenderTemplateTier('pages/displayBlogPost', $params);
     }
 
-    function showDrafts()
+    public function showDrafts()
     {
         return getRenderTemplateTier('pages/drafts');
     }
@@ -53,7 +54,7 @@ class Blog {
      * @param $format
      * @return RedirectResponse|mixed
      */
-    function display(
+    public function display(
         BlogPostMapper $blogPostMapper,
         $blogPostID,
         $format = 'html'
@@ -69,4 +70,3 @@ class Blog {
         return getRenderTemplateTier('pages/displayBlogPost', $params);
     }
 }
-

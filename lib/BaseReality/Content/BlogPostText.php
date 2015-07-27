@@ -3,10 +3,7 @@
 
 namespace Intahwebz\Content;
 
-
-class BlogPostText {
-
-	var  $blogPostTextID;
+class BlogPostText
+{
+    public $blogPostTextID;
 }
-
-

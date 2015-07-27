@@ -3,15 +3,12 @@
 namespace BaseReality\Form;
 
 use Intahwebz\Form\Form;
-
 use Intahwebz\Session;
 
-
-
-
-class BlogReplaceForm extends Form {
-
-    function getDefinition() {
+class BlogReplaceForm extends Form
+{
+    public function getDefinition()
+    {
         $definition = array(
 
             'class'         => 'blogEditForm',
@@ -53,4 +50,3 @@ class BlogReplaceForm extends Form {
         return $definition;
     }
 }
-

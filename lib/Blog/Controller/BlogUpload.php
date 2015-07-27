@@ -5,9 +5,7 @@ namespace Blog\Controller;
 
 use Blog\Mapper\BlogPostMapper;
 use BaseReality\Form\BlogUploadForm;
-
 use Intahwebz\UploadedFile;
-
 use Arya\RedirectBody;
 
 function processUploadedFile(UploadedFile $uploadedFile)
@@ -27,11 +25,10 @@ function processUploadedFile(UploadedFile $uploadedFile)
     return [$title, $fileContents];
 }
 
-class BlogUpload {
-
-    function showUpload(
-         BlogUploadForm $blogUploadForm
-    ) {
+class BlogUpload
+{
+    public function showUpload(BlogUploadForm $blogUploadForm)
+    {
         $storedData = $blogUploadForm->getSessionStoredData(true);
         if (!$storedData) {
             $blogUploadForm->addRowValues('new', []);
@@ -40,7 +37,7 @@ class BlogUpload {
         return getRenderTemplateTier('pages/displayUploadForm');
     }
 
-    function uploadPost(
+    public function uploadPost(
         BlogUploadForm $blogUploadForm,
         BlogPostMapper $blogPostMapper
     ) {
@@ -62,7 +59,7 @@ class BlogUpload {
     /**
      * @return \Tier\Tier
      */
-    function uploadResult()
+    public function uploadResult()
     {
         return getRenderTemplateTier('pages/uploadSuccess');
     }

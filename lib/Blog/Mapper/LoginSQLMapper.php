@@ -8,13 +8,13 @@ use Blog\DB\LoginTable;
 
 class LoginSQLMapper implements LoginMapper
 {
-
     /**
      * @var \Blog\DB\LoginTable
      */
-    var $loginTable;
+    public $loginTable;
 
-    function __construct(SQLQueryFactory $sqlQueryFactory, LoginTable $loginTable) {
+    public function __construct(SQLQueryFactory $sqlQueryFactory, LoginTable $loginTable)
+    {
         $this->sqlQueryFactory = $sqlQueryFactory;
         $this->loginTable = $loginTable;
     }
@@ -26,7 +26,8 @@ class LoginSQLMapper implements LoginMapper
      * @throws \Exception
      * @throws \Intahwebz\DB\DBException
      */
-    public function isLoginValid($username, $password) {
+    public function isLoginValid($username, $password)
+    {
         $sqlQuery = $this->sqlQueryFactory->create();
         $sqlQuery->table($this->loginTable)->whereColumn('login', $username);
         $contentArray = $sqlQuery->fetch();
@@ -49,7 +50,8 @@ class LoginSQLMapper implements LoginMapper
      * @throws \Exception
      * @throws \Intahwebz\DB\DBException
      */
-    function createUserLogin($username, $password) {
+    public function createUserLogin($username, $password)
+    {
         $data = array(
             'login' => $username,
             'hash' => $password,
@@ -63,5 +65,3 @@ class LoginSQLMapper implements LoginMapper
         return $contentArray;
     }
 }
-
- 

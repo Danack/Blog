@@ -1,19 +1,16 @@
 <?php
 
-
 namespace Blog\Controller;
 
 use Tier\ResponseBody\HtmlBody;
 use Blog\Data\TemplateList;
-
 use Arya\Request;
 use Auryn\Injector;
 
+class TemplateViewer
+{
 
-
-class TemplateViewer {
-
-    function index()
+    public function index()
     {
 //        $srcPath = __DIR__."/../../../templates/";
 //        $templates = getTemplates($srcPath);
@@ -21,9 +18,8 @@ class TemplateViewer {
         
         return getRenderTemplateTier('pages/templateTest');
     }
-    
-    
-    function displayTemplate(Injector $injector, Request $request)
+
+    public function displayTemplate(Injector $injector, Request $request)
     {
         $templateInjector = clone $injector;
         
@@ -63,6 +59,4 @@ class TemplateViewer {
         
         return new HtmlBody($html);
     }
-    
 }
-

@@ -5,9 +5,7 @@ namespace Blog\Value;
 
 use Intahwebz\Path;
 
-class TemplatePath extends Path {
+class TemplatePath extends Path
+{
 
 }
-
-
-

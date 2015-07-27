@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Blog\Mapper;
 
-
-class LoginStubMapper implements LoginMapper {
-
+class LoginStubMapper implements LoginMapper
+{
     /**
      * @param $username
      * @param $password
@@ -22,9 +20,7 @@ class LoginStubMapper implements LoginMapper {
      * @return mixed
      * @throws \Exception
      */
-    function createUserLogin($username, $password)
+    public function createUserLogin($username, $password)
     {
-        
     }
 }
-

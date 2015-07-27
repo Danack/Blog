@@ -4,16 +4,17 @@ namespace BaseReality\Form;
 
 use Intahwebz\Form\Form;
 
-class BlogEditForm extends Form {
-
-    function getDefinition() {
+class BlogEditForm extends Form
+{
+    public function getDefinition()
+    {
         $definition = array(
 
             'class'         => 'blogEditForm',
 
             'startElements' => [
                 [
-                    'type'  => \Intahwebz\FormElement\Title::class,
+                    'type'  => 'Intahwebz\FormElement\Title',
                     'value' => 'Blog edit',
                 ]
             ],
@@ -21,7 +22,7 @@ class BlogEditForm extends Form {
             'rowElements'   => array(
                 array(
                     'title',
-                    'type'       => \Intahwebz\FormElement\Text::class,
+                    'type'       => 'Intahwebz\FormElement\Text',
                     'label'      => 'Post title',
                     'name'       => 'title',
                     'validation' => array(
@@ -32,7 +33,7 @@ class BlogEditForm extends Form {
                 ),
                 array(
                     'isActive',
-                    'type'  => \Intahwebz\FormElement\CheckBox::class,
+                    'type'  => 'Intahwebz\FormElement\CheckBox',
                     'label' => 'Is active',
                     'name'  => 'isActive',
                 ),
@@ -41,7 +42,7 @@ class BlogEditForm extends Form {
             'endElements'   => array(
                 array(
                     'submitButton',
-                    'type'  => \Intahwebz\FormElement\SubmitButton::class,
+                    'type'  => 'Intahwebz\FormElement\SubmitButton',
                     'label' => null,
                     'text'  => 'Update',
                 ),
@@ -54,4 +55,3 @@ class BlogEditForm extends Form {
         return $definition;
     }
 }
-

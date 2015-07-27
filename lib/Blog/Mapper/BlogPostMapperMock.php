@@ -5,16 +5,15 @@ namespace Blog\Mapper;
 
 use Blog\Content\BlogPost;
 
-class BlogPostMapperMock implements BlogPostMapper {
-
-   
-    
+class BlogPostMapperMock implements BlogPostMapper
+{
     /**
      * @param $blogPostID
      * @return \BaseReality\Content\BlogPost
      * @throws \Exception
      */
-    function getBlogPost($blogPostID) {
+    public function getBlogPost($blogPostID)
+    {
         //$blogPost = new \Blog\Content\BlogPost();
         
         $blogPost = BlogPost::create(
@@ -34,8 +33,8 @@ class BlogPostMapperMock implements BlogPostMapper {
      * @throws \Exception
      * @throws \Intahwebz\DB\DBException
      */
-    function getBlogPostsForYear($year, $includeInactive) {
-
+    public function getBlogPostsForYear($year, $includeInactive)
+    {
         $blogPostID = getNextBlogPostID();
 
         $blogPost = BlogPost::create(
@@ -54,7 +53,8 @@ class BlogPostMapperMock implements BlogPostMapper {
      * @param $blogPostID
      * @throws \Exception
      */
-    function updateBlogPost($title, $isActive, $blogPostID) {
+    public function updateBlogPost($title, $isActive, $blogPostID)
+    {
         //throw new \Exception("Not implemented");
     }
 
@@ -63,7 +63,8 @@ class BlogPostMapperMock implements BlogPostMapper {
      * @param $text
      * @return int
      */
-    function createBlogPost($title, $text) {
+    public function createBlogPost($title, $text)
+    {
         throw new \Exception("Not implemented");
     }
 
@@ -72,11 +73,8 @@ class BlogPostMapperMock implements BlogPostMapper {
      * @param $text
      * @throws \Exception
      */
-    function updateBlogPostText($blogPostID, $text) {
+    public function updateBlogPostText($blogPostID, $text)
+    {
         //throw new \Exception("Not implemented");
     }
 }
-
-
-
- 

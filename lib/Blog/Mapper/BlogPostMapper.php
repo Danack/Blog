@@ -3,14 +3,15 @@
 
 namespace Blog\Mapper;
 
-interface BlogPostMapper {
+interface BlogPostMapper
+{
 
     /**
      * @param $blogPostID
      * @return \Blog\Content\BlogPost
      * @throws \Exception
      */
-    function getBlogPost($blogPostID);
+    public function getBlogPost($blogPostID);
 
     /**
      * @param $year
@@ -18,7 +19,7 @@ interface BlogPostMapper {
      * @return \Blog\Content\BlogPost[]
      * @throws \Exception
      */
-    function getBlogPostsForYear($year, $includeInactive);
+    public function getBlogPostsForYear($year, $includeInactive);
 
     /**
      * @param $title
@@ -26,20 +27,19 @@ interface BlogPostMapper {
      * @param $blogPostID
      * @throws \Exception
      */
-    function updateBlogPost($title, $isActive, $blogPostID);
+    public function updateBlogPost($title, $isActive, $blogPostID);
 
     /**
      * @param $title
      * @param $text
      * @return int
      */
-    function createBlogPost($title, $text);
+    public function createBlogPost($title, $text);
 
     /**
      * @param $blogPostID
      * @param $text
      * @throws \Exception
      */
-    function updateBlogPostText($blogPostID, $text);
+    public function updateBlogPostText($blogPostID, $text);
 }
-

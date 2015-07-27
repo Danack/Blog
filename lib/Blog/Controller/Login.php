@@ -4,11 +4,8 @@ namespace Blog\Controller;
 
 use Intahwebz\Response\RedirectResponse;
 use Intahwebz\Session;
-
-
 use Blog\Mapper\LoginMapper;
 use BaseReality\Form\LoginForm;
-
 use BaseReality\Security\Role;
 //use BaseReality\Security\Role;
 //use Intahwebz\Response\TemplateResponseFactory;
@@ -16,8 +13,8 @@ use BaseReality\Security\Role;
 use Arya\Response;
 use Arya\RedirectBody;
 
-class Login {
-
+class Login
+{
     public function loginGet(
         Response $response,
         LoginForm $loginForm,
@@ -65,21 +62,23 @@ class Login {
         $loginForm->storeValuesInSession();
         $response->setStatus(302);
 
-        return new RedirectBody("This should redirect", '/login');    
+        return new RedirectBody("This should redirect", '/login');
     }
-
 
     /**
      * @param Session $session
      * @return RedirectBody
      */
-    public function logout(Session $session) {
-        $redirectURL = $session->getSessionVariable('redirectURL', FALSE);
+    public function logout(Session $session)
+    {
+        $redirectURL = $session->getSessionVariable('redirectURL', false);
 
-        //About to delete all session info
-        $session->logoutUser();//This destroys all session information - any info we want to retain needs to be set again.
-        //All session info deleted - 
-        if($redirectURL != FALSE){
+        // About to delete all session info
+        // This destroys all session information. Any info we want to
+        // retain needs to be set again.
+        $session->logoutUser();
+        //All session info deleted -
+        if ($redirectURL != false) {
             $session->setSessionVariable('redirectURL', $redirectURL);
         }
         

@@ -13,9 +13,8 @@ use Blog\Value\ExternalLibPath;
 use Intahwebz\File;
 use Intahwebz\YuiCompressorPath;
 
-
-class StandardFilePacker implements FilePacker {
-
+class StandardFilePacker implements FilePacker
+{
     /**
      * @var string
      */
@@ -34,13 +33,13 @@ class StandardFilePacker implements FilePacker {
     /** @var  string  */
     private $externalLibPath;
 
-    function __construct(
-        StoragePath $storagePath, 
-        AutogenPath $autogenPath, 
+    public function __construct(
+        StoragePath $storagePath,
+        AutogenPath $autogenPath,
         WebRootPath $webRootPath,
         ExternalLibPath $externalLibPath,
-        YuiCompressorPath $yuiCompressorPath)
-    {
+        YuiCompressorPath $yuiCompressorPath
+    ) {
         $this->storagePath = $storagePath->getPath();
         $this->autogenPath = $autogenPath->getPath();
         $this->webRootPath = $webRootPath->getPath();
@@ -48,12 +47,12 @@ class StandardFilePacker implements FilePacker {
         $this->yuiCommpressorPath = $yuiCompressorPath;
     }
 
-    function getHeaders()
+    public function getHeaders()
     {
         return ['Content-Encoding' =>'gzip'];
     }
     
-    function getFinalFilename(array $filesToPack, $extension)
+    public function getFinalFilename(array $filesToPack, $extension)
     {
         $jsInclude = implode("_", $filesToPack);
         $outputFilename = str_replace(array(',', '.', '/', '\\', '%2F'), '_', $jsInclude);
@@ -62,13 +61,13 @@ class StandardFilePacker implements FilePacker {
         return $this->storagePath."/cache/filepacker/".$outputFilename.".".$extension;
     }
 
-    function pack($outputFilename, $jsIncludeArray, $appendLine, $extension) {
-
+    public function pack($outputFilename, $jsIncludeArray, $appendLine, $extension)
+    {
         $finalFilename = $this->getFinalFilename($jsIncludeArray, $extension);
         $outputFile = File::fromFullPath($finalFilename);
         //$outputFile = new File($this->storagePath."/cache/filepacker/", $outputFilename, "js");
         $filter = new ConcatenatingFilter($outputFile, $jsIncludeArray, $appendLine);
-        $minFile = $outputFile->addExtension('min'); 
+        $minFile = $outputFile->addExtension('min');
         
         $filter = new YuiCompressorFilter($filter, $minFile, $this->yuiCommpressorPath);
         $compressedFile = $minFile->addExtension('gz', true);
@@ -83,4 +82,3 @@ class StandardFilePacker implements FilePacker {
         return $finalFilename;
     }
 }
-

@@ -18,5 +18,5 @@ interface LoginMapper
      * @return mixed
      * @throws \Exception
      */
-    function createUserLogin($username, $password);
+    public function createUserLogin($username, $password);
 }

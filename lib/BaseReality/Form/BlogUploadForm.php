@@ -4,9 +4,10 @@ namespace BaseReality\Form;
 
 use Intahwebz\Form\Form;
 
-class BlogUploadForm extends Form {
-
-    function getDefinition() {
+class BlogUploadForm extends Form
+{
+    public function getDefinition()
+    {
         $definition = array(
 
             'class' => 'blogEditForm',
@@ -62,4 +63,3 @@ class BlogUploadForm extends Form {
         return $definition;
     }
 }
-

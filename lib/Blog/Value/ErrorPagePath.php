@@ -5,4 +5,6 @@ namespace Blog\Value;
 
 use Intahwebz\Path;
 
-class ErrorPagePath extends Path {}
+class ErrorPagePath extends Path
+{
+}

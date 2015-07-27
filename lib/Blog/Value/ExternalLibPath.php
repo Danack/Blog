@@ -5,6 +5,6 @@ namespace Blog\Value;
 
 use Intahwebz\Path;
 
-class ExternalLibPath extends Path {
-
+class ExternalLibPath extends Path
+{
 }

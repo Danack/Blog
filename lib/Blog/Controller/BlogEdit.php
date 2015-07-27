@@ -7,16 +7,15 @@ use BaseReality\Form\BlogReplaceForm;
 use Blog\Mapper\BlogPostMapper;
 use Arya\RedirectBody;
 
-
-class BlogEdit {
-
+class BlogEdit
+{
     /**
      * @param BlogEditForm $blogEditForm
      * @param BlogPostMapper $blogPostMapper
      * @param $blogPostID
      * @return RedirectBody|\Tier\Tier
      */
-    function processEdit(
+    public function processEdit(
         BlogEditForm $blogEditForm,
         BlogPostMapper $blogPostMapper,
         $blogPostID
@@ -42,7 +41,7 @@ class BlogEdit {
      * @param $blogPostID
      * @return \Tier\Tier
      */
-    function showEdit(
+    public function showEdit(
         BlogPostMapper $blogPostMapper,
         BlogEditForm $blogEditForm,
         $blogPostID
@@ -62,7 +61,7 @@ class BlogEdit {
         return getRenderTemplateTier('pages/blogEdit');
     }
 
-    function showReplace(
+    public function showReplace(
         BlogReplaceForm $blogReplaceForm,
         $blogPostID
     ) {
@@ -75,7 +74,7 @@ class BlogEdit {
         return getRenderTemplateTier('pages/displayReplaceForm');
     }
 
-    function processReplace(
+    public function processReplace(
         BlogReplaceForm $blogReplaceForm,
         BlogPostMapper $blogPostMapper,
         $blogPostID

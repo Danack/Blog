@@ -1,15 +1,13 @@
 <?php
 
-
 namespace Blog\DB;
-
 
 use Intahwebz\TableMap\SQLTableMap;
 
-
-class BlogPostTable extends SQLTableMap  {
-
-    function getTableDefinition() {
+class BlogPostTable extends SQLTableMap
+{
+    public function getTableDefinition()
+    {
         $tableDefinition = array(
             'schema' => 'basereality',
             'tableName' => 'blogPost',
@@ -25,5 +23,3 @@ class BlogPostTable extends SQLTableMap  {
         return $tableDefinition;
     }
 }
-
- 

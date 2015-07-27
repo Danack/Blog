@@ -9,10 +9,10 @@ use Blog\Content\BlogPost;
 use Jig\Jig;
 use Jig\JigRender;
 use Auryn\Injector;
-
 use Michelf\MarkdownExtra;
 
-class BlogPostPlugin extends BasicPlugin {
+class BlogPostPlugin extends BasicPlugin
+{
 
     /**
      * @var Jig
@@ -29,7 +29,7 @@ class BlogPostPlugin extends BasicPlugin {
      */
     private $injector;
     
-    function __construct(
+    public function __construct(
         ScriptInclude $scriptInclude,
         Jig $jig,
         JigRender $jigRender,
@@ -41,7 +41,6 @@ class BlogPostPlugin extends BasicPlugin {
         $this->injector = $injector;
     }
 
-
     public static function hasBlock($blockName)
     {
         $blockList = static::getBlockRenderList();
@@ -50,8 +49,7 @@ class BlogPostPlugin extends BasicPlugin {
 
         return in_array($blockName, $blockList, true);
     }
-    
-    
+
     public static function getBlockRenderList()
     {
         return [
@@ -82,7 +80,8 @@ class BlogPostPlugin extends BasicPlugin {
         return "";
     }
     
-    function markdownBlockRenderEnd($contents) {
+    public function markdownBlockRenderEnd($contents)
+    {
         $result = MarkdownExtra::defaultTransform($contents);
 
         return $result;
@@ -92,7 +91,7 @@ class BlogPostPlugin extends BasicPlugin {
     {
         $this->jig->addDefaultPlugin('Blog\TemplatePlugin\BlogPostPlugin');
         $className = $this->jig->getParsedTemplateFromString(
-            $blogPost->blogPostText, 
+            $blogPost->blogPostText,
             "BlogPost".$blogPost->blogPostID
         );
         $contents = $this->injector->execute([$className, 'render']);
@@ -100,4 +99,3 @@ class BlogPostPlugin extends BasicPlugin {
         return $contents;
     }
 }
-

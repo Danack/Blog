@@ -21,7 +21,8 @@ function extractItems($cssInclude)
     foreach ($cssIncludeArray as $cssIncludeItem) {
         $cssIncludeItem = urldecode($cssIncludeItem);
         $cssIncludeItem = trim($cssIncludeItem);
-        $versionString = str_replace(array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."),
+        $versionString = str_replace(
+            array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."),
             "",
             $cssIncludeItem
         );
@@ -56,8 +57,8 @@ function checkIfModifiedHeader(Request $request, $unixTime)
 }
 
 
-class ScriptServer {
-
+class ScriptServer
+{
     /**
      * @var FilePacker
      */
@@ -69,7 +70,7 @@ class ScriptServer {
      * @param WebRootPath $webRootPath
      * @param ExternalLibPath $externalLibPath
      */
-    function __construct(
+    public function __construct(
         Response $response,
         FileResponseCreator $fileResponseCreator,
         FilePacker $filePacker,
@@ -136,7 +137,7 @@ class ScriptServer {
      * @param $cssInclude
      * @return FileResponse
      */
-    function getPackedCSS(Request $request, $cssInclude)
+    public function getPackedCSS(Request $request, $cssInclude)
     {
         $cssIncludeArray = $this->getCSSFilesToInclude($cssInclude);
 
@@ -155,20 +156,20 @@ class ScriptServer {
      * @return FileBody|EmptyBody
      * @throws \Exception
      */
-    function getPackedJavascript(Request $request, $jsInclude)
+    public function getPackedJavascript(Request $request, $jsInclude)
     {
         $jsIncludeArray = $this->getJSFilesToInclude($jsInclude);
         
         return $this->getPackedFiles(
             $request,
             $jsIncludeArray,
-            $appendLine = "", 
+            $appendLine = "",
             'application/javascript',
             'js'
         );
     }
     
-    function getPackedFiles(Request $request, $jsIncludeArray, $appendLine, $contentType, $extension)
+    public function getPackedFiles(Request $request, $jsIncludeArray, $appendLine, $contentType, $extension)
     {
         $finalFilename = $this->filePacker->getFinalFilename($jsIncludeArray, $extension);
         $notModifiedHeader = checkIfModifiedHeader(
@@ -181,7 +182,7 @@ class ScriptServer {
             return new EmptyBody();
         }
 
-        $finalFilename = $this->filePacker->pack("john", $jsIncludeArray, $appendLine, $extension); 
+        $finalFilename = $this->filePacker->pack("john", $jsIncludeArray, $appendLine, $extension);
 
         $this->response->addHeader('Content-Type', $contentType);
         $fileBody = new FileBody($finalFilename);
@@ -194,4 +195,3 @@ class ScriptServer {
         return $fileBody;
     }
 }
-

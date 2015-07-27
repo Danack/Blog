@@ -5,11 +5,11 @@ namespace Blog\DB;
 
 use Intahwebz\TableMap\SQLTableMap;
 
-
-class ContentTable extends SQLTableMap {
-
-    function getTableDefinition() {
-         $tableDefinition = array(
+class ContentTable extends SQLTableMap
+{
+    public function getTableDefinition()
+    {
+        $tableDefinition = array(
             'schema' => 'basereality',
             'tableName' => 'content',
             'columns' => array(
@@ -21,5 +21,3 @@ class ContentTable extends SQLTableMap {
         return $tableDefinition;
     }
 }
-
- 

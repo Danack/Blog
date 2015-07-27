@@ -5,18 +5,15 @@ namespace Blog\Controller;
 use Intahwebz\StoragePath;
 use Blog\Mapper\BlogPostMapper;
 use Blog\Model\TemplateBlogPostFactory;
-
 use Tier\ResponseBody\FileBody;
 use UniversalFeedCreator;
 
-
-class BlogRSS {
-
-    function rssFeed(
+class BlogRSS
+{
+    public function rssFeed(
         StoragePath $storagePath,
         BlogPostMapper $blogPostMapper,
         TemplateBlogPostFactory $templateBlogPostFactory
-    
     ) {
         $filePath = $storagePath->getPath()."/cache/rss/feed.xml";
         if (!@file_exists($filePath) || @filemtime($filePath) < time() - 7200) {
@@ -31,9 +28,11 @@ class BlogRSS {
         return $fileBody;
     }
     
-    private function genFeed($filePath, BlogPostMapper $blogPostMapper,
-        TemplateBlogPostFactory $templateBlogPostFactory)
-    {
+    private function genFeed(
+        $filePath,
+        BlogPostMapper $blogPostMapper,
+        TemplateBlogPostFactory $templateBlogPostFactory
+    ) {
         //TODO validate with http://validator.w3.org/feed/
         $rss = new UniversalFeedCreator();
 
@@ -73,6 +72,4 @@ class BlogRSS {
         ensureDirectoryExists($filePath);
         $rss->saveFeed("RSS1.0", $filePath, false);
     }
-    
 }
-

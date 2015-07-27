@@ -4,14 +4,15 @@ namespace BaseReality\Form;
 
 use Intahwebz\Form\Form;
 
-class Base64Form extends Form{
-
-    function getDefinition() {
+class Base64Form extends Form
+{
+    public function getDefinition()
+    {
         $definition = array(
             
             'startElements' => [
                 [
-                    'type' => \Intahwebz\FormElement\Title::class,
+                    'type' => 'Intahwebz\FormElement\Title',
                     'value' => 'Note add',
                 ]
             ],
@@ -23,7 +24,7 @@ class Base64Form extends Form{
             'endElements' => array(
 
                 array(
-                    'type' => \Intahwebz\FormElement\TextArea::class,
+                    'type' => 'Intahwebz\FormElement\TextArea',
                     'label' => 'Base64',
                     'name' => 'base64',
                     'validation' => array(
@@ -33,7 +34,7 @@ class Base64Form extends Form{
                 ),
 
                 array(
-                    'type' => \Intahwebz\FormElement\CheckBox::class,
+                    'type' => 'Intahwebz\FormElement\CheckBox',
                     'label' => 'Download',
                     'name' => 'download',
                     'validation' => array(
@@ -43,13 +44,13 @@ class Base64Form extends Form{
                 
                 array(
                     'submitButton',
-                    'type' => \Intahwebz\FormElement\SubmitButton::class,
+                    'type' => 'Intahwebz\FormElement\SubmitButton',
                     'label' => null,
                     'text' => 'Decode',
                 ),
                 array(
                     'submitButton',
-                    'type' => \Intahwebz\FormElement\SubmitButton::class,
+                    'type' => 'Intahwebz\FormElement\SubmitButton',
                     'label' => null,
                     'text' => 'Encode',
                 ),
@@ -63,4 +64,3 @@ class Base64Form extends Form{
         return $definition;
     }
 }
-

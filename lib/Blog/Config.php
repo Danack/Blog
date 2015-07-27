@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Blog;
 
-
-class Config {
-
+class Config
+{
     const GITHUB_ACCESS_TOKEN = 'github.access_token';
     const GITHUB_REPO_NAME = 'github.repo_name';
     
@@ -30,10 +28,9 @@ class Config {
     
     const LIBRATO_KEY = 'librato.key';
     const LIBRATO_USERNAME = 'librato.username';
-    const LIBRATO_STATSSOURCENAME = 'librato.stats_source_name'; 
+    const LIBRATO_STATSSOURCENAME = 'librato.stats_source_name';
 
     const JIG_COMPILE_CHECK = 'jig.compilecheck';
-
 
     public static function getConfigNames()
     {
@@ -79,4 +76,3 @@ class Config {
         return $value;
     }
 }
-

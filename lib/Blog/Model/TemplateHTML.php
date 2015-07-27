@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Blog\Model;
 
-
-class TemplateHTML {
-    
+class TemplateHTML
+{
     private $html;
 
     public function __construct($html)
@@ -13,9 +11,8 @@ class TemplateHTML {
         $this->html = htmlentities($html, ENT_DISALLOWED | ENT_HTML401 | ENT_NOQUOTES, 'UTF-8');
     }
 
-    function render()
+    public function render()
     {
         echo $this->html;
     }
 }
-

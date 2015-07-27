@@ -9,8 +9,8 @@ use Jig\Jig;
 use Auryn\Injector;
 use Blog\Service\SourceFileFetcher;
 
-class TemplateBlogPostFactory {
-
+class TemplateBlogPostFactory
+{
     private $objectCache;
     private $jig;
     private $injector;
@@ -20,9 +20,9 @@ class TemplateBlogPostFactory {
         ObjectCache $objectCache,
         Jig $jig,
         Injector $injector,
-        SourceFileFetcher $sourceFileFetcher)
-    {
-        $this->objectCache = $objectCache; 
+        SourceFileFetcher $sourceFileFetcher
+    ) {
+        $this->objectCache = $objectCache;
         $this->jig = $jig;
         $this->injector = $injector;
         $this->sourceFileFetcher = $sourceFileFetcher;
@@ -31,12 +31,11 @@ class TemplateBlogPostFactory {
     public function create(BlogPost $blogPost)
     {
         return new TemplateBlogPost(
-            $blogPost, 
+            $blogPost,
             $this->objectCache,
             $this->jig,
             $this->injector,
             $this->sourceFileFetcher
-         );
+        );
     }
 }
-

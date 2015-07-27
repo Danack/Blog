@@ -7,8 +7,8 @@ use Intahwebz\ObjectCache;
 use Jig\Jig;
 use Auryn\Injector;
 
-class TemplateBlogPost {
-
+class TemplateBlogPost
+{
     /**
      * @var BlogPost
      */
@@ -21,7 +21,7 @@ class TemplateBlogPost {
 
     const SYNTAX_START  =  "<!-- SyntaxHighlighter Start -->";
 
-    function __construct(
+    public function __construct(
         BlogPost $blogPost,
         ObjectCache $objectCache,
         Jig $jig,
@@ -53,7 +53,8 @@ class TemplateBlogPost {
         return formatDateString($this->blogPost->datestamp, $dateFormat);
     }
 
-    function showPreview($length = 400) {
+    public function showPreview($length = 400)
+    {
         $cacheKey = $this->blogPost->getCacheKey('preview');
 
         $cachedVersion = $this->objectCache->get($cacheKey);
@@ -68,10 +69,10 @@ class TemplateBlogPost {
         return $fullText;
     }
 
-    function showPreviewInternal($length = 400)
+    public function showPreviewInternal($length = 400)
     {
         //TODO - wrap this
-        $objectID = $this->blogPost->getClassKey($this->blogPost->blogPostID);        
+        $objectID = $this->blogPost->getClassKey($this->blogPost->blogPostID);
         $className = $this->jig->getParsedTemplateFromString($this->blogPost->blogPostText, $objectID);
         $fullText = $this->injector->execute([$className, 'render']);
 
@@ -79,13 +80,13 @@ class TemplateBlogPost {
         //TODO - modify {SyntaxHighlither} plugin to just drop this content.
         $syntaxStartPos = mb_strpos($fullText, self::SYNTAX_START);
         if ($syntaxStartPos !== false) {
-            if($syntaxStartPos < $length) {
+            if ($syntaxStartPos < $length) {
                 $fullText = trim(mb_substr($fullText, 0, $syntaxStartPos));
                 $fullText .= "...";
             }
         }
 
-        $fullText = preg_replace ("#<[^>]*>#", "", $fullText); //remove any HTML tags
+        $fullText = preg_replace("#<[^>]*>#", "", $fullText); //remove any HTML tags
 
         if (mb_strlen($fullText) > $length) {
             $fullText = trim(mb_substr($fullText, 0, $length));
@@ -95,4 +96,3 @@ class TemplateBlogPost {
         return $fullText;
     }
 }
-

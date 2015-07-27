@@ -6,17 +6,16 @@ namespace Blog\Service;
 use Intahwebz\Session;
 use BaseReality\Security\Role;
 
-
-class LoginStatus {
-    
+class LoginStatus
+{
     private $session;
-    
-    function __construct(Session $session)
+
+    public function __construct(Session $session)
     {
         $this->session = $session;
     }
 
-    function isLoggedIn()
+    public function isLoggedIn()
     {
         $userRole = $this->session->getSessionVariable(
             \BaseReality\Content\BaseRealityConstant::$userRole
@@ -29,4 +28,3 @@ class LoginStatus {
         return false;
     }
 }
-

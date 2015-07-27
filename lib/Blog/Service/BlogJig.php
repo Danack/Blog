@@ -1,16 +1,15 @@
 <?php
 
-
 namespace Blog\Service;
+
 use Jig\Jig;
 use Jig\JigConfig;
 use Jig\JigRender;
 use Jig\Converter\JigConverter;
 use Jig\JigException;
 
-
-class BlogJig extends Jig {
-
+class BlogJig extends Jig
+{
     /**
      * @var SourceFileFetcher
      */
@@ -20,8 +19,8 @@ class BlogJig extends Jig {
         SourceFileFetcher $sourceFileFetcher,
         JigConfig $jigConfig,
         JigRender $jigRender = null,
-        JigConverter $jigConverter = null)
-    {
+        JigConverter $jigConverter = null
+    ) {
         parent::__construct($jigConfig, $jigRender, $jigConverter);
         $this->sourceFileFetcher = $sourceFileFetcher;
         $this->addDefaultPlugin('Blog\TemplatePlugin\BlogPostPlugin');
@@ -35,7 +34,7 @@ class BlogJig extends Jig {
     /**
      * @param JigConverter $jigConverter
      */
-    function processSyntaxHighlighterEnd(JigConverter $jigConverter)
+    public function processSyntaxHighlighterEnd(JigConverter $jigConverter)
     {
         $jigConverter->setLiteralMode(false);
         $jigConverter->addHTML("</pre>");
@@ -46,7 +45,7 @@ class BlogJig extends Jig {
      * @param $segmentText
      * @throws JigException
      */
-    function processSyntaxHighlighterStart(JigConverter $jigConverter, $segmentText)
+    public function processSyntaxHighlighterStart(JigConverter $jigConverter, $segmentText)
     {
         $pattern = '#lang=[\'"]([\.\w]+)[\'"]#u';
         $matchCount = preg_match($pattern, $segmentText, $matches);
@@ -86,4 +85,3 @@ class BlogJig extends Jig {
         }
     }
 }
-
