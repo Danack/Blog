@@ -2,24 +2,24 @@
 
 namespace BaseReality;
 
-
 use Intahwebz\Request;
 
-class DomainBlog implements \Intahwebz\Domain {
-
+class DomainBlog implements \Intahwebz\Domain
+{
     private $request;
 
-    function __construct(Request $request) {
+    public function __construct(Request $request)
+    {
         $this->request = $request;
     }
 
-    function getContentDomain($contentID) {
-
+    public function getContentDomain($contentID)
+    {
         $domainInfo = $this->getDomainInfo();
 
         $domainName = $domainInfo->canonicalDomain;
 
-        if(CDN_ENABLED == TRUE){
+        if (CDN_ENABLED == true) {
             $cdnID = ($contentID % CDN_CNAMES) + 1;
             $domainName = "cdn".$cdnID.".".$domainName;
         }
@@ -33,12 +33,13 @@ class DomainBlog implements \Intahwebz\Domain {
     /**
      * @return \Intahwebz\DomainInfo
      */
-    public function getDomainInfo() {
+    public function getDomainInfo()
+    {
         $currentDomain = $this->request->getHostName();
 
         $canonicalDomain = $currentDomain;
 
-        if(mb_stripos($currentDomain, 'blog.') !== 0){
+        if (mb_stripos($currentDomain, 'blog.') !== 0) {
             $canonicalDomain = 'blog.'.$canonicalDomain;
         }
 
@@ -53,10 +54,11 @@ class DomainBlog implements \Intahwebz\Domain {
             $currentURL
         );
 
-        return	$domainInfo;
+        return $domainInfo;
     }
 
-    function getURLForCurrentDomain($path, $secure = FALSE){
+    public function getURLForCurrentDomain($path, $secure = false)
+    {
         $domainInfo = $this->getDomainInfo();
 
         $scheme = $domainInfo->currentScheme;
@@ -69,6 +71,4 @@ class DomainBlog implements \Intahwebz\Domain {
 
         return $fullURL;
     }
-
 }
- 
