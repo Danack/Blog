@@ -4,25 +4,26 @@ namespace BaseReality\Form;
 
 use Intahwebz\Form\Form;
 
-class SiteConfigEditForm extends Form{
-
-	function getDefinition() {
-		$definition = array(
-			'class' => 'blogEditForm',
+class SiteConfigEditForm extends Form
+{
+    public function getDefinition()
+    {
+        $definition = array(
+            'class' => 'blogEditForm',
             
             'startElements' => [
                 [
-                    'type' => \Intahwebz\FormElement\Title::class,
+                    'type' => 'Intahwebz\FormElement\Title',
                     'value' => 'Site config',
                 ]
             ],
 
-			'rowElements' => array(
-			),
+            'rowElements' => array(
+            ),
 
-			'endElements' => array(
+            'endElements' => array(
                 array(
-                    'type' => \Intahwebz\FormElement\Text::class,
+                    'type' => 'Intahwebz\FormElement\Text',
                     'label' => 'Images per page',
                     'name' => 'imagesPerPage',
                     'validation' => [
@@ -34,9 +35,8 @@ class SiteConfigEditForm extends Form{
                     ]
                 ),
 
-                
                 array(
-                    'type' => \Intahwebz\FormElement\CheckBox::class,
+                    'type' => 'Intahwebz\FormElement\CheckBox',
                     'label' => 'X_ACCEL_REDIRECT',
                     'name' => 'X_ACCEL_REDIRECT',
                     'validation' => [],
@@ -46,7 +46,7 @@ class SiteConfigEditForm extends Form{
                 ),
 
                 array(
-                    'type' => \Intahwebz\FormElement\CheckBox::class,
+                    'type' => 'Intahwebz\FormElement\CheckBox',
                     'label' => 'Pack JS + CSS scripts',
                     'name' => 'packScripts',
                     'validation' => [],
@@ -57,7 +57,7 @@ class SiteConfigEditForm extends Form{
 
 
                 array(
-                    'type' => \Intahwebz\FormElement\Text::class,
+                    'type' => 'Intahwebz\FormElement\Text',
                     'label' => 'Thumbnail size',
                     'name' => 'THUMBNAIL_SIZE',
                     'validation' => [
@@ -98,20 +98,19 @@ class SiteConfigEditForm extends Form{
 //					'name' => 'formSubmitted',
 //					'value' => true
 //				),
-				array(
-					'submitButton',
-					'type' => \Intahwebz\FormElement\SubmitButton::class,
-					'label' => null,
-					'text' => 'Update',
-				),
-			),
+                array(
+                    'submitButton',
+                    'type' => 'Intahwebz\FormElement\SubmitButton',
+                    'label' => null,
+                    'text' => 'Update',
+                ),
+            ),
 
-			'validation' => array(
-				//form level validation.
-			)
-		);
+            'validation' => array(
+                //form level validation.
+            )
+        );
 
-		return $definition;
-	}
+        return $definition;
+    }
 }
-

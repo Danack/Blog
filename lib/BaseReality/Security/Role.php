@@ -1,11 +1,9 @@
 <?php
 
-
 namespace BaseReality\Security;
 
-
-class Role {
+class Role
+{
     const ANONYMOUS = 'anonymous';
     const ADMIN     = 'admin';
 }
-

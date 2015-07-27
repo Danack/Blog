@@ -2,13 +2,10 @@
 
 namespace BaseReality\Security;
 
-
-
-class Privilege {
-
+class Privilege
+{
     const UNLISTED = 'unlisted';
     const VIEW = 'view';
     const EDIT = 'edit';
     const DELETE = 'delete';
 }
-

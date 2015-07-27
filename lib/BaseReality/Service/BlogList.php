@@ -7,10 +7,8 @@ use Blog\Mapper\BlogPostMapper;
 use Blog\Model\TemplateBlogPostFactory;
 use Blog\Service\LoginStatus;
 
-
-
-class BlogList {
-
+class BlogList
+{
     /**
      * @var TemplateBlogPostFactory
      */
@@ -26,7 +24,7 @@ class BlogList {
      */
     private $loginStatus;
     
-    function __construct(
+    public function __construct(
         TemplateBlogPostFactory $templateBlogPostFactory,
         BlogPostMapper $blogPostMapper,
         LoginStatus $loginStatus
@@ -37,9 +35,10 @@ class BlogList {
     }
 
     /**
-     * @return \BaseReality\DisplayableContent\DisplayableBlogPost[]
+     * @return \\Blog\Model\TemplateBlogPost[]
      */
-    function getBlogs() {
+    public function getBlogs()
+    {
         $showInactive = $this->loginStatus->isLoggedIn();
         $blogPosts = $this->blogPostMapper->getBlogPostsForYear(2013, $showInactive);
         $templateBlogPosts = [];

@@ -4,9 +4,10 @@ namespace BaseReality\Form;
 
 use Intahwebz\Form\Form;
 
-class LoginForm extends Form {
-
-    function getDefinition() {
+class LoginForm extends Form
+{
+    public function getDefinition()
+    {
         $definition = array(
 
             'requireHTTPS' => true,
@@ -66,8 +67,8 @@ class LoginForm extends Form {
     }
 
 
-    function serialize() {
+    public function serialize()
+    {
         return parent::serialize();
     }
 }
-

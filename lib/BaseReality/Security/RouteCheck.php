@@ -6,9 +6,8 @@ namespace BaseReality\Security;
 use Intahwebz\Session;
 use Intahwebz\Router;
 
-
-class RouteCheck {
-
+class RouteCheck
+{
     /**
      * @var Session
      */
@@ -23,8 +22,9 @@ class RouteCheck {
      * @var AccessControl
      */
     private $accessControl;
-    
-    function __construct(Session $session, Router $router, AccessControl $accessControl) {
+
+    public function __construct(Session $session, Router $router, AccessControl $accessControl)
+    {
         $this->session = $session;
         $this->router = $router;
         $this->accessControl = $accessControl;
@@ -36,7 +36,8 @@ class RouteCheck {
      * @param array $params
      * @return \Intahwebz\Route|null
      */
-    function isRouteAllowed($routeName, $params = array()) {
+    public function isRouteAllowed($routeName, $params = array())
+    {
         $route = $this->router->getRoute($routeName, $params);
         $userRole = $this->session->getSessionVariable(\BaseReality\Content\BaseRealityConstant::$userRole);
 
@@ -54,7 +55,4 @@ class RouteCheck {
 
         return null;
     }
-    
 }
-
- 

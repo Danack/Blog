@@ -6,14 +6,14 @@ use Zend\Permissions\Acl\Acl;
 use Zend\Permissions\Acl\Role\GenericRole;
 use Zend\Permissions\Acl\AclInterface;
 
-
-class AccessControl implements AclInterface {
-    
+class AccessControl implements AclInterface
+{
     private $acl = null;
     
     private $roles = array();
     
-    public function __construct() {
+    public function __construct()
+    {
         $this->acl = new Acl();
 
         $this->roles[Role::ANONYMOUS] = new GenericRole(Role::ANONYMOUS);
@@ -28,7 +28,7 @@ class AccessControl implements AclInterface {
         //Null roles = all roles.
         $this->acl->allow(null, Resource::CONTENT, Privilege::VIEW);
 
-        //Null privilege = all 
+        //Null privilege = all
         //$this->acl->allow(Role::ADMIN, Resource::CONTENT);
         $this->acl->allow(Role::ADMIN, Resource::ADMIN);
         //$this->acl->allow(Role::ADMIN, Resource::ADMIN, Privilege::VIEW);
@@ -40,8 +40,8 @@ class AccessControl implements AclInterface {
      * @param null $privilege
      * @return bool
      */
-    public function isAllowed($userRole = null, $resource = null, $privilege = null){
-
+    public function isAllowed($userRole = null, $resource = null, $privilege = null)
+    {
         if ($userRole == null) {
             $userRole = Role::ANONYMOUS;
         }
@@ -65,9 +65,9 @@ class AccessControl implements AclInterface {
      * @param  \Zend\Permissions\Acl\Resource\ResourceInterface|string $resource
      * @return bool
      */
-    public function hasResource($resource) {
+    public function hasResource($resource)
+    {
         // TODO: Implement hasResource() method.
         return false;
     }
-    
 }
