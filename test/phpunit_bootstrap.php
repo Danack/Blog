@@ -78,6 +78,3 @@ function getNextBlogPostID()
     
     return $id;
 }
-
-
-

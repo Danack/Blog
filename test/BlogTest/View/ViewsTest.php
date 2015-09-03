@@ -10,24 +10,20 @@ use Jig\JigConfig;
 use Blog\Content\BlogPost;
 use Blog\Data\TemplateList;
 
-
-class ViewsTest extends BaseTestCase {
-
+class ViewsTest extends BaseTestCase
+{
     /**
      * @var \Auryn\Injector
      */
     private $injector;
-    
-    /**
-     * 
-     */
-    function setUp()
+
+    public function setUp()
     {
         parent::setUp();
         $this->injector = createTestInjector();
     }
 
-    function testIndex()
+    public function testIndex()
     {
         $jigRender = $this->injector->make('Jig\Jig');
         $className = $jigRender->getTemplateCompiledClassname('pages/index');
@@ -69,7 +65,7 @@ class ViewsTest extends BaseTestCase {
      * @throws \Auryn\InjectorException
      */
 
-    function testEachPage($templateName)
+    public function testEachPage($templateName)
     {
         $injector = clone $this->injector;
 
@@ -98,7 +94,3 @@ class ViewsTest extends BaseTestCase {
         $this->assertGreaterThan(0, strlen($html), "Template failed to return any content.");
     }
 }
-
-
-
-

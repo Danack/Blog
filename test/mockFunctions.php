@@ -2,7 +2,6 @@
 
 use Jig\JigConfig;
 
-
 function mockEmptyRequest()
 {
     $_server = [
@@ -30,4 +29,3 @@ function mockJigConfig()
 
     return $jigConfig;
 }
-
