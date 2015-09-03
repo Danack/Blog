@@ -4,7 +4,7 @@
 {plugin type='Blog\TemplatePlugin\BlogPlugin'}
 
 
-{$templateBlogPost = makeRenderableBlogPost($activeBlogPost->blogPost)}
+{$templateBlogPost = makeRenderableBlogPost($activeBlogPost->blogPost) | nofilter}
 
 
 <div class="row">

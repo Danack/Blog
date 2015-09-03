@@ -2,24 +2,18 @@
 
 use Amp\Artax\Client as ArtaxClient;
 use ArtaxServiceBuilder\ResponseCache;
-use Arya\Response;
 use Jig\JigConfig;
 use Jig\Jig;
-use Tier\ResponseBody\HtmlBody;
 use Jig\JigBase;
 use Tier\Tier;
 use Tier\InjectionParams;
-use Tier\ResponseBody\FileBody;
 use GithubService\GithubArtaxService\GithubService;
-use Tier\Data\ErrorInfo;
-use Arya\Request;
 use Blog\Data\TemplateList;
-use Jig\Converter\JigConverter;
-use Jig\JigException;
-use Blog\Service\SourceFileFetcher;
-use Auryn\Injector;
 use Intahwebz\Session;
-use BaseReality\Security\Role;
+use Room11\HTTP\Body\HtmlBody;
+use Room11\HTTP\Request;
+use Room11\HTTP\Response;
+use Room11\HTTP\Body;
 
 define('MYSQL_PORT', 3306);
 define('MYSQL_USERNAME', 'intahwebz');
@@ -27,7 +21,7 @@ define('MYSQL_PASSWORD', 'pass123');
 define('MYSQL_ROOT_PASSWORD', 'pass123');
 define('MYSQL_SERVER', null);
 define('MYSQL_SOCKET_CONNECTION', '/var/lib/mysql/mysql.sock');
-
+define('SESSION_NAME', 'aosdjpoajdpoajspdojspodj');
 
 /**
  * Read config settings from environment with a default value.
@@ -77,6 +71,10 @@ function createJigConfig()
     return $jigConfig;
 }
 
+function createCaching()
+{
+    return new \Room11\Caching\LastModified\Revalidate(3600, 1200);
+}
 
 
 /**
@@ -107,6 +105,8 @@ function createScriptInclude()
  * @param Response $response
  * @return Tier
  */
+
+
 function routeRequest(Request $request, Response $response)
 {
     $dispatcher = FastRoute\simpleDispatcher('routesFunction');
@@ -202,25 +202,6 @@ function createSendFileTier($filename, $contentType)
 }
 
 
-///**
-// * Format a time to an rfc2616 timestamp
-// * @param $timestamp
-// * @return string
-// */
-//function getLastModifiedTime($timestamp) {
-//    return gmdate('D, d M Y H:i:s', $timestamp). ' UTC';
-//}
-//
-///**
-// * Get the rfc2616 timestamp of a file
-// * @param $fileNameToServe
-// * @return string
-// */
-//function getFileLastModifiedTime($fileNameToServe) {
-//    return getLastModifiedTime(filemtime($fileNameToServe));
-//}
-
-
 function correctUmask($filename)
 {
     $umask = umask();
@@ -309,41 +290,20 @@ function getVar_DumpOutput($response)
 
 
 
-/*
-function createLibrato()
-{
-    return new \ImagickDemo\Config\Librato(
-        self::getEnv(self::LIBRATO_KEY),
-        self::getEnv(self::LIBRATO_USERNAME),
-        self::getEnv(self::LIBRATO_STATSSOURCENAME)
-    );
-}
-
-function createJigConfig()
-{
-    $jigConfig = new \Jig\JigConfig(
-        "../templates/",
-        "../var/compile/",
-        'tpl',
-        $this->getEnv(self::JIG_COMPILE_CHECK)
-    );
-
-    return $jigConfig;
-}
-
-*/
-
-
-
-
 /**
  * Helper function to bind the route list to FastRoute
  * @param \FastRoute\RouteCollector $r
  */
 function routesFunction(FastRoute\RouteCollector $r)
 {
-    $r->addRoute('GET', "/css/{cssInclude}", ['Blog\Controller\ScriptServer', 'getPackedCSS']);
-    $r->addRoute('GET', '/js/{jsInclude}', ['Blog\Controller\ScriptServer', 'getPackedJavascript']);
+//    $r->addRoute('GET', "/css/{cssInclude}", ['Blog\Controller\ScriptServer', 'getPackedCSS']);
+//    $r->addRoute('GET', '/js/{jsInclude}', ['Blog\Controller\ScriptServer', 'getPackedJavascript']);
+
+    $r->addRoute('GET', "/css/{cssInclude}", ['ScriptServer\Controller\ScriptServer', 'getPackedCSS']);
+    $r->addRoute('GET', '/js/{jsInclude}', ['ScriptServer\Controller\ScriptServer', 'getPackedJavascript']);
+    
+    
+    
     $r->addRoute('GET', '/rss', ['Blog\Controller\BlogRSS', 'rssFeed' ]);
     $r->addRoute(
         'GET',
@@ -359,7 +319,7 @@ function routesFunction(FastRoute\RouteCollector $r)
         ['Blog\Controller\ProxyController', 'staticImage']
     );
     $r->addRoute('GET', '/templateViewer', ['Blog\Controller\TemplateViewer', 'index']);
-    
+
     $r->addRoute('GET', '/login', ['Blog\Controller\Login', 'loginGet']);
     $r->addRoute('POST', '/login', ['Blog\Controller\Login', 'loginPost']);
     $r->addRoute('GET', '/logout', ['Blog\Controller\Login', 'logout']);
@@ -370,11 +330,10 @@ function routesFunction(FastRoute\RouteCollector $r)
     $r->addRoute('GET', '/upload', ['Blog\Controller\BlogUpload', 'showUpload']);
     $r->addRoute('POST', '/upload', ['Blog\Controller\BlogUpload', 'uploadPost']);
     $r->addRoute('GET', '/uploadResult', ['Blog\Controller\BlogUpload', 'uploadResult']);
-
     $r->addRoute('GET', '/blogreplace/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'showReplace']);
     $r->addRoute('POST', '/blogreplace/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'processReplace']);
-    
-    
+    $r->addRoute('GET', '/staticFile/{filename:[^/]+}', ['Blog\Controller\Proxy', 'staticFile']);
+
     $r->addRoute('GET', '/', ['Blog\Controller\Blog', 'index']);
 }
 

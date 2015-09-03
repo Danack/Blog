@@ -1,24 +1,24 @@
 <?php
 
 
-namespace Blog;
+namespace FilePacker;
 
-use Intahwebz\FileFilter\ConcatenatingFilter;
-use Intahwebz\FileFilter\GzipFilter;
-use Intahwebz\FileFilter\YuiCompressorFilter;
-use Intahwebz\StoragePath;
-use Blog\Value\AutogenPath;
-use Blog\Value\WebRootPath;
-use Blog\Value\ExternalLibPath;
-use Intahwebz\File;
-use Intahwebz\YuiCompressorPath;
+use FileFilter\ConcatenatingFilter;
+use FileFilter\GzipFilter;
+use FileFilter\YuiCompressorFilter;
+use Tier\Path\AutogenPath;
+use Tier\Path\CachePath;
+use Tier\Path\WebRootPath;
+use Tier\Path\ExternalLibPath;
+use Tier\File;
+use FileFilter\YuiCompressorPath;
 
-class StandardFilePacker implements FilePacker
+class YuiFilePacker implements FilePacker
 {
     /**
      * @var string
      */
-    private $storagePath;
+    private $cachePath;
 
     /**
      * @var string
@@ -34,13 +34,13 @@ class StandardFilePacker implements FilePacker
     private $externalLibPath;
 
     public function __construct(
-        StoragePath $storagePath,
+        CachePath $cachePath,
         AutogenPath $autogenPath,
         WebRootPath $webRootPath,
         ExternalLibPath $externalLibPath,
         YuiCompressorPath $yuiCompressorPath
     ) {
-        $this->storagePath = $storagePath->getPath();
+        $this->cachePath = $cachePath->getPath();
         $this->autogenPath = $autogenPath->getPath();
         $this->webRootPath = $webRootPath->getPath();
         $this->externalLibPath = $externalLibPath->getPath();
@@ -54,28 +54,32 @@ class StandardFilePacker implements FilePacker
     
     public function getFinalFilename(array $filesToPack, $extension)
     {
+        return $this->getStubFinalFilename($filesToPack, 'min.'.$extension.'.gz');
+    }
+
+    private function getStubFinalFilename(array $filesToPack, $extension)
+    {
         $jsInclude = implode("_", $filesToPack);
         $outputFilename = str_replace(array(',', '.', '/', '\\', '%2F'), '_', $jsInclude);
         $outputFilename = mb_substr($outputFilename, 0, 64).'_'.md5($outputFilename);
 
-        return $this->storagePath."/cache/filepacker/".$outputFilename.".".$extension;
+        return $this->cachePath."/filepacker/".$outputFilename.".".$extension;
     }
-
-    public function pack($outputFilename, $jsIncludeArray, $appendLine, $extension)
+    
+    public function pack($jsIncludeArray, $appendLine, $extension)
     {
-        $finalFilename = $this->getFinalFilename($jsIncludeArray, $extension);
+        $finalFilename = $this->getStubFinalFilename($jsIncludeArray, $extension);
         $outputFile = File::fromFullPath($finalFilename);
         $filter = new ConcatenatingFilter($outputFile, $jsIncludeArray, $appendLine);
-        $minFile = $outputFile->addExtension('min');
+        $minFile = $outputFile->addExtension('min', true);
         
         $filter = new YuiCompressorFilter($filter, $minFile, $this->yuiCommpressorPath);
-        $compressedFile = $minFile->addExtension('gz', true);
+        $compressedFile = $minFile->addExtension('gz', false);
         $filter = new GzipFilter($filter, $compressedFile);
+
         $filter->process();
-    
+        
         $finaleFile = $filter->getFile();
-    
-        /** @var $finaleFile file */
         $finalFilename = $finaleFile->getPath();
 
         return $finalFilename;

@@ -19,41 +19,10 @@ $default = [
 ];
 
 
-$amazonec2 = [
-    'nginx.log.directory' => '/var/log/nginx',
-    'nginx.root.directory' => '/usr/share/nginx',
-    'nginx.conf.directory' => '/etc/nginx',
-    'nginx.run.directory' => '/var/run',
-    'nginx.user' => 'nginx',
-    'nginx.sendFile' => 'on',
+$socketDir = '/var/run/php-fpm';
 
 
-    'blog.root.directory' => '/home/blog/current',
-    'blog.cache.directory' => '/home/blog/current/var/cache',
-
-    'phpfpm.socket' => '/var/run/php-fpm',
-    
-    'phpfpm.images.maxmemory' => '48M',
-    'phpfpm.user' => 'intahwebz',
-    'phpfpm.group' => 'www-data',
-    'phpfpm.socket.directory' => '/var/run/php-fpm',
-    'phpfpm.conf.directory' => '/etc/php-fpm.d',
-    'phpfpm.pid.directory' => '/var/run/php-fpm',
-
-    'php.log.directory' => '/var/log/php',
-    'php.errorlog.directory' => '/var/log/php',
-    'php.session.directory' => '/var/lib/php/session',
-
-    'mysql.casetablenames' => '0',
-    'mysql.datadir' => '/var/lib/mysql/',
-    'mysql.socket' => '/var/lib/mysql/mysql.sock',
-    'mysql.log.directory' => '/var/log',
-];
-
-
-
-
-$centos_guest = [
+$centos = [
     'nginx.log.directory' => '/var/log/nginx',
     'nginx.root.directory' => '/usr/share/nginx',
     'nginx.conf.directory' => '/etc/nginx',
@@ -66,10 +35,12 @@ $centos_guest = [
     'phpfpm.maxmemory' => '16M',
     'phpfpm.user' => 'blog',
     'phpfpm.group' => 'www-data',
-    'phpfpm.socket.directory' => '/var/run/php-fpm',
+    'phpfpm.socket.directory' => $socketDir,
     'phpfpm.conf.directory' => '/etc/php-fpm.d',
     'phpfpm.pid.directory' => '/var/run/php-fpm',
-    
+
+    'phpfpm.fullsocketpath' => $socketDir."/php-fpm-blog-".basename(dirname(__DIR__)).".sock",
+
     'php.conf.directory' => '/etc/php',
     'php.log.directory' => '/var/log/php',
     'php.errorlog.directory' => '/var/log/php',
@@ -77,3 +48,5 @@ $centos_guest = [
 
     'ssl.directory' => '/temp/ssl',
 ];
+
+$centos_guest = $centos;

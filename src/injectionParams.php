@@ -55,7 +55,12 @@ $aliases = [
     'Intahwebz\Request' => 'Intahwebz\Routing\HTTPRequest',
     'Intahwebz\FileFetcher' => 'Intahwebz\Utils\UploadedFileFetcher',
     'Intahwebz\Framework\VariableMap' => 'Intahwebz\Framework\RequestVariableMap',
-    'Intahwebz\Form\DataStore' => 'Blog\Bridge\SessionDataStore'
+    'Intahwebz\Form\DataStore' => 'Blog\Bridge\SessionDataStore',
+    
+    'Room11\HTTP\Request' => 'Room11\HTTP\Request\Request',
+    'Room11\HTTP\Response' => 'Room11\HTTP\Response\Response',
+    
+    'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker'
 ];
 
 
@@ -65,16 +70,34 @@ $delegates = [
     'GithubService\GithubArtaxService\GithubService' => 'createGithubArtaxService',
     'Jig\JigConfig' => 'createJigConfig',
     'Blog\Data\TemplateList' => 'createTemplateList',
-    //'Intahwebz\DB\MySQLiConnection' => 'createMySQLiConnection'
     'Intahwebz\Utils\ScriptInclude' => 'createScriptInclude',
     'Intahwebz\Routing\HTTPRequest' => 'createHTTPRequest',
-    'Intahwebz\Utils\UploadedFileFetcher' => 'createUploadedFileFetcher'
+    'Intahwebz\Utils\UploadedFileFetcher' => 'createUploadedFileFetcher',
+    'Room11\Caching\LastModifiedStrategy' => 'createCaching',
 ];
 
 
 
+
 // If necessary, define some params that can be injected purely by name.
-$params = [];
+$params = [ ];
+
+$defines = [
+    'Tier\Path\AutogenPath'       => [':path' => __DIR__."/../autogen/"],
+    'Intahwebz\DataPath'          => [':path' => __DIR__."/../data/"],
+    'Intahwebz\StoragePath'       => [':path' => __DIR__."/../var/"],
+    'Tier\Path\CachePath'         => [':path' => __DIR__.'/../var/cache/'],
+    'Tier\Path\ExternalLibPath'   => [':path' => __DIR__.'/../lib/'],
+    'Tier\Path\WebRootPath'       => [':path' => __DIR__.'/../public/'],
+    'FileFilter\YuiCompressorPath' => ["/usr/lib/yuicompressor.jar"],
+    'Intahwebz\DB\MySQLiConnection' => [
+        ':host'     => MYSQL_SERVER,
+        ':username' => MYSQL_USERNAME,
+        ':password' => MYSQL_PASSWORD,
+        ':port'     => MYSQL_PORT,
+        ':socket'   => MYSQL_SOCKET_CONNECTION
+    ],
+];
 
 $prepares = [
     //'Jig\Jig' => 'prepareJig'
@@ -85,7 +108,8 @@ $injectionParams = new InjectionParams(
     $aliases,
     $delegates,
     $params,
-    $prepares
+    $prepares,
+    $defines
 );
 
 return $injectionParams;

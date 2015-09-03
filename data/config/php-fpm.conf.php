@@ -14,7 +14,7 @@ $config = <<< END
 user = blog
 group = ${'phpfpm.group'}
 
-listen = ${'phpfpm.socket.directory'}/php-fpm-blog.sock
+listen = ${'phpfpm.fullsocketpath'}
 
 ; List of ipv4 addresses of FastCGI clients which are allowed to connect.
 listen.allowed_clients = 127.0.0.1
@@ -30,6 +30,8 @@ listen.mode = 0664
 request_slowlog_timeout = 10
 slowlog = ${'php.log.directory'}/slow.\$pool.log
 
+catch_workers_output = yes
+
 request_terminate_timeout=500
 
 pm = dynamic
@@ -41,7 +43,7 @@ pm.max_spare_servers = 10
 pm.max_requests = 5000
 
 ; The URI to view the FPM status page.
-pm.status_path = /www-status
+pm.status_path = /blog-status
 
 ; Additional php.ini defines
 php_admin_value[memory_limit] = ${'phpfpm.www.maxmemory'}

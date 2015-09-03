@@ -1,83 +1,44 @@
 <?php
 
+namespace ScriptServer\Service;
 
-namespace Intahwebz\Utils;
-
-//use BaseReality\Value\PackScripts;
-//use BaseReality\Value\UseCDNForScripts;
-//use BaseReality\Value\SiteScriptVersion;
+use ScriptServer\CSSFile;
+use ScriptServer\Value\ScriptVersion;
 
 class ScriptIncludePacked extends ScriptInclude
 {
-    //private $closedJSBlocks = array();
-
-    private $useCDNForScripts = true;
-
-//    private $currentJSBlock = array();
-
-    //private $scriptVersion;
+    private $scriptVersion;
     
-    //protected $includeJSArray = array();
-
-    //private $onBodyLoadJavascript = array();
-
-//    private $domain;
-
-    /**
-     * @var bool
-     */
-    private $showJSErrors;
-
-    /**
-     * @param $packScripts
-     * @param $useCDNForScripts
-     * @param \Intahwebz\Domain $domain
-     * @param $liveServer
-     * @param $siteScriptVersion
-     */
-    public function __construct()
-    {
-        //$this->domain = $domain;
-        $this->useCDNForScripts = false;//$useCDNForScripts->getBool();
-        $this->showJSErrors = true;//$showJSErrors->getBool();
-        $this->scriptVersion = '1.2.3';//$siteScriptVersion->getString();
+    public function __construct(
+        ScriptVersion $scriptVersion
+    ) {
+        $this->scriptVersion = $scriptVersion;
     }
 
-
-    public function emitJSRequired()
+    public function linkJS()
     {
-        $jsVersion = $this->scriptVersion;
         $separator = ',';
 
         if (count($this->includeJSArray) == 0) {
             return "";
         }
 
-        $url = "$jsVersion";
-
+        $url = $this->scriptVersion->getValue();
         $output = "<script type='text/javascript'>\n";
 
         foreach ($this->includeJSArray as $includeJS) {
-            //$output .= "setJSLoaded('".basename($includeJS).".js', false);\n";
             $url .= $separator;
             $url .= urlencode($includeJS);
         }
 
         $output .= "</script>\n";
-
         $domain = '';
-        //if ($this->useCDNForScripts == true) {
-//            $domain = $this->domain->getContentDomain(0);
-        //}
-        
+//        $domain = $this->domain->getContentDomain(0);
         $uri = routeJSInclude($url);
-
         $output .= "<script type='text/javascript' src='".$domain.$uri."'></script>";
 
         return $output;
     }
-
-
 
     /**
      * @param $media
@@ -85,7 +46,6 @@ class ScriptIncludePacked extends ScriptInclude
      */
     private function renderMediaCSS($mediaQuery, $cssList)
     {
-
         $fileList = '';
         $separator = '';
 
@@ -96,10 +56,7 @@ class ScriptIncludePacked extends ScriptInclude
             $separator = ',';
         }
 
-        $domain = '';
-        //if ($this->useCDNForScripts == true) {
-//            $domain = $this->domain->getContentDomain(0);
-        //}
+        //$domain = $this->domain->getContentDomain(0);
 
         $mediaString = '';
 
@@ -111,7 +68,7 @@ class ScriptIncludePacked extends ScriptInclude
             "<link rel='stylesheet' type='text/css' %s href='/css/%s?%s' />\n",
             $mediaString,
             $fileList,
-            $this->scriptVersion
+            $this->scriptVersion->getValue()
         );
 
         return $output;
@@ -120,7 +77,7 @@ class ScriptIncludePacked extends ScriptInclude
     /**
      * @return string
      */
-    public function includeCSS()
+    public function linkCSS()
     {
         if (count($this->cssFiles) == 0) {
             return "";

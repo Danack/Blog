@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7842933e0abca29f3d206f174c05ca64",
+    "hash": "6692a036616ee6c6df52f9b5abf6952c",
     "packages": [
         {
             "name": "amphp/amp",
@@ -539,16 +539,16 @@
         },
         {
             "name": "danack/jig",
-            "version": "0.14.5",
+            "version": "0.16.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
-                "reference": "efad1bc64ca075b6c77bebe62a3a18bbbd1dffe6"
+                "reference": "55cee6560ed0774bd89192b44d49bd21cf9c7dd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Jig/zipball/efad1bc64ca075b6c77bebe62a3a18bbbd1dffe6",
-                "reference": "efad1bc64ca075b6c77bebe62a3a18bbbd1dffe6",
+                "url": "https://api.github.com/repos/Danack/Jig/zipball/55cee6560ed0774bd89192b44d49bd21cf9c7dd9",
+                "reference": "55cee6560ed0774bd89192b44d49bd21cf9c7dd9",
                 "shasum": ""
             },
             "require": {
@@ -585,7 +585,7 @@
                 "template",
                 "view"
             ],
-            "time": "2015-07-22 12:24:57"
+            "time": "2015-08-22 23:19:33"
         },
         {
             "name": "danack/syntaxhighlighter",
@@ -610,6 +610,53 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "The syntaxhighlighter made less crazy..",
             "time": "2014-11-09 14:09:46"
+        },
+        {
+            "name": "danack/tier",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/Tier.git",
+                "reference": "ac6a7c002e31ebd0146690ea6bf511865e126db1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/Tier/zipball/ac6a7c002e31ebd0146690ea6bf511865e126db1",
+                "reference": "ac6a7c002e31ebd0146690ea6bf511865e126db1",
+                "shasum": ""
+            },
+            "require": {
+                "rdlowrey/auryn": "^1.0.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.1",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Tier": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "An example of how to implement an application using DI with tiers",
+            "keywords": [
+                "application",
+                "auryn",
+                "di",
+                "example"
+            ],
+            "time": "2015-08-22 13:09:36"
         },
         {
             "name": "daverandom/libdns",
@@ -646,16 +693,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.6",
+            "version": "v1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "f4a91702ca3cd2e568c3736aa031ed00c3752af4"
+                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f4a91702ca3cd2e568c3736aa031ed00c3752af4",
-                "reference": "f4a91702ca3cd2e568c3736aa031ed00c3752af4",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
+                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
                 "shasum": ""
             },
             "require": {
@@ -710,20 +757,20 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-06-17 12:21:22"
+            "time": "2015-08-31 12:32:49"
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.4.1",
+            "version": "v1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "c9eadeb743ac6199f7eec423cb9426bc518b7b03"
+                "reference": "8c434000f420ade76a07c64cbe08ca47e5c101ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/c9eadeb743ac6199f7eec423cb9426bc518b7b03",
-                "reference": "c9eadeb743ac6199f7eec423cb9426bc518b7b03",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/8c434000f420ade76a07c64cbe08ca47e5c101ca",
+                "reference": "8c434000f420ade76a07c64cbe08ca47e5c101ca",
                 "shasum": ""
             },
             "require": {
@@ -780,7 +827,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-04-15 00:11:59"
+            "time": "2015-08-31 12:36:41"
         },
         {
             "name": "doctrine/collections",
@@ -1344,21 +1391,21 @@
         },
         {
             "name": "intahwebz/configurator",
-            "version": "0.2.4",
+            "version": "0.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Configurator.git",
-                "reference": "8d97088e2d6fce6a32324a5b7be9707a4bb61080"
+                "reference": "39bda6596fe8a8341fe71bb4ef40725535b5298e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Configurator/zipball/8d97088e2d6fce6a32324a5b7be9707a4bb61080",
-                "reference": "8d97088e2d6fce6a32324a5b7be9707a4bb61080",
+                "url": "https://api.github.com/repos/Danack/Configurator/zipball/39bda6596fe8a8341fe71bb4ef40725535b5298e",
+                "reference": "39bda6596fe8a8341fe71bb4ef40725535b5298e",
                 "shasum": ""
             },
             "require": {
                 "danack/console": "^2.6.1",
-                "rdlowrey/auryn": "^0.15.2"
+                "rdlowrey/auryn": "^1.0.2"
             },
             "require-dev": {
                 "mikey179/vfsstream": "^1.4.0",
@@ -1392,7 +1439,7 @@
                 "tool",
                 "utf-8"
             ],
-            "time": "2015-05-17 22:35:29"
+            "time": "2015-08-24 16:02:11"
         },
         {
             "name": "intahwebz/core",
@@ -2005,16 +2052,16 @@
         },
         {
             "name": "predis/predis",
-            "version": "v1.0.1",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "7a170b3d8123c556597b4fbdb88631f99de180c2"
+                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/7a170b3d8123c556597b4fbdb88631f99de180c2",
-                "reference": "7a170b3d8123c556597b4fbdb88631f99de180c2",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/84060b9034d756b4d79641667d7f9efe1aeb8e04",
+                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04",
                 "shasum": ""
             },
             "require": {
@@ -2051,7 +2098,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2015-01-02 12:51:34"
+            "time": "2015-07-30 18:34:15"
         },
         {
             "name": "psr/log",
@@ -2093,16 +2140,16 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "v1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/auryn.git",
-                "reference": "1c852d48179fc931cea427e944426e40b4b8cdf9"
+                "reference": "f57eaf665a601dbe061c8b1426d84f58c003e6a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/1c852d48179fc931cea427e944426e40b4b8cdf9",
-                "reference": "1c852d48179fc931cea427e944426e40b4b8cdf9",
+                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/f57eaf665a601dbe061c8b1426d84f58c003e6a8",
+                "reference": "f57eaf665a601dbe061c8b1426d84f58c003e6a8",
                 "shasum": ""
             },
             "require": {
@@ -2150,7 +2197,7 @@
                 "dic",
                 "ioc"
             ],
-            "time": "2015-07-16 15:13:48"
+            "time": "2015-08-26 16:31:48"
         },
         {
             "name": "rdlowrey/nbsock",
@@ -2249,6 +2296,95 @@
             "time": "2015-07-03 13:48:55"
         },
         {
+            "name": "room11/caching",
+            "version": "0.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/Caching.git",
+                "reference": "cdd0c2a8eacfb3af9badbb62d020910414bfb941"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/Caching/zipball/cdd0c2a8eacfb3af9badbb62d020910414bfb941",
+                "reference": "cdd0c2a8eacfb3af9badbb62d020910414bfb941",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.5",
+                "rdlowrey/auryn": "^1.0.2",
+                "squizlabs/php_codesniffer": "^2.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Room11\\Caching": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "A set of interfaces and standard implementations to allow sweet sweet interoperability.",
+            "keywords": [
+                "caching",
+                "http",
+                "interface",
+                "room11"
+            ],
+            "time": "2015-08-22 20:09:34"
+        },
+        {
+            "name": "room11/http",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/HTTP.git",
+                "reference": "d5084bdc536e72d1bfd6662f8d3bd806b335c7f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/HTTP/zipball/d5084bdc536e72d1bfd6662f8d3bd806b335c7f6",
+                "reference": "d5084bdc536e72d1bfd6662f8d3bd806b335c7f6",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.5",
+                "rdlowrey/auryn": "^1.0.2",
+                "squizlabs/php_codesniffer": "^2.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Room11\\HTTP": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "A set of interfaces and standard implementations to allow sweet sweet interoperability.",
+            "keywords": [
+                "http",
+                "interface",
+                "room11"
+            ],
+            "time": "2015-08-22 14:15:09"
+        },
+        {
             "name": "squizlabs/php_codesniffer",
             "version": "2.3.3",
             "source": {
@@ -2324,7 +2460,7 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v2.7.2",
+            "version": "v2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/BrowserKit.git",
@@ -2379,7 +2515,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v2.7.2",
+            "version": "v2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/CssSelector.git",
@@ -2432,7 +2568,7 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v2.7.2",
+            "version": "v2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DomCrawler.git",
@@ -2889,16 +3025,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.1.9",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "5bd48b86cd282da411bb80baac1398ce3fefac41"
+                "reference": "2d7c03c0e4e080901b8f33b2897b0577be18a13c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5bd48b86cd282da411bb80baac1398ce3fefac41",
-                "reference": "5bd48b86cd282da411bb80baac1398ce3fefac41",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2d7c03c0e4e080901b8f33b2897b0577be18a13c",
+                "reference": "2d7c03c0e4e080901b8f33b2897b0577be18a13c",
                 "shasum": ""
             },
             "require": {
@@ -2906,7 +3042,7 @@
                 "phpunit/php-file-iterator": "~1.3",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-token-stream": "~1.3",
-                "sebastian/environment": "~1.0",
+                "sebastian/environment": "^1.3.2",
                 "sebastian/version": "~1.0"
             },
             "require-dev": {
@@ -2921,7 +3057,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1.x-dev"
+                    "dev-master": "2.2.x-dev"
                 }
             },
             "autoload": {
@@ -2947,7 +3083,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-07-26 12:54:47"
+            "time": "2015-08-04 03:42:39"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3078,16 +3214,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.3",
+            "version": "1.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "7a9b0969488c3c54fd62b4d504b3ec758fd005d9"
+                "reference": "3ab72c62e550370a6cd5dc873e1a04ab57562f5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/7a9b0969488c3c54fd62b4d504b3ec758fd005d9",
-                "reference": "7a9b0969488c3c54fd62b4d504b3ec758fd005d9",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3ab72c62e550370a6cd5dc873e1a04ab57562f5b",
+                "reference": "3ab72c62e550370a6cd5dc873e1a04ab57562f5b",
                 "shasum": ""
             },
             "require": {
@@ -3123,7 +3259,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-06-19 03:43:16"
+            "time": "2015-08-16 08:51:00"
         },
         {
             "name": "phpunit/phpunit",
@@ -3199,20 +3335,20 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42"
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
                 "shasum": ""
             },
             "require": {
-                "doctrine/instantiator": "~1.0,>=1.0.2",
+                "doctrine/instantiator": "^1.0.2",
                 "php": ">=5.3.3",
                 "phpunit/php-text-template": "~1.2",
                 "sebastian/exporter": "~1.2"
@@ -3251,7 +3387,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-07-10 06:54:24"
+            "time": "2015-08-19 09:14:08"
         },
         {
             "name": "sebastian/comparator",
@@ -3371,16 +3507,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.3.0",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "4fe0a44cddd8cc19583a024bdc7374eb2fef0b87"
+                "reference": "6324c907ce7a52478eeeaede764f48733ef5ae44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/4fe0a44cddd8cc19583a024bdc7374eb2fef0b87",
-                "reference": "4fe0a44cddd8cc19583a024bdc7374eb2fef0b87",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6324c907ce7a52478eeeaede764f48733ef5ae44",
+                "reference": "6324c907ce7a52478eeeaede764f48733ef5ae44",
                 "shasum": ""
             },
             "require": {
@@ -3417,7 +3553,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2015-07-26 06:42:57"
+            "time": "2015-08-03 06:14:51"
         },
         {
             "name": "sebastian/exporter",
@@ -3626,16 +3762,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.7.2",
+            "version": "v2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "4bfbe0ed3909bfddd75b70c094391ec1f142f860"
+                "reference": "71340e996171474a53f3d29111d046be4ad8a0ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/4bfbe0ed3909bfddd75b70c094391ec1f142f860",
-                "reference": "4bfbe0ed3909bfddd75b70c094391ec1f142f860",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/71340e996171474a53f3d29111d046be4ad8a0ff",
+                "reference": "71340e996171474a53f3d29111d046be4ad8a0ff",
                 "shasum": ""
             },
             "require": {
@@ -3671,7 +3807,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-01 11:25:50"
+            "time": "2015-07-28 14:07:07"
         }
     ],
     "aliases": [
@@ -3680,12 +3816,6 @@
             "alias_normalized": "0.2.0.0",
             "version": "0.6.0.0",
             "package": "nikic/fast-route"
-        },
-        {
-            "alias": "0.15.3",
-            "alias_normalized": "0.15.3.0",
-            "version": "1.0.0.0",
-            "package": "rdlowrey/auryn"
         }
     ],
     "minimum-stability": "stable",

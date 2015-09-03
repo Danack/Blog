@@ -25,7 +25,7 @@ server {
     access_log  ${'nginx.log.directory'}/blog.access.log;
     error_log  ${'nginx.log.directory'}/blog.error.log;
 
-    root ${'blog.root.directory'}/blog;
+    root ${'blog.root.directory'}/public;
 
     client_max_body_size 1m;
     
@@ -70,13 +70,13 @@ server {
         deny all;
         fastcgi_param  QUERY_STRING       \$query_string;
         include       ${'blog.root.directory'}/data/config/fastcgi.conf;
-        fastcgi_pass   unix:${'phpfpm.socket.directory'}/php-fpm-blog.sock;
+        fastcgi_pass   unix:${'phpfpm.fullsocketpath'};
     }
 
     location  / {
         try_files \$uri /index.php =404;
         fastcgi_param  QUERY_STRING  \$query_string;
-        fastcgi_pass   unix:${'phpfpm.socket.directory'}/php-fpm-blog.sock;
+        fastcgi_pass   unix:${'phpfpm.fullsocketpath'};
         include       ${'blog.root.directory'}/data/config/fastcgi.conf;
     }
 }
