@@ -10,7 +10,7 @@ use Intahwebz\LogPath;
 use Intahwebz\YuiCompressorPath;
 use Blog\Value\CachePath;
 
-// These classes will only be created once by the injector.
+// These classes will only be created  by the injector once
 $shares = [
     'Jig\JigRender',
     'Jig\Jig',

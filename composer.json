@@ -46,10 +46,11 @@
         "psr-0": {
             "BaseReality": "lib/",
             "Intahwebz": "lib/",
-            "Blog": "lib/",
+            "Blog": ["lib/", "./var/compile/"],
             "FileFilter": ["./lib/" ],
             "FilePacker": ["./lib/" ],
-            "ScriptServer": ["./lib/" ]
+            "ScriptServer": ["./lib/" ],
+            "Jig": ["./var/compile/" ]
         }
     },
     "prefer-stable": true
