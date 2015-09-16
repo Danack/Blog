@@ -1,6 +1,6 @@
 <?php
 
-// This is a sample configuration file
+use Blog\Config;
 
 $default = [
     //global/default variables go here.
@@ -18,9 +18,7 @@ $default = [
     'github.root.directory' => '/home/github/',
 ];
 
-
 $socketDir = '/var/run/php-fpm';
-
 
 $centos = [
     'nginx.log.directory' => '/var/log/nginx',
@@ -50,3 +48,13 @@ $centos = [
 ];
 
 $centos_guest = $centos;
+
+$dev = [
+    Config::LIBRATO_STATSSOURCENAME => 'blog.test',    
+    Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_ALWAYS,
+];
+
+$live = [
+    Config::LIBRATO_STATSSOURCENAME => 'blog.com',
+    Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_CHECK_EXISTS,
+];

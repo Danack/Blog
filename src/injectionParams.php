@@ -71,13 +71,9 @@ $delegates = [
     'Jig\JigConfig' => 'createJigConfig',
     'Blog\Data\TemplateList' => 'createTemplateList',
     'Intahwebz\Utils\ScriptInclude' => 'createScriptInclude',
-    'Intahwebz\Routing\HTTPRequest' => 'createHTTPRequest',
     'Intahwebz\Utils\UploadedFileFetcher' => 'createUploadedFileFetcher',
     'Room11\Caching\LastModifiedStrategy' => 'createCaching',
 ];
-
-
-
 
 // If necessary, define some params that can be injected purely by name.
 $params = [ ];
@@ -100,7 +96,6 @@ $defines = [
 ];
 
 $prepares = [
-    //'Jig\Jig' => 'prepareJig'
 ];
 
 $injectionParams = new InjectionParams(

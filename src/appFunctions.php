@@ -3,14 +3,11 @@
 use Amp\Artax\Client as ArtaxClient;
 use ArtaxServiceBuilder\ResponseCache;
 use Jig\JigConfig;
-use Jig\Jig;
-use Jig\JigBase;
 use Tier\Tier;
 use Tier\InjectionParams;
 use GithubService\GithubArtaxService\GithubService;
 use Blog\Data\TemplateList;
 use Intahwebz\Session;
-use Room11\HTTP\Body\HtmlBody;
 use Room11\HTTP\Request;
 use Room11\HTTP\Response;
 use Room11\HTTP\Body;
@@ -43,18 +40,6 @@ function createUploadedFileFetcher()
     return new \Intahwebz\Utils\UploadedFileFetcher($_FILES);
 }
 
-function createHTTPRequest()
-{
-    $request = new \Intahwebz\Routing\HTTPRequest(
-        $_SERVER,
-        $_GET,
-        $_POST,
-        $_FILES,
-        $_COOKIE
-    );
-
-    return $request;
-}
 
 /**
  * @return JigConfig
@@ -123,7 +108,7 @@ function routeRequest(Request $request, Response $response)
     switch ($routeInfo[0]) {
         case (FastRoute\Dispatcher::NOT_FOUND): {
             $response->setStatus(404);
-            return getRenderTemplateTier('error/error404');
+            return \Tier\getRenderTemplateTier('error/error404');
         }
 
         case FastRoute\Dispatcher::METHOD_NOT_ALLOWED: {
@@ -131,7 +116,7 @@ function routeRequest(Request $request, Response $response)
             // are allowed
             $allowedMethods = $routeInfo[1];
             $response->setStatus(405);
-            return getRenderTemplateTier('error/error405');
+            return \Tier\getRenderTemplateTier('error/error405');
         }
 
         case FastRoute\Dispatcher::FOUND: {
@@ -146,59 +131,10 @@ function routeRequest(Request $request, Response $response)
             //Not supported
             // TODO - this is meant to set a header saying which methods
             $response->setStatus(404);
-            return getRenderTemplateTier('error/error404');
+            return \Tier\getRenderTemplateTier('error/error404');
             break;
         }
     }
-}
-
-/**
- * @param JigBase $template
- * @return HtmlBody
- * @throws Exception
- * @throws \Jig\JigException
- */
-function createHtmlBody(JigBase $template)
-{
-    $text = $template->render();
-
-    return new HtmlBody($text);
-}
-
-
-/**
- * Helper function to allow template rendering to be easier.
- * @param $templateName
- * @param array $sharedObjects
- * @return Tier
- */
-function getRenderTemplateTier($templateName, array $sharedObjects = [])
-{
-    $fn = function (Jig $jigRender) use ($templateName, $sharedObjects) {
-        $className = $jigRender->getTemplateCompiledClassname($templateName);
-        $jigRender->checkTemplateCompiled($templateName);
-
-        $alias = [];
-        $alias['Jig\JigBase'] = $className;
-        $injectionParams = new InjectionParams($sharedObjects, $alias, [], []);
-
-        return new Tier('createHtmlBody', $injectionParams);
-    };
-
-    return new Tier($fn);
-}
-
-
-function createSendFileTier($filename, $contentType)
-{
-    $fn = function (Response $response) use ($filename, $contentType) {
-        //$response->addHeader('Content-Type', $contentType);
-        $fileBody = new FileBody($filename, $contentType);
-
-        return $fileBody;
-    };
-
-    return new Tier($fn);
 }
 
 
@@ -296,14 +232,9 @@ function getVar_DumpOutput($response)
  */
 function routesFunction(FastRoute\RouteCollector $r)
 {
-//    $r->addRoute('GET', "/css/{cssInclude}", ['Blog\Controller\ScriptServer', 'getPackedCSS']);
-//    $r->addRoute('GET', '/js/{jsInclude}', ['Blog\Controller\ScriptServer', 'getPackedJavascript']);
-
     $r->addRoute('GET', "/css/{cssInclude}", ['ScriptServer\Controller\ScriptServer', 'getPackedCSS']);
     $r->addRoute('GET', '/js/{jsInclude}', ['ScriptServer\Controller\ScriptServer', 'getPackedJavascript']);
-    
-    
-    
+
     $r->addRoute('GET', '/rss', ['Blog\Controller\BlogRSS', 'rssFeed' ]);
     $r->addRoute(
         'GET',

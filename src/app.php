@@ -1,6 +1,5 @@
 <?php
 
-
 use Tier\Tier;
 use Tier\TierApp;
 
@@ -8,11 +7,6 @@ require_once realpath(__DIR__).'/../vendor/autoload.php';
 
 // Contains helper functions for the 'framework'.
 require __DIR__ . "/../vendor/danack/tier/src/Tier/tierFunctions.php";
-
-//// We need to add the path Jig templates are compiled into to 
-//// allow them to be autoloaded
-//$autoloader->add('Jig', [realpath(__DIR__).'/../var/compile/']);
-//$autoloader->add('Blog', [realpath(__DIR__).'/../var/compile/']);
 
 // Contains helper functions for the application.
 require_once "appFunctions.php";

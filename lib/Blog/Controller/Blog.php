@@ -18,7 +18,7 @@ class Blog
      */
     public function index()
     {
-        return getRenderTemplateTier('pages/index');
+        return \Tier\getRenderTemplateTier('pages/index');
     }
 
     public function showDraft(
@@ -39,12 +39,12 @@ class Blog
         $activeBlogPost = new ActiveBlogPost($blogPost);
         $params = ['Blog\Model\ActiveBlogPost' => $activeBlogPost];
 
-        return getRenderTemplateTier('pages/displayBlogPost', $params);
+        return \Tier\getRenderTemplateTier('pages/displayBlogPost', $params);
     }
 
     public function showDrafts()
     {
-        return getRenderTemplateTier('pages/drafts');
+        return \Tier\getRenderTemplateTier('pages/drafts');
     }
 
     /**
@@ -67,6 +67,6 @@ class Blog
         $activeBlogPost = new ActiveBlogPost($blogPost);
         $params = ['Blog\Model\ActiveBlogPost' => $activeBlogPost];
 
-        return getRenderTemplateTier('pages/displayBlogPost', $params);
+        return \Tier\getRenderTemplateTier('pages/displayBlogPost', $params);
     }
 }
