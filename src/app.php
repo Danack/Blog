@@ -27,6 +27,7 @@ $tier = new Tier('routeRequest');
 
 // Create the Tier application
 $app = new TierApp($tier, $injectionParams);
+$app->setStandardExceptionHandlers();
 
 // Run it
 $app->execute($request);
