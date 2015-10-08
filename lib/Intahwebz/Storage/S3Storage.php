@@ -8,28 +8,28 @@ use Intahwebz\StoragePath;
 use Intahwebz\UploadedFile;
 use Intahwebz\Exception\DuplicateFileException;
 use Intahwebz\Exception\ExternalAPIFailedException;
-
-//define('AMAZON_S3_PREFERRED_LOCATION', \AmazonS3::REGION_APAC_SE1);
-define('AMAZON_S3_PREFERRED_LOCATION', 's3-ap-southeast-1.amazonaws.com');
-
-function S3Init() {
-    //This function exists because this include does a load of crap, including
-    //accessing the filesystem, so we only include it when we're actually going to be making
-    //an S3 call, to avoid slowing down every page.
-    require_once __DIR__.'/../../../lib/amazonWS/sdk.class.php';
-}
+use  Intahwebz\S3Bridge\S3ClientFactory;
+use Aws\S3\S3Client;
 
 
-class S3Storage extends Storage {
-    
+class S3Storage extends Storage
+{    
     private $storagePath;
+    
+    private $s3ClientFactory;
+    
+    const AMAZON_S3_PREFERRED_LOCATION = 's3-ap-southeast-1.amazonaws.com';
 
-    function __construct(LoggerInterface $logger, StoragePath $storagePath) {
+    function __construct(
+        S3ClientFactory $s3ClientFactory,
+        StoragePath $storagePath
+    ) {
+        $this->s3ClientFactory = $s3ClientFactory;
         $this->storagePath = $storagePath->getPath();
-        $this->logger = $logger;
     }
 
-    function getContentTag(){
+    function getContentTag()
+    {
         return "*S3";
     }
 
@@ -40,14 +40,17 @@ class S3Storage extends Storage {
      * @throws DuplicateFileException
      * @throws ExternalAPIFailedException
      */
-    function storeFile(UploadedFile $uploadedFile, $folder){
-        S3Init();
-
-        $bucket = CONTENT_BUCKET;
+    function storeFile(UploadedFile $uploadedFile, $folder)
+    {
+        
         $originalFilename = $uploadedFile->name;
         $tmpFilename = $uploadedFile->tmpName;
         $storageFilename = $folder.'/'.$originalFilename;
-        $result = self::uploadFileToS3Bucket($bucket, $storageFilename, $tmpFilename);
+        $result = self::uploadFileToS3Bucket(
+            $this->backupBucket,
+            $storageFilename,
+            $tmpFilename
+        );
 
         if($result == true){
             return $originalFilename;
@@ -63,7 +66,7 @@ class S3Storage extends Storage {
      * @throws \S3_Exception
      */
     function backupS3ToLocalFile($buckets, $backupDirectory){
-        S3Init();
+        
         $s3 = new \AmazonS3();
         $count = 0;
         $bucketCount = 0;
@@ -155,48 +158,29 @@ class S3Storage extends Storage {
      * @return bool
      * @throws DuplicateFileException
      * @throws ExternalAPIFailedException
-     * @throws \S3_Exception
      */
-    public function uploadFileToS3Bucket($bucket, $storageFilename, $tmpFilename){
-        S3Init();
+    public function uploadFileToS3Bucket($bucket, $storageFilename, $tmpFilename)
+    {
         $region = $this->getS3RegionOfBucket($bucket);
-
-        $s3 = new \AmazonS3();
-        if ($region) {
-            $s3->set_region($region);
-        }
+        $s3 = $this->s3ClientFactory->createClient();
         
-        $s3->enable_path_style(true);
-
-        $this->logger->info("Uploading to bucket ".$bucket." storageFilename ".$storageFilename." size is ".filesize($tmpFilename));
-
-        if (!$s3->if_bucket_exists($bucket)){
-            $this->logger->info("Bucket $bucket does not exist, creating.");
-            $response = $s3->create_bucket($bucket, AMAZON_S3_PREFERRED_LOCATION);
-            if (!$response->isOK()){
-                //die('Could not create `' . $bucket . '`.');
-                throw new ExternalAPIFailedException('Could not create [' . $bucket . '] in AmazonS3.');
-            }
+        if (!$s3->doesBucketExist($bucket)) {
+            $response = $s3->createBucket([
+                'Bucket' => $bucket,
+                'LocationConstraint' => self::AMAZON_S3_PREFERRED_LOCATION
+            ]);
         }
 
-        if($s3->if_object_exists ($bucket, $storageFilename) == true){
+        if($s3->doesObjectExist($bucket, $storageFilename) == true) {
             throw new DuplicateFileException("File already exists");
         }
 
         // Upload an object.
-        $response = $s3->create_object(
-            $bucket,
-            $storageFilename,
-            array(
-                'fileUpload' => $tmpFilename
-            )
-        );
-
-        if($response->isOK() == true){
-            return true;
-        }
-
-        throw new ExternalAPIFailedException('Failed to upload file: '.$response->body);
+        $response = $s3->putObject([
+            'Bucket' => $bucket,
+            'Key' => $storageFilename,
+            'SourceFile' => $tmpFilename
+        ]);
     }
 
     /**
@@ -206,70 +190,27 @@ class S3Storage extends Storage {
      * @throws ExternalAPIFailedException
      * @throws \Exception
      */
-    function downloadFileFromS3Bucket($bucket, $storageFilename, $localFilename) {
-        S3Init();
-        $s3 = new \AmazonS3();// Instantiate the AmazonS3 class
-        
+    function downloadFileFromS3Bucket($bucket, $storageFilename, $localFilename)
+    {
         $region = $this->getS3RegionOfBucket($bucket);
-        
-        if ($region) {
-            $s3->set_region($region);
-        }
-
-        $s3->enable_path_style(true);
-
-        $startTime = microtime();
-
-        $this->logger->info("About to fetch file from S3 bucket: ".$bucket." filename: ".$storageFilename." localCacheFilename: ".$localFilename);
+        $s3 = $this->s3ClientFactory->createClient($region);
 
         $tempFilename = tempnam(sys_get_temp_dir(), 's3_');
 
-        $response = $s3->get_object(
-            $bucket,
-            $storageFilename,
-            array(
-                'fileDownload' => $tempFilename,
-            )
-        );
+        $response = $s3->getObject([
+            'Bucket' => $bucket,
+            'Key'    => $storageFilename,
+            'SaveAs' => $tempFilename
+        ]);
 
-        $this->logger->info("Download complete from S3 bucket: ".$bucket." filename: ".$storageFilename." localCacheFilename: ".$localFilename);
-
-        if($response->isOK() == true) {
-            //renameMultiplatform($tempFilename, $localFilename);
-            saveTmpFile($tempFilename, $localFilename);
-            $this->logger->info("Download of $localFilename was okay");
-        }
-        else {
-            $this->logger->info("Download of $localFilename was not okay, removing temp file");
-            $removed = unlink($tempFilename);
-
-            $responseAsString = getVar_DumpOutput($response);
-
-            if($removed == false){
-                $errorString = "Failed to retrieve file from S3 AND the cached file was not deleted: ".$responseAsString;
-                $this->logger->error($errorString);
-                //TODO - turn into server admin notice - this should be thrown by api not this class.
-                throw new ExternalAPIFailedException($errorString);
-            }
-
-            $errorString = "Failed to retrieve file from S3: ".$responseAsString;
-            $this->logger->error($errorString);
-            throw new ExternalAPIFailedException($errorString);
-        }
-
-
-//        $timeTaken = microtime_diff($startTime);
-
-        $fileSize = filesize($localFilename);
+        $fileSize = filesize($tempFilename);
 
         if ($fileSize == 0) {
-            unlink($localFilename);
-            throw new \Exception("File was 'downloaded ok' but file size is zero? ");
+            unlink($tempFilename);
+            throw new \Exception("File was 'downloaded ok' but file size was zero? ");
         }
         
-        //$speedString = calculateSpeedString($fileSize, $timeTaken);
-
-        //$this->logger->info("File ".$localFilename." download at $speedString ($fileSize bytes in $timeTaken seconds).");
+        saveTmpFile($tempFilename, $localFilename);
     }
 
 
@@ -279,8 +220,8 @@ class S3Storage extends Storage {
      * @return array
      * @throws \Exception
      */
-    function listFiles($bucket, $pattern = false) {
-        S3Init();
+    function listFiles($bucket, $pattern = false)
+    {
         //try{
         $s3 = new \AmazonS3();
         $s3->enable_path_style(true);
@@ -328,9 +269,8 @@ class S3Storage extends Storage {
         return $files;
     }
 
-    function renameFile($originalFilename, $newFilename) {
-
-        S3Init();
+    function renameFile($originalFilename, $newFilename)
+    {
         $bucket = CONTENT_BUCKET;
         $s3 = new \AmazonS3();
         $s3->enable_path_style(true);
@@ -360,25 +300,15 @@ class S3Storage extends Storage {
         throw new ExternalAPIFailedException('Failed to upload file: '.$response->body);
     }
 
-    function getS3RegionOfBucket($bucket) {
-        S3Init();
-        $s3 = new \AmazonS3();
-        $s3->enable_path_style(true);
-        $response = $s3->get_bucket_region($bucket);
 
-        if (!$response->isOK()) {
-            var_dump($response);
-            throw new ExternalAPIFailedException('Could not find region for [' . $bucket . '].');
-        }
-        $region = $response->body;
+    function getS3RegionOfBucket($bucket)
+    {
+        $s3 = $this->s3ClientFactory->createClient();
+        $response = $s3->getBucketLocation(array(
+            'Bucket' => $bucket,
+        ));
 
-        if ($region && mb_strlen($region) > 0) {
-        
-            $whyNotJustGiveMeTheURL = "s3-".$region.".amazonaws.com";
-            return $whyNotJustGiveMeTheURL;
-        }
-
-        return false;
+        return $response->get("Location");
     }
 }
 

@@ -72,6 +72,7 @@ $delegates = [
     'Intahwebz\Utils\ScriptInclude' => 'createScriptInclude',
     'Intahwebz\Utils\UploadedFileFetcher' => 'createUploadedFileFetcher',
     'Room11\Caching\LastModifiedStrategy' => 'createCaching',
+    'Intahwebz\S3Bridge\S3Config' => 'createS3Config',
 ];
 
 // If necessary, define some params that can be injected purely by name.

@@ -12,6 +12,9 @@ use Room11\HTTP\Request;
 use Room11\HTTP\Response;
 use Room11\HTTP\Body;
 
+use Blog\Config;
+
+
 define('MYSQL_PORT', 3306);
 define('MYSQL_USERNAME', 'intahwebz');
 define('MYSQL_PASSWORD', 'pass123');
@@ -38,6 +41,14 @@ function getEnvWithDefault($env, $default)
 function createUploadedFileFetcher()
 {
     return new \Intahwebz\Utils\UploadedFileFetcher($_FILES);
+}
+
+function createS3Config(Config $config) {
+
+    $key = $config->getKey(Config::AWS_SERVICES_KEY);
+    $value = $config->getKey(Config::AWS_SERVICES_SECRET);
+    
+    return new \Intahwebz\S3Bridge\S3Config($key, $value);
 }
 
 

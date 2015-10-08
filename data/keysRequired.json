@@ -1,3 +1,5 @@
 [
+    "blog.aws.services.key",
+    "blog.aws.services.secret",
     "github.access_token"
 ]

@@ -10,8 +10,8 @@ class Config
     const GITHUB_REPO_NAME = 'github.repo_name';
     
     //Server container
-    const AWS_SERVICES_KEY = 'aws.services.key';
-    const AWS_SERVICES_SECRET = 'aws.services.secret';
+    const AWS_SERVICES_KEY = 'blog.aws.services.key';
+    const AWS_SERVICES_SECRET = 'blog.aws.services.secret';
     
     const LIBRATO_KEY = 'librato.key';
     const LIBRATO_USERNAME = 'librato.username';
