@@ -4,50 +4,45 @@ use Blog\Config;
 
 $default = [
     //global/default variables go here.
-    'nginx.sendFile' => 'off',
-    
-    'mysql.charset' => 'utf8mb4',
-    'mysql.collation' => 'utf8mb4_unicode_ci',
-    'mysql.casetablenames' => '0',
-    'mysql.datadir' => '/var/lib/mysql',
-    'mysql.socket' => '/var/lib/mysql/mysql.sock',
-    'mysql.log.directory' => '/var/log',
-
-    'phpfpm.www.maxmemory' => '16M', 
-    
-    'github.root.directory' => '/home/github/',
+    'nginx_sendFile' => 'off',
+    'app_name' => 'blog',
+    'phpfpm_www_maxmemory' => '16M', 
+    //'github_root_directory' => '/home/github/',
 ];
 
 $socketDir = '/var/run/php-fpm';
 
 $centos = [
-    'nginx.log.directory' => '/var/log/nginx',
-    'nginx.root.directory' => '/usr/share/nginx',
-    'nginx.conf.directory' => '/etc/nginx',
-    'nginx.run.directory' => '/var/run',
-    'nginx.user' => 'nginx',
-    'nginx.sendFile' => 'off',
+    'nginx_log_directory' => '/var/log/nginx',
+    'nginx_root_directory' => '/usr/share/nginx',
+    'nginx_conf_directory' => '/etc/nginx',
+    'nginx_run_directory' => '/var/run',
+    'nginx_user' => 'nginx',
+    'nginx_sendFile' => 'off',
 
-    'blog.root.directory' => '/home/github/Blog/Blog/',
+    'blog_root_directory' => dirname(__DIR__),
 
-    'phpfpm.maxmemory' => '16M',
-    'phpfpm.user' => 'blog',
-    'phpfpm.group' => 'www-data',
-    'phpfpm.socket.directory' => $socketDir,
-    'phpfpm.conf.directory' => '/etc/php-fpm.d',
-    'phpfpm.pid.directory' => '/var/run/php-fpm',
+    'phpfpm_maxmemory' => '16M',
+    'phpfpm_user' => 'blog',
+    'phpfpm_group' => 'www-data',
+    'phpfpm_socket_directory' => $socketDir,
+    'phpfpm_conf_directory' => '/etc/php-fpm.d',
+    'phpfpm_pid_directory' => '/var/run/php-fpm',
 
-    'phpfpm.fullsocketpath' => $socketDir."/php-fpm-blog-".basename(dirname(__DIR__)).".sock",
+    'phpfpm_fullsocketpath' => $socketDir."/php-fpm-blog-".basename(dirname(__DIR__)).".sock",
 
-    'php.conf.directory' => '/etc/php',
-    'php.log.directory' => '/var/log/php',
-    'php.errorlog.directory' => '/var/log/php',
-    'php.session.directory' => '/var/lib/php/session',
+    'php_conf_directory' => '/etc/php',
+    'php_log_directory' => '/var/log/php',
+    'php_errorlog_directory' => '/var/log/php',
+    'php_session_directory' => '/var/lib/php/session',
 
-    'ssl.directory' => '/temp/ssl',
+    'ssl_directory' => '/temp/ssl',
 ];
 
 $centos_guest = $centos;
+//this doesn't work in vagrant on virtualBox
+$centos_guest['nginx_sendFile'] = 'off'; 
+
 
 $dev = [
     Config::LIBRATO_STATSSOURCENAME => 'blog.test',    

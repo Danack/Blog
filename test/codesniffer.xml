@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ruleset name="Danack">
+    <description>Customised coding standard.</description>
+    <arg name="tab-width" value="4"/>
+    
+    <exclude-pattern>*Intahwebz*</exclude-pattern>
+    <exclude-pattern>*test/compile*</exclude-pattern>
+    
+    <rule ref="PSR2">
+        <!-- <exclude name="PEAR.Commenting.FileCommentSniff"/> -->
+        <exclude name="PSR2.ControlStructures.ElseIfDeclaration"/>
+        <exclude name="Squiz.ControlStructures.ElseIfDeclaration"/>
+        <exclude name="Squiz.WhiteSpace.ScopeClosingBrace"/>
+
+        <!-- TODO make this be newline -->
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
+        
+        <!-- These sniffs break valid code -->
+        <exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent"/>
+        <exclude name="PSR2.ControlStructures.SwitchDeclaration.WrongOpenercase"/>
+        <exclude name="PSR2.ControlStructures.SwitchDeclaration.WrongOpenerdefault"/>
+    </rule>
+
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>*BlogPlugin.php</exclude-pattern>
+    </rule>
+    
+    
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>*phpunit_bootstrap.php</exclude-pattern>
+    </rule>
+    
+    
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>*test*</exclude-pattern>
+    </rule>
+    
+</ruleset>
+
+        

@@ -8,19 +8,19 @@ $config = <<< END
 ;;;;;;;;;;;;;;;;;;;;
 
 ; Start a new pool named 'www'.
-[blog]
+[${"app_name"}]
 
 ; Unix user/group of processes
-user = blog
-group = ${'phpfpm.group'}
+user = ${"app_name"}
+group = ${'phpfpm_group'}
 
-listen = ${'phpfpm.fullsocketpath'}
+listen = ${'phpfpm_fullsocketpath'}
 
 ; List of ipv4 addresses of FastCGI clients which are allowed to connect.
 listen.allowed_clients = 127.0.0.1
 
 listen.owner = blog
-listen.group = ${'phpfpm.group'}
+listen.group = ${'phpfpm_group'}
 listen.mode = 0664
 
 ; Per pool prefix
@@ -28,7 +28,7 @@ listen.mode = 0664
 ;prefix = \$pool
 
 request_slowlog_timeout = 10
-slowlog = ${'php.log.directory'}/slow.\$pool.log
+slowlog = ${'php_log_directory'}/slow.\$pool.log
 
 catch_workers_output = yes
 
@@ -46,12 +46,12 @@ pm.max_requests = 5000
 pm.status_path = /blog-status
 
 ; Additional php.ini defines
-php_admin_value[memory_limit] = ${'phpfpm.www.maxmemory'}
-php_admin_value[error_log] = ${'php.errorlog.directory'}/\$pool-error.log
+php_admin_value[memory_limit] = ${'phpfpm_www_maxmemory'}
+php_admin_value[error_log] = ${'php_errorlog_directory'}/\$pool-error.log
 
 security.limit_extensions = .php
 
-include = ${'blog.root.directory'}/autogen/blog.php.fpm.ini
+include = ${'blog_root_directory'}/autogen/php.fpm.ini
 
 ; env[foo] = \$bar
 

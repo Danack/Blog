@@ -20,12 +20,12 @@ server {
 
     listen 80;
     # listen 8080;
-    server_name blog.test blog.basereality.test blog.basereality.com;
+    server_name blog.test blog.basereality.test blog.basereality.com blog.test.basereality.com;
 
-    access_log  ${'nginx.log.directory'}/blog.access.log;
-    error_log  ${'nginx.log.directory'}/blog.error.log;
+    access_log  ${'nginx_log_directory'}/blog.access.log;
+    error_log  ${'nginx_log_directory'}/blog.error.log;
 
-    root ${'blog.root.directory'}/public;
+    root ${'blog_root_directory'}/public;
 
     client_max_body_size 1m;
     
@@ -69,15 +69,15 @@ server {
         allow 127.0.0.1;
         deny all;
         fastcgi_param  QUERY_STRING       \$query_string;
-        include       ${'blog.root.directory'}/data/config/fastcgi.conf;
-        fastcgi_pass   unix:${'phpfpm.fullsocketpath'};
+        include       ${'blog_root_directory'}/data/config_template/fastcgi.conf;
+        fastcgi_pass   unix:${'phpfpm_fullsocketpath'};
     }
 
     location  / {
         try_files \$uri /index.php =404;
         fastcgi_param  QUERY_STRING  \$query_string;
-        fastcgi_pass   unix:${'phpfpm.fullsocketpath'};
-        include       ${'blog.root.directory'}/data/config/fastcgi.conf;
+        fastcgi_pass   unix:${'phpfpm_fullsocketpath'};
+        include       ${'blog_root_directory'}/data/config_template/fastcgi.conf;
     }
 }
 

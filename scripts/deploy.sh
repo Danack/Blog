@@ -10,4 +10,4 @@ find . -name "*.sh" -exec chmod 755 {} \;
 
 su blog -c "./scripts/deployAsUser.sh ${environment}"
 
-sh ./autogen/addblog.sh
+sh ./autogen/addConfig.sh

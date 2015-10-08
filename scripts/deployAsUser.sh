@@ -17,24 +17,19 @@ if [ "${environment}" != "centos_guest" ]; then
     php -d allow_url_fopen=1 /usr/sbin/composer install --no-interaction --prefer-dist
 fi
 
-#need to make dir?
-mkdir -p ./var/cache/less
-mkdir -p autogen
-
 #Generate the config files for nginx, etc.
-vendor/bin/configurate -p data/config.php data/config/nginx.conf.php autogen/blog.nginx.conf $environment
-vendor/bin/configurate -p data/config.php data/config/php-fpm.conf.php autogen/blog.php-fpm.conf $environment
-vendor/bin/configurate -p data/config.php data/config/project.php.ini.php autogen/blog.php.ini $environment
-vendor/bin/configurate -p data/config.php data/config/addConfig.sh.php autogen/addblog.sh $environment
-vendor/bin/fpmconv autogen/blog.php.ini autogen/blog.php.fpm.ini 
+mkdir -p autogen
+vendor/bin/configurate -p data/config.php data/config_template/nginx.conf.php autogen/nginx.conf $environment
+vendor/bin/configurate -p data/config.php data/config_template/php-fpm.conf.php autogen/php-fpm.conf $environment
+vendor/bin/configurate -p data/config.php data/config_template/php.ini.php autogen/php.ini $environment
+vendor/bin/configurate -p data/config.php data/config_template/addConfig.sh.php autogen/addConfig.sh $environment
+
+vendor/bin/fpmconv autogen/php.ini autogen/php.fpm.ini
+ 
 vendor/bin/genenv -p data/config.php data/envRequired.php autogen/appEnv.php $environment
 
-#Generate some code.
-#php ./tool/weaveControls.php
 #Generate the CSS
+mkdir -p ./var/cache/less
 php ./bin/compileLess.php
-
-# php bin/cli.php clearRedis
-
 
 #todo - make everything other than var be not writable 

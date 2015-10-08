@@ -3,6 +3,8 @@
 use Tier\Tier;
 use Tier\TierApp;
 
+use Jig\JigException;
+
 require_once realpath(__DIR__).'/../vendor/autoload.php';
 
 // Contains helper functions for the 'framework'.
