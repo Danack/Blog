@@ -4,7 +4,7 @@ namespace Intahwebz\Form;
 
 use Intahwebz\FormElement\FormElementCollection;
 use Intahwebz\SafeAccess;
-use Intahwebz\Framework\VariableMap;
+//use Intahwebz\Framework\VariableMap;
 use Intahwebz\FileFetcher;
 
 abstract class Form {

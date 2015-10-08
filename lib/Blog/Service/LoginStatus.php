@@ -8,22 +8,22 @@ use BaseReality\Security\Role;
 
 class LoginStatus
 {
-    private $session;
+    //private $session;
 
-    public function __construct(Session $session)
+    public function __construct(/* Session $session */)
     {
-        $this->session = $session;
+        //$this->session = $session;
     }
 
     public function isLoggedIn()
     {
-        $userRole = $this->session->getSessionVariable(
-            \BaseReality\Content\BaseRealityConstant::$userRole
-        );
-    
-        if ($userRole == Role::ADMIN) {
-            return true;
-        }
+//        $userRole = $this->session->getSessionVariable(
+//            \BaseReality\Content\BaseRealityConstant::$userRole
+//        );
+//    
+//        if ($userRole == Role::ADMIN) {
+//            return true;
+//        }
 
         return false;
     }

@@ -52,7 +52,6 @@ $aliases = [
     'Jig\Jig' => 'Blog\Service\BlogJig',
     'Intahwebz\Session' => 'Intahwebz\Session\Session',
     'Blog\Mapper\LoginMapper' => 'Blog\Mapper\LoginSQLMapper',
-    'Intahwebz\Request' => 'Intahwebz\Routing\HTTPRequest',
     'Intahwebz\FileFetcher' => 'Intahwebz\Utils\UploadedFileFetcher',
     'Intahwebz\Framework\VariableMap' => 'Intahwebz\Framework\RequestVariableMap',
     'Intahwebz\Form\DataStore' => 'Blog\Bridge\SessionDataStore',

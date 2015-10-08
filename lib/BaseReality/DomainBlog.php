@@ -6,11 +6,8 @@ use Intahwebz\Request;
 
 class DomainBlog implements \Intahwebz\Domain
 {
-    private $request;
-
-    public function __construct(Request $request)
+    public function __construct()
     {
-        $this->request = $request;
     }
 
     public function getContentDomain($contentID)
@@ -35,7 +32,7 @@ class DomainBlog implements \Intahwebz\Domain
      */
     public function getDomainInfo()
     {
-        $currentDomain = $this->request->getHostName();
+        $currentDomain = "blog.basereality.com";//$this->request->getHostName();
 
         $canonicalDomain = $currentDomain;
 
