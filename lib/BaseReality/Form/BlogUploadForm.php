@@ -42,7 +42,7 @@ class BlogUploadForm extends Form
                     'label' => 'Select a file to upload',
                     'name' => 'blogFile',
                     'validation' => array(
-                        '\FCForms\Validator\FileSize' => array(
+                        'FCForms\Validator\FileSize' => array(
                             'minSize' => 100
                         ),
                     )
@@ -55,7 +55,7 @@ class BlogUploadForm extends Form
                 ),
                 array(
                     'submitButton',
-                    'type' => '\FCForms\FormElement\SubmitButton',
+                    'type' => 'FCForms\FormElement\SubmitButton',
                     'name' => 'submit',
                     'label' => null,
                     'text' => 'Upload',

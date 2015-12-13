@@ -2,23 +2,32 @@
 
 namespace BaseReality\Form;
 
+use Blog\Content\BlogPost;
 use FCForms\Form\Form;
 
 class BlogEditForm extends Form
 {
+    public function initFromBlogPost(BlogPost $blogPost)
+    {
+        $data = array(
+            'blogPostID' => $blogPost->blogPostID,
+            'title' => $blogPost->title,
+            'isActive' => $blogPost->isActive,
+        );
+
+        $this->initFromData($data);
+    }
+
     public function getDefinition()
     {
         $definition = array(
-
             'class'         => 'blogEditForm',
-
             'startElements' => [
                 [
                     'type' => 'FCForms\FormElement\Title',
                     'value' => 'Blog edit',
                 ]
             ],
-
             'endElements'   => array(
                 array(
                     'title',
@@ -48,7 +57,6 @@ class BlogEditForm extends Form
                     'text'  => 'Update',
                 ),
             ),
-
             'validation'    => array(
                 //form level validation.
             )

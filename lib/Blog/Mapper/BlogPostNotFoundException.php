@@ -2,6 +2,6 @@
 
 namespace Blog\Mapper;
 
-class BlogPostNotFoundException extends \Intahwebz\ContentNotFoundException
+class BlogPostNotFoundException extends \Exception
 {
 }

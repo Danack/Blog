@@ -1,11 +1,8 @@
 {extends file='component/framework'}
 
-
 {inject name='replaceForm' type='BaseReality\Form\BlogReplaceForm'}
+{inject name='formRender' type='FCForms\Render'}
 
 {block name='mainContent'}
-    {$replaceForm->render() | nofilter}
+    {$formRender->render($replaceForm) | nofilter}
 {/block}
-
-
-

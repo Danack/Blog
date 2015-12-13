@@ -14,7 +14,7 @@ class BlogPost
     public $blogPostID;
     public $title;
     public     $isActive;
-    //public     $blogPostTextID;
+    public     $blogPostTextID;
     public $text;
 
     public $blogPostText;

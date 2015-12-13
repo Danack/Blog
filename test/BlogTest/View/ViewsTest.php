@@ -74,15 +74,18 @@ class ViewsTest extends BaseTestCase
         $templateList = new TemplateList($templates);
         $injector->share($templateList);
 
+        $blogPostID = getNextBlogPostID();
+        $blogPostTextID = $blogPostID; 
+        
         $blogPost = BlogPost::create(
-            getNextBlogPostID(),
+            $blogPostID,
             $title = "Hello world",
             $text = "This is a template",
             $datestamp = '2014-05-28 02:06:40',
-            $isActive = true
+            $isActive = true,
+            $blogPostTextID
         );
-        
-        
+
         $injector->share($blogPost);
         
         $jigRender = $injector->make('Jig\Jig');

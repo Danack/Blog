@@ -9,6 +9,8 @@ use Blog\DB\BlogPostTextTable;
 use Blog\DTO\BlogPostTextDTO;
 use Blog\DTO\BlogPostDTO;
 
+use Blog\Mapper\BlogPostNotFoundException;
+
 class BlogPostSQLMapper implements BlogPostMapper
 {
     /**
@@ -161,6 +163,6 @@ class BlogPostSQLMapper implements BlogPostMapper
         );
 
         $sqlQuery = $this->sqlQueryFactory->create();
-        $sqlQuery->updateMappedTable($this->blogPostTable, $blogPostParams);
+        $rowsAffected = $sqlQuery->updateMappedTable($this->blogPostTable, $blogPostParams);
     }
 }

@@ -5,23 +5,19 @@ namespace Blog\Controller;
 use BaseReality\Form\BlogEditForm;
 use BaseReality\Form\BlogReplaceForm;
 use Blog\Mapper\BlogPostMapper;
+use FCForms\UploadedFile;
+use Blog\TemplatePlugin\BlogPostPlugin;
+
+
 
 
 class BlogEdit
 {
-
-    /**
-     * @param BlogPostMapper $blogPostMapper
-     * @param BlogEditForm $blogEditForm
-     * @param $blogPostID
-     * @return \Tier\Tier
-     */
     public function showEdit(
         BlogPostMapper $blogPostMapper,
         BlogEditForm $blogEditForm,
         $blogPostID
     ) {
-        
         $storedData = $blogEditForm->initFromStorage();
         if ($storedData) {
             $valid = $blogEditForm->validate();
@@ -29,52 +25,20 @@ class BlogEdit
                 $title = $blogEditForm->getValue('end', 'title');
                 $isActive = $blogEditForm->getValue('end', 'isActive');
                 $blogPostMapper->updateBlogPost($title, $isActive, $blogPostID);
-                
+
                 return \Tier\getRenderTemplateTier('pages/blogEditSuccess');
+            }
+            else {
+                return \Tier\getRenderTemplateTier('pages/blogEdit', [$blogEditForm]);
             }
         }
         
         $blogPost = $blogPostMapper->getBlogPost($blogPostID);
-        $data = array(
-            'blogPostID' => $blogPostID,
-            'title' => $blogPost->title,
-            'isActive' => $blogPost->isActive,
-        );
-    
-        $blogEditForm->initFromData($data);
+        $blogEditForm->initFromBlogPost($blogPost);
 
         return \Tier\getRenderTemplateTier('pages/blogEdit');
     }
 
-    /**
-     * @param BlogEditForm $blogEditForm
-     * @param BlogPostMapper $blogPostMapper
-     * @param $blogPostID
-     * @return RedirectBody|\Tier\Tier
-     */
-    public function processEdit(
-        BlogEditForm $blogEditForm,
-        BlogPostMapper $blogPostMapper,
-        $blogPostID
-    ) {
-        $blogEditForm->useSubmittedValues();
-        $valid = $blogEditForm->validate();
-
-        if (!$valid) {
-            $blogEditForm->storeValuesInSession();
-            return new RedirectBody("unused var", routeBlogEdit($blogPostID));
-        }
-
-        $title = $blogEditForm->getValue($blogPostID, 'title');
-        $isActive = $blogEditForm->getValue($blogPostID, 'isActive');
-        $blogPostMapper->updateBlogPost($title, $isActive, $blogPostID);
-
-        return getRenderTemplateTier('pages/blogEditSuccess');
-    }
-
-    
-    
-    
     /**
      * @param BlogReplaceForm $blogReplaceForm
      * @param $blogPostID
@@ -82,43 +46,28 @@ class BlogEdit
      */
     public function showReplace(
         BlogReplaceForm $blogReplaceForm,
-        $blogPostID
-    ) {
-        $storedData = $blogReplaceForm->getSessionStoredData(true);
-
-        if (!$storedData) {
-            $blogReplaceForm->addRowValues('new', []);
-        }
-
-        return getRenderTemplateTier('pages/displayReplaceForm');
-    }
-
-
-    /**
-     * @param BlogReplaceForm $blogReplaceForm
-     * @param BlogPostMapper $blogPostMapper
-     * @param $blogPostID
-
-     */
-    public function processReplace(
-        BlogReplaceForm $blogReplaceForm,
         BlogPostMapper $blogPostMapper,
+        BlogPostPlugin $blogPostPlugin,
         $blogPostID
     ) {
+        $storedData = $blogReplaceForm->initFromStorage();
+        if ($storedData) {
+            $valid = $blogReplaceForm->validate();
+            if ($valid) {
+                $uploadedFile = $blogReplaceForm->getValue('end', 'blogFile');
+                /** @var $uploadedFile \FCForms\UploadedFile */
+                $fileContents = file_get_contents($uploadedFile->getFilename());
+                $blogPostMapper->updateBlogPostText($blogPostID, trim($fileContents));
 
-        $blogReplaceForm->useSubmittedValues();
-        $valid = $blogReplaceForm->validate();
-
-        if (!$valid) {
-            $blogReplaceForm->storeValuesInSession();
-            return new RedirectBody("asdd", routeBlogReplace($blogPostID));
+                return \Tier\getRenderTemplateTier('pages/replaceSuccess');
+            }
+            else {
+                return \Tier\getRenderTemplateTier('pages/displayReplaceForm', [$blogReplaceForm]);
+            }
         }
 
-        $newLink = $blogReplaceForm->getRowValues('new');
-        $uploadedFile = $newLink['blogFile'];
-        $fileContents = file_get_contents($uploadedFile->tmpName);
-        $blogPostMapper->updateBlogPostText($blogPostID, trim($fileContents));
+        $blogReplaceForm->initFromData([]);
 
-        return new RedirectBody("asdd", routeBlogPost($blogPostID));
+        return \Tier\getRenderTemplateTier('pages/displayReplaceForm', [$blogReplaceForm]);
     }
 }

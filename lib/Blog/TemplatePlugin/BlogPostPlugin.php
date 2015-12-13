@@ -78,12 +78,17 @@ class BlogPostPlugin extends BasicPlugin
         return $result;
     }
 
+    function getBlogPostUniqueName(BlogPost $blogPost)
+    {
+        return "BlogPost".$blogPost->blogPostID."_".$blogPost->blogPostTextID;
+    }
+
     public function blogPostBody(BlogPost $blogPost)
     {
         $this->jig->addDefaultPlugin('Blog\TemplatePlugin\BlogPostPlugin');
         $className = $this->jig->getParsedTemplateFromString(
             $blogPost->blogPostText,
-            "BlogPost".$blogPost->blogPostID
+            $this->getBlogPostUniqueName($blogPost)
         );
         $contents = $this->injector->execute([$className, 'render']);
 
