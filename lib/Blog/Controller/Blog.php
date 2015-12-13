@@ -3,11 +3,8 @@
 namespace Blog\Controller;
 
 use Blog\Mapper\BlogPostMapper;
-use Intahwebz\Response\RedirectResponse;
 use Intahwebz\StoragePath;
-use Intahwebz\Response\TemplateResponseFactory;
-
-use Arya\TextBody;
+use Room11\HTTP\Body\TextBody;
 use Blog\Model\ActiveBlogPost;
 use Blog\Content\BlogPost;
 

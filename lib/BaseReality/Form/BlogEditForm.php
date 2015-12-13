@@ -2,7 +2,7 @@
 
 namespace BaseReality\Form;
 
-use Intahwebz\Form\Form;
+use FCForms\Form\Form;
 
 class BlogEditForm extends Form
 {
@@ -14,15 +14,15 @@ class BlogEditForm extends Form
 
             'startElements' => [
                 [
-                    'type'  => 'Intahwebz\FormElement\Title',
+                    'type' => 'FCForms\FormElement\Title',
                     'value' => 'Blog edit',
                 ]
             ],
 
-            'rowElements'   => array(
+            'endElements'   => array(
                 array(
                     'title',
-                    'type'       => 'Intahwebz\FormElement\Text',
+                    'type' => 'FCForms\FormElement\Text',
                     'label'      => 'Post title',
                     'name'       => 'title',
                     'validation' => array(
@@ -32,23 +32,25 @@ class BlogEditForm extends Form
                     )
                 ),
                 array(
-                    'isActive',
-                    'type'  => 'Intahwebz\FormElement\CheckBox',
+                    'type' => 'FCForms\FormElement\Hidden',
+                    'name'  => 'blogPostID',
+                ),
+                array(
+                    'type' => 'FCForms\FormElement\CheckBox',
                     'label' => 'Is active',
                     'name'  => 'isActive',
                 ),
-            ),
-
-            'endElements'   => array(
+                
                 array(
                     'submitButton',
-                    'type'  => 'Intahwebz\FormElement\SubmitButton',
-                    'label' => null,
+                    'type' => 'FCForms\FormElement\SubmitButton',
+                    'name' => 'submit',
                     'text'  => 'Update',
                 ),
             ),
 
-            'validation'    => array(//form level validation.
+            'validation'    => array(
+                //form level validation.
             )
         );
 

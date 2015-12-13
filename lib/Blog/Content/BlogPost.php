@@ -13,14 +13,14 @@ class BlogPost
 
     public $blogPostID;
     public $title;
-    //public     $isActive;
+    public     $isActive;
     //public     $blogPostTextID;
     public $text;
 
     public $blogPostText;
     //public     $typeName = 'BlogPost';
 
-    public static function create($blogPostID, $title, $text, $datestamp)
+    public static function create($blogPostID, $title, $text, $datestamp, $isActive)
     {
         $instance = new self();
         $instance->blogPostID = $blogPostID;
@@ -28,6 +28,7 @@ class BlogPost
         $instance->text = $text;
         $instance->datestamp = $datestamp;
         $instance->blogPostText = $text;
+        $instance->isActive = $isActive;
         
         return $instance;
     }

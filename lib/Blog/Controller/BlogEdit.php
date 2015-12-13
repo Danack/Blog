@@ -5,10 +5,47 @@ namespace Blog\Controller;
 use BaseReality\Form\BlogEditForm;
 use BaseReality\Form\BlogReplaceForm;
 use Blog\Mapper\BlogPostMapper;
-use Arya\RedirectBody;
+
 
 class BlogEdit
 {
+
+    /**
+     * @param BlogPostMapper $blogPostMapper
+     * @param BlogEditForm $blogEditForm
+     * @param $blogPostID
+     * @return \Tier\Tier
+     */
+    public function showEdit(
+        BlogPostMapper $blogPostMapper,
+        BlogEditForm $blogEditForm,
+        $blogPostID
+    ) {
+        
+        $storedData = $blogEditForm->initFromStorage();
+        if ($storedData) {
+            $valid = $blogEditForm->validate();
+            if ($valid) {
+                $title = $blogEditForm->getValue('end', 'title');
+                $isActive = $blogEditForm->getValue('end', 'isActive');
+                $blogPostMapper->updateBlogPost($title, $isActive, $blogPostID);
+                
+                return \Tier\getRenderTemplateTier('pages/blogEditSuccess');
+            }
+        }
+        
+        $blogPost = $blogPostMapper->getBlogPost($blogPostID);
+        $data = array(
+            'blogPostID' => $blogPostID,
+            'title' => $blogPost->title,
+            'isActive' => $blogPost->isActive,
+        );
+    
+        $blogEditForm->initFromData($data);
+
+        return \Tier\getRenderTemplateTier('pages/blogEdit');
+    }
+
     /**
      * @param BlogEditForm $blogEditForm
      * @param BlogPostMapper $blogPostMapper
@@ -35,32 +72,14 @@ class BlogEdit
         return getRenderTemplateTier('pages/blogEditSuccess');
     }
 
+    
+    
+    
     /**
-     * @param BlogPostMapper $blogPostMapper
-     * @param BlogEditForm $blogEditForm
+     * @param BlogReplaceForm $blogReplaceForm
      * @param $blogPostID
-     * @return \Tier\Tier
+     * @return \Tier\Executable
      */
-    public function showEdit(
-        BlogPostMapper $blogPostMapper,
-        BlogEditForm $blogEditForm,
-        $blogPostID
-    ) {
-        $storedData = $blogEditForm->getSessionStoredData(true);
-        if (!$storedData) {
-             $blogPost = $blogPostMapper->getBlogPost($blogPostID);
-
-            $data = array(
-                'blogPostID' => $blogPostID,
-                'title' => $blogPost->title,
-                'isActive' => $blogPost->isActive,
-            );
-            $blogEditForm->addRowValues($blogPostID, $data);
-        }
-
-        return getRenderTemplateTier('pages/blogEdit');
-    }
-
     public function showReplace(
         BlogReplaceForm $blogReplaceForm,
         $blogPostID
@@ -74,6 +93,13 @@ class BlogEdit
         return getRenderTemplateTier('pages/displayReplaceForm');
     }
 
+
+    /**
+     * @param BlogReplaceForm $blogReplaceForm
+     * @param BlogPostMapper $blogPostMapper
+     * @param $blogPostID
+
+     */
     public function processReplace(
         BlogReplaceForm $blogReplaceForm,
         BlogPostMapper $blogPostMapper,

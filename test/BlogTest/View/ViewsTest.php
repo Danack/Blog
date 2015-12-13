@@ -78,7 +78,8 @@ class ViewsTest extends BaseTestCase
             getNextBlogPostID(),
             $title = "Hello world",
             $text = "This is a template",
-            $datestamp = '2014-05-28 02:06:40'
+            $datestamp = '2014-05-28 02:06:40',
+            $isActive = true
         );
         
         

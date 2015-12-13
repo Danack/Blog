@@ -21,6 +21,7 @@ class LoggedInEditBox extends EditBlogPostBox
 <div class="row">
     <div class="col-md-12">
         You are logged in:<br/>
+        BlogPost is: %s <br/>
         <a href="%s">
              Edit blog post
         </a><br/>
@@ -32,8 +33,14 @@ class LoggedInEditBox extends EditBlogPostBox
 </div>
 HTML;
 
+        $activeString = 'not active';
+        if ($this->activeBlogPost->blogPost->isActive) {
+            $activeString = 'ACTIVE';
+        }
+
         $output = sprintf(
             $html,
+            $activeString,
             routeBlogEdit($this->activeBlogPost->blogPost->blogPostID),
             routeBlogReplace($this->activeBlogPost->blogPost->blogPostID)
         );
