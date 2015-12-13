@@ -7,22 +7,15 @@ use Jig\Plugin\BasicPlugin;
 use Intahwebz\Utils\ScriptInclude;
 use Blog\Content\BlogPost;
 use Jig\Jig;
-use Jig\JigRender;
 use Auryn\Injector;
 use Michelf\MarkdownExtra;
 
 class BlogPostPlugin extends BasicPlugin
 {
-
     /**
      * @var Jig
      */
     private $jig;
-
-    /**
-     * @var JigRender
-     */
-    private $jigRender;
 
     /**
      * @var \Auryn\Injector
@@ -32,12 +25,10 @@ class BlogPostPlugin extends BasicPlugin
     public function __construct(
         ScriptInclude $scriptInclude,
         Jig $jig,
-        JigRender $jigRender,
         Injector $injector
     ) {
         $this->scriptInclude = $scriptInclude;
         $this->jig = $jig;
-        $this->jigRender = $jigRender;
         $this->injector = $injector;
     }
 

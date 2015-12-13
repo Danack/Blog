@@ -2,8 +2,9 @@
 
 namespace Blog\Bridge;
 
-use Intahwebz\Form\DataStore;
-use Intahwebz\Session;
+use FCForms\DataStore;
+
+use ASM\Session;
 
 class SessionDataStore implements DataStore
 {
@@ -12,17 +13,31 @@ class SessionDataStore implements DataStore
      */
     private $session;
 
+    /**
+     * @param Session $session
+     */
     public function __construct(Session $session)
     {
         $this->session = $session;
     }
-    
-    public function getData($name, $default, $clearOnRead)
+
+    /**
+     * @param $name
+     * @param $default
+     * @param $clearOnRead
+     * @return mixed
+     */
+    public function getValue($name, $default, $clearOnRead)
     {
         return $this->session->getSessionVariable($name, $default, $clearOnRead);
     }
 
-    public function storeData($name, $data)
+    /**
+     * @param $name
+     * @param $data
+     * @return mixed
+     */
+    public function setValue($name, $data)
     {
         return $this->session->setSessionVariable($name, $data);
     }

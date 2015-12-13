@@ -3,7 +3,6 @@
 namespace BaseReality\Form;
 
 use Intahwebz\Form\Form;
-use Intahwebz\Session;
 
 class BlogReplaceForm extends Form
 {

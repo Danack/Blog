@@ -2,7 +2,7 @@
 
 namespace FileFilter;
 
-use Intahwebz\File;
+use FileFilter\File;
 
 class NullFilter extends FileFilter
 {

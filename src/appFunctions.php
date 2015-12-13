@@ -2,17 +2,26 @@
 
 use Amp\Artax\Client as ArtaxClient;
 use ArtaxServiceBuilder\ResponseCache;
+use Auryn\Injector;
 use Jig\JigConfig;
-use Tier\Tier;
+use Tier\Executable;
 use Tier\InjectionParams;
 use GithubService\GithubArtaxService\GithubService;
 use Blog\Data\TemplateList;
-use Intahwebz\Session;
+
 use Room11\HTTP\Request;
 use Room11\HTTP\Response;
 use Room11\HTTP\Body;
-
+use Room11\HTTP\VariableMap;
+use FCForms\Form\Form;
+use Room11\HTTP\HeadersSet;
 use Blog\Config;
+use Room11\HTTP\Body\RedirectBody;
+use ASM\Session;
+use ASM\SessionConfig;
+use ASM\SessionManager;
+use Tier\TierApp;
+
 
 
 define('MYSQL_PORT', 3306);
@@ -107,7 +116,7 @@ function routeRequest(Request $request, Response $response)
 {
     $dispatcher = FastRoute\simpleDispatcher('routesFunction');
     $httpMethod = $request->getMethod();
-    $uri = $request->get('REQUEST_URI_PATH');
+    $uri = $request->getPath();
 
     $queryPosition = strpos($uri, '?');
     if ($queryPosition !== false) {
@@ -135,7 +144,7 @@ function routeRequest(Request $request, Response $response)
             $vars = $routeInfo[2];
             $params = InjectionParams::fromParams($vars);
 
-            return new Tier($handler, $params);
+            return new Executable($handler, $params);
         }
 
         default: {
@@ -370,4 +379,98 @@ function routeBlogEdit($blogPostID)
 function routeBlogReplace($blogPostID)
 {
     return "/blogreplace/".$blogPostID;
+}
+
+
+function createASMFileDriver()
+{
+    return new \ASM\File\FileDriver(__DIR__."/../var/session/");
+}
+
+
+/**
+ * @param \ASM\Redis\RedisDriver $redisDriver
+ * @return \ASM\Session
+ */
+function createSession(\ASM\Driver $driver)
+{
+    $sessionConfig = new SessionConfig(
+        'SessionTest',
+        1000,
+        10
+    );
+
+    $sessionManager = new SessionManager(
+        $sessionConfig,
+        $driver
+    );
+
+    $session = $sessionManager->createSession($_COOKIE);
+
+    return $session;
+}
+
+
+//function processFormRedirect(
+//    Request $request,
+//    Injector $injector,
+//    VariableMap $variableMap
+//) {
+//    $formName = $variableMap->getVariable(Form::FORM_HIDDEN_FQCN);
+//    $isValidFormFQCN = is_subclass_of($formName, 'FCForms\Form\Form', $allow_string = TRUE);
+//
+//    if (!$isValidFormFQCN) {
+//        //TODO - this should be logged as a hack attempt.
+//        return false;
+//    }
+//
+//    if ($request->getMethod() != 'POST') {
+//        return false;
+//    }
+//
+//    /** @var $form \FCForms\Form\Form */
+//    $form = $injector->make($formName);
+//
+//    if ($form->canAllElementsBeStored() == false) {
+//        return false;
+//    }
+//
+//    /** @var $form \FCForms\Form\Form */
+//    if ($form->isSubmitted($variableMap) == false) {
+//        return false;
+//    }
+//
+//    $form->createElementsFromVariableMap($variableMap);
+//    $form->saveValuesToStorage();
+//
+//    return new RedirectBody("Form submitted", $request->getPath(), 303);
+//}
+
+/**
+ * @param Session $session
+ * @param HeadersSet $headerSet
+ */
+function addSessionHeader(Session $session, HeadersSet $headerSet)
+{
+    $session->save();
+    $headers = $session->getHeaders(\ASM\SessionManager::CACHE_PRIVATE);
+
+    foreach ($headers as $key => $value) {
+        $headerSet->addHeader($key, $value);
+    }
+
+    return TierApp::PROCESS_CONTINUE;
+}
+
+
+
+function createUserPermissions(Session $session)
+{
+    $role = $session->getSessionVariable(\BaseReality\Content\BaseRealityConstant::$userRole);
+    
+    if ($role == false) {
+        return new \Blog\User\AnonymousPermissions();
+    }
+    
+    return new \Blog\User\LoggedInPermissions($role);
 }

@@ -34,7 +34,7 @@ interface BlogPostMapper
      * @param $text
      * @return int
      */
-    public function createBlogPost($title, $text);
+    public function createBlogPost($title, $text, $isActive);
 
     /**
      * @param $blogPostID

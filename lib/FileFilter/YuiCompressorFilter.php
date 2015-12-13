@@ -2,6 +2,8 @@
 
 namespace FileFilter;
 
+use FileFilter\File;
+
 class YuiCompressorFilter extends FileFilter
 {
     /**

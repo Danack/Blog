@@ -10,7 +10,7 @@ use Tier\Path\AutogenPath;
 use Tier\Path\CachePath;
 use Tier\Path\WebRootPath;
 use Tier\Path\ExternalLibPath;
-use Tier\File;
+use FileFilter\File;
 use FileFilter\YuiCompressorPath;
 
 class YuiFilePacker implements FilePacker

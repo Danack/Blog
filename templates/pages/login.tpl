@@ -2,6 +2,9 @@
 
 
 {block name='mainContent'}
+    
+    {inject name='formRender' type='FCForms\Render'}
     {inject name='loginForm' type='BaseReality\Form\LoginForm'}
-    {$loginForm->render() | nofilter}
+
+    {$formRender->render($loginForm) | nofilter}
 {/block}

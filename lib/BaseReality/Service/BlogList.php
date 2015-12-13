@@ -5,7 +5,7 @@ namespace BaseReality\Service;
 
 use Blog\Mapper\BlogPostMapper;
 use Blog\Model\TemplateBlogPostFactory;
-use Blog\Service\LoginStatus;
+use Blog\Site\LoginStatus;
 
 class BlogList
 {
@@ -40,7 +40,7 @@ class BlogList
     public function getBlogs()
     {
         $showInactive = $this->loginStatus->isLoggedIn();
-        $blogPosts = $this->blogPostMapper->getBlogPostsForYear(2013, $showInactive);
+        $blogPosts = $this->blogPostMapper->getBlogPostsForYear(2015, $showInactive);
         $templateBlogPosts = [];
         foreach ($blogPosts as $blogPost) {
             $templateBlogPosts[] = $this->templateBlogPostFactory->create($blogPost);

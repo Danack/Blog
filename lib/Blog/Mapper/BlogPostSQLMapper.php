@@ -118,7 +118,7 @@ class BlogPostSQLMapper implements BlogPostMapper
      * @return int
      * @throws \Exception
      */
-    public function createBlogPost($title, $text)
+    public function createBlogPost($title, $text, $isActive)
     {
         $blogPostTextDTO = new BlogPostTextDTO();
         $sqlQuery = $this->sqlQueryFactory->create();

@@ -63,7 +63,7 @@ class BlogPostMapperMock implements BlogPostMapper
      * @param $text
      * @return int
      */
-    public function createBlogPost($title, $text)
+    public function createBlogPost($title, $text, $isActive)
     {
         throw new \Exception("Not implemented");
     }

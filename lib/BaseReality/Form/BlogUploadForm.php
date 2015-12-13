@@ -2,54 +2,61 @@
 
 namespace BaseReality\Form;
 
-use Intahwebz\Form\Form;
+use FCForms\Form\Form;
 
 class BlogUploadForm extends Form
 {
+    public function getBlogUpload()
+    {
+        $title =  $this->getValue('end', 'title');
+        $file =  $this->getValue('end', 'blogFile');
+        $isActive = $this->getValue('end', 'isActive');
+        $fileContents = file_get_contents($file->getFilename());
+
+        return [$title, $fileContents, $isActive];
+    }
+
     public function getDefinition()
     {
         $definition = array(
-
             'class' => 'blogEditForm',
-
             'startElements' => [
                 [
-                    'type' => 'Intahwebz\FormElement\Title',
+                    'type' => 'FCForms\FormElement\Title',
                     'value' => 'Blog Upload',
                 ]
             ],
-
-            'rowElements' => array(
+            'endElements' => array(
                 array(
-                    'type' => 'Intahwebz\FormElement\File',
+                    'type' => 'FCForms\FormElement\Text',
+                    'label' => 'Title',
+                    'name' => 'title',
+                    'validation' => array(
+                        "Zend\\Validator\\StringLength" => array(
+                            'min' => 4,
+                        ),
+                    )
+                ),
+                array(
+                    'type' => 'FCForms\FormElement\File',
                     'label' => 'Select a file to upload',
                     'name' => 'blogFile',
                     'validation' => array(
-                        'Intahwebz\Validator\FileSize' => array(
+                        '\FCForms\Validator\FileSize' => array(
                             'minSize' => 100
                         ),
-//						"Zend\\Validator\\StringLength" => array(
-//							'min' => 8,
-//						),
                     )
                 ),
                 array(
                     'isActive',
-                    'type' => 'Intahwebz\FormElement\CheckBox',
+                    'type' => '\FCForms\FormElement\CheckBox',
                     'label' => 'Is active',
                     'name' => 'isActive',
                 ),
-            ),
-
-            'endElements' => array(
-//				array(
-//					'type' => \Intahwebz\FormElement\Hidden::class,
-//					'name' => 'formSubmitted',
-//					'value' => true
-//				),
                 array(
                     'submitButton',
-                    'type' => 'Intahwebz\FormElement\SubmitButton',
+                    'type' => '\FCForms\FormElement\SubmitButton',
+                    'name' => 'submit',
                     'label' => null,
                     'text' => 'Upload',
                 ),

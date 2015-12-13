@@ -56,15 +56,15 @@
         </div>
         <div class="col-md-2">
             
-    {inject name='loginStatus' type='Blog\Service\LoginStatus'}
-
-    {if $loginStatus->isLoggedIn()}
-        Logged in:<br/>
-        <a href="/logout">Logout</a><br/>
-        <a href='{routeShowDrafts()}'>Show drafts</a><br/>
-        <a href='{routeShowUpload()}'>Upload blag</a><br/>
-    {/if}
+    {inject name='authBox' type='Blog\Site\AuthBox'}
+    {$authBox->render() | nofilter}
             
+    
+    {inject name='adminLinks' type='Blog\Site\AdminLinks'}
+    {$adminLinks->render() | nofilter}
+
+    
+
             {include file='panels/pastPosts'}
         </div>
     </div>
@@ -82,6 +82,11 @@
 {$scriptInclude->emitJSRequired() | nofilter}
 
 {$scriptInclude->emitOnBodyLoadJavascript() | nofilter}
+
+<div>
+    {inject name='debug' type='Blog\Debug'}
+    {$debug->render() | nofilter}
+</div>
 
 </body>
 

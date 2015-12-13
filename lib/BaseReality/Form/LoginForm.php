@@ -2,7 +2,7 @@
 
 namespace BaseReality\Form;
 
-use Intahwebz\Form\Form;
+use FCForms\Form\Form;
 
 class LoginForm extends Form
 {
@@ -14,7 +14,7 @@ class LoginForm extends Form
 
             'startElements' => [
                 [
-                    'type' => 'Intahwebz\FormElement\Title',
+                    'type' => 'FCForms\FormElement\Title',
                     'value' => 'Login',
                 ]
             ],
@@ -25,13 +25,13 @@ class LoginForm extends Form
 
             'endElements' => array(
                 array(
-                    'type' => 'Intahwebz\FormElement\Hidden',
+                    'type' => 'FCForms\FormElement\Hidden',
                     'name' => 'returnURL',
                     'validation' => array(
                     )
                 ),
                 array(
-                    'type' => 'Intahwebz\FormElement\Text',
+                    'type' => 'FCForms\FormElement\Text',
                     'label' => 'Username',
                     'name' => 'username',
                     'validation' => array(
@@ -41,7 +41,7 @@ class LoginForm extends Form
                     )
                 ),
                 array(
-                    'type' => 'Intahwebz\FormElement\Password',
+                    'type' => 'FCForms\FormElement\Password',
                     'label' => 'Password',
                     'name' => 'password',
                     'validation' => array(
@@ -52,7 +52,8 @@ class LoginForm extends Form
                 ),
                 array(
                     'submitButton',
-                    'type' => 'Intahwebz\FormElement\SubmitButton',
+                    'type' => 'FCForms\FormElement\SubmitButton',
+                    'name' => 'submit',
                     'label' => null,
                     'text' => 'Login',
                 ),

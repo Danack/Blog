@@ -5,7 +5,8 @@ namespace Intahwebz\FileFilter;
 
 // TODO - this probably shouldn't be in a standard library.
 use Intahwebz\Storage\Storage;
-use Intahwebz\File;
+//use Intahwebz\File;
+use FileFilter\File;
 
 class StorageDownloadFilter extends FileFilter
 {
@@ -40,7 +41,7 @@ class StorageDownloadFilter extends FileFilter
     public function srcModified()
     {
         $destPath = $this->destFile->getPath();
-        
+
         if (@file_exists($destPath) == false) {
             return true;
         }

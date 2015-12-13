@@ -2,7 +2,7 @@
 
 namespace FileFilter;
 
-use Tier\File;
+use FileFilter\File;
 
 function correctUmask($filename)
 {

@@ -6,7 +6,9 @@ namespace Blog\Controller;
 use Blog\Mapper\BlogPostMapper;
 use BaseReality\Form\BlogUploadForm;
 use Intahwebz\UploadedFile;
-use Arya\RedirectBody;
+use ASM\Session;
+use Blog\Debug;
+
 
 function processUploadedFile(UploadedFile $uploadedFile)
 {
@@ -27,40 +29,40 @@ function processUploadedFile(UploadedFile $uploadedFile)
 
 class BlogUpload
 {
-    public function showUpload(BlogUploadForm $blogUploadForm)
-    {
-        $storedData = $blogUploadForm->getSessionStoredData(true);
-        if (!$storedData) {
-            $blogUploadForm->addRowValues('new', []);
-        }
-
-        return getRenderTemplateTier('pages/displayUploadForm');
-    }
-
-    public function uploadPost(
+    public function showUpload(
+        Session $session,
         BlogUploadForm $blogUploadForm,
-        BlogPostMapper $blogPostMapper
+        BlogPostMapper $blogPostMapper,
+        Debug $debug
     ) {
-        $blogUploadForm->useSubmittedValues();
+        $dataStoredInSession = $blogUploadForm->initFromStorage();
+        if (!$dataStoredInSession) {
+            return \Tier\getRenderTemplateTier('pages/displayUploadForm');
+        }
+        
+        //$session->save();
+        
         $valid = $blogUploadForm->validate();
-
+        
         if (!$valid) {
-            return new RedirectBody("asdd", '/upload');
+            return \Tier\getRenderTemplateTier('pages/displayUploadForm', [$blogUploadForm]);
         }
 
-        $newLink = $blogUploadForm->getRowValues('new');
-        list($title, $text) = processUploadedFile($newLink['blogFile']);
-        $blogPostMapper->createBlogPost($title, $text);
-        $blogUploadForm->reset();
+        list($title, $text, $isActive) = $blogUploadForm->getBlogUpload();
+        $blogPostID = $blogPostMapper->createBlogPost($title, $text, $isActive);
 
-        return new RedirectBody("asdd", '/uploadResult');
+        $debug->add("blog post ID is $blogPostID");
+
+        return \Tier\getRenderTemplateTier('pages/uploadSuccess');
     }
+
+
 
     /**
-     * @return \Tier\Tier
+     * @return \Tier\Executable
      */
     public function uploadResult()
     {
-        return getRenderTemplateTier('pages/uploadSuccess');
+        return \Tier\getRenderTemplateTier('pages/uploadSuccess');
     }
 }

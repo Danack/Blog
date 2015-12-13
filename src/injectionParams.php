@@ -9,13 +9,14 @@ use Blog\Value\ExternalLibPath;
 use Intahwebz\LogPath;
 use Intahwebz\YuiCompressorPath;
 use Blog\Value\CachePath;
+use FCForms\FileFetcher\StubFileFetcher;
 
 // These classes will only be created  by the injector once
 $shares = [
-    'Jig\JigRender',
     'Jig\Jig',
     'Jig\JigConverter',
     'Amp\Reactor',
+    'ASM\Session',
     'Intahwebz\DB\Connection',
     'Intahwebz\Utils\ScriptInclude',
     new AutogenPath(__DIR__."/../autogen/"),
@@ -26,12 +27,14 @@ $shares = [
     new ExternalLibPath(__DIR__.'/../lib/'),
     new YuiCompressorPath("/usr/lib/yuicompressor.jar"),
     new CachePath(__DIR__.'/../var/cache/'),
-    'Intahwebz\Session',
-    
     'BaseReality\Form\LoginForm',
     'BaseReality\Form\BlogUploadForm',
     'BaseReality\Form\BlogEditForm',
     'BaseReality\Form\BlogReplaceForm',
+    'Room11\HTTP\HeadersSet',
+    'Blog\Debug',
+    'FCForms\FileFetcher\UploadedFileFetcher',
+    //'BaseReality\Form\LoginForm'
 ];
     
 
@@ -40,6 +43,7 @@ $shares = [
 $aliases = [
     'ArtaxServiceBuilder\ResponseCache' =>
     'ArtaxServiceBuilder\ResponseCache\NullResponseCache',
+    'ASM\Driver' => 'ASM\File\FileDriver',
     'Blog\FilePacker' => 'Blog\StandardFilePacker',
     'Blog\Mapper\BlogPostMapper' => '\Blog\Mapper\BlogPostSQLMapper',
     'Blog\Service\SourceFileFetcher' => 'Blog\Service\OnlineSourceFileFetcher',
@@ -50,13 +54,13 @@ $aliases = [
     'Intahwebz\Storage\Storage' => 'Intahwebz\Storage\S3Storage',
     'Psr\Log\LoggerInterface' => 'Intahwebz\NullLogger',
     'Jig\Jig' => 'Blog\Service\BlogJig',
-    'Intahwebz\Session' => 'Intahwebz\Session\Session',
+    'FCForms\Render' => 'FCForms\Render\BootStrapRender',
     'Blog\Mapper\LoginMapper' => 'Blog\Mapper\LoginSQLMapper',
     'Intahwebz\FileFetcher' => 'Intahwebz\Utils\UploadedFileFetcher',
-    'Intahwebz\Framework\VariableMap' => 'Intahwebz\Framework\RequestVariableMap',
-    'Intahwebz\Form\DataStore' => 'Blog\Bridge\SessionDataStore',
-    
-    'Room11\HTTP\Request' => 'Room11\HTTP\Request\Request',
+    'FCForms\DataStore' => 'Blog\Bridge\SessionDataStore',
+    'FCForms\FileFetcher' => 'FCForms\FileFetcher\UploadedFileFetcher',
+    'Room11\HTTP\VariableMap' => 'Room11\HTTP\VariableMap\RequestVariableMap',
+    'Room11\HTTP\RequestHeaders' => 'Room11\HTTP\Request\HTTPRequestHeaders',
     'Room11\HTTP\Response' => 'Room11\HTTP\Response\Response',
     
     'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker'
@@ -65,14 +69,19 @@ $aliases = [
 
 // Delegate the creation of types to callables.
 $delegates = [
+    'ASM\Session' => 'createSession',
+    'ASM\File\FileDriver' => 'createASMFileDriver',
     'Amp\Reactor' => 'Amp\getReactor',
-    'GithubService\GithubArtaxService\GithubService' => 'createGithubArtaxService',
-    'Jig\JigConfig' => 'createJigConfig',
     'Blog\Data\TemplateList' => 'createTemplateList',
+    'GithubService\GithubArtaxService\GithubService' => 'createGithubArtaxService',
+    'Intahwebz\S3Bridge\S3Config' => 'createS3Config',
     'Intahwebz\Utils\ScriptInclude' => 'createScriptInclude',
     'Intahwebz\Utils\UploadedFileFetcher' => 'createUploadedFileFetcher',
+    'Jig\JigConfig' => 'createJigConfig',
     'Room11\Caching\LastModifiedStrategy' => 'createCaching',
-    'Intahwebz\S3Bridge\S3Config' => 'createS3Config',
+    'Blog\Site\AuthBox' => ['Blog\Site\AuthBox', 'createAuthBox'],
+    'Blog\Site\EditBlogPostBox' => ['Blog\Site\EditBlogPostBox', 'createEditBox'],
+    'Blog\UserPermissions' => 'createUserPermissions',
 ];
 
 // If necessary, define some params that can be injected purely by name.
@@ -92,7 +101,7 @@ $defines = [
         ':password' => MYSQL_PASSWORD,
         ':port'     => MYSQL_PORT,
         ':socket'   => MYSQL_SOCKET_CONNECTION
-    ],
+    ],  
 ];
 
 $prepares = [

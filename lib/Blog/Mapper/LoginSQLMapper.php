@@ -31,7 +31,7 @@ class LoginSQLMapper implements LoginMapper
         $sqlQuery = $this->sqlQueryFactory->create();
         $sqlQuery->table($this->loginTable)->whereColumn('login', $username);
         $contentArray = $sqlQuery->fetch();
-
+  
         if (count($contentArray) > 0) {
             $content = $contentArray[0];
             if (password_verify($password, $content['login.hash'])) {
@@ -41,7 +41,6 @@ class LoginSQLMapper implements LoginMapper
 
         return false;
     }
-
 
     /**
      * @param $username

@@ -2,94 +2,104 @@
 
 namespace Blog\Controller;
 
-use Intahwebz\Response\RedirectResponse;
-use Intahwebz\Session;
+use ASM\Session;
 use Blog\Mapper\LoginMapper;
 use BaseReality\Form\LoginForm;
 use BaseReality\Security\Role;
-//use BaseReality\Security\Role;
-//use Intahwebz\Response\TemplateResponseFactory;
-
-use Arya\Response;
-use Arya\RedirectBody;
+use Room11\HTTP\Response;
+use Blog\Debug;
+use Room11\HTTP\Body\RedirectBody;
+use Blog\Site\LoginStatus;
+use Room11\HTTP\VariableMap;
+use Blog\UserPermissions;
 
 class Login
 {
+
+    /**
+     * @param LoginForm $loginForm
+     * @param UserPermissions $userPermissions
+     * @return RedirectBody|\Tier\Executable
+     */
     public function loginGet(
-        Response $response,
         LoginForm $loginForm,
-        Session $session,
-        LoginMapper $loginMapper
+        UserPermissions $userPermissions
     ) {
-        $dataStoredInSession = $loginForm->getSessionStoredData(true);
-
-        if ($loginForm->isSubmitted()) {
-            $valid = $loginForm->validate();
-            $values = $loginForm->getAllValues();
-
-            $loginForm->setFormError("Username was not accepted.");
+        if ($userPermissions->isLoggedIn()) {
+            return new RedirectBody("Already logged in", "/", 303);
         }
 
-        return getRenderTemplateTier('pages/login');
+        $dataStoredInSession = $loginForm->initFromStorage();
+        if ($dataStoredInSession) {
+            $loginForm->validate();
+        }
+
+        return \Tier\getRenderTemplateTier('pages/login', ['BaseReality\Form\LoginForm' => $loginForm]);
     }
 
+    /**
+     * @param VariableMap $variableMap
+     * @param LoginForm $loginForm
+     * @param Session $session
+     * @param LoginMapper $loginMapper
+     * @return RedirectBody
+     */
     public function loginPost(
-        Response $response,
+        VariableMap $variableMap,
         LoginForm $loginForm,
         Session $session,
         LoginMapper $loginMapper
     ) {
-        $loginForm->useSubmittedValues();
-        
-        $valid = $loginForm->validate();
+        $wasValid = false;
+        $validCallback = function(LoginForm $loginForm) use ($session, $loginMapper, &$wasValid) {
+            $username =  $loginForm->getValue('end', 'username');
+            $password =  $loginForm->getValue('end', 'password');
 
-        if ($valid) {
-            $values = $loginForm->getAllValues();
-
-            if ($loginMapper->isLoginValid($values['username'], $values['password']) == true) {
+            if ($loginMapper->isLoginValid($username, $password) == true) {
                 $session->setSessionVariable(
                     \BaseReality\Content\BaseRealityConstant::$userRole,
                     Role::ADMIN
                 );
+                $wasValid = true;
+            } 
+            else {
+                $loginForm->setFormError("Username or password incorrect");
+            }
+        };
 
-                $response->setStatus(302);
-                //Logged in
+        $loginForm->initFromSubmittedData($variableMap);
+        $loginForm->validate($validCallback);
 
-                return new RedirectBody("asdd", '/');
+        if ($loginForm->hasError()) {
+            $loginForm->saveValuesToStorage();
+        }
+        else {
+            $validCallback($loginForm);
+            if ($wasValid == false) {
+                $loginForm->saveValuesToStorage();
             }
         }
-        
-        $loginForm->storeValuesInSession();
-        $response->setStatus(302);
 
-        return new RedirectBody("This should redirect", '/login');
+        return new RedirectBody("Form submitted", "/login", 303);
     }
+    
 
+    
+    
+    
+    
+    
     /**
      * @param Session $session
      * @return RedirectBody
      */
-    public function logout(Session $session)
+    public function logout(LoginStatus $loginStatus)
     {
-        $redirectURL = $session->getSessionVariable('redirectURL', false);
-
         // About to delete all session info
         // This destroys all session information. Any info we want to
         // retain needs to be set again.
-        $session->logoutUser();
-        //All session info deleted -
-        if ($redirectURL != false) {
-            $session->setSessionVariable('redirectURL', $redirectURL);
-        }
-        
-        //$session->logoutUser();
+        $loginStatus->logoutUser();
 
-        $redirectResponse = new RedirectResponse('/');
-        $redirectResponse->unsetCookie(SESSION_NAME);
-        $redirectResponse->unsetCookie('sessionID');
-        $redirectResponse->unsetCookie('cookieID');
-        $redirectResponse->unsetCookie('secureLoginCheck');
-
-        return new RedirectBody("asdd", '/');
+        return new RedirectBody("Form submitted", "/login", 303);
     }
 }

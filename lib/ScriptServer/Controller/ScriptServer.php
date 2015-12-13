@@ -6,7 +6,6 @@ use Tier\Path\WebRootPath;
 use FilePacker\FilePacker;
 use Room11\HTTP\Request;
 use Room11\HTTP\Response;
-
 use Room11\HTTP\Body\EmptyBody;
 use Tier\ResponseBody\CachingFileResponseFactory;
 
@@ -155,7 +154,7 @@ class ScriptServer
 
     /**
      * @param $jsInclude
-     * @return FileBody|EmptyBody
+     * @return \Room11\HTTP\Body\FileBody|\Room11\HTTP\Body\EmptyBody
      * @throws \Exception
      */
     public function getPackedJavascript(Request $request, $jsInclude)
@@ -180,8 +179,7 @@ class ScriptServer
         );
 
         if ($notModifiedHeader) {
-            $this->response->setStatus(304);
-            return new EmptyBody();
+            return new EmptyBody(304);
         }
         
         $finalFilename = $this->filePacker->pack($jsIncludeArray, $appendLine, $extension);
