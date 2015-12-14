@@ -1,7 +1,8 @@
 # set -x #echo on
 set -eux -o pipefail
 
-environment="centos_guest,dev"
+dev_environment="centos_guest,dev"
+environment="${dev_environment}"
 
 if [ "$#" -ge 1 ]; then
     environment=$1
@@ -9,7 +10,7 @@ fi
 
 echo "environment is ${environment}";
 
-if [ "${environment}" != "centos_guest" ]; then
+if [ "${environment}" != "${dev_environment}" ]; then
     blog_github_access_token=`php bin/info.php "github.access_token"`
     oauthtoken=${blog_github_access_token}
     composer config -g github-oauth.github.com $oauthtoken

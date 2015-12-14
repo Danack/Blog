@@ -5,6 +5,11 @@ use Tier\TierHTTPApp;
 use Tier\Executable;
 use Room11\HTTP\Request\CLIRequest;
 
+// App keys
+require_once __DIR__."/../../clavis.php";
+// App env
+require_once __DIR__."/../autogen/appEnv.php";
+
 require_once realpath(__DIR__).'/../vendor/autoload.php';
 
 // Contains helper functions for the 'framework'.

@@ -32,9 +32,6 @@ class Config
 
     public function __construct()
     {
-        require_once __DIR__."/../../../clavis.php";
-        require_once __DIR__."/../../autogen/appEnv.php";
-
         $this->values = [];
         $this->values = array_merge($this->values, getAppEnv());
         $this->values = array_merge($this->values, getAppKeys());

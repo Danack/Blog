@@ -47,9 +47,13 @@ $centos_guest['nginx_sendFile'] = 'off';
 $dev = [
     Config::LIBRATO_STATSSOURCENAME => 'blog.test',    
     Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_ALWAYS,
+    Config::SCRIPT_PACKING => false
 ];
 
 $live = [
     Config::LIBRATO_STATSSOURCENAME => 'blog.com',
     Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_CHECK_EXISTS,
+    Config::SCRIPT_PACKING => true
 ];
+
+

@@ -13,10 +13,8 @@ use Room11\HTTP\Request;
 use Room11\HTTP\Response;
 use Room11\HTTP\Body;
 use Room11\HTTP\VariableMap;
-use FCForms\Form\Form;
 use Room11\HTTP\HeadersSet;
 use Blog\Config;
-use Room11\HTTP\Body\RedirectBody;
 use ASM\Session;
 use ASM\SessionConfig;
 use ASM\SessionManager;
@@ -32,20 +30,6 @@ define('MYSQL_SERVER', null);
 define('MYSQL_SOCKET_CONNECTION', '/var/lib/mysql/mysql.sock');
 define('SESSION_NAME', 'aosdjpoajdpoajspdojspodj');
 
-/**
- * Read config settings from environment with a default value.
- * @param $env
- * @param $default
- * @return string
- */
-function getEnvWithDefault($env, $default)
-{
-    $value = getenv($env);
-    if ($value === false) {
-        return $default;
-    }
-    return $value;
-}
 
 function createUploadedFileFetcher()
 {
@@ -64,13 +48,13 @@ function createS3Config(Config $config) {
 /**
  * @return JigConfig
  */
-function createJigConfig()
+function createJigConfig(Config $config)
 {
     $jigConfig = new JigConfig(
         __DIR__."/../templates/",
         __DIR__."/../var/compile/",
         'tpl',
-        getEnvWithDefault('jig.compile', \Jig\Jig::COMPILE_ALWAYS)
+        $config->getKey(Config::JIG_COMPILE_CHECK)
     );
     
     return $jigConfig;
@@ -94,9 +78,10 @@ function createGithubArtaxService(ArtaxClient $client, \Amp\Reactor $reactor, Re
 }
 
 
-function createScriptInclude()
+function createScriptInclude(Config $config)
 {
-    $packScript = getEnvWithDefault('imagickdemo.packscript', 0);
+    $packScript = $config->getKey(Config::SCRIPT_PACKING);
+    
     if ($packScript) {
         return new Intahwebz\Utils\ScriptIncludePacked();
     }

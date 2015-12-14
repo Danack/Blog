@@ -1,5 +1,5 @@
 
-environment="centos_guest"
+environment="centos_guest,dev"
 
 if [ "$#" -ge 1 ]; then
     environment=$1
