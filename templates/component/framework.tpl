@@ -56,7 +56,7 @@
             {include file='panels/pastPosts'}
         </div>
 
-        <div class="col-md-9 columnAdjust panel panel-default">
+        <div class="col-md-9 columnAdjust">
             {block name='mainContent'}
                 Main content goes here.
             {/block}        

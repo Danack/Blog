@@ -438,7 +438,10 @@ function createSession(\ASM\Driver $driver)
 function addSessionHeader(Session $session, HeadersSet $headerSet)
 {
     $session->save();
-    $headers = $session->getHeaders(\ASM\SessionManager::CACHE_PRIVATE);
+    $headers = $session->getHeaders(
+        \ASM\SessionManager::CACHE_PRIVATE,
+        '/'
+    );
 
     foreach ($headers as $key => $value) {
         $headerSet->addHeader($key, $value);

@@ -7,6 +7,9 @@
 {$templateBlogPost = makeRenderableBlogPost($activeBlogPost->blogPost) | nofilter}
 
 <div class="row">
+    <div class="col-md-12  panel panel-default">
+
+<div class="row">
     <div class="col-md-12">
         <h2>{$templateBlogPost->blogPost->getTitle()}
             <small>
@@ -14,16 +17,27 @@
             </small>
         </h2>
     </div>
+</div>        
+<div class="row">
+    <div class="col-md-12">
+        {inject name='postEditBox' type='Blog\Site\EditBlogPostBox'}
+        {$postEditBox->render() | nofilter}
+    </div>
 </div>
 
-{inject name='postEditBox' type='Blog\Site\EditBlogPostBox'}
-{$postEditBox->render() | nofilter}
 
 <div class="row">
     <div class="col-md-12">
         {blogPostBody($templateBlogPost->blogPost) | nofilter}
     </div>
 </div>
+        
+        
+        
+        
+    </div>
+</div>
+
 
 <div class="row">
     <div class="col-md-12">
@@ -33,6 +47,7 @@
 
 <div class="row">
     <div class="col-md-12">
+        <br/>
         <a href="{routeIndex()}">Back to index</a>
     </div>
 </div>

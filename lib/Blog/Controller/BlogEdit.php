@@ -32,7 +32,7 @@ class BlogEdit
         $blogPost = $blogPostMapper->getBlogPost($blogPostID);
         $blogEditForm->initFromBlogPost($blogPost);
 
-        return \Tier\getRenderTemplateTier('pages/blogEdit');
+        return \Tier\getRenderTemplateTier('pages/blogEdit', [$blogEditForm]);
     }
 
     /**

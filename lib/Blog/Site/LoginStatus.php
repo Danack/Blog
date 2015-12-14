@@ -8,7 +8,6 @@ use BaseReality\Content\BaseRealityConstant;
 
 class LoginStatus
 {
-
     /**
      * @var Session
      */
