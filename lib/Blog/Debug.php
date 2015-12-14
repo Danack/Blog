@@ -30,10 +30,10 @@ class Debug
     {
         $output = implode("<br/>", $this->debug);
 
-        $output .= "Role is: ".$this->session->getSessionVariable(
-            \BaseReality\Content\BaseRealityConstant::$userRole, 
-            'notset'
-        );
+//        $output .= "Role is: ".$this->session->getSessionVariable(
+//            \BaseReality\Content\BaseRealityConstant::$userRole, 
+//            'notset'
+//        );
 
         return $output;
     }

@@ -11,7 +11,8 @@ $cacheDir = __DIR__.'/../var/cache/less';
 
 $compileItems = [
     __DIR__."/../data/less/bootstrap/bootstrap.less" => __DIR__.'/../public/css/bootstrap.css',
-    __DIR__."/../data/less/bootstrap/theme.less" => __DIR__.'/../public/css/bootstrap-theme.css'
+    __DIR__."/../data/less/bootstrap/theme.less" => __DIR__.'/../public/css/bootstrap-theme.css',
+    __DIR__."/../data/less/bootstrap/bootswatch.less" => __DIR__.'/../public/css/bootswatch.css'
 ];
 
 foreach ($compileItems as $input => $output) {

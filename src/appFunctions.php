@@ -96,7 +96,7 @@ function createGithubArtaxService(ArtaxClient $client, \Amp\Reactor $reactor, Re
 
 function createScriptInclude()
 {
-    $packScript = getEnvWithDefault('imagickdemo.packscript', 1);
+    $packScript = getEnvWithDefault('imagickdemo.packscript', 0);
     if ($packScript) {
         return new Intahwebz\Utils\ScriptIncludePacked();
     }

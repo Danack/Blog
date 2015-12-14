@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-12">
 
-    <h2>
+    <h3>
         <span class='blogPostTitle'>
             {$blogPost->renderTitle() | nofilter}
         </span>
@@ -15,7 +15,7 @@
         <span class='blogPostDate'>
             {$blogPost->renderDate() | nofilter}
         </span>
-    </h2>
+    </h3>
     </div>
 
     <div class="col-md-12">

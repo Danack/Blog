@@ -1,17 +1,17 @@
 {extends file='component/framework'}
 
-{inject name='blogPost' type='Blog\Content\BlogPost'}
-
-{block name='title'}
-    <title>{$blogPost->getTitle()}</title>
+{block name='page_title'}
+    {inject name='activeBlogPost' type='Blog\Model\ActiveBlogPost'}
+    <title>{$activeBlogPost->blogPost->getTitle()}</title>
 {/block}
 
-
-{block name='mainContent'}
+{block name='mainContent'}    
     {include file='panels/blogPost'}
 {/block}
 
-
 {block name='drafts'}
-   
+{/block}
+
+{block name='gohome'}
+    This is a blog page.
 {/block}

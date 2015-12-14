@@ -80,7 +80,7 @@ class BlogPostPlugin extends BasicPlugin
 
     function getBlogPostUniqueName(BlogPost $blogPost)
     {
-        return "BlogPost".$blogPost->blogPostID."_".$blogPost->blogPostTextID;
+        return "BlogPost\\BlogPost".$blogPost->blogPostID."_".$blogPost->blogPostTextID;
     }
 
     public function blogPostBody(BlogPost $blogPost)

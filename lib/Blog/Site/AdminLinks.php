@@ -20,11 +20,17 @@ class AdminLinks
         if (!$this->loginStatus->isLoggedIn()) {
             return '';
         }
-
-        $output = "Logged in:<br />";
+        
+        $output = "<div class='row panel panel-default'>";
+        $output .= "<div class='col-md-12'>";
+        $output .= "Logged in<br />";
         $output .= "<a href='/logout'>Logout</a ><br />";
         $output .= "<a href='".Routes::showDrafts()."'>Show drafts</a><br/>";
         $output .= "<a href='".Routes::showUpload()."'>Upload blag</a><br/>";
+        
+        $output .= "    </div>";
+        $output .= "</div>";
+
 
         return $output;
     }

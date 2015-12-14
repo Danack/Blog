@@ -1,15 +1,16 @@
-{inject name='blogList' type='BaseReality\Service\BlogList'}
 
-{inject name='activeBlogPost' type='Blog\Model\ActiveBlogPost'}
+{inject name='adminLinks' type='Blog\Site\AdminLinks'}
+{$adminLinks->render() | nofilter}
+
+{block name='homelink'}
+{/block}
 
 
-
-<div class="row">
+<div class="row panel panel-default">
     <div class="col-md-12">
-
-  
-
-    <ul class="nav nav-list">
+    {inject name='activeBlogPost' type='Blog\Model\ActiveBlogPost'}
+    <ul class="nav nav-list smallPadding">
+        {inject name='blogList' type='BaseReality\Service\BlogList'}
         {foreach $blogList->getBlogs() as $blogPost}
             {if $blogPost->blogPost->blogPostID == $activeBlogPost->blogPost->blogPostID}
                 <li class="active">

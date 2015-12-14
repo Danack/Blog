@@ -1,0 +1,74 @@
+.siteTitle {
+    margin-top: 20px;
+    font-size: 40px;
+    padding-bottom: 20px;
+    text-decoration: none;
+}
+
+.activeColor {
+    color: #1ab2ff;
+}
+
+.blogPostDate {
+    color: #ffffff;
+    font-size: 12px;
+}
+
+li.active {
+    /* color: #ffffff; */
+    background-color: #4f4f4f;
+}
+
+
+.nav-sidebar {
+    display: inline-block;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    min-width: 190px;
+}
+
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    /* .leftShift {
+        margin-left: -32px;
+    }
+    .leftShiftPush {
+        margin-right: 17px;
+    } */
+    .columnAdjust {
+        padding-left: 65px;
+        padding-right: 30px;
+    }
+}
+
+@media (min-width: 1200px) {
+    /* .leftShift {
+        margin-left: -77px;
+    }
+    .leftShiftPush {
+        margin-right: 62px;
+    } */
+
+    .columnAdjust {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        margin-bottom: 0px;
+    }
+}
+
+.smallPadding > tbody > tr > td{
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.navPanel {
+    font-size: 14px; 
+}

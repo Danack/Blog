@@ -5,15 +5,17 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    {block name='title'}
-        <title>Bloggity blog</title>
-    {/block}
+
+{block name='page_title'}
+    <title>Bloggity blog</title>
+{/block}
 
     {$scriptInclude->addCSS("jQuery/jquery-ui-1.10.0.custom")}
-    {$scriptInclude->addCSS("blog/bootstrap")}
-    {$scriptInclude->addCSS("blog/blogcss")}
-    {$scriptInclude->addCSS("blog/blogPrint", 'print')}
+    {$scriptInclude->addCSS("bootstrap")}
+    {* $scriptInclude->addCSS("bootstrap-theme") *}
+    {$scriptInclude->addCSS("bootswatch")}
+    {$scriptInclude->addCSS("blogcss")}
+    {$scriptInclude->addCSS("blogPrint", 'print')}
     {$scriptInclude->addCSS("SyntaxHighlighter/shCoreRDark")}
     {$scriptInclude->addCSS("SyntaxHighlighter/shThemeRDark")}
     {$scriptInclude->includeCSS() | nofilter}
@@ -37,35 +39,30 @@
 {$scriptInclude->addJSRequired('blog')}
 {$scriptInclude->addJSRequired('Form/Form')}
 
-<div class="container-fluid">
+<div class="container">
 
-    <div class="row">
-        <div class="col-md-offset-1 col-md-10 ">            
-            <a href="/" class="siteTitle">Blog@basereality</a>
+
+    <div class="row page-header">
+        <div class="col-md-10">
+                <a href="/" class="siteTitle">Blog@basereality</a>
         </div>
     </div>
+{block name='title'}
+{/block}
 
 
     <div class="row">
-        <div class="col-md-offset-1 col-md-8">
+        <div class="col-md-2 navPanel">
+            {include file='panels/pastPosts'}
+        </div>
+
+        <div class="col-md-9 columnAdjust panel panel-default">
             {block name='mainContent'}
                 Main content goes here.
             {/block}        
         </div>
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-2">
-            
-    {inject name='authBox' type='Blog\Site\AuthBox'}
-    {$authBox->render() | nofilter}
-            
-    
-    {inject name='adminLinks' type='Blog\Site\AdminLinks'}
-    {$adminLinks->render() | nofilter}
 
-    
-
-            {include file='panels/pastPosts'}
+         <div class="col-md-1">
         </div>
     </div>
 
@@ -78,9 +75,7 @@
 </div>
 
 {$scriptInclude->addBodyLoadFunction("SyntaxHighlighter.all();")}
-
 {$scriptInclude->emitJSRequired() | nofilter}
-
 {$scriptInclude->emitOnBodyLoadJavascript() | nofilter}
 
 <div>

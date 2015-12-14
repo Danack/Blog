@@ -79,7 +79,7 @@ $delegates = [
     'Intahwebz\Utils\UploadedFileFetcher' => 'createUploadedFileFetcher',
     'Jig\JigConfig' => 'createJigConfig',
     'Room11\Caching\LastModifiedStrategy' => 'createCaching',
-    'Blog\Site\AuthBox' => ['Blog\Site\AuthBox', 'createAuthBox'],
+    //'Blog\Site\AuthBox' => ['Blog\Site\AuthBox', 'createAuthBox'],
     'Blog\Site\EditBlogPostBox' => ['Blog\Site\EditBlogPostBox', 'createEditBox'],
     'Blog\UserPermissions' => 'createUserPermissions',
 ];

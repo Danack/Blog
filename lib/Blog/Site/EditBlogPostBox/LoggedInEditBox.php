@@ -22,6 +22,7 @@ class LoggedInEditBox extends EditBlogPostBox
     <div class="col-md-12">
         You are logged in:<br/>
         BlogPost is: %s <br/>
+
         <a href="%s">
              Edit blog post
         </a><br/>

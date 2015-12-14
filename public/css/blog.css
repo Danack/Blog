@@ -111,7 +111,7 @@ code {
 }
 
 .blogPostTitle{
-	font-size: 24px;
+	font-size: 20px;
 	padding-bottom: 20px;
 	display: inline-block;
 	vertical-align: bottom;
@@ -227,3 +227,6 @@ h6 { font-size: .75em; } */
 li .active {
     color: #ffffff;
 }
+
+
+

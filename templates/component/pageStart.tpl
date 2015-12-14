@@ -16,6 +16,5 @@
 
 <body>
 
-
-
-
+{inject type='Blog\Site\AdminLinks' name='adminLinks'}
+{$adminLinks->render() | nofilter}

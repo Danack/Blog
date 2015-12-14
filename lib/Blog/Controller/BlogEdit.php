@@ -5,11 +5,7 @@ namespace Blog\Controller;
 use BaseReality\Form\BlogEditForm;
 use BaseReality\Form\BlogReplaceForm;
 use Blog\Mapper\BlogPostMapper;
-use FCForms\UploadedFile;
 use Blog\TemplatePlugin\BlogPostPlugin;
-
-
-
 
 class BlogEdit
 {

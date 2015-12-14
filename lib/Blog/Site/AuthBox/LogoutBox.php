@@ -3,6 +3,7 @@
 namespace Blog\Site\AuthBox;
 
 use Blog\Site\AuthBox;
+use Blog\Routes;
 
 class LogoutBox extends AuthBox
 {
@@ -23,10 +24,18 @@ class LogoutBox extends AuthBox
 
     public function render()
     {
-        $output = <<< HTML
-
-Logged in.
+        $html = <<< HTML
+Logged in.<br/>
+<a href='/logout'>Logout</a ><br />
+<a href='%s'>Show drafts</a><br/>
+<a href='%s'>Upload blag</a><br/>
 HTML;
+        
+        $output = sprintf( 
+            $html,
+            Routes::showDrafts(),
+            Routes::showUpload()
+        );
 
         return $output;
     }
