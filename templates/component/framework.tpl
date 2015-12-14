@@ -21,6 +21,9 @@
     {$scriptInclude->includeCSS() | nofilter}
 
     <link rel="alternate" type="application/atom+xml" href="/rss" />
+    
+    {include file='component/favicon'}
+    
 </head>
 
 <body class="main">
@@ -40,8 +43,6 @@
 {$scriptInclude->addJSRequired('Form/Form')}
 
 <div class="container">
-
-
     <div class="row page-header">
         <div class="col-md-10">
                 <a href="/" class="siteTitle">Blog@basereality</a>
@@ -49,8 +50,6 @@
     </div>
 {block name='title'}
 {/block}
-
-
     <div class="row">
         <div class="col-md-2 navPanel">
             {include file='panels/pastPosts'}
@@ -84,6 +83,4 @@
 </div>
 
 </body>
-
-
 </html>

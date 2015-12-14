@@ -7,7 +7,7 @@
 {$templateBlogPost = makeRenderableBlogPost($activeBlogPost->blogPost) | nofilter}
 
 <div class="row">
-    <div class="col-md-12  panel panel-default">
+    <div class="col-md-12 panel panel-default">
 
 <div class="row">
     <div class="col-md-12">
