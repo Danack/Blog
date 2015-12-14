@@ -27,7 +27,8 @@ class AdminLinks
         $output .= "<a href='/logout'>Logout</a ><br />";
         $output .= "<a href='".Routes::showDrafts()."'>Show drafts</a><br/>";
         $output .= "<a href='".Routes::showUpload()."'>Upload blag</a><br/>";
-        
+        $output .= "<a href='".Routes::templateViewer()."'>Template viewer</a><br/>";
+
         $output .= "    </div>";
         $output .= "</div>";
 

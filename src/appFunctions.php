@@ -254,7 +254,9 @@ function routesFunction(FastRoute\RouteCollector $r)
         '/staticImage/{filename:[^/]+}[/{size:\w+}]',
         ['Blog\Controller\ProxyController', 'staticImage']
     );
+    
     $r->addRoute('GET', '/templateViewer', ['Blog\Controller\TemplateViewer', 'index']);
+    $r->addRoute('POST', '/templateViewer', ['Blog\Controller\TemplateViewer', 'displayTemplate']);
 
     $r->addRoute('GET', '/login', ['Blog\Controller\Login', 'loginGet']);
     $r->addRoute('POST', '/login', ['Blog\Controller\Login', 'loginPost']);

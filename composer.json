@@ -50,6 +50,7 @@
             "BaseReality": "lib/",
             "Intahwebz": "lib/",
             "Blog": ["lib/", "./var/compile/"],
+            "BlogMock": ["test/"],
             "FileFilter": ["./lib/" ],
             "FilePacker": ["./lib/" ],
             "ScriptServer": ["./lib/" ],

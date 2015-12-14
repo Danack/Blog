@@ -4,11 +4,10 @@ namespace BlogTest\View;
 
 use BlogTest\BaseTestCase;
 use Mockery\Mock;
-use Arya\Response;
-use Jig\JigRender;
 use Jig\JigConfig;
 use Blog\Content\BlogPost;
 use Blog\Data\TemplateList;
+use Blog\Mapper\BlogPostMapperMock;
 
 class ViewsTest extends BaseTestCase
 {
@@ -26,7 +25,7 @@ class ViewsTest extends BaseTestCase
     public function testIndex()
     {
         $jigRender = $this->injector->make('Jig\Jig');
-        $className = $jigRender->getTemplateCompiledClassname('pages/index');
+        $className = $jigRender->getFQCNFromTemplateName('pages/index');
         $jigRender->checkTemplateCompiled('pages/index');
 
         $html = $this->injector->execute([$className, 'render']);
@@ -74,7 +73,7 @@ class ViewsTest extends BaseTestCase
         $templateList = new TemplateList($templates);
         $injector->share($templateList);
 
-        $blogPostID = getNextBlogPostID();
+        $blogPostID = BlogPostMapperMock::getNextBlogPostID();
         $blogPostTextID = $blogPostID; 
         
         $blogPost = BlogPost::create(
@@ -91,7 +90,7 @@ class ViewsTest extends BaseTestCase
         $jigRender = $injector->make('Jig\Jig');
         $jigRender->addDefaultPlugin('Blog\TemplatePlugin\BlogPlugin');
 
-        $className = $jigRender->getTemplateCompiledClassname($templateName);
+        $className = $jigRender->getFQCNFromTemplateName($templateName);
         $jigRender->checkTemplateCompiled($templateName);
         
         $html = $injector->execute([$className, 'render']);

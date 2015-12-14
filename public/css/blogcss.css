@@ -72,3 +72,18 @@ li.active {
 .navPanel {
     font-size: 14px; 
 }
+
+.blogPostBody p {
+    padding-bottom: 10px;
+}
+
+.blogPostBody h3,
+.blogPostBody h4,
+.blogPostBody h5 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.blogPostBody li p {
+    padding-bottom: 5px;
+}

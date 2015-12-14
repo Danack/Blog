@@ -1,6 +1,6 @@
 {extends file='component/framework'}
 
 {block name='mainContent'}
-    Blog post text was replaced successfully.
+    Blog post was uploaded successfully.
 {/block}
 

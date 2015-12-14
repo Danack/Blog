@@ -11,11 +11,11 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2>{$templateBlogPost->blogPost->getTitle()}
+        <h3>{$templateBlogPost->blogPost->getTitle()}
             <small>
                 {$templateBlogPost->renderDate(true)}
             </small>
-        </h2>
+        </h3>
     </div>
 </div>        
 <div class="row">
@@ -27,7 +27,7 @@
 
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 blogPostBody">
         {blogPostBody($templateBlogPost->blogPost) | nofilter}
     </div>
 </div>

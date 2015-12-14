@@ -2,61 +2,72 @@
 
 namespace Blog\Controller;
 
-use Tier\ResponseBody\HtmlBody;
-use Blog\Data\TemplateList;
-use Arya\Request;
 use Auryn\Injector;
+use Blog\Data\TemplateList;
+use Room11\HTTP\Request\Request;
+use Room11\HTTP\Body\HtmlBody;
+use Tier\InjectionParams;
 
 class TemplateViewer
 {
 
-    public function index()
+    public function index(Injector $injector, Request $request)
     {
-//        $srcPath = __DIR__."/../../../templates/";
-//        $templates = getTemplates($srcPath);
-//        $templateList = new TemplateList($templates);
+//        return \Tier\getRenderTemplateTier('pages/test/templateTest');
+//    }
+//
+//    public function displayTemplate(Injector $injector, Request $request)
+//    {
+        if ($request->hasQueryParameter('template') == false ||
+            $request->hasQueryParameter('displayAsPre') == false) {
+            return \Tier\getRenderTemplateTier('pages/test/templateTest');
+        }
         
-        return getRenderTemplateTier('pages/templateTest');
-    }
+        $templateName = $request->getQueryParameter('template');
+        $displayAsPre = $request->getQueryParameter('displayAsPre');
 
-    public function displayTemplate(Injector $injector, Request $request)
-    {
-        $templateInjector = clone $injector;
+        $srcPath = __DIR__."/../../../templates/";
+        $templates = getTemplates($srcPath);
         
+        if (!in_array($templateName, $templates)) {
+            return \Tier\getRenderTemplateTier('pages/test/templateTest');
+        }
+
+        $templateInjector = clone $injector;
+ 
         require_once __DIR__."/../../../test/mockFunctions.php";
         
-        $injectionParams = require __DIR__."/../../../test/injectionParams.php";
+        $injectionParams = require __DIR__."/../../../test/testInjectionParams.php";
         
-        $jigRender = $injector->make('Jig\Jig');
+        $jigRender = $templateInjector->make('Jig\Jig');
         $jigRender->addDefaultPlugin('Blog\TemplatePlugin\BlogPlugin');
         
-        \Tier\addInjectionParams($injector, $injectionParams);
+        $templateInjector->share($jigRender);
 
-        $templateName = $request->getFormField('template');
-        $displayAsPre = $request->getFormField('displayAsPre');
-        
-        
-        $className = $jigRender->getTemplateCompiledClassname($templateName);
+        mockAllForms($templateInjector);
+
+        /** @var $templateName \Tier\InjectionParams */
+        $injectionParams->addToInjector($templateInjector);
+
+        $className = $jigRender->getFQCNFromTemplateName($templateName);
         $jigRender->checkTemplateCompiled($templateName);
         
-        $html = $injector->execute([$className, 'render']);
+        $html = $templateInjector->execute([$className, 'render']);
 
         if ($displayAsPre) {
-            $srcPath = __DIR__."/../../../templates/";
-            $templates = getTemplates($srcPath);
+            
+            
             $templateList = new TemplateList($templates);
 
-            return getRenderTemplateTier(
-                'pages/templateViewer',
+            return \Tier\getRenderTemplateTier(
+                'pages/test/templateViewer',
                 [
                     'Blog\Model\TemplateHTML' => new \Blog\Model\TemplateHTML($html),
                     'Blog\Data\TemplateList' => $templateList
                 ]
             );
         }
-        
-        
-        
+
         return new HtmlBody($html);
     }
 }

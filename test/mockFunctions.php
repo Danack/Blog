@@ -1,6 +1,8 @@
 <?php
 
+use Auryn\Injector;
 use Jig\JigConfig;
+use FCForms\Form\Form;
 
 function mockEmptyRequest()
 {
@@ -28,4 +30,19 @@ function mockJigConfig()
     );
 
     return $jigConfig;
+}
+
+
+function mockAllForms(Injector $injector)
+{
+    $formList = [
+        'BaseReality\Form\LoginForm'
+    ];
+    
+    foreach ($formList as $form) {
+        $form = $injector->make($form);
+        /** @var $form \FCForms\Form\Form */
+        $form->initFromData([]);
+        $injector->share($form);
+    }
 }

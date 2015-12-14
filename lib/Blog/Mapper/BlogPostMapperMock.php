@@ -7,6 +7,16 @@ use Blog\Content\BlogPost;
 
 class BlogPostMapperMock implements BlogPostMapper
 {
+    
+    public static function getNextBlogPostID()
+    {
+        static $id = 100;
+        
+        $id++;
+        
+        return $id;
+    }
+    
     /**
      * @param $blogPostID
      * @return \BaseReality\Content\BlogPost
@@ -37,7 +47,7 @@ class BlogPostMapperMock implements BlogPostMapper
      */
     public function getBlogPostsForYear($year, $includeInactive)
     {
-        $blogPostID = getNextBlogPostID();
+        $blogPostID = BlogPostMapperMock::getNextBlogPostID();
 
         $blogPost = BlogPost::create(
             $blogPostID,

@@ -69,12 +69,3 @@ function createTestInjector($mocks = array(), $shares = array())
     
     return $injector;
 }
-
-function getNextBlogPostID()
-{
-    static $id = 100;
-    
-    $id++;
-    
-    return $id;
-}
