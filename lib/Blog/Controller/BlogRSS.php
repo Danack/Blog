@@ -5,7 +5,7 @@ namespace Blog\Controller;
 use Intahwebz\StoragePath;
 use Blog\Mapper\BlogPostMapper;
 use Blog\Model\TemplateBlogPostFactory;
-use Tier\ResponseBody\FileBody;
+use Room11\HTTP\Body\FileBody;
 use UniversalFeedCreator;
 
 class BlogRSS
