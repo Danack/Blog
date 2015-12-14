@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "06212ea128a0ed2214a75782116070b2",
+    "hash": "c45428c8b932b8e74115d8b029a46457",
     "packages": [
         {
             "name": "amphp/amp",
@@ -663,16 +663,16 @@
         },
         {
             "name": "danack/fcforms",
-            "version": "0.6.0",
+            "version": "0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/FirstClassForms.git",
-                "reference": "fbc5de9e8c9745d195be1465c081098081bf6db4"
+                "reference": "03cd0cafa193a0864761a2675f37eee906753ce6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/FirstClassForms/zipball/fbc5de9e8c9745d195be1465c081098081bf6db4",
-                "reference": "fbc5de9e8c9745d195be1465c081098081bf6db4",
+                "url": "https://api.github.com/repos/Danack/FirstClassForms/zipball/03cd0cafa193a0864761a2675f37eee906753ce6",
+                "reference": "03cd0cafa193a0864761a2675f37eee906753ce6",
                 "shasum": ""
             },
             "require": {
@@ -720,7 +720,7 @@
                 "intahwebz",
                 "library"
             ],
-            "time": "2015-12-09 02:07:00"
+            "time": "2015-12-13 01:15:29"
         },
         {
             "name": "danack/githubartaxservice",
@@ -760,16 +760,16 @@
         },
         {
             "name": "danack/jig",
-            "version": "0.17.1",
+            "version": "0.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
-                "reference": "23cc21cea30f9ed0bc64962122e5857c656bc9fc"
+                "reference": "9f88fd2bab4017b2c95e5a910ff43e1dc352aa90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Jig/zipball/23cc21cea30f9ed0bc64962122e5857c656bc9fc",
-                "reference": "23cc21cea30f9ed0bc64962122e5857c656bc9fc",
+                "url": "https://api.github.com/repos/Danack/Jig/zipball/9f88fd2bab4017b2c95e5a910ff43e1dc352aa90",
+                "reference": "9f88fd2bab4017b2c95e5a910ff43e1dc352aa90",
                 "shasum": ""
             },
             "require": {
@@ -806,7 +806,7 @@
                 "template",
                 "view"
             ],
-            "time": "2015-10-30 23:55:26"
+            "time": "2015-12-14 00:44:50"
         },
         {
             "name": "danack/syntaxhighlighter",
