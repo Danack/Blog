@@ -3,7 +3,7 @@
 
 namespace Blog\Controller;
 
-use Blog\Mapper\BlogPostMapper;
+use Blog\Repository\BlogPostRepo;
 use BaseReality\Form\BlogUploadForm;
 use Intahwebz\UploadedFile;
 use ASM\Session;
@@ -32,7 +32,7 @@ class BlogUpload
     public function showUpload(
         Session $session,
         BlogUploadForm $blogUploadForm,
-        BlogPostMapper $blogPostMapper,
+        BlogPostRepo $blogPostRepo,
         Debug $debug
     ) {
         $dataStoredInSession = $blogUploadForm->initFromStorage();
@@ -47,7 +47,7 @@ class BlogUpload
         }
 
         list($title, $text, $isActive) = $blogUploadForm->getBlogUpload();
-        $blogPostID = $blogPostMapper->createBlogPost($title, $text, $isActive);
+        $blogPostID = $blogPostRepo->createBlogPost($title, $text, $isActive);
 
         $debug->add("blog post ID is $blogPostID"); 
 

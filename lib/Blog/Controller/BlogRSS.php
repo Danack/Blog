@@ -3,21 +3,22 @@
 namespace Blog\Controller;
 
 use Intahwebz\StoragePath;
-use Blog\Mapper\BlogPostMapper;
+use Blog\Repository\BlogPostRepo;
 use Blog\Model\TemplateBlogPostFactory;
 use Room11\HTTP\Body\FileBody;
 use UniversalFeedCreator;
+use Blog\Route;
 
 class BlogRSS
 {
     public function rssFeed(
         StoragePath $storagePath,
-        BlogPostMapper $blogPostMapper,
+        BlogPostRepo $blogPostRepo,
         TemplateBlogPostFactory $templateBlogPostFactory
     ) {
         $filePath = $storagePath->getPath()."/cache/rss/feed.xml";
         if (!@file_exists($filePath) || @filemtime($filePath) < time() - 7200) {
-            $this->genFeed($filePath, $blogPostMapper, $templateBlogPostFactory);
+            $this->genFeed($filePath, $blogPostRepo, $templateBlogPostFactory);
         }
 
         $fileBody = new FileBody(
@@ -30,7 +31,7 @@ class BlogRSS
     
     private function genFeed(
         $filePath,
-        BlogPostMapper $blogPostMapper,
+        BlogPostRepo $blogPostRepo,
         TemplateBlogPostFactory $templateBlogPostFactory
     ) {
         //TODO validate with http://validator.w3.org/feed/
@@ -46,7 +47,7 @@ class BlogRSS
         //$year = date('Y');
         $year = 2014;
         
-        $blogPostsList = $blogPostMapper->getBlogPostsForYear($year, false);
+        $blogPostsList = $blogPostRepo->getBlogPostsForYear($year, false);
 
         if (count($blogPostsList) == 0) {
             throw new \Exception("No blog posts found.");
@@ -55,7 +56,7 @@ class BlogRSS
         foreach ($blogPostsList as $blogPost) {
             $item = new \FeedItem();
             $item->title = $blogPost->getTitle();
-            $item->link = routeBlogPost($blogPost->blogPostID);
+            $item->link = Route::blogPost($blogPost);
             $templateBlogPost = $templateBlogPostFactory->create($blogPost);
             $item->description = $templateBlogPost->showPreview(400);
 

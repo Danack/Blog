@@ -1,8 +1,8 @@
 <?php
 
-namespace Blog\Mapper;
+namespace Blog\Repository;
 
-interface LoginMapper
+interface LoginRepo
 {
 
     /**

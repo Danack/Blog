@@ -3,7 +3,7 @@
 namespace Blog\Site\AuthBox;
 
 use Blog\Site\AuthBox;
-use Blog\Routes;
+use Blog\Route;
 
 class LogoutBox extends AuthBox
 {
@@ -33,8 +33,8 @@ HTML;
         
         $output = sprintf( 
             $html,
-            Routes::showDrafts(),
-            Routes::showUpload()
+            Route::showDrafts(),
+            Route::showUpload()
         );
 
         return $output;

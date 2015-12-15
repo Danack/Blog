@@ -272,6 +272,8 @@ function routesFunction(FastRoute\RouteCollector $r)
     $r->addRoute('POST', '/blogreplace/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'processReplace']);
     $r->addRoute('GET', '/staticFile/{filename:[^/]+}', ['Blog\Controller\Proxy', 'staticFile']);
 
+    $r->addRoute('GET', '/perfTest', ['Blog\Controller\Blog', 'perfTest']);
+    
     $r->addRoute('GET', '/', ['Blog\Controller\Blog', 'index']);
 }
 
@@ -337,10 +339,7 @@ function articleImage($imageFilename, $size, $float = 'left', $description = fal
 }
 
 
-function routeBlogPost($blogPostID)
-{
-    return sprintf('/blog/%d', $blogPostID);
-}
+
 
 function routeDraft($draftFilename)
 {

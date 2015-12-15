@@ -10,14 +10,14 @@ class Debug
     
     private $debug = [];
 
-    /**
-     * @var Session
-     */
-    private $session;
+//    /**
+//     * @var Session
+//     */
+//    private $session;
     
-    public function __construct(Session $session)
+    public function __construct(/*Session $session*/)
     {
-        $this->session = $session;
+        //$this->session = $session;
     }
     
     

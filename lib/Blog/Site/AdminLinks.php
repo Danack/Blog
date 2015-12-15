@@ -4,7 +4,7 @@
 namespace Blog\Site;
 
 use Blog\Site\LoginStatus;
-use Blog\Routes;
+use Blog\Route;
 
 class AdminLinks
 {
@@ -25,9 +25,9 @@ class AdminLinks
         $output .= "<div class='col-md-12'>";
         $output .= "Logged in<br />";
         $output .= "<a href='/logout'>Logout</a ><br />";
-        $output .= "<a href='".Routes::showDrafts()."'>Show drafts</a><br/>";
-        $output .= "<a href='".Routes::showUpload()."'>Upload blag</a><br/>";
-        $output .= "<a href='".Routes::templateViewer()."'>Template viewer</a><br/>";
+        $output .= "<a href='".Route::showDrafts()."'>Show drafts</a><br/>";
+        $output .= "<a href='".Route::showUpload()."'>Upload blag</a><br/>";
+        $output .= "<a href='".Route::templateViewer()."'>Template viewer</a><br/>";
 
         $output .= "    </div>";
         $output .= "</div>";

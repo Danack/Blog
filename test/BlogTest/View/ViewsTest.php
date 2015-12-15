@@ -7,7 +7,7 @@ use Mockery\Mock;
 use Jig\JigConfig;
 use Blog\Content\BlogPost;
 use Blog\Data\TemplateList;
-use Blog\Mapper\BlogPostMapperMock;
+use Blog\Mapper\Stub\BlogPostRepo;
 
 class ViewsTest extends BaseTestCase
 {
@@ -73,10 +73,10 @@ class ViewsTest extends BaseTestCase
         $templateList = new TemplateList($templates);
         $injector->share($templateList);
 
-        $blogPostID = BlogPostMapperMock::getNextBlogPostID();
+        $blogPostID = BlogPostRepo::getNextBlogPostID();
         $blogPostTextID = $blogPostID; 
         
-        $blogPost = BlogPost::create(
+        $blogPost = BlogPostRepo::create(
             $blogPostID,
             $title = "Hello world",
             $text = "This is a template",

@@ -3,7 +3,7 @@
 
 namespace BaseReality\Service;
 
-use Blog\Mapper\BlogPostMapper;
+use Blog\Repository\BlogPostRepo;
 use Blog\Model\TemplateBlogPostFactory;
 use Blog\Site\LoginStatus;
 
@@ -15,7 +15,7 @@ class BlogList
     private $templateBlogPostFactory;
 
     /**
-     * @var BlogPostMapper
+     * @var BlogPostRepo
      */
     private $blogPostMapper;
     
@@ -26,7 +26,7 @@ class BlogList
     
     public function __construct(
         TemplateBlogPostFactory $templateBlogPostFactory,
-        BlogPostMapper $blogPostMapper,
+        BlogPostRepo $blogPostMapper,
         LoginStatus $loginStatus
     ) {
         $this->blogPostMapper = $blogPostMapper;

@@ -1,7 +1,8 @@
 <?php
 
-namespace Blog\Mapper;
+namespace Blog\Repository\SQL;
 
+use Blog\Repository\BlogPostRepo;
 use Intahwebz\TableMap\SQLQueryFactory;
 use Blog\DB\ContentTable;
 use Blog\DB\BlogPostTable;
@@ -9,9 +10,9 @@ use Blog\DB\BlogPostTextTable;
 use Blog\DTO\BlogPostTextDTO;
 use Blog\DTO\BlogPostDTO;
 
-use Blog\Mapper\BlogPostNotFoundException;
+use Blog\Repository\BlogPostNotFoundException;
 
-class BlogPostSQLMapper implements BlogPostMapper
+class BlogPostSQLRepo implements BlogPostRepo
 {
     /**
      * @var ContentTable

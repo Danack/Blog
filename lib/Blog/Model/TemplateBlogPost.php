@@ -6,6 +6,7 @@ use Blog\Content\BlogPost;
 use Intahwebz\ObjectCache;
 use Jig\Jig;
 use Auryn\Injector;
+use Blog\Route;
 
 class TemplateBlogPost
 {
@@ -38,7 +39,7 @@ class TemplateBlogPost
 
     public function renderTitle()
     {
-        $url = routeBlogPost($this->blogPost->blogPostID);
+        $url = Route::blogPost($this->blogPost);
 
         return sprintf("<a href='%s'>%s</a>", addslashes($url), safeText($this->blogPost->title));
     }

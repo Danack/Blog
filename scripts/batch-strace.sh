@@ -26,7 +26,8 @@ additional_strace_args="$1"
 
 mkdir trc
  
-MASTER_PID=$(ps auwx | grep php-fpm | grep -v grep | grep 'master process'  | cut -d ' ' -f 7)
+
+MASTER_PID=$(ps auwx | grep php-fpm | grep -v grep | grep 'master process'  | cut -d ' ' -f 6)
 
 # ls -l /tmp/foobar | awk '{print $1"\t"$9}'
 # This code takes some input, such as this:

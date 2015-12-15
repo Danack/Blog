@@ -2,7 +2,7 @@
 
 namespace Blog\Controller;
 
-use Blog\Mapper\BlogPostMapper;
+use Blog\Repository\BlogPostRepo;
 use Intahwebz\StoragePath;
 use Room11\HTTP\Body\TextBody;
 use Blog\Model\ActiveBlogPost;
@@ -16,6 +16,12 @@ class Blog
     public function index()
     {
         return \Tier\getRenderTemplateTier('pages/index');
+    }
+    
+    
+    public function perfTest()
+    {
+        return \Tier\getRenderTemplateTier('pages/perfTest');
     }
 
     public function showDraft(
@@ -44,15 +50,9 @@ class Blog
         return \Tier\getRenderTemplateTier('pages/drafts');
     }
 
-    /**
-     * @param BlogPostMapper $blogPostMapper
-     * @param TemplateResponseFactory $templateResponseFactory
-     * @param $blogPostID
-     * @param $format
-     * @return RedirectResponse|mixed
-     */
+
     public function display(
-        BlogPostMapper $blogPostMapper,
+        BlogPostRepo $blogPostMapper,
         $blogPostID,
         $format = 'html'
     ) {

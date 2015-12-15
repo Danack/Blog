@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Blog\Mapper;
+namespace Blog\Repository;
 
-interface BlogPostMapper
+interface BlogPostRepo
 {
 
     /**

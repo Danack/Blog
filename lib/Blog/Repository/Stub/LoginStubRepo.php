@@ -1,8 +1,10 @@
 <?php
 
-namespace Blog\Mapper;
+namespace Blog\Mapper\Stub;
 
-class LoginStubMapper implements LoginMapper
+use Blog\Repository\LoginRepo;
+
+class LoginStubRepo implements LoginRepo
 {
     /**
      * @param $username

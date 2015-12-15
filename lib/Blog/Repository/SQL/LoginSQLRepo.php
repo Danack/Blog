@@ -1,12 +1,13 @@
 <?php
 
 
-namespace Blog\Mapper;
+namespace Blog\Repository\SQL;
 
+use Blog\Repository\LoginRepo;
 use Intahwebz\TableMap\SQLQueryFactory;
 use Blog\DB\LoginTable;
 
-class LoginSQLMapper implements LoginMapper
+class LoginSQLRepo implements LoginRepo
 {
     /**
      * @var \Blog\DB\LoginTable

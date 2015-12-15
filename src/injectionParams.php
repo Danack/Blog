@@ -27,15 +27,10 @@ $shares = [
     new ExternalLibPath(__DIR__.'/../lib/'),
     new YuiCompressorPath("/usr/lib/yuicompressor.jar"),
     new CachePath(__DIR__.'/../var/cache/'),
-//    'BaseReality\Form\LoginForm',
-//    'BaseReality\Form\BlogUploadForm',
-//    'BaseReality\Form\BlogEditForm',
-//    'BaseReality\Form\BlogReplaceForm',
     'Blog\Config',
     'Room11\HTTP\HeadersSet',
     'Blog\Debug',
     'FCForms\FileFetcher\UploadedFileFetcher',
-    //'BaseReality\Form\LoginForm'
 ];
     
 
@@ -46,7 +41,7 @@ $aliases = [
     'ArtaxServiceBuilder\ResponseCache\NullResponseCache',
     'ASM\Driver' => 'ASM\File\FileDriver',
     'Blog\FilePacker' => 'Blog\StandardFilePacker',
-    'Blog\Mapper\BlogPostMapper' => '\Blog\Mapper\BlogPostSQLMapper',
+    'Blog\Repository\BlogPostRepo' => '\Blog\Repository\SQL\BlogPostSQLRepo',
     'Blog\Service\SourceFileFetcher' => 'Blog\Service\OnlineSourceFileFetcher',
     'Intahwebz\DB\Connection' => 'Intahwebz\DB\MySQLiConnection',
     'Intahwebz\DB\StatementFactory' =>'Intahwebz\DB\MySQLiStatementFactory',
@@ -56,14 +51,13 @@ $aliases = [
     'Psr\Log\LoggerInterface' => 'Intahwebz\NullLogger',
     'Jig\Jig' => 'Blog\Service\BlogJig',
     'FCForms\Render' => 'FCForms\Render\BootStrapRender',
-    'Blog\Mapper\LoginMapper' => 'Blog\Mapper\LoginSQLMapper',
+    'Blog\Repoistory\LoginRepo' => 'Blog\Repository\LoginSQLRepo',
     'Intahwebz\FileFetcher' => 'Intahwebz\Utils\UploadedFileFetcher',
     'FCForms\DataStore' => 'Blog\Bridge\SessionDataStore',
     'FCForms\FileFetcher' => 'FCForms\FileFetcher\UploadedFileFetcher',
     'Room11\HTTP\VariableMap' => 'Room11\HTTP\VariableMap\RequestVariableMap',
     'Room11\HTTP\RequestHeaders' => 'Room11\HTTP\Request\HTTPRequestHeaders',
     'Room11\HTTP\Response' => 'Room11\HTTP\Response\Response',
-    
     'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker'
 ];
 

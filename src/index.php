@@ -3,20 +3,29 @@
 
 use Tier\TierHTTPApp;
 use Tier\Executable;
+use Composer\Autoload\ClassLoader;
 use Room11\HTTP\Request\CLIRequest;
 
-// App keys
-require_once __DIR__."/../../clavis.php";
-// App env
-require_once __DIR__."/../autogen/appEnv.php";
 
-require_once realpath(__DIR__).'/../vendor/autoload.php';
+
+// App keys
+require __DIR__."/../../clavis.php";
+// App env
+require __DIR__."/../autogen/appEnv.php";
+
+$autoloader = require __DIR__.'/../vendor/autoload.php';
+
+$autoloader->setSearchModes([
+    ClassLoader::SEARCHMODE_OPCACHE,
+    ClassLoader::SEARCHMODE_FILE,
+]);
 
 // Contains helper functions for the 'framework'.
 require __DIR__ . "/../vendor/danack/tier/src/Tier/tierFunctions.php";
 
 // Contains helper functions for the application.
-require_once "appFunctions.php";
+require "appFunctions.php";
+
 
 \Tier\setupErrorHandlers();
 
@@ -44,7 +53,6 @@ $app->addExpectedProduct('Room11\HTTP\Body');
 
 // Check to see if a form has been submitted, and we need to do 
 // a POST/GET redirect
-//$app->addPreCallable('processFormRedirect');
 $app->addPreCallable(['FCForms\HTTP', 'processFormRedirect']);
 
 $app->addGenerateBodyExecutable($executable);

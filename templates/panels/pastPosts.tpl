@@ -6,7 +6,7 @@
 {/block}
 
 
-<div class="row panel panel-default">
+<div class="row panel panel-default pastLinks">
     <div class="col-md-12">
     {inject name='activeBlogPost' type='Blog\Model\ActiveBlogPost'}
     <ul class="nav nav-list smallPadding">

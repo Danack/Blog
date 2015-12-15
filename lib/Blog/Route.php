@@ -3,12 +3,14 @@
 
 namespace Blog;
 
+use Blog\Content\BlogPost;
+
 /**
  * Class Routes
  * Oi, Australians, cut out the tittering. 
  * @package Blog
  */
-class Routes
+class Route
 {
     public static function showUpload()
     {
@@ -23,5 +25,13 @@ class Routes
     public static function templateViewer()
     {
         return "/templateViewer";
+    }
+    
+    public static function blogPost(BlogPost $blogPost)
+    {
+        $name = str_replace(' ', '_', $blogPost->title);
+        $name = preg_replace("#[^a-zA-Z0-9_]#", '', $name);
+        
+        return sprintf('/blog/%d/%s', $blogPost->blogPostID, $name);
     }
 }

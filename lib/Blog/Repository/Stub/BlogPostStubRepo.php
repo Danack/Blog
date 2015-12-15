@@ -1,11 +1,12 @@
 <?php
 
 
-namespace Blog\Mapper;
+namespace Blog\Repository\Stub;
 
 use Blog\Content\BlogPost;
+use Blog\Repository\BlogPostRepo;
 
-class BlogPostMapperMock implements BlogPostMapper
+class BlogPostStubRepo implements BlogPostRepo
 {
     
     public static function getNextBlogPostID()
@@ -26,7 +27,7 @@ class BlogPostMapperMock implements BlogPostMapper
     {
         //$blogPost = new \Blog\Content\BlogPost();
         
-        $blogPost = BlogPost::create(
+        $blogPost = BlogPostRepo::create(
             $blogPostID,
             $title = "Hello world",
             $text = "This is a template",
@@ -47,9 +48,9 @@ class BlogPostMapperMock implements BlogPostMapper
      */
     public function getBlogPostsForYear($year, $includeInactive)
     {
-        $blogPostID = BlogPostMapperMock::getNextBlogPostID();
+        $blogPostID = BlogPostRepo::getNextBlogPostID();
 
-        $blogPost = BlogPost::create(
+        $blogPost = BlogPostRepo::create(
             $blogPostID,
             $title = "Hello world",
             $text = "This is a template",
