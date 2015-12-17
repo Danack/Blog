@@ -2,33 +2,32 @@
 
 use Amp\Artax\Client as ArtaxClient;
 use ArtaxServiceBuilder\ResponseCache;
+use ASM\Session;
+use ASM\SessionConfig;
+use ASM\SessionManager;
 use Auryn\Injector;
+use Blog\Config;
+use Blog\Data\TemplateList;
+use Blog\Route;
+use GithubService\GithubArtaxService\GithubService;
+use Intahwebz\DB\StatementFactory;
 use Jig\JigConfig;
 use Tier\Executable;
 use Tier\InjectionParams;
-use GithubService\GithubArtaxService\GithubService;
-use Blog\Data\TemplateList;
-
+use Psr\Log\LoggerInterface;
 use Room11\HTTP\Request;
 use Room11\HTTP\Response;
 use Room11\HTTP\Body;
 use Room11\HTTP\VariableMap;
 use Room11\HTTP\HeadersSet;
-use Blog\Config;
-use ASM\Session;
-use ASM\SessionConfig;
-use ASM\SessionManager;
 use Tier\TierApp;
-use Blog\Route;
-use Psr\Log\LoggerInterface;
-use Intahwebz\DB\StatementFactory;
 
 function createS3Config(Config $config) {
 
     $key = $config->getKey(Config::AWS_SERVICES_KEY);
     $value = $config->getKey(Config::AWS_SERVICES_SECRET);
     
-    return new \Intahwebz\S3Bridge\S3Config($key, $value);
+    return new \FileFilter\Storage\S3\S3Config($key, $value);
 }
 
 
@@ -107,8 +106,6 @@ function createScriptInclude(
  * @param Response $response
  * @return Tier
  */
-
-
 function routeRequest(Request $request, Response $response)
 {
     $dispatcher = FastRoute\simpleDispatcher('routesFunction');

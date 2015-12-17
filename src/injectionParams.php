@@ -2,11 +2,11 @@
 
 use Tier\InjectionParams;
 use Blog\Value\AutogenPath;
-use Intahwebz\DataPath;
-use Intahwebz\StoragePath;
+//use Intahwebz\DataPath;
+//use Intahwebz\StoragePath;
 use Blog\Value\WebRootPath;
 use Blog\Value\ExternalLibPath;
-use Intahwebz\LogPath;
+//use Intahwebz\LogPath;
 use FileFilter\YuiCompressorPath;
 use Blog\Value\CachePath;
 use FCForms\FileFetcher\StubFileFetcher;
@@ -20,13 +20,14 @@ $shares = [
     'Intahwebz\DB\Connection',
     'ScriptHelper\ScriptInclude',
     new AutogenPath(__DIR__."/../autogen/"),
-    new DataPath(__DIR__."/../data/"),
-    new StoragePath(__DIR__."/../var/"),
+    //new DataPath(__DIR__."/../data/"),
+    //new StoragePath(__DIR__."/../var/"),
     new WebRootPath(__DIR__.'/../public/'),
-    new LogPath(__DIR__.'/../var/log/'),
+    //new LogPath(__DIR__.'/../var/log/'),
     new ExternalLibPath(__DIR__.'/../lib/'),
     new YuiCompressorPath("/usr/lib/yuicompressor.jar"),
     new CachePath(__DIR__.'/../var/cache/'),
+    new \FileFilter\TmpPath(__DIR__.'/../var/cache/'),
     'Blog\Config',
     'Room11\HTTP\HeadersSet',
     'Blog\Debug',
@@ -47,7 +48,7 @@ $aliases = [
     'Intahwebz\DB\StatementFactory' =>'Intahwebz\DB\MySQLiStatementFactory',
     'Intahwebz\Domain' => 'BaseReality\DomainBlog',
     'Intahwebz\ObjectCache' => 'Intahwebz\Cache\NullObjectCache',
-    'Intahwebz\Storage\Storage' => 'Intahwebz\Storage\S3Storage',
+    'FileFilter\Storage' => 'FileFilter\Storage\S3\S3Storage',
     'Psr\Log\LoggerInterface' => 'Intahwebz\NullLogger',
     'Jig\Jig' => 'Blog\Service\BlogJig',
     'FCForms\Render' => 'FCForms\Render\BootStrapRender',
@@ -58,7 +59,7 @@ $aliases = [
     'Room11\HTTP\VariableMap' => 'Room11\HTTP\VariableMap\RequestVariableMap',
     'Room11\HTTP\RequestHeaders' => 'Room11\HTTP\Request\HTTPRequestHeaders',
     'Room11\HTTP\Response' => 'Room11\HTTP\Response\Response',
-    'ScriptHelper\FilePacker' => '\ScriptHelper\FilePacker\YuiFilePacker',
+    'ScriptHelper\FilePacker' => 'ScriptHelper\FilePacker\YuiFilePacker',
     
     'ScriptHelper\ScriptVersion' => 'ScriptHelper\ScriptVersion\DateScriptVersion',
     'ScriptHelper\ScriptURLGenerator' => 'ScriptHelper\ScriptURLGenerator\StandardScriptURLGenerator'
@@ -73,7 +74,7 @@ $delegates = [
     'Amp\Reactor' => 'Amp\getReactor',
     'Blog\Data\TemplateList' => 'createTemplateList',
     'GithubService\GithubArtaxService\GithubService' => 'createGithubArtaxService',
-    'Intahwebz\S3Bridge\S3Config' => 'createS3Config',
+    'FileFilter\Storage\S3\S3Config' => 'createS3Config',
     'ScriptHelper\ScriptInclude' => 'createScriptInclude',
     'Jig\JigConfig' => 'createJigConfig',
     'Room11\Caching\LastModifiedStrategy' => 'createCaching',

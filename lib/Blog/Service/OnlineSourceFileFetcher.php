@@ -2,13 +2,12 @@
 
 namespace Blog\Service;
 
-use Intahwebz\FileFilter\StorageDownloadFilter;
+use FileFilter\StorageDownloadFilter;
 use Blog\Value\CachePath;
-use Intahwebz\Storage\Storage;
+use FileFilter\Storage;
 
 class OnlineSourceFileFetcher implements SourceFileFetcher
 {
-
     /**
      * @var CachePath
      */
@@ -34,7 +33,6 @@ class OnlineSourceFileFetcher implements SourceFileFetcher
         $filter = new StorageDownloadFilter(
             $this->storage,
             $this->cachePath->getFile("static/original", $srcFile, null),
-            'static.basereality.com', //STATIC_BUCKET,
             $srcFile
         );
 

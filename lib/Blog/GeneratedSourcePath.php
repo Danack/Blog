@@ -5,6 +5,6 @@ namespace Blog;
 
 use Intahwebz\Path;
 
-class GeneratedSourcePath extends Path
+class GeneratedSourcePathasds extends Path
 {
 }

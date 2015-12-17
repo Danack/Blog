@@ -27,9 +27,9 @@ Tier\addInjectionParams($injector, $injectionParams);
 
 use Blog\GeneratedSourcePath;
 
-$path = new GeneratedSourcePath(__DIR__.'/../var/compile');
+//$path = new GeneratedSourcePath(__DIR__.'/../var/compile');
 
-$injector->share($path);
+$injector->share(__DIR__.'/../var/compile');
 
 $dbParams = array(
     ':host'     => MYSQL_SERVER,
