@@ -49,6 +49,9 @@ class BlogPostSQLRepo implements BlogPostRepo
 
     /**
      * @param $blogPostID
+     * @throws BlogPostNotFoundException
+     * @throws \Exception
+     * @throws \Intahwebz\DB\DBException
      * @return \Blog\Content\BlogPost
      */
     public function getBlogPost($blogPostID)
@@ -118,8 +121,9 @@ class BlogPostSQLRepo implements BlogPostRepo
     /**
      * @param $title
      * @param $text
-     * @return int
+     * @param $isActive
      * @throws \Exception
+     * @return int
      */
     public function createBlogPost($title, $text, $isActive)
     {
@@ -143,6 +147,7 @@ class BlogPostSQLRepo implements BlogPostRepo
     /**
      * @param $blogPostID
      * @param $text
+     * @return int
      * @throws \Exception
      */
     public function updateBlogPostText($blogPostID, $text)
@@ -165,5 +170,7 @@ class BlogPostSQLRepo implements BlogPostRepo
 
         $sqlQuery = $this->sqlQueryFactory->create();
         $rowsAffected = $sqlQuery->updateMappedTable($this->blogPostTable, $blogPostParams);
+        
+        return $rowsAffected;
     }
 }

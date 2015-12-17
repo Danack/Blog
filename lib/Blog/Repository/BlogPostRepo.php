@@ -32,6 +32,7 @@ interface BlogPostRepo
     /**
      * @param $title
      * @param $text
+     * @param $isActive
      * @return int
      */
     public function createBlogPost($title, $text, $isActive);

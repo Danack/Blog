@@ -76,6 +76,8 @@ class BlogPostStubRepo implements BlogPostRepo
     /**
      * @param $title
      * @param $text
+     * @param $isActive
+     * @throws \Exception
      * @return int
      */
     public function createBlogPost($title, $text, $isActive)

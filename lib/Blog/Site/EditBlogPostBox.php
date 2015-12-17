@@ -5,7 +5,7 @@ namespace Blog\Site;
 use Blog\Site\EditBlogPostBox\LoggedInEditBox;
 use Blog\Site\EditBlogPostBox\NullEditBlogPostBox;
 use Blog\Model\ActiveBlogPost;
-use Blog\Site\LoginStatus;
+
 
 abstract class EditBlogPostBox
 {

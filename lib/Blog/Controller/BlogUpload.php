@@ -8,7 +8,8 @@ use Blog\Form\BlogUploadForm;
 use Intahwebz\UploadedFile;
 use ASM\Session;
 use Blog\Debug;
-
+use Blog\UserPermissions;
+use Blog\BlogPermissionException;
 
 function processUploadedFile(UploadedFile $uploadedFile)
 {
@@ -30,11 +31,16 @@ function processUploadedFile(UploadedFile $uploadedFile)
 class BlogUpload
 {
     public function showUpload(
+        UserPermissions $userPermissions,
         Session $session,
         BlogUploadForm $blogUploadForm,
         BlogPostRepo $blogPostRepo,
         Debug $debug
     ) {
+        if (!$userPermissions->isLoggedIn()) {
+            throw new BlogPermissionException("Not allowed");
+        }
+        
         $dataStoredInSession = $blogUploadForm->initFromStorage();
         if (!$dataStoredInSession) {
             return \Tier\getRenderTemplateTier('pages/displayUploadForm', [$blogUploadForm]);

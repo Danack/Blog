@@ -6,18 +6,12 @@ use Auryn\Injector;
 use Blog\Data\TemplateList;
 use Room11\HTTP\Request\Request;
 use Room11\HTTP\Body\HtmlBody;
-use Tier\InjectionParams;
+
 
 class TemplateViewer
 {
-
     public function index(Injector $injector, Request $request)
     {
-//        return \Tier\getRenderTemplateTier('pages/test/templateTest');
-//    }
-//
-//    public function displayTemplate(Injector $injector, Request $request)
-//    {
         if ($request->hasQueryParameter('template') == false ||
             $request->hasQueryParameter('displayAsPre') == false) {
             return \Tier\getRenderTemplateTier('pages/test/templateTest');

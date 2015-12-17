@@ -39,7 +39,7 @@ class Upgrade
 
     public function upgradeDB()
     {
-        $tablesToUpgrade = $this->getKnownTables();
+        //$tablesToUpgrade = $this->getKnownTables();
         //$this->dbSync->processUpgradeForSchema('basereality', $tablesToUpgrade);
     }
 

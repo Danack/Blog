@@ -4,16 +4,23 @@ namespace Blog\Controller;
 
 use Blog\Form\BlogEditForm;
 use Blog\Form\BlogReplaceForm;
-use Blog\Mapper\BlogPostMapper;
+use Blog\Repository\BlogPostRepo;
 use Blog\TemplatePlugin\BlogPostPlugin;
+use Blog\UserPermissions;
+use Blog\BlogPermissionException;
 
 class BlogEdit
 {
     public function showEdit(
-        BlogPostMapper $blogPostMapper,
+        UserPermissions $userPermissions,
+        BlogPostRepo $blogPostMapper,
         BlogEditForm $blogEditForm,
         $blogPostID
-    ) {
+    ) {        
+        if (!$userPermissions->isLoggedIn()) {
+            throw new BlogPermissionException("Not allowed");
+        }
+        
         $storedData = $blogEditForm->initFromStorage();
         if ($storedData) {
             $valid = $blogEditForm->validate();
@@ -37,15 +44,21 @@ class BlogEdit
 
     /**
      * @param BlogReplaceForm $blogReplaceForm
+     * @param BlogPostRepo $blogPostMapper
+     * @param BlogPostPlugin $blogPostPlugin
      * @param $blogPostID
      * @return \Tier\Executable
      */
     public function showReplace(
+        UserPermissions $userPermissions,
         BlogReplaceForm $blogReplaceForm,
-        BlogPostMapper $blogPostMapper,
-        BlogPostPlugin $blogPostPlugin,
+        BlogPostRepo $blogPostMapper,
         $blogPostID
     ) {
+        if (!$userPermissions->isLoggedIn()) {
+            throw new BlogPermissionException("Not allowed");
+        }
+
         $storedData = $blogReplaceForm->initFromStorage();
         if ($storedData) {
             $valid = $blogReplaceForm->validate();

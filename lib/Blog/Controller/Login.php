@@ -7,7 +7,7 @@ use Blog\Form\LoginForm;
 use BaseReality\Security\Role;
 use Blog\Repository\LoginRepo;
 use Room11\HTTP\Response;
-use Blog\Debug;
+
 use Room11\HTTP\Body\RedirectBody;
 use Blog\Site\LoginStatus;
 use Room11\HTTP\VariableMap;
@@ -15,7 +15,6 @@ use Blog\UserPermissions;
 
 class Login
 {
-
     /**
      * @param LoginForm $loginForm
      * @param UserPermissions $userPermissions
@@ -82,15 +81,11 @@ class Login
 
         return new RedirectBody("Form submitted", "/login", 303);
     }
-    
 
-    
-    
-    
-    
-    
+
     /**
-     * @param Session $session
+     * @param LoginStatus $loginStatus
+     * @internal param Session $session
      * @return RedirectBody
      */
     public function logout(LoginStatus $loginStatus)

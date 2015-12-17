@@ -3,3 +3,6 @@ test/compile
 testcoverage
 var
 scripts/trc
+scripts/gdb_notes.txt
+data/config_template/letsencrypt.nginx.conf
+composer.phar

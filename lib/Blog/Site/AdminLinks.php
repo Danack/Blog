@@ -3,7 +3,7 @@
 
 namespace Blog\Site;
 
-use Blog\Site\LoginStatus;
+
 use Blog\Route;
 
 class AdminLinks

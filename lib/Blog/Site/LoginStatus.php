@@ -4,7 +4,7 @@
 namespace Blog\Site;
 
 use ASM\Session;
-use Blog\Site\Constant;
+
 
 class LoginStatus
 {
