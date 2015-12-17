@@ -345,7 +345,7 @@ function addSessionHeader(Session $session, HeadersSet $headerSet)
 
 function createUserPermissions(Session $session)
 {
-    $role = $session->getSessionVariable(\BaseReality\Content\BaseRealityConstant::$userRole);
+    $role = $session->getSessionVariable(\Blog\Site\Constant::$userRole);
     
     if ($role == false) {
         return new \Blog\User\AnonymousPermissions();

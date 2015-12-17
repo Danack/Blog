@@ -1,11 +1,11 @@
 <?php
 
 use Tier\InjectionParams;
-use Blog\Value\AutogenPath;
+//use Blog\Value\AutogenPath;
 //use Intahwebz\DataPath;
 //use Intahwebz\StoragePath;
-use Blog\Value\WebRootPath;
-use Blog\Value\ExternalLibPath;
+//use Blog\Value\WebRootPath;
+//use Blog\Value\ExternalLibPath;
 //use Intahwebz\LogPath;
 use FileFilter\YuiCompressorPath;
 use Blog\Value\CachePath;
@@ -19,12 +19,12 @@ $shares = [
     'ASM\Session',
     'Intahwebz\DB\Connection',
     'ScriptHelper\ScriptInclude',
-    new AutogenPath(__DIR__."/../autogen/"),
+    //new AutogenPath(__DIR__."/../autogen/"),
     //new DataPath(__DIR__."/../data/"),
     //new StoragePath(__DIR__."/../var/"),
-    new WebRootPath(__DIR__.'/../public/'),
+    //new WebRootPath(__DIR__.'/../public/'),
     //new LogPath(__DIR__.'/../var/log/'),
-    new ExternalLibPath(__DIR__.'/../lib/'),
+    //new ExternalLibPath(__DIR__.'/../lib/'),
     new YuiCompressorPath("/usr/lib/yuicompressor.jar"),
     new CachePath(__DIR__.'/../var/cache/'),
     new \FileFilter\TmpPath(__DIR__.'/../var/cache/'),
@@ -49,7 +49,7 @@ $aliases = [
     'Intahwebz\Domain' => 'BaseReality\DomainBlog',
     'Intahwebz\ObjectCache' => 'Intahwebz\Cache\NullObjectCache',
     'FileFilter\Storage' => 'FileFilter\Storage\S3\S3Storage',
-    'Psr\Log\LoggerInterface' => 'Intahwebz\NullLogger',
+    'Psr\Log\LoggerInterface' => 'Blog\NullLogger',
     'Jig\Jig' => 'Blog\Service\BlogJig',
     'FCForms\Render' => 'FCForms\Render\BootStrapRender',
     'Blog\Repoistory\LoginRepo' => 'Blog\Repository\LoginSQLRepo',

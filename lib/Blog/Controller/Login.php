@@ -3,9 +3,9 @@
 namespace Blog\Controller;
 
 use ASM\Session;
-use Blog\Mapper\LoginMapper;
 use BaseReality\Form\LoginForm;
 use BaseReality\Security\Role;
+use Blog\Repository\LoginRepo;
 use Room11\HTTP\Response;
 use Blog\Debug;
 use Room11\HTTP\Body\RedirectBody;
@@ -41,14 +41,14 @@ class Login
      * @param VariableMap $variableMap
      * @param LoginForm $loginForm
      * @param Session $session
-     * @param LoginMapper $loginMapper
+     * @param LoginRepo $loginMapper
      * @return RedirectBody
      */
     public function loginPost(
         VariableMap $variableMap,
         LoginForm $loginForm,
         Session $session,
-        LoginMapper $loginMapper
+        LoginRepo $loginMapper
     ) {
         $wasValid = false;
         $validCallback = function(LoginForm $loginForm) use ($session, $loginMapper, &$wasValid) {
@@ -57,7 +57,7 @@ class Login
 
             if ($loginMapper->isLoginValid($username, $password) == true) {
                 $session->setSessionVariable(
-                    \BaseReality\Content\BaseRealityConstant::$userRole,
+                    \Blog\Site\Constant::$userRole,
                     Role::ADMIN
                 );
                 $wasValid = true;

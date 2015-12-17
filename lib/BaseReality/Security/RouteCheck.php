@@ -6,6 +6,7 @@ namespace BaseReality\Security;
 use Intahwebz\Session;
 use Intahwebz\Router;
 
+// TODO - figure out how to do security in a secure non-named way.
 class RouteCheck
 {
     /**
@@ -39,7 +40,7 @@ class RouteCheck
     public function isRouteAllowed($routeName, $params = array())
     {
         $route = $this->router->getRoute($routeName, $params);
-        $userRole = $this->session->getSessionVariable(\BaseReality\Content\BaseRealityConstant::$userRole);
+        $userRole = $this->session->getSessionVariable(\Blog\Site\Constant::$userRole);
 
         $accessRules = $route->get('access');
         $resourceName = null;

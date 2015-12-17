@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Intahwebz;
+namespace Blog;
 
 use Psr\Log\LoggerInterface;
 

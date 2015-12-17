@@ -4,7 +4,7 @@
 namespace Blog\Site;
 
 use ASM\Session;
-use BaseReality\Content\BaseRealityConstant;
+use Blog\Site\Constant;
 
 class LoginStatus
 {
@@ -21,7 +21,7 @@ class LoginStatus
     public function isLoggedIn()
     {
         $data = $this->session->getData();
-        if (array_key_exists(BaseRealityConstant::$userRole, $data)) {
+        if (array_key_exists(Constant::$userRole, $data)) {
             return true;
         }
 
@@ -31,7 +31,7 @@ class LoginStatus
     public function logoutUser()
     {
         $data = $this->session->getData();
-        unset($data[BaseRealityConstant::$userRole]);
+        unset($data[Constant::$userRole]);
         $this->session->setData($data);
     }
 }

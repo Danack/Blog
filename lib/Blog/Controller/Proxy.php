@@ -3,8 +3,8 @@
 namespace Blog\Controller;
 
 use Blog\Value\CachePath;
-use Intahwebz\Storage\Storage;
-use Intahwebz\FileFilter\StorageDownloadFilter;
+use FileFilter\Storage;
+use FileFilter\StorageDownloadFilter;
 
 use Room11\HTTP\Body\FileBody;
 

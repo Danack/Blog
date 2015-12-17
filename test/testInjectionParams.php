@@ -2,14 +2,14 @@
 
 use Tier\InjectionParams;
 
-use Blog\Value\AutogenPath;
-use Intahwebz\DataPath;
-use Blog\Value\ExternalLibPath;
+//use Blog\Value\AutogenPath;
+//use Intahwebz\DataPath;
+//use Blog\Value\ExternalLibPath;
 use Intahwebz\StoragePath;
 use Intahwebz\YamlPath;
-use Blog\Value\WebRootPath;
-use Intahwebz\LogPath;
-use Intahwebz\YuiCompressorPath;
+//use Blog\Value\WebRootPath;
+//use Intahwebz\LogPath;
+use FileFilter\YuiCompressorPath;
 use Blog\Value\CachePath;
 
 // These classes will only be created once by the injector.
@@ -18,14 +18,14 @@ $shares = [
     'Jig\Jig',
     'Jig\JigConverter',
     'Amp\Reactor',
-    new AutogenPath(__DIR__."/../autogen/"),
-    new DataPath(__DIR__."/../data/"),
-    new ExternalLibPath(__DIR__.'/../lib/'),
-    new LogPath(__DIR__.'/../var/log/'),
+    //new AutogenPath(__DIR__."/../autogen/"),
+//    new DataPath(__DIR__."/../data/"),
+    //new ExternalLibPath(__DIR__.'/../lib/'),
+    //new LogPath(__DIR__.'/../var/log/'),
     new StoragePath(__DIR__."/../var/"),
     new StoragePath(__DIR__."/../var/"),
     new YamlPath(__DIR__."/../data/TableMapper/"),
-    new WebRootPath(__DIR__.'/./fixtures/'),
+    //new WebRootPath(__DIR__.'/./fixtures/'),
     new YuiCompressorPath("/usr/lib/yuicompressor.jar"),
     new CachePath(__DIR__.'/./tmp/cache/'),
     'Intahwebz\Form\DataStore'
