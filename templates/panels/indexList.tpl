@@ -1,4 +1,4 @@
-{inject name='blogListFront' type='BaseReality\Service\BlogList'}
+{inject name='blogListFront' type='Blog\Service\BlogList'}
 {plugin type='Blog\TemplatePlugin\BlogPostPlugin'}
 
 

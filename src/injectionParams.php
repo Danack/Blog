@@ -28,6 +28,7 @@ $shares = [
     new YuiCompressorPath("/usr/lib/yuicompressor.jar"),
     new CachePath(__DIR__.'/../var/cache/'),
     new \FileFilter\TmpPath(__DIR__.'/../var/cache/'),
+    new \Blog\Value\BlogDraftPath( __DIR__."/../var/blogDraft/"),
     'Blog\Config',
     'Room11\HTTP\HeadersSet',
     'Blog\Debug',
@@ -89,7 +90,6 @@ $params = [ ];
 $defines = [
     'Tier\Path\AutogenPath'       => [':path' => __DIR__."/../autogen/"],
     'Intahwebz\DataPath'          => [':path' => __DIR__."/../data/"],
-    'Intahwebz\StoragePath'       => [':path' => __DIR__."/../var/"],
     'Tier\Path\CachePath'         => [':path' => __DIR__.'/../var/cache/'],
     'Tier\Path\ExternalLibPath'   => [':path' => __DIR__.'/../lib/'],
     'Tier\Path\WebRootPath'       => [':path' => __DIR__.'/../public/'],

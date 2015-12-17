@@ -3,7 +3,7 @@
 namespace Blog\Controller;
 
 use Blog\Repository\BlogPostRepo;
-use Intahwebz\StoragePath;
+use Blog\Value\BlogDraftPath;
 use Room11\HTTP\Body\TextBody;
 use Blog\Model\ActiveBlogPost;
 use Blog\Content\BlogPost;
@@ -25,10 +25,10 @@ class Blog
     }
 
     public function showDraft(
-        StoragePath $storagePath,
+        BlogDraftPath $storagePath,
         $filename
     ) {
-        $draftDirectory = $storagePath->getSafePath('blogDraft');
+        $draftDirectory = $storagePath->getPath();// ->getSafePath('blogDraft');
         $blogPath = $draftDirectory."/".ensureAbsoluteFilename($filename).".tpl.md";
 
         $blogPost = new BlogPost();

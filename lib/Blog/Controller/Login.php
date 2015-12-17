@@ -3,7 +3,7 @@
 namespace Blog\Controller;
 
 use ASM\Session;
-use BaseReality\Form\LoginForm;
+use Blog\Form\LoginForm;
 use BaseReality\Security\Role;
 use Blog\Repository\LoginRepo;
 use Room11\HTTP\Response;

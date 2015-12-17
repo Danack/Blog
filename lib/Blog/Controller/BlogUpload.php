@@ -4,7 +4,7 @@
 namespace Blog\Controller;
 
 use Blog\Repository\BlogPostRepo;
-use BaseReality\Form\BlogUploadForm;
+use Blog\Form\BlogUploadForm;
 use Intahwebz\UploadedFile;
 use ASM\Session;
 use Blog\Debug;

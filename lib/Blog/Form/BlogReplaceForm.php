@@ -1,6 +1,6 @@
 <?php
 
-namespace BaseReality\Form;
+namespace Blog\Form;
 
 use FCForms\Form\Form;
 

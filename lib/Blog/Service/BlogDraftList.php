@@ -1,24 +1,24 @@
 <?php
 
-namespace BaseReality\Service;
+namespace Blog\Service;
 
-use Intahwebz\StoragePath;
+use Blog\Value\BlogDraftPath;
 
 class BlogDraftList
 {
      /**
-      * @var StoragePath
+      * @var BlogDraftPath
       */
      private $storagePath;
 
-    public function __construct(StoragePath $storagePath)
+    public function __construct(BlogDraftPath $storagePath)
     {
         $this->storagePath = $storagePath;
     }
 
     public function getMap()
     {
-        $draftDirectory = $this->storagePath->getSafePath('blogDraft');
+        $draftDirectory = $this->storagePath->getPath();
         $pattern = $draftDirectory."*.tpl.md";
         $draftFilenameList = glob($pattern);
         $draftFilenameList = str_replace([$draftDirectory, ".tpl.md"], "", $draftFilenameList);

@@ -2,8 +2,8 @@
 
 namespace Blog\Controller;
 
-use BaseReality\Form\BlogEditForm;
-use BaseReality\Form\BlogReplaceForm;
+use Blog\Form\BlogEditForm;
+use Blog\Form\BlogReplaceForm;
 use Blog\Mapper\BlogPostMapper;
 use Blog\TemplatePlugin\BlogPostPlugin;
 

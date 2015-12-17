@@ -1,7 +1,7 @@
 <?php
 
 
-namespace BaseReality\Service;
+namespace Blog\Service;
 
 use Blog\Repository\BlogPostRepo;
 use Blog\Model\TemplateBlogPostFactory;

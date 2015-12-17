@@ -10,7 +10,7 @@
     <div class="col-md-12">
     {inject name='activeBlogPost' type='Blog\Model\ActiveBlogPost'}
     <ul class="nav nav-list smallPadding">
-        {inject name='blogList' type='BaseReality\Service\BlogList'}
+        {inject name='blogList' type='Blog\Service\BlogList'}
         {foreach $blogList->getBlogs() as $blogPost}
             {if $blogPost->blogPost->blogPostID == $activeBlogPost->blogPost->blogPostID}
                 <li class="active">

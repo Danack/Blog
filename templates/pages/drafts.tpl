@@ -5,7 +5,7 @@
 {block name='mainContent'}
 
 
-{inject name='blogDraftMap' type='BaseReality\Service\BlogDraftList'}
+{inject name='blogDraftMap' type='Blog\Service\BlogDraftList'}
 
 <div class="row">
   <div class="col-md-12 panel panel-default">    
