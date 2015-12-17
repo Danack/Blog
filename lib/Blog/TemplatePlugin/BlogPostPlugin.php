@@ -4,7 +4,7 @@ namespace Blog\TemplatePlugin;
 
 use Jig\Plugin;
 use Jig\Plugin\BasicPlugin;
-use Intahwebz\Utils\ScriptInclude;
+//use ScriptServer\Service\ScriptInclude;
 use Blog\Content\BlogPost;
 use Jig\Jig;
 use Auryn\Injector;
@@ -23,11 +23,11 @@ class BlogPostPlugin extends BasicPlugin
     private $injector;
     
     public function __construct(
-        ScriptInclude $scriptInclude,
+        //ScriptInclude $scriptInclude,
         Jig $jig,
         Injector $injector
     ) {
-        $this->scriptInclude = $scriptInclude;
+        //$this->scriptInclude = $scriptInclude;
         $this->jig = $jig;
         $this->injector = $injector;
     }

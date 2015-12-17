@@ -7,6 +7,17 @@
         "mockery/mockery": "0.9.1",
         "phpunit/phpunit": "4.4.5"
     },
+    
+     "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/Danack/ScriptHelper.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/Danack/FileFilter.git"
+        }
+     ],
 
     "require":{
         "amphp/artax": "1.0.0-rc6",
@@ -16,9 +27,11 @@
         "danack/asm": "dev-master",
         "danack/console": "^2.6.0",
         "danack/fcforms": "0.6.1",
+        "danack/filefilter": "dev-master",
         "danack/escape": "^0.6.0",
         "danack/githubartaxservice": "^0.4.6",
         "danack/jig": "^0.17.2",
+        "danack/scripthelper": "dev-master",
         "danack/syntaxhighlighter": "~3.1.0",
         "danack/tier": "^0.2.2",
         "doctrine/common": "2.5.0",

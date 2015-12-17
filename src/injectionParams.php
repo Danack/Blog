@@ -7,7 +7,7 @@ use Intahwebz\StoragePath;
 use Blog\Value\WebRootPath;
 use Blog\Value\ExternalLibPath;
 use Intahwebz\LogPath;
-use Intahwebz\YuiCompressorPath;
+use FileFilter\YuiCompressorPath;
 use Blog\Value\CachePath;
 use FCForms\FileFetcher\StubFileFetcher;
 
@@ -18,7 +18,7 @@ $shares = [
     'Amp\Reactor',
     'ASM\Session',
     'Intahwebz\DB\Connection',
-    'Intahwebz\Utils\ScriptInclude',
+    'ScriptHelper\ScriptInclude',
     new AutogenPath(__DIR__."/../autogen/"),
     new DataPath(__DIR__."/../data/"),
     new StoragePath(__DIR__."/../var/"),
@@ -40,7 +40,7 @@ $aliases = [
     'ArtaxServiceBuilder\ResponseCache' =>
     'ArtaxServiceBuilder\ResponseCache\NullResponseCache',
     'ASM\Driver' => 'ASM\File\FileDriver',
-    'Blog\FilePacker' => 'Blog\StandardFilePacker',
+    
     'Blog\Repository\BlogPostRepo' => '\Blog\Repository\SQL\BlogPostSQLRepo',
     'Blog\Service\SourceFileFetcher' => 'Blog\Service\OnlineSourceFileFetcher',
     'Intahwebz\DB\Connection' => 'Intahwebz\DB\MySQLiConnection',
@@ -58,7 +58,11 @@ $aliases = [
     'Room11\HTTP\VariableMap' => 'Room11\HTTP\VariableMap\RequestVariableMap',
     'Room11\HTTP\RequestHeaders' => 'Room11\HTTP\Request\HTTPRequestHeaders',
     'Room11\HTTP\Response' => 'Room11\HTTP\Response\Response',
-    'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker'
+    'ScriptHelper\FilePacker' => '\ScriptHelper\FilePacker\YuiFilePacker',
+    
+    'ScriptHelper\ScriptVersion' => 'ScriptHelper\ScriptVersion\DateScriptVersion',
+    'ScriptHelper\ScriptURLGenerator' => 'ScriptHelper\ScriptURLGenerator\StandardScriptURLGenerator'
+    
 ];
 
 
@@ -70,11 +74,10 @@ $delegates = [
     'Blog\Data\TemplateList' => 'createTemplateList',
     'GithubService\GithubArtaxService\GithubService' => 'createGithubArtaxService',
     'Intahwebz\S3Bridge\S3Config' => 'createS3Config',
-    'Intahwebz\Utils\ScriptInclude' => 'createScriptInclude',
-    'Intahwebz\Utils\UploadedFileFetcher' => 'createUploadedFileFetcher',
+    'ScriptHelper\ScriptInclude' => 'createScriptInclude',
     'Jig\JigConfig' => 'createJigConfig',
     'Room11\Caching\LastModifiedStrategy' => 'createCaching',
-    //'Blog\Site\AuthBox' => ['Blog\Site\AuthBox', 'createAuthBox'],
+    'Intahwebz\DB\MySQLiConnection' => 'createMySQLiConnection',
     'Blog\Site\EditBlogPostBox' => ['Blog\Site\EditBlogPostBox', 'createEditBox'],
     'Blog\UserPermissions' => 'createUserPermissions',
 ];
@@ -90,13 +93,7 @@ $defines = [
     'Tier\Path\ExternalLibPath'   => [':path' => __DIR__.'/../lib/'],
     'Tier\Path\WebRootPath'       => [':path' => __DIR__.'/../public/'],
     'FileFilter\YuiCompressorPath' => ["/usr/lib/yuicompressor.jar"],
-    'Intahwebz\DB\MySQLiConnection' => [
-        ':host'     => MYSQL_SERVER,
-        ':username' => MYSQL_USERNAME,
-        ':password' => MYSQL_PASSWORD,
-        ':port'     => MYSQL_PORT,
-        ':socket'   => MYSQL_SOCKET_CONNECTION
-    ],  
+
 ];
 
 $prepares = [

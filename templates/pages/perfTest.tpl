@@ -1,4 +1,4 @@
-{inject name='scriptInclude' type='Intahwebz\Utils\ScriptInclude'}
+{inject name='scriptInclude' type='ScriptHelper\ScriptInclude'}
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

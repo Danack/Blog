@@ -1,7 +1,7 @@
 <html>
 
 {plugin type='Blog\TemplatePlugin\BlogPlugin'}
-{inject name='scriptInclude' type='Intahwebz\Utils\ScriptInclude'}
+{inject name='scriptInclude' type='ScriptHelper\ScriptInclude'}
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,15 +10,15 @@
     <title>Bloggity blog</title>
 {/block}
 
-    {$scriptInclude->addCSS("jQuery/jquery-ui-1.10.0.custom")}
-    {$scriptInclude->addCSS("bootstrap")}
+    {$scriptInclude->addCSSFile("jQuery/jquery-ui-1.10.0.custom")}
+    {$scriptInclude->addCSSFile("bootstrap")}
     {* $scriptInclude->addCSS("bootstrap-theme") *}
-    {$scriptInclude->addCSS("bootswatch")}
-    {$scriptInclude->addCSS("blogcss")}
-    {$scriptInclude->addCSS("blogPrint", 'print')}
-    {$scriptInclude->addCSS("SyntaxHighlighter/shCoreRDark")}
-    {$scriptInclude->addCSS("SyntaxHighlighter/shThemeRDark")}
-    {$scriptInclude->includeCSS() | nofilter}
+    {$scriptInclude->addCSSFile("bootswatch")}
+    {$scriptInclude->addCSSFile("blogcss")}
+    {* $scriptInclude->addCSS("blogPrint", 'print') *}
+    {$scriptInclude->addCSSFile("SyntaxHighlighter/shCoreRDark")}
+    {$scriptInclude->addCSSFile("SyntaxHighlighter/shThemeRDark")}
+    {$scriptInclude->renderCSSLinks() | nofilter}
 
     <link rel="alternate" type="application/atom+xml" href="/rss" />
     
@@ -29,18 +29,18 @@
 <body class="main">
 
 
-{$scriptInclude->addJSRequired('jquery-1.9.1')}
-{$scriptInclude->addJSRequired('jquery-ui-1.10.0.custom.min')}
-{$scriptInclude->addJSRequired('SyntaxHighlighter/XRegExp')}
-{$scriptInclude->addJSRequired('SyntaxHighlighter/shCore')}
-{$scriptInclude->addJSRequired('SyntaxHighlighter/shBrushJScript')}
-{$scriptInclude->addJSRequired('SyntaxHighlighter/shBrushPhp')}
-{$scriptInclude->addJSRequired('SyntaxHighlighter/shBrushJava')}
-{$scriptInclude->addJSRequired('SyntaxHighlighter/shBrushBash')}
-{$scriptInclude->addJSRequired('SyntaxHighlighter/shBrushPlain')}
-{$scriptInclude->addJSRequired('SyntaxHighlighter/shBrushConf')}
-{$scriptInclude->addJSRequired('blog')}
-{$scriptInclude->addJSRequired('Form/Form')}
+{$scriptInclude->addJSFile('jquery-1.9.1')}
+{$scriptInclude->addJSFile('jquery-ui-1.10.0.custom.min')}
+{$scriptInclude->addJSFile('SyntaxHighlighter/XRegExp')}
+{$scriptInclude->addJSFile('SyntaxHighlighter/shCore')}
+{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushJScript')}
+{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushPhp')}
+{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushJava')}
+{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushBash')}
+{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushPlain')}
+{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushConf')}
+{$scriptInclude->addJSFile('blog')}
+{$scriptInclude->addJSFile('Form/Form')}
 
 <div class="container">
     <div class="row page-header">
@@ -73,9 +73,9 @@
 
 </div>
 
-{$scriptInclude->addBodyLoadFunction("SyntaxHighlighter.all();")}
-{$scriptInclude->emitJSRequired() | nofilter}
-{$scriptInclude->emitOnBodyLoadJavascript() | nofilter}
+{$scriptInclude->addBodyLoadJS("SyntaxHighlighter.all();")}
+{$scriptInclude->renderJSLinks() | nofilter}
+{$scriptInclude->renderOnBodyLoadJavascript() | nofilter}
 
 <div>
     {inject name='debug' type='Blog\Debug'}

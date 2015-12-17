@@ -2,16 +2,17 @@
 
 namespace Blog\TemplatePlugin;
 
-use Jig\Plugin;
-use Jig\Plugin\BasicPlugin;
-use Intahwebz\Utils\ScriptInclude;
 use Blog\Content\BlogPost;
 use Blog\Model\TemplateBlogPostFactory;
+use Jig\Plugin;
+use Jig\Plugin\BasicPlugin;
+use ScriptHelper\ScriptInclude;
+use Blog\Route;
 
 class BlogPlugin extends BasicPlugin
 {
     /**
-     * @var \Intahwebz\Utils\ScriptInclude
+     * @var \ScriptHelper\ScriptInclude
      */
     private $scriptInclude;
 
@@ -45,7 +46,7 @@ class BlogPlugin extends BasicPlugin
             'routeJSInclude',
             'routeShowUpload',
             'routeShowDrafts',
-            'routeDraft',
+            'routeShowDraft',
             'routeBlogReplace',
             'routeBlogEdit',
             
@@ -75,7 +76,7 @@ class BlogPlugin extends BasicPlugin
 <a href='https://twitter.com/share' class='twitter-share-button' data-via='MrDanack' data-dnt='true'>Tweet</a>
 END;
  
-        $this->scriptInclude->addBodyLoadFunction("addTwitterDelayed();");
+        $this->scriptInclude->addBodyLoadJS("addTwitterDelayed();");
 
         return $text;
     }
@@ -111,47 +112,47 @@ END;
 
     public function routeIndex()
     {
-        return routeIndex();
+        return Route::index();
     }
 
     public function routeBlogPost($blogPostID)
     {
-        return routeBlogPost($blogPostID);
+        return Route::blogPost($blogPostID);
     }
     
     public function routeBlogPostWithFormat($blogPostID, $format)
     {
-        return routeBlogPostWithFormat($blogPostID, $format);
+        return Route::blogPostWithFormat($blogPostID, $format);
     }
 
     public function routeJSInclude($jsFile)
     {
-        return routeJSInclude($jsFile);
+        return Route::jsInclude($jsFile);
     }
     
     public function routeShowUpload()
     {
-        return "/upload";
+        return Route::showUpload();
     }
     
     public function routeShowDrafts()
     {
-        return "/drafts";
+        return Route::showDrafts();
     }
     
-    public function routeDraft($draftFilename)
+    public function routeShowDraft($draftFilename)
     {
-        return routeDraft($draftFilename);
+        return Route::showDraft($draftFilename);
     }
 
     public function routeBlogEdit($blogPostID)
     {
-        return routeBlogEdit($blogPostID);
+        return Route::blogEdit($blogPostID);
     }
     
     public function routeBlogReplace($blogPostID)
     {
-        return routeBlogReplace($blogPostID);
+        return Route::blogReplace($blogPostID);
     }
 
     public function articleImage($imageFilename, $size, $float = 'left', $description = false)

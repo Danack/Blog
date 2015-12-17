@@ -20,14 +20,14 @@ class BlogPostStubRepo implements BlogPostRepo
     
     /**
      * @param $blogPostID
-     * @return \BaseReality\Content\BlogPost
+     * @return \Blog\Content\BlogPost
      * @throws \Exception
      */
     public function getBlogPost($blogPostID)
     {
         //$blogPost = new \Blog\Content\BlogPost();
         
-        $blogPost = BlogPostRepo::create(
+        $blogPost = BlogPost::create(
             $blogPostID,
             $title = "Hello world",
             $text = "This is a template",
@@ -48,9 +48,9 @@ class BlogPostStubRepo implements BlogPostRepo
      */
     public function getBlogPostsForYear($year, $includeInactive)
     {
-        $blogPostID = BlogPostRepo::getNextBlogPostID();
+        $blogPostID = self::getNextBlogPostID();
 
-        $blogPost = BlogPostRepo::create(
+        $blogPost = BlogPost::create(
             $blogPostID,
             $title = "Hello world",
             $text = "This is a template",

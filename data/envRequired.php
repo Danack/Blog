@@ -13,6 +13,14 @@ $env = [
 //    
 //    Config::SCRIPT_VERSION,
     Config::SCRIPT_PACKING,
+    
+    'MYSQL_PORT',
+    'MYSQL_USERNAME',
+    'MYSQL_PASSWORD',
+    'MYSQL_ROOT_PASSWORD',
+    'MYSQL_SERVER',
+    'MYSQL_SOCKET_CONNECTION',
+    'SESSION_NAME',
 ];
 
 return $env;

@@ -2,7 +2,7 @@
 
 namespace BlogMock;
 
-use Blog\FilePacker;
+use ScriptHelper\FilePacker;
 
 class MockFilePacker implements FilePacker {
 

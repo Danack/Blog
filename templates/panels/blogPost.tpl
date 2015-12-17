@@ -3,8 +3,7 @@
 {plugin type='Blog\TemplatePlugin\BlogPostPlugin'}
 {plugin type='Blog\TemplatePlugin\BlogPlugin'}
 
-
-{$templateBlogPost = makeRenderableBlogPost($activeBlogPost->blogPost) | nofilter}
+{$templateBlogPost = makeRenderableBlogPost($activeBlogPost->blogPost)}
 
 <div class="row">
     <div class="col-md-12 panel panel-default">

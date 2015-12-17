@@ -37,7 +37,19 @@ $centos = [
     'php_session_directory' => '/var/lib/php/session',
 
     'ssl_directory' => '/temp/ssl',
+    
+    'MYSQL_PORT' => 3306,
+    'MYSQL_USERNAME' => 'intahwebz',
+    'MYSQL_PASSWORD' => 'pass123',
+    'MYSQL_ROOT_PASSWORD' => 'pass123',
+    'MYSQL_SERVER' => null,
+    'MYSQL_SOCKET_CONNECTION' => '/var/lib/mysql/mysql.sock',
+    'SESSION_NAME' => 'irsession',
 ];
+
+
+
+
 
 $centos_guest = $centos;
 //this doesn't work in vagrant on virtualBox

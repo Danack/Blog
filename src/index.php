@@ -15,10 +15,13 @@ require __DIR__."/../autogen/appEnv.php";
 
 $autoloader = require __DIR__.'/../vendor/autoload.php';
 
-$autoloader->setSearchModes([
-    ClassLoader::SEARCHMODE_OPCACHE,
-    ClassLoader::SEARCHMODE_FILE,
-]);
+//if (method_exists($autoloader, 'setSearchModes')) {
+//    $autoloader->setSearchModes([
+//            ClassLoader::SEARCHMODE_OPCACHE,
+//            ClassLoader::SEARCHMODE_FILE,
+//        ]
+//    );
+//}
 
 // Contains helper functions for the 'framework'.
 require __DIR__ . "/../vendor/danack/tier/src/Tier/tierFunctions.php";

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1612cd241d4ab7f7300f7e1474468e69",
-    "content-hash": "666594bfbe20f6c2b412fe59ca9b1506",
+    "hash": "33f0bfc9a9ee19f6e3586c55cfc756ee",
+    "content-hash": "f398bf253855f75627439cd08e48f723",
     "packages": [
         {
             "name": "amphp/amp",
@@ -724,6 +724,46 @@
             "time": "2015-12-13 01:15:29"
         },
         {
+            "name": "danack/filefilter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/FileFilter.git",
+                "reference": "3eb8383e718c3cdae6b7d43befe18087bdca5979"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.6.6",
+                "rdlowrey/auryn": "^1.0.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "FileFilter": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-0": {
+                    "FileFilterTest": "test/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Danack",
+                    "email": "Danack@basereality.com"
+                }
+            ],
+            "description": "A set of transforming file filters.",
+            "time": "2015-12-17 01:17:34"
+        },
+        {
             "name": "danack/githubartaxservice",
             "version": "0.4.6",
             "source": {
@@ -808,6 +848,46 @@
                 "view"
             ],
             "time": "2015-12-14 00:44:50"
+        },
+        {
+            "name": "danack/scripthelper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/ScriptHelper.git",
+                "reference": "b68fd4e246d0c9ccc79d3451a39d0eb0495bd4c4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.6.6",
+                "rdlowrey/auryn": "^1.0.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "ScriptHelper": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-0": {
+                    "ScriptHelperTest": "test/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Danack",
+                    "email": "Danack@basereality.com"
+                }
+            ],
+            "description": "A library that helps add JS and CSS scripts to web pages, and then serve the requested scripts.",
+            "time": "2015-12-17 01:17:54"
         },
         {
             "name": "danack/syntaxhighlighter",
@@ -4286,7 +4366,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "danack/asm": 20
+        "danack/asm": 20,
+        "danack/filefilter": 20,
+        "danack/scripthelper": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

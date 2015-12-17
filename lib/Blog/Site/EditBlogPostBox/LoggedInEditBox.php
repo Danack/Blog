@@ -4,6 +4,7 @@ namespace Blog\Site\EditBlogPostBox;
 
 use Blog\Site\EditBlogPostBox;
 use Blog\Model\ActiveBlogPost;
+use Blog\Route;
 
 class LoggedInEditBox extends EditBlogPostBox
 {
@@ -42,8 +43,8 @@ HTML;
         $output = sprintf(
             $html,
             $activeString,
-            routeBlogEdit($this->activeBlogPost->blogPost->blogPostID),
-            routeBlogReplace($this->activeBlogPost->blogPost->blogPostID)
+            Route::blogEdit($this->activeBlogPost->blogPost->blogPostID),
+            Route::blogReplace($this->activeBlogPost->blogPost->blogPostID)
         );
 
         return $output;

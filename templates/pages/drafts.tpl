@@ -7,16 +7,18 @@
 
 {inject name='blogDraftMap' type='BaseReality\Service\BlogDraftList'}
 
-
-<div style='height: 20px'></div>
-<h3>Drafts</h3>
+<div class="row">
+  <div class="col-md-12 panel panel-default">    
+    <h3>Drafts</h3>    
 
 {foreach $blogDraftMap->getMap() as $draftFilename => $draftTitle}
-    <a href="{routeDraft($draftFilename)}">
+    <a href="{routeShowDraft($draftFilename)}">
         {$draftTitle}
     </a>
     <br/>
 {/foreach}
+  </div>      
+</div>
 
 {/block}
 

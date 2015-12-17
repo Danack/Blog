@@ -19,22 +19,9 @@ use ASM\Session;
 use ASM\SessionConfig;
 use ASM\SessionManager;
 use Tier\TierApp;
-
-
-
-define('MYSQL_PORT', 3306);
-define('MYSQL_USERNAME', 'intahwebz');
-define('MYSQL_PASSWORD', 'pass123');
-define('MYSQL_ROOT_PASSWORD', 'pass123');
-define('MYSQL_SERVER', null);
-define('MYSQL_SOCKET_CONNECTION', '/var/lib/mysql/mysql.sock');
-define('SESSION_NAME', 'aosdjpoajdpoajspdojspodj');
-
-
-function createUploadedFileFetcher()
-{
-    return new \Intahwebz\Utils\UploadedFileFetcher($_FILES);
-}
+use Blog\Route;
+use Psr\Log\LoggerInterface;
+use Intahwebz\DB\StatementFactory;
 
 function createS3Config(Config $config) {
 
@@ -42,6 +29,29 @@ function createS3Config(Config $config) {
     $value = $config->getKey(Config::AWS_SERVICES_SECRET);
     
     return new \Intahwebz\S3Bridge\S3Config($key, $value);
+}
+
+
+function createMySQLiConnection(
+    Config $config,
+    LoggerInterface $logger, 
+    StatementFactory $statementWrapperFactory
+) {
+    $host     = $config->getKey('MYSQL_SERVER');
+    $username = $config->getKey('MYSQL_USERNAME');
+    $password = $config->getKey('MYSQL_PASSWORD');
+    $port     = $config->getKey('MYSQL_PORT');
+    $socket   = $config->getKey('MYSQL_SOCKET_CONNECTION');
+   
+    return new \Intahwebz\DB\MySQLiConnection(
+        $logger,
+        $statementWrapperFactory,
+        $host,
+        $username,
+        $password,
+        $port,
+        $socket
+    );
 }
 
 
@@ -78,15 +88,17 @@ function createGithubArtaxService(ArtaxClient $client, \Amp\Reactor $reactor, Re
 }
 
 
-function createScriptInclude(Config $config)
-{
+function createScriptInclude(
+    Config $config,
+    \ScriptHelper\ScriptURLGenerator $scriptURLGenerator
+) {
     $packScript = $config->getKey(Config::SCRIPT_PACKING);
-    
-    if ($packScript) {
-        return new Intahwebz\Utils\ScriptIncludePacked();
+
+    if (true){//$packScript) {
+        return new \ScriptHelper\ScriptInclude\ScriptIncludePacked($scriptURLGenerator);
     }
     else {
-        return new Intahwebz\Utils\ScriptIncludeIndividual();
+        return new \ScriptHelper\ScriptInclude\ScriptIncludeIndividual($scriptURLGenerator);
     }
 }
 
@@ -191,45 +203,6 @@ function createTemplateList()
     return new TemplateList($templates);
 }
 
-/* Stops passwords from being put into log files.
- * Need to make it generate valid php arrays so make life easier.
- */
-function dump_table($var)
-{
-    $forbiddenKeys = array(
-        //'password',
-    );
-
-    if (is_array($var) or is_object($var)) {
-        foreach ($var as $key => $value) {
-            if (is_array($value) or is_object($value)) {
-                dump_table($value);
-            }
-            else {
-                if (in_array($key, $forbiddenKeys) == true) {
-                    $value = '********';
-                }
-                echo "'$key' => '$value' ";
-            }
-        }
-    }
-    else {
-        echo "'$var' ";
-    }
-}
-
-
-function getVar_DumpOutput($response)
-{
-    ob_start();
-    dump_table($response);
-    $obContents = ob_get_contents();
-    ob_end_clean();
-
-    return $obContents;
-}
-
-
 
 /**
  * Helper function to bind the route list to FastRoute
@@ -237,8 +210,9 @@ function getVar_DumpOutput($response)
  */
 function routesFunction(FastRoute\RouteCollector $r)
 {
-    $r->addRoute('GET', "/css/{cssInclude}", ['ScriptServer\Controller\ScriptServer', 'getPackedCSS']);
-    $r->addRoute('GET', '/js/{jsInclude}', ['ScriptServer\Controller\ScriptServer', 'getPackedJavascript']);
+
+    $r->addRoute('GET', "/css/{commaSeparatedFilenames}", ['ScriptHelper\Controller\ScriptServer', 'serveCSS']);
+    $r->addRoute('GET', '/js/{commaSeparatedFilenames}', ['ScriptHelper\Controller\ScriptServer', 'serveJavascript']);
 
     $r->addRoute('GET', '/rss', ['Blog\Controller\BlogRSS', 'rssFeed' ]);
     $r->addRoute(
@@ -277,10 +251,6 @@ function routesFunction(FastRoute\RouteCollector $r)
     $r->addRoute('GET', '/', ['Blog\Controller\Blog', 'index']);
 }
 
-function routeIndex()
-{
-    return "/";
-}
 
 function ensureAbsoluteFilename($filename)
 {
@@ -290,17 +260,7 @@ function ensureAbsoluteFilename($filename)
     return $filename;
 }
 
-/**
- * @param $filename
- * @param string $size
- * @return string
- */
-function urlStaticImage($filename, $size = 'original')
-{
-    $imageName = $filename;
-    $sizeString = $size;
-    return "/staticImage/".$sizeString."/".urlencode($imageName);
-}
+
 
 /**
  * @param $imageFilename
@@ -320,8 +280,8 @@ function articleImage($imageFilename, $size, $float = 'left', $description = fal
         $marginClass = 'articleMarginFloatRight';
     }
     $output .= "<div class='articleImage $marginClass' style='float: $float;'>";
-    $thumbnailURL = urlStaticImage($imageFilename, $size);
-    $fullImageURL = urlStaticImage($imageFilename);
+    $thumbnailURL = Route::staticImage($imageFilename, $size);
+    $fullImageURL = Route::staticImage($imageFilename);
     $output .= "<a href='$fullImageURL' target='_blank' class='plainLink'>";
     $output .= "<img src='$thumbnailURL'/> ";
     //Size could actually just be setting the height - which would be annoying.
@@ -337,36 +297,6 @@ function articleImage($imageFilename, $size, $float = 'left', $description = fal
 
     return $output;
 }
-
-
-
-
-function routeDraft($draftFilename)
-{
-    return sprintf('/draft/%s', $draftFilename);
-}
-
-
-function routeBlogPostWithFormat($blogPostID, $format)
-{
-    return sprintf('/blog/%d.%d', $blogPostID, $format);
-}
-
-function routeJSInclude($url)
-{
-    return "/js/".$url;
-}
-
-function routeBlogEdit($blogPostID)
-{
-    return "/blogedit/".$blogPostID;
-}
-
-function routeBlogReplace($blogPostID)
-{
-    return "/blogreplace/".$blogPostID;
-}
-
 
 function createASMFileDriver()
 {
@@ -415,8 +345,6 @@ function addSessionHeader(Session $session, HeadersSet $headerSet)
 
     return TierApp::PROCESS_CONTINUE;
 }
-
-
 
 function createUserPermissions(Session $session)
 {

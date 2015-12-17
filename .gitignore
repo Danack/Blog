@@ -2,3 +2,4 @@ autogen
 test/compile
 testcoverage
 var
+scripts/trc

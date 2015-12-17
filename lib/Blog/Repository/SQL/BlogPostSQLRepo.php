@@ -49,7 +49,7 @@ class BlogPostSQLRepo implements BlogPostRepo
 
     /**
      * @param $blogPostID
-     * @return \BaseReality\Content\BlogPost
+     * @return \Blog\Content\BlogPost
      */
     public function getBlogPost($blogPostID)
     {
