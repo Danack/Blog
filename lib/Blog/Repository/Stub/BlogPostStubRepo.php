@@ -42,7 +42,7 @@ class BlogPostStubRepo implements BlogPostRepo
     /**
      * @param $year
      * @param $includeInactive
-     * @return \BaseReality\DisplayableContent\DisplayableBlogPost[]
+     * @return \Blog\Content\BlogPost[]
      * @throws \Exception
      * @throws \Intahwebz\DB\DBException
      */

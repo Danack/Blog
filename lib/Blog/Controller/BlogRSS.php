@@ -2,7 +2,7 @@
 
 namespace Blog\Controller;
 
-use Intahwebz\StoragePath;
+use Blog\Value\StoragePath;
 use Blog\Repository\BlogPostRepo;
 use Blog\Model\TemplateBlogPostFactory;
 use Room11\HTTP\Body\FileBody;

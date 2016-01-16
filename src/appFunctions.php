@@ -11,6 +11,7 @@ use Blog\Data\TemplateList;
 use Blog\Route;
 use GithubService\GithubArtaxService\GithubService;
 use Intahwebz\DB\StatementFactory;
+use Jig\Jig;
 use Jig\JigConfig;
 use Tier\Executable;
 use Tier\InjectionParams;
@@ -21,14 +22,7 @@ use Room11\HTTP\Body;
 use Room11\HTTP\VariableMap;
 use Room11\HTTP\HeadersSet;
 use Tier\TierApp;
-
-function createS3Config(Config $config) {
-
-    $key = $config->getKey(Config::AWS_SERVICES_KEY);
-    $value = $config->getKey(Config::AWS_SERVICES_SECRET);
-    
-    return new \FileFilter\Storage\S3\S3Config($key, $value);
-}
+use FastRoute\Dispatcher;
 
 
 function createMySQLiConnection(
@@ -62,8 +56,8 @@ function createJigConfig(Config $config)
     $jigConfig = new JigConfig(
         __DIR__."/../templates/",
         __DIR__."/../var/compile/",
-        'tpl',
-        $config->getKey(Config::JIG_COMPILE_CHECK)
+        $config->getKey(Config::JIG_COMPILE_CHECK),
+        'tpl'
     );
     
     return $jigConfig;
@@ -72,6 +66,13 @@ function createJigConfig(Config $config)
 function createCaching()
 {
     return new \Room11\Caching\LastModified\Revalidate(3600, 1200);
+}
+
+function createDispatcher()
+{
+    $dispatcher = FastRoute\simpleDispatcher('routesFunction');
+    
+    return $dispatcher;
 }
 
 
@@ -93,7 +94,7 @@ function createScriptInclude(
 ) {
     $packScript = $config->getKey(Config::SCRIPT_PACKING);
 
-    if (true){//$packScript) {
+    if ($packScript) {
         return new \ScriptHelper\ScriptInclude\ScriptIncludePacked($scriptURLGenerator);
     }
     else {
@@ -104,11 +105,10 @@ function createScriptInclude(
 /**
  * The callable that routes a request.
  * @param Response $response
- * @return Tier
+ * @return \Tier\Executable
  */
-function routeRequest(Request $request, Response $response)
+function routeRequest(Dispatcher $dispatcher, Request $request, Response $response)
 {
-    $dispatcher = FastRoute\simpleDispatcher('routesFunction');
     $httpMethod = $request->getMethod();
     $uri = $request->getPath();
 
@@ -207,7 +207,6 @@ function createTemplateList()
  */
 function routesFunction(FastRoute\RouteCollector $r)
 {
-
     $r->addRoute('GET', "/css/{commaSeparatedFilenames}", ['ScriptHelper\Controller\ScriptServer', 'serveCSS']);
     $r->addRoute('GET', '/js/{commaSeparatedFilenames}', ['ScriptHelper\Controller\ScriptServer', 'serveJavascript']);
 
@@ -238,6 +237,14 @@ function routesFunction(FastRoute\RouteCollector $r)
 
     $r->addRoute('GET', '/upload', ['Blog\Controller\BlogUpload', 'showUpload']);
     $r->addRoute('POST', '/upload', ['Blog\Controller\BlogUpload', 'uploadPost']);
+    
+    $r->addRoute('GET', '/uploadFile', ['Blog\Controller\FileUpload', 'showUpload']);
+    $r->addRoute('POST', '/uploadFile', ['Blog\Controller\FileUpload', 'uploadPost']);
+    
+    //$r->addRoute('GET', '/listFiles', ['Blog\Controller\FileUpload', 'listFiles']);
+    
+    
+
     $r->addRoute('GET', '/uploadResult', ['Blog\Controller\BlogUpload', 'uploadResult']);
     $r->addRoute('GET', '/blogreplace/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'showReplace']);
     $r->addRoute('POST', '/blogreplace/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'processReplace']);
@@ -256,6 +263,7 @@ function ensureAbsoluteFilename($filename)
     $filename = str_replace("\\", "", $filename);
     return $filename;
 }
+
 
 
 
@@ -352,4 +360,10 @@ function createUserPermissions(Session $session)
     }
     
     return new \Blog\User\LoggedInPermissions($role);
+}
+
+
+function prepareJig(Jig $jig, $injector)
+{
+    $jig->addDefaultPlugin('Blog\TemplatePlugin\BlogPostPlugin');
 }

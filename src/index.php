@@ -44,7 +44,6 @@ else {
     $request = \Tier\createRequestFromGlobals();
 }
 
-
 // Create the first Tier that needs to be run.
 $executable = new Executable('routeRequest', null, null, 'Room11\HTTP\Body');
 
@@ -61,7 +60,6 @@ $app->addPreCallable(['FCForms\HTTP', 'processFormRedirect']);
 $app->addGenerateBodyExecutable($executable);
 $app->addBeforeSendCallable('addSessionHeader');
 $app->addSendCallable('Tier\sendBodyResponse');
-
 
 $app->createStandardExceptionResolver();
 

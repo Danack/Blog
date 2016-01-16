@@ -5,7 +5,6 @@ namespace Blog\Controller;
 use Blog\Form\BlogEditForm;
 use Blog\Form\BlogReplaceForm;
 use Blog\Repository\BlogPostRepo;
-use Blog\TemplatePlugin\BlogPostPlugin;
 use Blog\UserPermissions;
 use Blog\BlogPermissionException;
 
@@ -43,10 +42,11 @@ class BlogEdit
     }
 
     /**
+     * @param UserPermissions $userPermissions
      * @param BlogReplaceForm $blogReplaceForm
      * @param BlogPostRepo $blogPostMapper
-     * @param BlogPostPlugin $blogPostPlugin
      * @param $blogPostID
+     * @throws BlogPermissionException
      * @return \Tier\Executable
      */
     public function showReplace(

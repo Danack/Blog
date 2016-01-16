@@ -60,8 +60,7 @@ class BlogJig extends Jig
         if ($matchCount != 0) {
             $srcFile = $matches[1];
         }
-    
-        //$jigConverter->addHTML(self::SYNTAX_START);
+
         $jigConverter->addText("<!-- SyntaxHighlighter Start -->");
     
         if ($srcFile) {
@@ -69,9 +68,15 @@ class BlogJig extends Jig
             $rawLink = "/staticFile/".$srcFile;
             $jigConverter->addText("\n\n<pre class='brush: $lang; toolbar: true;' data-link='$rawLink'>");
             $jigConverter->setLiteralMode(true);
-            $fileNameToServe = $this->sourceFileFetcher->fetch($srcFile);
+
+            try {
+                $contents = $this->sourceFileFetcher->fetch($srcFile);
+            }
+            catch (\Blog\Repository\SourceFileNotFoundException $sfnfe) {
+                $contents = "Oops can't find source for: ".$srcFile;
+            }
     
-            $fileContents = htmlentities(file_get_contents($fileNameToServe), ENT_QUOTES);
+            $fileContents = htmlentities($contents, ENT_QUOTES);
             $fileContents = str_replace("<?php ", "&lt;php", $fileContents);
             $fileContents = str_replace("? >", "?&gt;", $fileContents);
     

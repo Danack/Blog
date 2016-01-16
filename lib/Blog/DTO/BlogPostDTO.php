@@ -36,8 +36,6 @@ class BlogPostDTO {
         $this->blogPostTextID = $blogPostTextID;
     }
 
-
-
     /**
      * @param $query \Intahwebz\TableMap\SQLQuery
      * @param $blogPost \Blog\DB\BlogPostTable

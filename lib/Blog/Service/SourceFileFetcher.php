@@ -6,7 +6,7 @@ interface SourceFileFetcher
 {
     /**
      * @param $srcFile
-     * @return string
+     * @return string The contents of the file
      */
     public function fetch($srcFile);
 }

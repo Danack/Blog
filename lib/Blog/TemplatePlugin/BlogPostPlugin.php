@@ -4,11 +4,11 @@ namespace Blog\TemplatePlugin;
 
 use Jig\Plugin;
 use Jig\Plugin\BasicPlugin;
-//use ScriptServer\Service\ScriptInclude;
 use Blog\Content\BlogPost;
 use Jig\Jig;
 use Auryn\Injector;
 use Michelf\MarkdownExtra;
+use Blog\Site\CodeHighlighter;
 
 class BlogPostPlugin extends BasicPlugin
 {
@@ -23,32 +23,22 @@ class BlogPostPlugin extends BasicPlugin
     private $injector;
     
     public function __construct(
-        //ScriptInclude $scriptInclude,
         Jig $jig,
         Injector $injector
     ) {
-        //$this->scriptInclude = $scriptInclude;
         $this->jig = $jig;
         $this->injector = $injector;
-    }
-
-    public static function hasBlock($blockName)
-    {
-        $blockList = static::getBlockRenderList();
-        $parentBlockList = parent::getBlockRenderList();
-        $blockList = array_merge($parentBlockList, $blockList);
-
-        return in_array($blockName, $blockList, true);
     }
 
     public static function getBlockRenderList()
     {
         return [
             'markdown',
+            'highlightCode',
+            'highlightTemplate',
         ];
     }
-    
-    
+
     /**
      * @return array
      */
@@ -65,6 +55,19 @@ class BlogPostPlugin extends BasicPlugin
         return array_merge($functions, $parentFunctions);
     }
 
+    public function highlightCodeBlockRenderStart($extraParam)
+    {
+        return '<div class="tab-content codeContent"><pre class="code">';
+    }
+    
+    public static function highlightCodeBlockRenderEnd($contents)
+    {
+        $text = trim(CodeHighlighter::highlight($contents));
+        $text .= '</pre></div>';
+
+        return $text;
+    }
+    
 
     public function markdownBlockRenderStart($segmentText)
     {

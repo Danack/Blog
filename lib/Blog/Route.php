@@ -32,6 +32,16 @@ class Route
     {
         return "/upload";
     }
+    
+    public function listSourceFiles()
+    {
+    return "/listFiles";
+    }
+    
+    public static function showUploadFile()
+    {
+        return "/uploadFile";
+    }
 
     public static function showDrafts()
     {

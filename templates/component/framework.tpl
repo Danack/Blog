@@ -18,6 +18,8 @@
     {* $scriptInclude->addCSS("blogPrint", 'print') *}
     {$scriptInclude->addCSSFile("SyntaxHighlighter/shCoreRDark")}
     {$scriptInclude->addCSSFile("SyntaxHighlighter/shThemeRDark")}
+    {$scriptInclude->addCSSFile("code_highlight_danack")}
+
     {$scriptInclude->renderCSSLinks() | nofilter}
 
     <link rel="alternate" type="application/atom+xml" href="/rss" />

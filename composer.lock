@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3a539eecb9906ed487d8c57dcdb0ef74",
+    "hash": "cd03bfc8baac3b067150952ed601d411",
     "packages": [
         {
             "name": "amphp/amp",
@@ -802,20 +802,21 @@
         },
         {
             "name": "danack/jig",
-            "version": "0.17.2",
+            "version": "0.20.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
-                "reference": "9f88fd2bab4017b2c95e5a910ff43e1dc352aa90"
+                "reference": "c3768907f813ec1ee5069358702f00075c44c277"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Jig/zipball/9f88fd2bab4017b2c95e5a910ff43e1dc352aa90",
-                "reference": "9f88fd2bab4017b2c95e5a910ff43e1dc352aa90",
+                "url": "https://api.github.com/repos/Danack/Jig/zipball/c3768907f813ec1ee5069358702f00075c44c277",
+                "reference": "c3768907f813ec1ee5069358702f00075c44c277",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "^0.9.3"
+                "nikic/php-parser": "^0.9.3",
+                "zendframework/zend-escaper": "^2.5.0"
             },
             "require-dev": {
                 "mockery/mockery": "0.9.1",
@@ -848,7 +849,7 @@
                 "template",
                 "view"
             ],
-            "time": "2015-12-14 00:44:50"
+            "time": "2015-12-26 22:08:29"
         },
         {
             "name": "danack/scripthelper",
@@ -918,16 +919,16 @@
         },
         {
             "name": "danack/tier",
-            "version": "0.2.3",
+            "version": "0.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Tier.git",
-                "reference": "020762220e251c498a3a3bcdf0d207474867f6c0"
+                "reference": "99f419a0ee8843fada4ab36368ed41ecd462ca9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Tier/zipball/020762220e251c498a3a3bcdf0d207474867f6c0",
-                "reference": "020762220e251c498a3a3bcdf0d207474867f6c0",
+                "url": "https://api.github.com/repos/Danack/Tier/zipball/99f419a0ee8843fada4ab36368ed41ecd462ca9e",
+                "reference": "99f419a0ee8843fada4ab36368ed41ecd462ca9e",
                 "shasum": ""
             },
             "require": {
@@ -965,7 +966,7 @@
                 "di",
                 "example"
             ],
-            "time": "2015-12-03 21:48:47"
+            "time": "2015-12-20 15:34:45"
         },
         {
             "name": "daverandom/libdns",
@@ -1070,16 +1071,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.5.2",
+            "version": "v1.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "47c7128262da274f590ae6f86eb137a7a64e82af"
+                "reference": "47cdc76ceb95cc591d9c79a36dc3794975b5d136"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/47c7128262da274f590ae6f86eb137a7a64e82af",
-                "reference": "47c7128262da274f590ae6f86eb137a7a64e82af",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/47cdc76ceb95cc591d9c79a36dc3794975b5d136",
+                "reference": "47cdc76ceb95cc591d9c79a36dc3794975b5d136",
                 "shasum": ""
             },
             "require": {
@@ -1136,7 +1137,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-12-03 10:50:37"
+            "time": "2015-12-19 05:03:47"
         },
         {
             "name": "doctrine/collections",
@@ -2144,16 +2145,16 @@
         },
         {
             "name": "michelf/php-markdown",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/michelf/php-markdown.git",
-                "reference": "e1aabe18173231ebcefc90e615565742fc1c7fd9"
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/e1aabe18173231ebcefc90e615565742fc1c7fd9",
-                "reference": "e1aabe18173231ebcefc90e615565742fc1c7fd9",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/156e56ee036505ec637d761ee62dc425d807183c",
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c",
                 "shasum": ""
             },
             "require": {
@@ -2176,14 +2177,14 @@
             ],
             "authors": [
                 {
-                    "name": "John Gruber",
-                    "homepage": "http://daringfireball.net/"
-                },
-                {
                     "name": "Michel Fortin",
                     "email": "michel.fortin@michelf.ca",
                     "homepage": "https://michelf.ca/",
                     "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
                 }
             ],
             "description": "PHP Markdown",
@@ -2191,7 +2192,7 @@
             "keywords": [
                 "markdown"
             ],
-            "time": "2015-03-01 12:03:08"
+            "time": "2015-12-24 01:37:31"
         },
         {
             "name": "mikey179/vfsStream",
@@ -2837,16 +2838,16 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
-                "reference": "589f32fe4f43155ea303d505171634c45f15e876"
+                "reference": "dd2cfb20fabd4efca14cf3b2345d40b3dd5e9aca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/589f32fe4f43155ea303d505171634c45f15e876",
-                "reference": "589f32fe4f43155ea303d505171634c45f15e876",
+                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/dd2cfb20fabd4efca14cf3b2345d40b3dd5e9aca",
+                "reference": "dd2cfb20fabd4efca14cf3b2345d40b3dd5e9aca",
                 "shasum": ""
             },
             "require": {
@@ -2890,20 +2891,20 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-02 20:29:24"
+            "time": "2015-12-26 13:37:56"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "b600fec37c0efca08046d481d79e7eabc07108ff"
+                "reference": "eaa3320e32f09a01dc432c6efbe8051aee59cfef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/b600fec37c0efca08046d481d79e7eabc07108ff",
-                "reference": "b600fec37c0efca08046d481d79e7eabc07108ff",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/eaa3320e32f09a01dc432c6efbe8051aee59cfef",
+                "reference": "eaa3320e32f09a01dc432c6efbe8051aee59cfef",
                 "shasum": ""
             },
             "require": {
@@ -2943,20 +2944,20 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-30 20:15:42"
+            "time": "2015-12-05 17:37:59"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "740c98235f5b6e2b0b13df2fb97c7a1c7d1a18fc"
+                "reference": "a2712aff8b250d9601ad6bd23a2ff82a12730e8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/740c98235f5b6e2b0b13df2fb97c7a1c7d1a18fc",
-                "reference": "740c98235f5b6e2b0b13df2fb97c7a1c7d1a18fc",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/a2712aff8b250d9601ad6bd23a2ff82a12730e8e",
+                "reference": "a2712aff8b250d9601ad6bd23a2ff82a12730e8e",
                 "shasum": ""
             },
             "require": {
@@ -2999,11 +3000,11 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-02 20:29:39"
+            "time": "2015-12-23 17:16:29"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3063,20 +3064,23 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "0b6a8940385311a24e060ec1fe35680e17c74497"
+                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/0b6a8940385311a24e060ec1fe35680e17c74497",
-                "reference": "0b6a8940385311a24e060ec1fe35680e17c74497",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/49ff736bd5d41f45240cec77b44967d76e0c3d25",
+                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
             },
             "type": "library",
             "extra": {
@@ -3115,7 +3119,51 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-20 09:19:13"
+        },
+        {
+            "name": "zendframework/zend-escaper",
+            "version": "2.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-escaper.git",
+                "reference": "a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-escaper/zipball/a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73",
+                "reference": "a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.23"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev",
+                    "dev-develop": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Escaper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "homepage": "https://github.com/zendframework/zend-escaper",
+            "keywords": [
+                "escaper",
+                "zf2"
+            ],
+            "time": "2015-06-03 14:05:37"
         },
         {
             "name": "zendframework/zend-filter",
@@ -4260,16 +4308,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "f79824187de95064a2f5038904c4d7f0227fedb5"
+                "reference": "ac84cbb98b68a6abbc9f5149eb96ccc7b07b8966"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/f79824187de95064a2f5038904c4d7f0227fedb5",
-                "reference": "f79824187de95064a2f5038904c4d7f0227fedb5",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/ac84cbb98b68a6abbc9f5149eb96ccc7b07b8966",
+                "reference": "ac84cbb98b68a6abbc9f5149eb96ccc7b07b8966",
                 "shasum": ""
             },
             "require": {
@@ -4305,7 +4353,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-30 12:35:10"
+            "time": "2015-12-26 13:37:56"
         }
     ],
     "aliases": [],

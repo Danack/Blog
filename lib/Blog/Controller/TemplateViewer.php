@@ -43,9 +43,9 @@ class TemplateViewer
         /** @var $templateName \Tier\InjectionParams */
         $injectionParams->addToInjector($templateInjector);
 
-        $className = $jigRender->getFQCNFromTemplateName($templateName);
-        $jigRender->checkTemplateCompiled($templateName);
-        
+        //$className = $jigRender->getFQCNFromTemplateName($templateName);
+        $className = $jigRender->compile($templateName);
+
         $html = $templateInjector->execute([$className, 'render']);
 
         if ($displayAsPre) {

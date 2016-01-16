@@ -17,7 +17,7 @@
         {* include file='component/sidebar' *}
     </div>
     
-    <div class="col-md-9">
+    <div class="col-md-10">
     {block name='content'}
         This is the blank page - it should never be seen.
     {/block}
