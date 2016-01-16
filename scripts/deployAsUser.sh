@@ -15,7 +15,7 @@ if [ "${environment}" != "${dev_environment}" ]; then
     oauthtoken=${blog_github_access_token}
     composer config -g github-oauth.github.com $oauthtoken
     #Run Composer install to get all the dependencies.
-    php -d allow_url_fopen=1 /usr/sbin/composer install --no-interaction --prefer-dist
+    php -d allow_url_fopen=1 /usr/sbin/composer install --no-interaction --prefer-dist  --no-dev
 fi
 
 #Generate the config files for nginx, etc.
