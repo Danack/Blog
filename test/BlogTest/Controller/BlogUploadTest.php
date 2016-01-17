@@ -19,10 +19,7 @@ class BlogUploadTest extends BaseTestCase
      */
     private $injector;
 
-     /**
-     * 
-     */
-    function setUp()
+    public function setUp()
     {
         parent::setUp();
         
@@ -32,7 +29,7 @@ class BlogUploadTest extends BaseTestCase
     public function testShowUpload()
     {
         $injector = createTestInjector();
-        $uploadForm = $injector->make('BaseReality\Form\BlogUploadForm'); 
+        $uploadForm = $injector->make('BaseReality\Form\BlogUploadForm');
         
         $mock = \Mockery::mock($uploadForm)
             ->shouldReceive('validate')
@@ -48,7 +45,7 @@ class BlogUploadTest extends BaseTestCase
     public function testShowUploadInvalid()
     {
         $injector = createTestInjector();
-        $uploadForm = $injector->make('BaseReality\Form\BlogUploadForm'); 
+        $uploadForm = $injector->make('BaseReality\Form\BlogUploadForm');
         
         $mock = \Mockery::mock($uploadForm)
             ->shouldReceive('false')
@@ -75,5 +72,3 @@ class BlogUploadTest extends BaseTestCase
         $this->assertInstanceOf('Tier\Tier', $result);
     }
 }
-
-

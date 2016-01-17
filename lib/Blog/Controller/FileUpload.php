@@ -10,6 +10,8 @@ use ASM\Session;
 use Blog\Debug;
 use Blog\UserPermissions;
 use Blog\BlogPermissionException;
+use Room11\HTTP\Body\TextBody;
+use Tier\Tier;
 
 function processUploadedFile(UploadedFile $uploadedFile)
 {
@@ -32,7 +34,6 @@ class FileUpload
 {
     public function showUpload(
         UserPermissions $userPermissions,
-        Session $session,
         SourceFileUploadForm $sourceFileUploadForm,
         SourceFileRepo $sourceFileRepo,
         Debug $debug
@@ -43,12 +44,12 @@ class FileUpload
         
         $dataStoredInSession = $sourceFileUploadForm->initFromStorage();
         if (!$dataStoredInSession) {
-            return \Tier\getRenderTemplateTier('pages/sourceFile/displayUploadForm', [$sourceFileUploadForm]);
+            return Tier::getRenderTemplateTier('pages/sourceFile/displayUploadForm', [$sourceFileUploadForm]);
         }
         $valid = $sourceFileUploadForm->validate();
 
         if (!$valid) {
-            return \Tier\getRenderTemplateTier('pages/sourceFile/displayUploadForm', [$sourceFileUploadForm]);
+            return Tier::getRenderTemplateTier('pages/sourceFile/displayUploadForm', [$sourceFileUploadForm]);
         }
 
         list($filename, $text) = $sourceFileUploadForm->getBlogUpload();
@@ -56,7 +57,7 @@ class FileUpload
 
         $debug->add("sourcefile uploaded Id is $sourceFileID"); 
 
-        return \Tier\getRenderTemplateTier('pages/uploadSuccess');
+        return Tier::getRenderTemplateTier('pages/uploadSuccess');
     }
 
     /**
@@ -64,13 +65,18 @@ class FileUpload
      */
     public function uploadResult()
     {
-        return \Tier\getRenderTemplateTier('pages/uploadSuccess');
+        return Tier::getRenderTemplateTier('pages/uploadSuccess');
     }
     
-//    public function listFiles()
-//    {
-//        return \Tier\getRenderTemplateTier('pages/sourceFile/listFiles');
-//    }
-//    
+    public function listFiles()
+    {
+        return Tier::getRenderTemplateTier('pages/sourceFile/listFiles');
+    }
     
+    public function showFile(SourceFileRepo $sourceFileRepo, $filename)
+    {
+        $sourceFile = $sourceFileRepo->getSourceFile($filename);
+
+        return new TextBody($sourceFile->text);
+    }
 }

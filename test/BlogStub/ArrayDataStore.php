@@ -4,10 +4,8 @@ namespace BlogStub;
 
 use Intahwebz\Form\DataStore;
 
-
-
-class ArrayDataStore implements DataStore {
-
+class ArrayDataStore implements DataStore
+{
     private $data = [];
     
     public function getData($name, $default, $clearOnRead)
@@ -30,4 +28,3 @@ class ArrayDataStore implements DataStore {
         $this->data[$name] = $data;
     }
 }
-

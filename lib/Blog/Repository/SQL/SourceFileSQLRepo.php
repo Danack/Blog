@@ -82,4 +82,18 @@ class SourceFileSQLRepo implements SourceFileRepo
 
         return $sourceFileID;
     }
+
+    public function getAllSourceFiles()
+    {
+        $sqlQuery = $this->sqlQueryFactory->create();
+        $sqlQuery->table($this->sourceFileTable);
+        $list = $sqlQuery->fetch();
+        $sourceFiles = [];
+
+        foreach ($list as $item) {
+            $sourceFiles[] = castToObject('Blog\Content\SourceFile', $item);
+        }
+
+        return $sourceFiles;
+    }
 }

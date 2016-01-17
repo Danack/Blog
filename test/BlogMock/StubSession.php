@@ -5,8 +5,8 @@ namespace BlogMock;
 
 use Intahwebz\Session;
 
-class StubEmptySession implements Session {
-
+class StubEmptySession implements Session
+{
     public function initSession()
     {
         // TODO: Implement initSession() method.
@@ -47,7 +47,4 @@ class StubEmptySession implements Session {
     {
         // TODO: Implement logoutUser() method.
     }
-
-
 }
-

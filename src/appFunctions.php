@@ -13,21 +13,16 @@ use GithubService\GithubArtaxService\GithubService;
 use Intahwebz\DB\StatementFactory;
 use Jig\Jig;
 use Jig\JigConfig;
-use Tier\Executable;
-use Tier\InjectionParams;
 use Psr\Log\LoggerInterface;
-use Room11\HTTP\Request;
 use Room11\HTTP\Response;
-use Room11\HTTP\Body;
 use Room11\HTTP\VariableMap;
 use Room11\HTTP\HeadersSet;
 use Tier\TierApp;
 use FastRoute\Dispatcher;
 
-
 function createMySQLiConnection(
     Config $config,
-    LoggerInterface $logger, 
+    LoggerInterface $logger,
     StatementFactory $statementWrapperFactory
 ) {
     $host     = $config->getKey('MYSQL_SERVER');
@@ -102,60 +97,11 @@ function createScriptInclude(
     }
 }
 
-/**
- * The callable that routes a request.
- * @param Response $response
- * @return \Tier\Executable
- */
-function routeRequest(Dispatcher $dispatcher, Request $request, Response $response)
-{
-    $httpMethod = $request->getMethod();
-    $uri = $request->getPath();
-
-    $queryPosition = strpos($uri, '?');
-    if ($queryPosition !== false) {
-        $uri = substr($uri, 0, $queryPosition);
-    }
-
-    $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-
-    switch ($routeInfo[0]) {
-        case (FastRoute\Dispatcher::NOT_FOUND): {
-            $response->setStatus(404);
-            return \Tier\getRenderTemplateTier('error/error404');
-        }
-
-        case FastRoute\Dispatcher::METHOD_NOT_ALLOWED: {
-            // TODO - this is meant to set a header saying which methods
-            // are allowed
-            $allowedMethods = $routeInfo[1];
-            $response->setStatus(405);
-            return \Tier\getRenderTemplateTier('error/error405');
-        }
-
-        case FastRoute\Dispatcher::FOUND: {
-            $handler = $routeInfo[1];
-            $vars = $routeInfo[2];
-            $params = InjectionParams::fromParams($vars);
-
-            return new Executable($handler, $params);
-        }
-
-        default: {
-            //Not supported
-            // TODO - this is meant to set a header saying which methods
-            $response->setStatus(404);
-            return \Tier\getRenderTemplateTier('error/error404');
-            break;
-        }
-    }
-}
-
 
 function correctUmask($filename)
 {
     $umask = umask();
-    $correctMode = ( 0777 - $umask);
+    $correctMode = (0777 - $umask);
 
     return chmod($filename, $correctMode);
 }
@@ -164,7 +110,6 @@ function saveTmpFile($tmpName, $destFilename)
 {
     renameMultiplatform($tmpName, $destFilename);
     correctUmask($destFilename);
-    //@unlink($tmpName);
 }
 
 function getTemplates($directory)
@@ -251,7 +196,8 @@ function routesFunction(FastRoute\RouteCollector $r)
     $r->addRoute('GET', '/staticFile/{filename:[^/]+}', ['Blog\Controller\Proxy', 'staticFile']);
 
     $r->addRoute('GET', '/perfTest', ['Blog\Controller\Blog', 'perfTest']);
-    
+    $r->addRoute('GET', '/sourceFile/{filename:.+}', ['Blog\Controller\FileUpload', 'showFile']);
+    $r->addRoute('GET', '/listFiles', ['Blog\Controller\FileUpload', 'listFiles']);
     $r->addRoute('GET', '/', ['Blog\Controller\Blog', 'index']);
 }
 

@@ -1,9 +1,6 @@
 <?php
 
 use Tier\InjectionParams;
-use FileFilter\YuiCompressorPath;
-use Blog\Value\CachePath;
-use FCForms\FileFetcher\StubFileFetcher;
 
 // These classes will only be created  by the injector once
 $shares = [
@@ -20,10 +17,12 @@ $shares = [
     //new WebRootPath(__DIR__.'/../public/'),
     //new LogPath(__DIR__.'/../var/log/'),
     //new ExternalLibPath(__DIR__.'/../lib/'),
-    new YuiCompressorPath("/usr/lib/yuicompressor.jar"),
-    new CachePath(__DIR__.'/../var/cache/'),
+    new \FileFilter\YuiCompressorPath("/usr/lib/yuicompressor.jar"),
+    new \Blog\Value\CachePath(__DIR__.'/../var/cache/'),
     new \FileFilter\TmpPath(__DIR__.'/../var/cache/'),
-    new \Blog\Value\BlogDraftPath( __DIR__."/../var/blogDraft/"),
+    new \Blog\Value\BlogDraftPath(__DIR__."/../var/blogDraft/"),
+    new \FileFilter\TmpPath(__DIR__.'/../var/cache/'),
+    new \FCForms\FileFetcher\FileUploadPath(__DIR__.'/../var/file_upload/'),
     'Blog\Config',
     'Room11\HTTP\HeadersSet',
     'Blog\Debug',
@@ -39,7 +38,6 @@ $aliases = [
     'ASM\Driver' => 'ASM\File\FileDriver',
     'Blog\Repository\SourceFileRepo' => 'Blog\Repository\SQL\SourceFileSQLRepo',
     'Blog\Repository\BlogPostRepo' => 'Blog\Repository\SQL\BlogPostSQLRepo',
-    //'Blog\Service\SourceFileFetcher' => 'Blog\Service\OnlineSourceFileFetcher',
     'Blog\Service\SourceFileFetcher' => 'Blog\Service\SourceFileFetcher\DBSourceFileFetcher',
     'Intahwebz\DB\Connection' => 'Intahwebz\DB\MySQLiConnection',
     'Intahwebz\DB\StatementFactory' =>'Intahwebz\DB\MySQLiStatementFactory',
@@ -49,21 +47,19 @@ $aliases = [
     'Psr\Log\LoggerInterface' => 'Blog\NullLogger',
     'Jig\Jig' => 'Blog\Service\BlogJig',
     'Jig\Escaper' => 'Jig\Bridge\ZendEscaperBridge',
+    'FCForms\Escaper' => 'FCForms\Bridge\ZendEscaperBridge',
     'FCForms\Render' => 'FCForms\Render\BootStrapRender',
     'Blog\Repository\LoginRepo' => 'Blog\Repository\SQL\LoginSQLRepo',
-    'Intahwebz\FileFetcher' => 'Intahwebz\Utils\UploadedFileFetcher',
     'FCForms\DataStore' => 'Blog\Bridge\SessionDataStore',
-    'FCForms\FileFetcher' => 'FCForms\FileFetcher\UploadedFileFetcher',
-    'Room11\HTTP\VariableMap' => 'Room11\HTTP\VariableMap\RequestVariableMap',
-    'Room11\HTTP\RequestHeaders' => 'Room11\HTTP\Request\HTTPRequestHeaders',
-    'Room11\HTTP\Response' => 'Room11\HTTP\Response\Response',
+    'FCForms\FileFetcher' => 'FCForms\FileFetcher\PSR7UploadedFileFetcher',
+    'Tier\VariableMap\VariableMap' => 'Tier\VariableMap\RequestVariableMap',
     'ScriptHelper\FilePacker' => 'ScriptHelper\FilePacker\YuiFilePacker',
     'ScriptHelper\ScriptVersion' => 'ScriptHelper\ScriptVersion\DateScriptVersion',
-    'ScriptHelper\ScriptURLGenerator' => 'ScriptHelper\ScriptURLGenerator\StandardScriptURLGenerator'
+    'ScriptHelper\ScriptURLGenerator' => 'ScriptHelper\ScriptURLGenerator\StandardScriptURLGenerator',
+    'Zend\Diactoros\Response\EmitterInterface' => 'Zend\Diactoros\Response\SapiEmitter',
 ];
 
-
-
+//'Jig\Escaper' => 'Jig\Bridge\ZendEscaperBridge',
 
 
 // Delegate the creation of types to callables.

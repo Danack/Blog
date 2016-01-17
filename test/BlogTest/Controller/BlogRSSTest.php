@@ -6,32 +6,24 @@ use BlogTest\BaseTestCase;
 use Mockery\Mock;
 use Arya\Response;
 
-class BlogRSTest extends BaseTestCase {
-
+class BlogRSTest extends BaseTestCase
+{
     /**
      * @var \Auryn\Injector
      */
     private $injector;
-    
-    /**
-     * 
-     */
-    function setUp()
+
+    public function setUp()
     {
         parent::setUp();
         $this->injector = createTestInjector();
 
     }
 
-
-    function testRSSFeed()
+    public function testRSSFeed()
     {
         $result = $this->injector->execute(['Blog\Controller\BlogRSS', 'rssFeed']);
         //TODO - assertions.
         //TODO - save file to VFS.
     }
 }
-
-
-
-

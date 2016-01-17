@@ -7,6 +7,7 @@ use Blog\Value\BlogDraftPath;
 use Room11\HTTP\Body\TextBody;
 use Blog\Model\ActiveBlogPost;
 use Blog\Content\BlogPost;
+use Tier\Tier;
 
 class Blog
 {
@@ -15,7 +16,7 @@ class Blog
      */
     public function index()
     {
-        return \Tier\getRenderTemplateTier('pages/index');
+        return Tier::getRenderTemplateTier('pages/index');
     }
     
     
@@ -42,12 +43,12 @@ class Blog
         $activeBlogPost = new ActiveBlogPost($blogPost);
         $params = ['Blog\Model\ActiveBlogPost' => $activeBlogPost];
 
-        return \Tier\getRenderTemplateTier('pages/displayBlogPost', $params);
+        return Tier::getRenderTemplateTier('pages/displayBlogPost', $params);
     }
 
     public function showDrafts()
     {
-        return \Tier\getRenderTemplateTier('pages/drafts');
+        return Tier::getRenderTemplateTier('pages/drafts');
     }
 
 
@@ -64,6 +65,6 @@ class Blog
         $activeBlogPost = new ActiveBlogPost($blogPost);
         $params = ['Blog\Model\ActiveBlogPost' => $activeBlogPost];
 
-        return \Tier\getRenderTemplateTier('pages/displayBlogPost', $params);
+        return Tier::getRenderTemplateTier('pages/displayBlogPost', $params);
     }
 }

@@ -7,6 +7,7 @@ use Blog\Form\BlogReplaceForm;
 use Blog\Repository\BlogPostRepo;
 use Blog\UserPermissions;
 use Blog\BlogPermissionException;
+use Tier\Tier;
 
 class BlogEdit
 {
@@ -28,17 +29,17 @@ class BlogEdit
                 $isActive = $blogEditForm->getValue('end', 'isActive');
                 $blogPostMapper->updateBlogPost($title, $isActive, $blogPostID);
 
-                return \Tier\getRenderTemplateTier('pages/blogEditSuccess');
+                return Tier::getRenderTemplateTier('pages/blogEditSuccess');
             }
             else {
-                return \Tier\getRenderTemplateTier('pages/blogEdit', [$blogEditForm]);
+                return Tier::getRenderTemplateTier('pages/blogEdit', [$blogEditForm]);
             }
         }
         
         $blogPost = $blogPostMapper->getBlogPost($blogPostID);
         $blogEditForm->initFromBlogPost($blogPost);
 
-        return \Tier\getRenderTemplateTier('pages/blogEdit', [$blogEditForm]);
+        return Tier::getRenderTemplateTier('pages/blogEdit', [$blogEditForm]);
     }
 
     /**
@@ -68,15 +69,15 @@ class BlogEdit
                 $fileContents = file_get_contents($uploadedFile->getFilename());
                 $blogPostMapper->updateBlogPostText($blogPostID, trim($fileContents));
 
-                return \Tier\getRenderTemplateTier('pages/replaceSuccess');
+                return Tier::getRenderTemplateTier('pages/replaceSuccess');
             }
             else {
-                return \Tier\getRenderTemplateTier('pages/displayReplaceForm', [$blogReplaceForm]);
+                return Tier::getRenderTemplateTier('pages/displayReplaceForm', [$blogReplaceForm]);
             }
         }
 
         $blogReplaceForm->initFromData([]);
 
-        return \Tier\getRenderTemplateTier('pages/displayReplaceForm', [$blogReplaceForm]);
+        return Tier::getRenderTemplateTier('pages/displayReplaceForm', [$blogReplaceForm]);
     }
 }

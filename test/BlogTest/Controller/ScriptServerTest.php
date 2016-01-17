@@ -6,17 +6,14 @@ use BlogTest\BaseTestCase;
 use Mockery\Mock;
 use Arya\Response;
 
-class ScriptServerTest extends BaseTestCase {
-
+class ScriptServerTest extends BaseTestCase
+{
     /**
      * @var \Auryn\Injector
      */
     private $injector;
-    
-    /**
-     * 
-     */
-    function setUp()
+
+    public function setUp()
     {
         parent::setUp();
         $this->injector = createTestInjector();
@@ -64,7 +61,7 @@ class ScriptServerTest extends BaseTestCase {
 //        $this->assertContains($item2, $items);
 //    }
 
-    function testJSPack()
+    public function testJSPack()
     {
         $item1 = 'foo';
         $item2 = 'bar';
@@ -79,7 +76,3 @@ class ScriptServerTest extends BaseTestCase {
         $this->assertInstanceOf('Arya\FileBody', $response);
     }
 }
-
-
-
-

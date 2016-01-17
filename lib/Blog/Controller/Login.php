@@ -3,15 +3,15 @@
 namespace Blog\Controller;
 
 use ASM\Session;
-use Blog\Form\LoginForm;
 use BaseReality\Security\Role;
+use Blog\Form\LoginForm;
+use Blog\Site\LoginStatus;
+use Blog\UserPermissions;
 use Blog\Repository\LoginRepo;
 use Room11\HTTP\Response;
-
 use Room11\HTTP\Body\RedirectBody;
-use Blog\Site\LoginStatus;
 use Room11\HTTP\VariableMap;
-use Blog\UserPermissions;
+use Tier\Tier;
 
 class Login
 {
@@ -33,7 +33,7 @@ class Login
             $loginForm->validate();
         }
 
-        return \Tier\getRenderTemplateTier('pages/login', ['BaseReality\Form\LoginForm' => $loginForm]);
+        return Tier::getRenderTemplateTier('pages/login', ['BaseReality\Form\LoginForm' => $loginForm]);
     }
 
     /**

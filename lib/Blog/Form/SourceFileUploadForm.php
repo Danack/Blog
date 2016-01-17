@@ -19,7 +19,6 @@ class SourceFileUploadForm extends Form
 {
     public function getBlogUpload()
     {
-        $filename =  $this->getValue('end', 'filename');
         $file =  $this->getValue('end', 'text');
         
         /** @var $file \FCForms\UploadedFile */

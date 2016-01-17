@@ -10,6 +10,7 @@ use ASM\Session;
 use Blog\Debug;
 use Blog\UserPermissions;
 use Blog\BlogPermissionException;
+use Tier\Tier;
 
 function processUploadedFile(UploadedFile $uploadedFile)
 {
@@ -43,13 +44,13 @@ class BlogUpload
         
         $dataStoredInSession = $blogUploadForm->initFromStorage();
         if (!$dataStoredInSession) {
-            return \Tier\getRenderTemplateTier('pages/displayUploadForm', [$blogUploadForm]);
+            return Tier::getRenderTemplateTier('pages/displayUploadForm', [$blogUploadForm]);
         }
         //$session->save();
         $valid = $blogUploadForm->validate();
 
         if (!$valid) {
-            return \Tier\getRenderTemplateTier('pages/displayUploadForm', [$blogUploadForm]);
+            return Tier::getRenderTemplateTier('pages/displayUploadForm', [$blogUploadForm]);
         }
 
         list($title, $text, $isActive) = $blogUploadForm->getBlogUpload();
@@ -57,7 +58,7 @@ class BlogUpload
 
         $debug->add("blog post ID is $blogPostID"); 
 
-        return \Tier\getRenderTemplateTier('pages/uploadSuccess');
+        return Tier::getRenderTemplateTier('pages/uploadSuccess');
     }
 
     /**
@@ -65,6 +66,6 @@ class BlogUpload
      */
     public function uploadResult()
     {
-        return \Tier\getRenderTemplateTier('pages/uploadSuccess');
+        return Tier::getRenderTemplateTier('pages/uploadSuccess');
     }
 }

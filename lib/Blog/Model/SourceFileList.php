@@ -3,14 +3,21 @@
 
 namespace Blog\Model;
 
-//Blah - not used.
+use Blog\Repository\SourceFileRepo;
+use Blog\Model\TemplateSourceFile;
+
 class SourceFileList implements \IteratorAggregate
 {
     private $fileList;
     
-    public function __contruct(array $filelist)
+    public function __construct(SourceFileRepo $sourceFileRepo)
     {
-        $this->filelist = $filelist;
+        $files = $sourceFileRepo->getAllSourceFiles();
+
+        $this->fileList = [];
+        foreach ($files as $file) {
+            $this->fileList[] = new TemplateSourceFile($file);
+        }
     }
 
     public function getIterator()

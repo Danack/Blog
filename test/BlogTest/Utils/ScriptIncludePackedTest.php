@@ -41,18 +41,17 @@ function convertFragmentToElements($htmlFragment, $name)
 }
 
 
-
-class ScriptIncludePackedTest extends BaseTestCase {
-
+class ScriptIncludePackedTest extends BaseTestCase
+{
     /**
      * @var \Auryn\Injector
      */
     private $injector;
     
     /**
-     * 
+     *
      */
-    function setUp()
+    public function setUp()
     {
         parent::setUp();
         $this->injector = createTestInjector();
@@ -62,7 +61,7 @@ class ScriptIncludePackedTest extends BaseTestCase {
     }
 
 
-    function testCSSPack()
+    public function testCSSPack()
     {
         $scriptIncludePacked = $this->injector->make('Intahwebz\Utils\ScriptIncludePacked');
         $scriptIncludePacked->addCSS('foo');
@@ -80,7 +79,7 @@ class ScriptIncludePackedTest extends BaseTestCase {
         $this->assertContains('bar', $item->getAttribute("href"));
     }
     
-    function testIncludeJSRequiredIndividual()
+    public function testIncludeJSRequiredIndividual()
     {
         $scriptIncludePacked = $this->injector->make('Intahwebz\Utils\ScriptIncludeIndividual');
         $scriptIncludePacked->addJSRequired('foo');
@@ -109,7 +108,7 @@ class ScriptIncludePackedTest extends BaseTestCase {
         $this->assertTrue($barFound);
     }
 
-    function testIncludeJSRequiredPacked()
+    public function testIncludeJSRequiredPacked()
     {
         $scriptIncludePacked = $this->injector->make('Intahwebz\Utils\ScriptIncludePacked');
         $scriptIncludePacked->addJSRequired('foo');
@@ -140,11 +139,4 @@ dumpFailedJS();
         
         */
     }
-    
-    
-    
 }
-
-
-
-

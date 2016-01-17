@@ -1,12 +1,12 @@
 <?php
 
-
-use Tier\TierHTTPApp;
-use Tier\Executable;
 use Composer\Autoload\ClassLoader;
+use Tier\Executable;
+use Tier\Tier;
+use Tier\TierHTTPApp;
 use Room11\HTTP\Request\CLIRequest;
 
-
+ini_set('display_errors', 'on');
 
 // App keys
 require __DIR__."/../../clavis.php";
@@ -14,6 +14,8 @@ require __DIR__."/../../clavis.php";
 require __DIR__."/../autogen/appEnv.php";
 
 $autoloader = require __DIR__.'/../vendor/autoload.php';
+
+
 
 //if (method_exists($autoloader, 'setSearchModes')) {
 //    $autoloader->setSearchModes([
@@ -24,13 +26,15 @@ $autoloader = require __DIR__.'/../vendor/autoload.php';
 //}
 
 // Contains helper functions for the 'framework'.
-require __DIR__ . "/../vendor/danack/tier/src/Tier/tierFunctions.php";
+//require __DIR__ . "/../vendor/danack/tier/src/Tier/tierFunctions.php";
 
 // Contains helper functions for the application.
 require "appFunctions.php";
 
+Tier::setupErrorHandlers();
 
-\Tier\setupErrorHandlers();
+ini_set('display_errors', 'off');
+
 
 \Intahwebz\Functions::load();
 
@@ -38,14 +42,20 @@ require "appFunctions.php";
 $injectionParams = require_once "injectionParams.php";
 
 if (strcasecmp(PHP_SAPI, 'cli') == 0) {
-    $request = new CLIRequest('/');
+    $request = new CLIRequest('/', 'blog.basereality.com');
 }
 else {
-    $request = \Tier\createRequestFromGlobals();
+    $request = Tier::createRequestFromGlobals();
 }
 
 // Create the first Tier that needs to be run.
-$executable = new Executable('routeRequest', null, null, 'Room11\HTTP\Body');
+$routingExecutable = new Executable(
+    ['Tier\JigBridge\Router', 'routeRequest'],
+    null,
+    null,
+    'Room11\HTTP\Body' //skip if this has already been produced
+);
+
 
 // Create the Tier application
 $app = new TierHTTPApp($injectionParams);
@@ -55,11 +65,11 @@ $app->addExpectedProduct('Room11\HTTP\Body');
 
 // Check to see if a form has been submitted, and we need to do 
 // a POST/GET redirect
-$app->addPreCallable(['FCForms\HTTP', 'processFormRedirect']);
+//$app->addBeforeGenerateBodyExecutable(['FCForms\HTTP', 'processFormRedirect']);
 
-$app->addGenerateBodyExecutable($executable);
-$app->addBeforeSendCallable('addSessionHeader');
-$app->addSendCallable('Tier\sendBodyResponse');
+$app->addGenerateBodyExecutable($routingExecutable);
+//$app->addBeforeSendExecutable('addSessionHeader');
+$app->addSendExecutable(['Tier\Tier', 'sendBodyResponse']);
 
 $app->createStandardExceptionResolver();
 

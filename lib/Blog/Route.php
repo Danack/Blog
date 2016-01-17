@@ -3,6 +3,7 @@
 namespace Blog;
 
 use Blog\Content\BlogPost;
+use Blog\Content\SourceFile;
 
 /**
  * Class Route 
@@ -85,4 +86,10 @@ class Route
     {
         return "/blogreplace/".$blogPostID;
     }
+    
+    public static function blogSourceFile(SourceFile $sourceFile)
+    {
+        return "/sourceFile/".$sourceFile->filename;
+    }
+    
 }

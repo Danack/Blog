@@ -5,7 +5,6 @@ namespace Blog\Repository;
 
 interface SourceFileRepo
 {
-
     /**
      * @param $filename
      * @return \Blog\Content\SourceFile
@@ -15,4 +14,6 @@ interface SourceFileRepo
     public function addSourceFile($filename, $text);
 
     public function updateSourceFile($sourceFileID, $filename, $text);
+    
+    public function getAllSourceFiles();
 }

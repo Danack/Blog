@@ -4,27 +4,28 @@ namespace Blog\Controller;
 
 use Auryn\Injector;
 use Blog\Data\TemplateList;
-use Room11\HTTP\Request\Request;
+use Room11\HTTP\VariableMap;
 use Room11\HTTP\Body\HtmlBody;
+use Tier\Tier;
 
 
 class TemplateViewer
 {
-    public function index(Injector $injector, Request $request)
+    public function index(Injector $injector, VariableMap $request)
     {
-        if ($request->hasQueryParameter('template') == false ||
-            $request->hasQueryParameter('displayAsPre') == false) {
-            return \Tier\getRenderTemplateTier('pages/test/templateTest');
-        }
+        $templateName = $request->getVariable('template');
+        $displayAsPre = $request->getVariable('displayAsPre');
         
-        $templateName = $request->getQueryParameter('template');
-        $displayAsPre = $request->getQueryParameter('displayAsPre');
+        if ($templateName == false ||
+            $displayAsPre == false) {
+            return Tier::getRenderTemplateTier('pages/test/templateTest');
+        }
 
         $srcPath = __DIR__."/../../../templates/";
         $templates = getTemplates($srcPath);
         
         if (!in_array($templateName, $templates)) {
-            return \Tier\getRenderTemplateTier('pages/test/templateTest');
+            return Tier::getRenderTemplateTier('pages/test/templateTest');
         }
 
         $templateInjector = clone $injector;
@@ -53,7 +54,7 @@ class TemplateViewer
             
             $templateList = new TemplateList($templates);
 
-            return \Tier\getRenderTemplateTier(
+            return Tier::getRenderTemplateTier(
                 'pages/test/templateViewer',
                 [
                     'Blog\Model\TemplateHTML' => new \Blog\Model\TemplateHTML($html),

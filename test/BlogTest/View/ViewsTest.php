@@ -74,7 +74,7 @@ class ViewsTest extends BaseTestCase
         $injector->share($templateList);
 
         $blogPostID = BlogPostRepo::getNextBlogPostID();
-        $blogPostTextID = $blogPostID; 
+        $blogPostTextID = $blogPostID;
         
         $blogPost = BlogPostRepo::create(
             $blogPostID,

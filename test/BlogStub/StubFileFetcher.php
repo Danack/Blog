@@ -4,18 +4,16 @@ namespace BlogStub;
 
 use Intahwebz\FileFetcher;
 
-
-
-class StubFileFetcher implements FileFetcher {
-    
+class StubFileFetcher implements FileFetcher
+{
     private $filenamesAndPaths;
 
-    function __construct($filenamesAndPaths = [])
+    public function __construct($filenamesAndPaths = [])
     {
         $this->filenamesAndPaths = $filenamesAndPaths;
     }
 
-    function hasUploadedFile($formFileName)
+    public function hasUploadedFile($formFileName)
     {
         return array_key_exists($formFileName, $this->filenamesAndPaths);
     }
@@ -25,7 +23,7 @@ class StubFileFetcher implements FileFetcher {
      * @return mixed
      * @throws \InvalidArgumentException
      */
-    function getUploadedFile($formFileName)
+    public function getUploadedFile($formFileName)
     {
         return $this->filenamesAndPaths[$formFileName];
     }
