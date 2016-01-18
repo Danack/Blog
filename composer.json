@@ -24,7 +24,7 @@
         "danack/jig": "^0.20.4",
         "danack/scripthelper": "^0.0.2",
         "danack/syntaxhighlighter": "~3.1.0",
-        "danack/tier": "^0.3.0",
+        "danack/tier": "^0.3.1",
         "incoming/incoming": "v0.2.1",
         "intahwebz/db": "^0.1.1",
         "intahwebz/weaver": "~0.4.5",
