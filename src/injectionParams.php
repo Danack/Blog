@@ -48,10 +48,13 @@ $aliases = [
     'Jig\Jig' => 'Blog\Service\BlogJig',
     'Jig\Escaper' => 'Jig\Bridge\ZendEscaperBridge',
     'FCForms\Escaper' => 'FCForms\Bridge\ZendEscaperBridge',
+    
     'FCForms\Render' => 'FCForms\Render\BootStrapRender',
     'Blog\Repository\LoginRepo' => 'Blog\Repository\SQL\LoginSQLRepo',
     'FCForms\DataStore' => 'Blog\Bridge\SessionDataStore',
     'FCForms\FileFetcher' => 'FCForms\FileFetcher\PSR7UploadedFileFetcher',
+    'Room11\HTTP\RequestHeaders' => 'Room11\HTTP\RequestHeaders\HTTPRequestHeaders',
+    
     'Tier\VariableMap\VariableMap' => 'Tier\VariableMap\RequestVariableMap',
     'ScriptHelper\FilePacker' => 'ScriptHelper\FilePacker\YuiFilePacker',
     'ScriptHelper\ScriptVersion' => 'ScriptHelper\ScriptVersion\DateScriptVersion',

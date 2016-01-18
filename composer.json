@@ -22,7 +22,7 @@
         "danack/filefilter": "^0.0.1",
         "danack/githubartaxservice": "^0.4.6",
         "danack/jig": "^0.20.4",
-        "danack/scripthelper": "^0.0.2",
+        "danack/scripthelper": "^0.0.3",
         "danack/syntaxhighlighter": "~3.1.0",
         "danack/tier": "^0.3.1",
         "incoming/incoming": "v0.2.1",
