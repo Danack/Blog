@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d438153dc45eea1b188febab4a0d07fe",
+    "hash": "9af4d8bb238af5080c6b2579f8bbcb30",
     "packages": [
         {
             "name": "amphp/amp",
@@ -388,21 +388,21 @@
         },
         {
             "name": "danack/fcforms",
-            "version": "0.7.0",
+            "version": "0.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/FirstClassForms.git",
-                "reference": "e65e0d1994a16fbcf67b91d1ee08dc4dff8e989a"
+                "reference": "7acbd1361bed863d433e1d794b00c13ac2022b9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/FirstClassForms/zipball/e65e0d1994a16fbcf67b91d1ee08dc4dff8e989a",
-                "reference": "e65e0d1994a16fbcf67b91d1ee08dc4dff8e989a",
+                "url": "https://api.github.com/repos/Danack/FirstClassForms/zipball/7acbd1361bed863d433e1d794b00c13ac2022b9a",
+                "reference": "7acbd1361bed863d433e1d794b00c13ac2022b9a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4",
-                "room11/http": "^0.0.10",
+                "room11/http": "^0.1.0",
                 "zendframework/zend-filter": ">=2.1.5",
                 "zendframework/zend-inputfilter": ">=2.1.5",
                 "zendframework/zend-validator": ">=2.1.5"
@@ -445,7 +445,7 @@
                 "intahwebz",
                 "library"
             ],
-            "time": "2016-01-17 22:56:28"
+            "time": "2016-01-19 18:10:15"
         },
         {
             "name": "danack/filefilter",
@@ -1668,16 +1668,16 @@
         },
         {
             "name": "room11/http",
-            "version": "0.0.10",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/HTTP.git",
-                "reference": "5b427e7fb89076441e859c197aa725e3cfa89b73"
+                "reference": "e909d21ea44799947b18fa02e8aa24f017bb860c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/HTTP/zipball/5b427e7fb89076441e859c197aa725e3cfa89b73",
-                "reference": "5b427e7fb89076441e859c197aa725e3cfa89b73",
+                "url": "https://api.github.com/repos/Danack/HTTP/zipball/e909d21ea44799947b18fa02e8aa24f017bb860c",
+                "reference": "e909d21ea44799947b18fa02e8aa24f017bb860c",
                 "shasum": ""
             },
             "require-dev": {
@@ -1709,7 +1709,7 @@
                 "interface",
                 "room11"
             ],
-            "time": "2016-01-07 18:07:52"
+            "time": "2016-01-18 12:49:27"
         },
         {
             "name": "zendframework/zend-diactoros",
