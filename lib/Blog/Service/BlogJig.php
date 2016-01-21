@@ -34,7 +34,7 @@ class BlogJig extends Jig
      */
     public function processSyntaxHighlighterEnd(JigConverter $jigConverter)
     {
-        $jigConverter->setLiteralMode(false);
+        $jigConverter->setLiteralMode(null);
         $jigConverter->addText("</pre>");
     }
 
@@ -67,7 +67,7 @@ class BlogJig extends Jig
             //TODO - add error checking.
             $rawLink = "/staticFile/".$srcFile;
             $jigConverter->addText("\n\n<pre class='brush: $lang; toolbar: true;' data-link='$rawLink'>");
-            $jigConverter->setLiteralMode(true);
+            $jigConverter->setLiteralMode('SyntaxHighlighter');
 
             try {
                 $contents = $this->sourceFileFetcher->fetch($srcFile);
@@ -83,8 +83,8 @@ class BlogJig extends Jig
             $jigConverter->addText($fileContents);
         }
         else {
-            $jigConverter->addText("\n\n<pre class='brush: $lang; toolbar: true;'>");
-            $jigConverter->setLiteralMode(true);
+            $jigConverter->addText("\n<pre class='brush: $lang; toolbar: true;'>");
+            $jigConverter->setLiteralMode('SyntaxHighlighter');
         }
     }
 }

@@ -6,7 +6,6 @@ namespace Blog\Controller;
 use Blog\Repository\SourceFileRepo;
 use Blog\Form\SourceFileUploadForm;
 use Intahwebz\UploadedFile;
-use ASM\Session;
 use Blog\Debug;
 use Blog\UserPermissions;
 use Blog\BlogPermissionException;

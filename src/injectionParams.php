@@ -33,29 +33,27 @@ $shares = [
 // Alias interfaces (or classes) to the actual types that should be used 
 // where they are required. 
 $aliases = [
-    'ArtaxServiceBuilder\ResponseCache' =>
-    'ArtaxServiceBuilder\ResponseCache\NullResponseCache',
+    'ArtaxServiceBuilder\ResponseCache' => 'ArtaxServiceBuilder\ResponseCache\NullResponseCache',
     'ASM\Driver' => 'ASM\File\FileDriver',
-    'Blog\Repository\SourceFileRepo' => 'Blog\Repository\SQL\SourceFileSQLRepo',
     'Blog\Repository\BlogPostRepo' => 'Blog\Repository\SQL\BlogPostSQLRepo',
+    'Blog\Repository\LoginRepo' => 'Blog\Repository\SQL\LoginSQLRepo',
+    'Blog\Repository\SourceFileRepo' => 'Blog\Repository\SQL\SourceFileSQLRepo',
     'Blog\Service\SourceFileFetcher' => 'Blog\Service\SourceFileFetcher\DBSourceFileFetcher',
+    'FileFilter\Storage' => 'FileFilter\Storage\S3\S3Storage',
     'Intahwebz\DB\Connection' => 'Intahwebz\DB\MySQLiConnection',
     'Intahwebz\DB\StatementFactory' =>'Intahwebz\DB\MySQLiStatementFactory',
     'Intahwebz\Domain' => 'BaseReality\DomainBlog',
     'Intahwebz\ObjectCache' => 'Intahwebz\Cache\NullObjectCache',
-    'FileFilter\Storage' => 'FileFilter\Storage\S3\S3Storage',
-    'Psr\Log\LoggerInterface' => 'Blog\NullLogger',
     'Jig\Jig' => 'Blog\Service\BlogJig',
     'Jig\Escaper' => 'Jig\Bridge\ZendEscaperBridge',
     'FCForms\Escaper' => 'FCForms\Bridge\ZendEscaperBridge',
-    
     'FCForms\Render' => 'FCForms\Render\BootStrapRender',
-    'Blog\Repository\LoginRepo' => 'Blog\Repository\SQL\LoginSQLRepo',
     'FCForms\DataStore' => 'Blog\Bridge\SessionDataStore',
     'FCForms\FileFetcher' => 'FCForms\FileFetcher\PSR7UploadedFileFetcher',
+    'Psr\Log\LoggerInterface' => 'Blog\NullLogger',
     'Room11\HTTP\RequestHeaders' => 'Room11\HTTP\RequestHeaders\HTTPRequestHeaders',
-    
-    'Tier\VariableMap\VariableMap' => 'Tier\VariableMap\RequestVariableMap',
+    'Room11\HTTP\RequestRouting' => 'Room11\HTTP\RequestRouting\PSR7RequestRouting',
+    'Room11\HTTP\VariableMap' => 'Room11\HTTP\VariableMap\PSR7VariableMap',
     'ScriptHelper\FilePacker' => 'ScriptHelper\FilePacker\YuiFilePacker',
     'ScriptHelper\ScriptVersion' => 'ScriptHelper\ScriptVersion\DateScriptVersion',
     'ScriptHelper\ScriptURLGenerator' => 'ScriptHelper\ScriptURLGenerator\StandardScriptURLGenerator',

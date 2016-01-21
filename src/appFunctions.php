@@ -184,7 +184,7 @@ function routesFunction(FastRoute\RouteCollector $r)
     $r->addRoute('POST', '/upload', ['Blog\Controller\BlogUpload', 'uploadPost']);
     
     $r->addRoute('GET', '/uploadFile', ['Blog\Controller\FileUpload', 'showUpload']);
-    $r->addRoute('POST', '/uploadFile', ['Blog\Controller\FileUpload', 'uploadPost']);
+    //$r->addRoute('POST', '/uploadFile', ['Blog\Controller\FileUpload', 'uploadPost']);
     
     //$r->addRoute('GET', '/listFiles', ['Blog\Controller\FileUpload', 'listFiles']);
     

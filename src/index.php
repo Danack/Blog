@@ -65,10 +65,10 @@ $app->addExpectedProduct('Room11\HTTP\Body');
 
 // Check to see if a form has been submitted, and we need to do 
 // a POST/GET redirect
-//$app->addBeforeGenerateBodyExecutable(['FCForms\HTTP', 'processFormRedirect']);
+$app->addBeforeGenerateBodyExecutable(['FCForms\HTTP', 'processFormRedirect']);
 
 $app->addGenerateBodyExecutable($routingExecutable);
-//$app->addBeforeSendExecutable('addSessionHeader');
+$app->addBeforeSendExecutable('addSessionHeader');
 $app->addSendExecutable(['Tier\Tier', 'sendBodyResponse']);
 
 $app->createStandardExceptionResolver();
