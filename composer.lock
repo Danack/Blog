@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "75a725f52bae797bd4520ea90b0abd25",
+    "hash": "32e8b316f4116f9037c9331695c416d9",
     "packages": [
         {
             "name": "amphp/amp",
@@ -388,16 +388,16 @@
         },
         {
             "name": "danack/fcforms",
-            "version": "0.7.3",
+            "version": "0.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/FirstClassForms.git",
-                "reference": "01e9e655f638c28d1824dffc4c65cfee4d050671"
+                "reference": "1aa0f92fbb06025525cdead0e767a3c8accea33a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/FirstClassForms/zipball/01e9e655f638c28d1824dffc4c65cfee4d050671",
-                "reference": "01e9e655f638c28d1824dffc4c65cfee4d050671",
+                "url": "https://api.github.com/repos/Danack/FirstClassForms/zipball/1aa0f92fbb06025525cdead0e767a3c8accea33a",
+                "reference": "1aa0f92fbb06025525cdead0e767a3c8accea33a",
                 "shasum": ""
             },
             "require": {
@@ -446,7 +446,7 @@
                 "intahwebz",
                 "library"
             ],
-            "time": "2016-01-20 01:18:57"
+            "time": "2016-01-21 13:44:08"
         },
         {
             "name": "danack/filefilter",
@@ -528,16 +528,16 @@
         },
         {
             "name": "danack/jig",
-            "version": "0.20.5",
+            "version": "0.20.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
-                "reference": "901e53cb65138d0765dc0be04b7f510fb3f87a99"
+                "reference": "4da41664c78e9e451b6a5ef4d9f8e1409f8b81ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Jig/zipball/901e53cb65138d0765dc0be04b7f510fb3f87a99",
-                "reference": "901e53cb65138d0765dc0be04b7f510fb3f87a99",
+                "url": "https://api.github.com/repos/Danack/Jig/zipball/4da41664c78e9e451b6a5ef4d9f8e1409f8b81ca",
+                "reference": "4da41664c78e9e451b6a5ef4d9f8e1409f8b81ca",
                 "shasum": ""
             },
             "require": {
@@ -575,7 +575,7 @@
                 "template",
                 "view"
             ],
-            "time": "2016-01-20 01:25:11"
+            "time": "2016-01-20 22:06:28"
         },
         {
             "name": "danack/scripthelper",
@@ -1669,16 +1669,16 @@
         },
         {
             "name": "room11/http",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/HTTP.git",
-                "reference": "e909d21ea44799947b18fa02e8aa24f017bb860c"
+                "reference": "073cac67a33d0cb855e99b31917310bee83bc2fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/HTTP/zipball/e909d21ea44799947b18fa02e8aa24f017bb860c",
-                "reference": "e909d21ea44799947b18fa02e8aa24f017bb860c",
+                "url": "https://api.github.com/repos/Danack/HTTP/zipball/073cac67a33d0cb855e99b31917310bee83bc2fb",
+                "reference": "073cac67a33d0cb855e99b31917310bee83bc2fb",
                 "shasum": ""
             },
             "require-dev": {
@@ -1710,7 +1710,7 @@
                 "interface",
                 "room11"
             ],
-            "time": "2016-01-18 12:49:27"
+            "time": "2016-01-21 13:47:23"
         },
         {
             "name": "zendframework/zend-diactoros",
