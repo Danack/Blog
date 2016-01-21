@@ -6,7 +6,7 @@
 {/block}
 
 {block name='mainContent'}    
-    {include file='panels/blogPost'}
+   {include file='panels/blogPost'}
 {/block}
 
 {block name='drafts'}

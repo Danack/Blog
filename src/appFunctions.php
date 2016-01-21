@@ -163,7 +163,7 @@ function routesFunction(FastRoute\RouteCollector $r)
     );
     $r->addRoute('GET', '/blogedit/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'showEdit']);
     $r->addRoute('POST', '/blogedit/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'processEdit']);
-    $r->addRoute('GET', '/staticFile/{filename:\w+}', ['Blog\Controller\ProxyController', 'staticFile']);
+    //$r->addRoute('GET', '/staticFile/{filename:\w+}', ['Blog\Controller\ProxyController', 'staticFile']);
     $r->addRoute(
         'GET',
         '/staticImage/{filename:[^/]+}[/{size:\w+}]',
@@ -193,7 +193,7 @@ function routesFunction(FastRoute\RouteCollector $r)
     $r->addRoute('GET', '/uploadResult', ['Blog\Controller\BlogUpload', 'uploadResult']);
     $r->addRoute('GET', '/blogreplace/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'showReplace']);
     $r->addRoute('POST', '/blogreplace/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'processReplace']);
-    $r->addRoute('GET', '/staticFile/{filename:[^/]+}', ['Blog\Controller\Proxy', 'staticFile']);
+    //$r->addRoute('GET', '/staticFile/{filename:[^/]+}', ['Blog\Controller\Proxy', 'staticFile']);
 
     $r->addRoute('GET', '/perfTest', ['Blog\Controller\Blog', 'perfTest']);
     $r->addRoute('GET', '/sourceFile/{filename:.+}', ['Blog\Controller\FileUpload', 'showFile']);

@@ -65,7 +65,7 @@ class BlogJig extends Jig
     
         if ($srcFile) {
             //TODO - add error checking.
-            $rawLink = "/staticFile/".$srcFile;
+            $rawLink = "/sourceFile/".$srcFile;
             $jigConverter->addText("\n\n<pre class='brush: $lang; toolbar: true;' data-link='$rawLink'>");
             $jigConverter->setLiteralMode('SyntaxHighlighter');
 

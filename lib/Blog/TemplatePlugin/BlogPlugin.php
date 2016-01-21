@@ -49,6 +49,7 @@ class BlogPlugin extends BasicPlugin
             'routeShowDraft',
             'routeBlogReplace',
             'routeBlogEdit',
+            'linkTier',
             
             'articleImage'
         ];
@@ -149,6 +150,12 @@ END;
     {
         return Route::blogEdit($blogPostID);
     }
+    
+    public function linkTier()
+    {
+        return "<a href='https://github.com/danack/tier'>Tier</a>";
+    }
+    
     
     public function routeBlogReplace($blogPostID)
     {

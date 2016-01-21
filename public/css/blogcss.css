@@ -29,12 +29,6 @@ li.active {
 
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    /* .leftShift {
-        margin-left: -32px;
-    }
-    .leftShiftPush {
-        margin-right: 17px;
-    } */
     .columnAdjust {
         padding-left: 65px;
         padding-right: 30px;
@@ -42,13 +36,6 @@ li.active {
 }
 
 @media (min-width: 1200px) {
-    /* .leftShift {
-        margin-left: -77px;
-    }
-    .leftShiftPush {
-        margin-right: 62px;
-    } */
-
     .columnAdjust {
         padding-left: 15px;
         padding-right: 15px;
@@ -88,4 +75,54 @@ li.active {
     padding-bottom: 5px;
 }
 
- blogPostBody
+
+@media (min-width: 992px) {
+    .blogPostBody p {
+        width: 66%;
+    }
+    
+    .blogPostBody ul {
+        width: 66%;
+    }
+
+    .blogPostBody h1 {
+        font-size: 30px;
+        width: 50%;
+    }
+
+    .blogPostBody h2 {
+        font-size: 26px;
+        width: 66%;
+    }
+
+    .blogPostBody h3 {
+        font-size: 22px;
+        width: 66%;
+    }
+
+    .blogPostBody h4 {
+        font-size: 18px;
+        width: 66%;
+    }
+
+    .blogPostBody h5 {
+        font-size: 14px;
+        width: 66%;
+    }
+
+    .blogPostBody h6 {
+        font-size: 10px;
+        width: 66%;
+    }
+    
+    .blogPostContent {
+        min-width: 700px;
+        padding-left: 30px;
+        padding-right: 30px;    
+    }
+}
+
+/*  
+.blogPostTitle a {
+    color: #2f9dd3;
+} */
