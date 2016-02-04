@@ -64,6 +64,7 @@ class BlogPlugin extends BasicPlugin
     {
         $blocks = parent::getBlockRenderList();
         $blocks[] = 'syntaxHighlight';
+        $blocks[] = 'syntaxHighlighter';
 
         return $blocks;
     }
@@ -197,4 +198,27 @@ END;
 
         return $newContent;
     }
+    
+    public function syntaxHighlighterBlockRenderStart($segmentText)
+    {
+        $lang = BlogJig::extractLanguage($segmentText);
+
+        return "<pre class='brush: $lang; toolbar: false;'>";
+    }
+
+    /**
+     * @param $content
+     * @return string
+     */
+    public function syntaxHighlighterBlockRenderEnd($content)
+    {
+        $wrapper = "%s\n</pre>";
+        $newContent = sprintf(
+            $wrapper,
+            htmlentities($content, ENT_DISALLOWED | ENT_HTML401 | ENT_NOQUOTES, 'UTF-8')
+        );
+
+        return $newContent;
+    }
+    
 }
