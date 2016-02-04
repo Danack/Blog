@@ -15,8 +15,6 @@ require __DIR__."/../autogen/appEnv.php";
 
 $autoloader = require __DIR__.'/../vendor/autoload.php';
 
-
-
 //if (method_exists($autoloader, 'setSearchModes')) {
 //    $autoloader->setSearchModes([
 //            ClassLoader::SEARCHMODE_OPCACHE,
@@ -55,7 +53,6 @@ $routingExecutable = new Executable(
     null,
     'Room11\HTTP\Body' //skip if this has already been produced
 );
-
 
 // Create the Tier application
 $app = new TierHTTPApp($injectionParams);

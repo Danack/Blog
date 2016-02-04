@@ -4,10 +4,11 @@ namespace Blog\TemplatePlugin;
 
 use Blog\Content\BlogPost;
 use Blog\Model\TemplateBlogPostFactory;
+use Blog\Route;
+use Blog\Service\BlogJig;
 use Jig\Plugin;
 use Jig\Plugin\BasicPlugin;
 use ScriptHelper\ScriptInclude;
-use Blog\Route;
 
 class BlogPlugin extends BasicPlugin
 {
@@ -36,10 +37,9 @@ class BlogPlugin extends BasicPlugin
     {
         $functions = [
             'htmlOptions',
+            'linkTier',
             'makeRenderableBlogPost',
             'peakMemory',
-            'showTweetButton',
-            'var_dump',
             'routeIndex',
             'routeBlogPost',
             'routeBlogPostWithFormat',
@@ -49,8 +49,9 @@ class BlogPlugin extends BasicPlugin
             'routeShowDraft',
             'routeBlogReplace',
             'routeBlogEdit',
-            'linkTier',
-            
+            'showTweetButton',
+            'var_dump',
+
             'articleImage'
         ];
 
@@ -59,6 +60,14 @@ class BlogPlugin extends BasicPlugin
         return array_merge($functions, $parentFunctions);
     }
 
+    public static function getBlockRenderList()
+    {
+        $blocks = parent::getBlockRenderList();
+        $blocks[] = 'syntaxHighlight';
+
+        return $blocks;
+    }
+    
     /**
      * @return string
      */
@@ -165,5 +174,27 @@ END;
     public function articleImage($imageFilename, $size, $float = 'left', $description = false)
     {
         return articleImage($imageFilename, $size, $float, $description);
+    }
+
+    public function syntaxHighlightBlockRenderStart($segmentText)
+    {
+        $lang = BlogJig::extractLanguage($segmentText);
+
+        return "<pre class='brush: $lang; toolbar: false;'>";
+    }
+
+    /**
+     * @param $content
+     * @return string
+     */
+    public function syntaxHighlightBlockRenderEnd($content)
+    {
+        $wrapper = "%s\n</pre>";
+        $newContent = sprintf(
+            $wrapper,
+            htmlentities($content, ENT_DISALLOWED | ENT_HTML401 | ENT_NOQUOTES, 'UTF-8')
+        );
+
+        return $newContent;
     }
 }

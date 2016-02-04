@@ -73,6 +73,7 @@ li.active {
 
 .blogPostBody li p {
     padding-bottom: 5px;
+    width: 100%;
 }
 
 
@@ -87,12 +88,12 @@ li.active {
 
     .blogPostBody h1 {
         font-size: 30px;
-        width: 50%;
+        /* width: 50%; */
     }
 
     .blogPostBody h2 {
         font-size: 26px;
-        width: 66%;
+        /* width: 100%; */
     }
 
     .blogPostBody h3 {

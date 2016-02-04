@@ -83,40 +83,17 @@ catch(\Exception $e) {
  * Creates a console application with all of the commands attached.
  * @return Application
  */
-function createApplication() {
-//    $rpmCommand = new Command('rpmdir', ['Bastion\RPMProcess', 'packageSingleDirectory']);
-//    $rpmCommand->addArgument('directory', InputArgument::REQUIRED, "The directory containing the composer'd project to build into an RPM.");
-////$uploadCommand->addOption('dir', null, InputArgument::OPTIONAL, 'Which directory to upload from', './');
-//    $rpmCommand->setDescription("Build an RPM from an directory that contains all the files of a project. Allows for faster testing than having to re-tag, and download zip files repeatedly.");
-
-//    $statsCommand = new Command('statsRunner', 'Stats\SimpleStats::run');
-//    $statsCommand->setDescription("Run the stats collector and send the results to Librato.");
-//
-//    $taskCommand = new Command('imageRunner', 'ImagickDemo\Queue\ImagickTaskRunner::run');
-//    $taskCommand->setDescription("Pull image request jobs off the queue and generated the images.");
-//
-//    
-//    $clearCacheCommand = new Command('clearCache', 'ImagickDemo\Config\APCCacheEnvReader::clearCache');
-//    $clearCacheCommand->setDescription("Clear the apc cache.");
-
+function createApplication()
+{
     $envWriteCommand = new Command('genEnvSettings', 'Blog\Config\EnvConfWriter::writeEnvFile');
     $envWriteCommand->setDescription("Write an env setting bash script.");
     $envWriteCommand->addArgument('env', InputArgument::REQUIRED, 'Which environment the settings should be generated for.');
     $envWriteCommand->addArgument('filename', InputArgument::REQUIRED, 'The file name that the env settings should be written to.');
 
-    
     $upgradeCommand = new Command('upgrade', ['Blog\Tool\Upgrade', 'main']);
     $upgradeCommand->setDescription('Upgrade the database to the latest defined schema');
-    
-    
-//    $clearRedisCommand = new Command('clearRedis', 'ImagickDemo\Queue\ImagickTaskQueue::clearStatusQueue');
-//    $clearRedisCommand->setDescription("Clear the imagick task queue."); 
-
+ 
     $console = new Application("Blog", "1.0.0");
-//    $console->add($statsCommand);
-//    $console->add($taskCommand);
-//    $console->add($clearCacheCommand);
-//    $console->add($clearRedisCommand);
     $console->add($envWriteCommand);
     $console->add($upgradeCommand);
 

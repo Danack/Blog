@@ -11,10 +11,9 @@ class BlogPost
     public $datestamp;
     public $blogPostID;
     public $title;
-    public     $isActive;
-    public     $blogPostTextID;
+    public $isActive;
+    public $blogPostTextID;
     public $text;
-
     public $blogPostText;
 
 

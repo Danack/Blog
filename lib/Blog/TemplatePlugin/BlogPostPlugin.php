@@ -62,7 +62,7 @@ class BlogPostPlugin extends BasicPlugin
     
     public static function highlightCodeBlockRenderEnd($contents)
     {
-        $text = trim(CodeHighlighter::highlight($contents));
+        $text = trim(CodeHighlighter::highlight(trim($contents)));
         $text .= '</pre></div>';
 
         return $text;

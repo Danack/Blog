@@ -1524,10 +1524,11 @@ samp {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 code {
-  padding: 2px 4px;
+  /* padding: 2px 4px; */
+  padding: 2px 0px;
   font-size: 90%;
-  color: #efbd44;
-  background-color: #000000;
+  color: #cccccc;
+  background-color: inherit;
   border-radius: 4px;
 }
 kbd {

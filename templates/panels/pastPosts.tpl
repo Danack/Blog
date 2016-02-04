@@ -23,6 +23,8 @@
         {/foreach}
 
         <li><a href='/rss'>RSS feed</a></li>
+        
+        <li><a href='http://docs.basereality.com'>RFCs + slides</a></li>
     </ul>
 
     </div>

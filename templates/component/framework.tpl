@@ -44,19 +44,42 @@
 {$scriptInclude->addJSFile('blog')}
 {$scriptInclude->addJSFile('Form/Form')}
 
+<header class="navbar navbar-static-top bs-docs-nav visible-xs visible-sm" id="top" role="banner">
+  <div class="container">
+    <ul class="nav navbar-nav menuBackground">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+           Past posts <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="/">Home</a></li>
+        {inject name='blogList' type='Blog\Service\BlogList'}
+        {foreach $blogList->getBlogs() as $blogPost}
+          <li>
+            {$blogPost->renderTitle() | nofilter}
+          </li>
+        {/foreach}
+        </ul>
+      </div>
+    </ul>
+  </div>
+</header>
+
+
 <div class="container">
-    <div class="row page-header">
+    <div class="row page-header visible-md visible-lg">
         <div class="col-md-10">
                 <a href="/" class="siteTitle">Blog@basereality</a>
         </div>
     </div>
+
 {block name='title'}
 {/block}
     <div class="row">
-        <div class="col-md-2 navPanel">
+        <div class="col-md-2 navPanel visible-md visible-lg">
             {include file='panels/pastPosts'}
         </div>
-
+        
         <div class="col-md-9 columnAdjust">
             {block name='mainContent'}
                 Main content goes here.
@@ -75,7 +98,7 @@
 
 </div>
 
-{$scriptInclude->addBodyLoadJS("SyntaxHighlighter.all();")}
+{$scriptInclude->addBodyLoadJS("SyntaxHighlighter.all({  gutter: false  });")}
 {$scriptInclude->renderJSLinks() | nofilter}
 {$scriptInclude->renderOnBodyLoadJavascript() | nofilter}
 
@@ -85,4 +108,8 @@
 </div>
 
 </body>
+
+{* Yui compressor is currently breaking this, and it's already minified.*}
+<script src="/js/bootstrap.min.js"></script>
+
 </html>

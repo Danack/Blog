@@ -4,6 +4,7 @@ namespace Blog\Controller;
 
 use Blog\Repository\BlogPostRepo;
 use Blog\Value\BlogDraftPath;
+use Tier\InjectionParams; 
 use Room11\HTTP\Body\TextBody;
 use Blog\Model\ActiveBlogPost;
 use Blog\Content\BlogPost;
@@ -22,7 +23,7 @@ class Blog
     
     public function perfTest()
     {
-        return \Tier\getRenderTemplateTier('pages/perfTest');
+        return Tier::getRenderTemplateTier('pages/perfTest');
     }
 
     public function showDraft(
@@ -42,7 +43,10 @@ class Blog
         
         $activeBlogPost = new ActiveBlogPost($blogPost);
         $params = ['Blog\Model\ActiveBlogPost' => $activeBlogPost];
-
+        //$injectionParams = new InjectionParams();
+        //InjectionParams::shareObjects($params);
+        //$injectionParams->share*(
+        
         return Tier::getRenderTemplateTier('pages/displayBlogPost', $params);
     }
 

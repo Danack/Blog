@@ -5,6 +5,7 @@ use Tier\InjectionParams;
 // These classes will only be created  by the injector once
 $shares = [
     'Jig\Jig',
+    'Jig\JigConfig',
     'Jig\JigConverter',
     'Amp\Reactor',
     'ASM\Session',
