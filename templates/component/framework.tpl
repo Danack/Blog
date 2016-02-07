@@ -28,14 +28,6 @@
 
 {$scriptInclude->addJSFile('jquery-1.9.1')}
 {$scriptInclude->addJSFile('jquery-ui-1.10.0.custom.min')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/XRegExp')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shCore')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushJScript')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushPhp')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushJava')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushBash')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushPlain')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushConf')}
 {$scriptInclude->addJSFile('blog')}
 {$scriptInclude->addJSFile('Form/Form')}
 
@@ -46,6 +38,7 @@
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
            Past posts <span class="caret"></span>
         </button>
+          
         <ul class="dropdown-menu" role="menu">
           <li><a href="/">Home</a></li>
         {inject name='blogList' type='Blog\Service\BlogList'}
@@ -63,8 +56,8 @@
 
 <div class="container">
     <div class="row page-header visible-md visible-lg">
-        <div class="col-md-10">
-                <a href="/" class="siteTitle">Blog@basereality</a>
+        <div class="col-md-5 panel panel-default">
+           <a href="/" class="siteTitle">Blog@basereality</a>
         </div>
     </div>
 
