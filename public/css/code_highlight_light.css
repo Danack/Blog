@@ -48,11 +48,11 @@ pre.code {
 */
 .php_T_DNUMBER,
 .php_T_LNUMBER {
-  color: #8791f1;
+  color: #6973c5;
   background-color: inherit;
 }
 .php_T_CONSTANT_ENCAPSED_STRING {
-  color: #9ae4a2;
+  color: #2d9529;
   background-color: inherit;
 }
 /* No code uses this color
@@ -197,7 +197,7 @@ pre.code {
   background-color: inherit;
 }
 .php_T_DIR {
-  color: #9ae4a2;
+  color: #2d9529;
   background-color: inherit;
 }
 /* No code uses this color
