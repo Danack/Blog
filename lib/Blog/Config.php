@@ -28,6 +28,9 @@ class Config
     const REPOSITORY_MAPPING_SQL = 'repo.mapping.sql';
     const REPOSITORY_MAPPING_STUB = 'repo.mapping.stub';
 
+    const KEYS_LOADER = 'keys_loader';
+    const KEYS_LOADER_NONE = 'keys_loader.none';
+    const KEYS_LOADER_CLAVIS = 'keys_loader.clavis';
 
     private $values = [];
 
@@ -35,7 +38,11 @@ class Config
     {
         $this->values = [];
         $this->values = array_merge($this->values, getAppEnv());
-        $this->values = array_merge($this->values, getAppKeys());
+        
+        if ($this->values[Config::KEYS_LOADER] == self::KEYS_LOADER_CLAVIS) {
+            require __DIR__."/../../../clavis.php";
+            $this->values = array_merge($this->values, getAppKeys());
+        }
     }
 
     public function getKey($key)

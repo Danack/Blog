@@ -11,8 +11,6 @@ use Blog\Config;
 
 ini_set('display_errors', 'on');
 
-// App keys
-require __DIR__."/../../clavis.php";
 // App env
 require __DIR__."/../autogen/appEnv.php";
 
@@ -26,16 +24,12 @@ $autoloader = require __DIR__.'/../vendor/autoload.php';
 //    );
 //}
 
-// Contains helper functions for the 'framework'.
-//require __DIR__ . "/../vendor/danack/tier/src/Tier/tierFunctions.php";
-
 // Contains helper functions for the application.
 require "appFunctions.php";
 
 Tier::setupErrorHandlers();
 
 ini_set('display_errors', 'off');
-
 
 \Intahwebz\Functions::load();
 

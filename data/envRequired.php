@@ -6,6 +6,7 @@ $env = [
     Config::JIG_COMPILE_CHECK,
     Config::SCRIPT_PACKING,
     Config::REPOSITORY_MAPPING,
+    Config::KEYS_LOADER,
 
     'MYSQL_PORT',
     'MYSQL_USERNAME',

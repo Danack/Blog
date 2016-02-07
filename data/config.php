@@ -61,21 +61,23 @@ $centos_guest['nginx_sendFile'] = 'off';
 $dev = [
     Config::LIBRATO_STATSSOURCENAME => 'blog.test',    
     Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_ALWAYS,
-    Config::SCRIPT_PACKING => false
+    Config::SCRIPT_PACKING => false,
+    Config::KEYS_LOADER => Config::KEYS_LOADER_CLAVIS,
 ];
 
 $live = [
     Config::LIBRATO_STATSSOURCENAME => 'blog.com',
     Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_CHECK_EXISTS,
     Config::SCRIPT_PACKING => true,
+    Config::KEYS_LOADER => Config::KEYS_LOADER_CLAVIS,
 ];
 
-$stub_repo = [
-    Config::REPOSITORY_MAPPING => Config::REPOSITORY_MAPPING_STUB
+$stub_all_the_things = [
+    Config::REPOSITORY_MAPPING => Config::REPOSITORY_MAPPING_STUB,
+    Config::KEYS_LOADER => Config::KEYS_LOADER_NONE,
 ];
 
 $perf = [
     Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_CHECK_EXISTS,
-    
 ];
 
