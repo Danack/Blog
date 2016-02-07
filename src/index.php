@@ -1,10 +1,13 @@
 <?php
 
 use Composer\Autoload\ClassLoader;
+use Configurator\ConfiguratorException;
 use Tier\Executable;
+use Tier\InjectionParams;
 use Tier\Tier;
 use Tier\TierHTTPApp;
 use Room11\HTTP\Request\CLIRequest;
+use Blog\Config;
 
 ini_set('display_errors', 'on');
 
@@ -54,11 +57,41 @@ $routingExecutable = new Executable(
     'Room11\HTTP\Body' //skip if this has already been produced
 );
 
+
+$setupRepoInjection = function (Config $config) {
+    $repoParams = [];
+    
+    $repoParams[Config::REPOSITORY_MAPPING_SQL] = [
+        'Blog\Repository\BlogPostRepo' => 'Blog\Repository\SQL\BlogPostSQLRepo',
+        'Blog\Repository\LoginRepo' => 'Blog\Repository\SQL\LoginSQLRepo',
+        'Blog\Repository\SourceFileRepo' => 'Blog\Repository\SQL\SourceFileSQLRepo',
+    ];
+
+    $repoParams[Config::REPOSITORY_MAPPING_STUB] = [
+        'Blog\Repository\BlogPostRepo' => 'Blog\Repository\Stub\BlogPostStubRepo',
+        'Blog\Repository\LoginRepo' => 'Blog\Repository\\Blog\Mapper\Stub\LoginStubRepo',
+        'Blog\Repository\SourceFileRepo' => 'Blog\Repository\SQL\SourceFileSQLRepo',
+    ];
+
+    $configValue = $config->getKey(Config::REPOSITORY_MAPPING);
+    if (array_key_exists($configValue, $repoParams) === false) {
+        throw new ConfiguratorException("Unknown config for [".Config::REPOSITORY_MAPPING."] of [$configValue]");
+    }
+
+    $aliases = $repoParams[$configValue];
+    $injectionParams = new InjectionParams([], $aliases);
+    
+    return $injectionParams;
+};
+
+
 // Create the Tier application
 $app = new TierHTTPApp($injectionParams);
 
 // Make the body that is generated be shared by TierApp
 $app->addExpectedProduct('Room11\HTTP\Body');
+
+$app->addInitialExecutable($setupRepoInjection);
 
 // Check to see if a form has been submitted, and we need to do 
 // a POST/GET redirect

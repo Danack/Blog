@@ -24,6 +24,11 @@ class Config
     const SCRIPT_VERSION = 'script.version';
     const SCRIPT_PACKING = 'script.packing';
 
+    const REPOSITORY_MAPPING = 'repo.mapping';
+    const REPOSITORY_MAPPING_SQL = 'repo.mapping.sql';
+    const REPOSITORY_MAPPING_STUB = 'repo.mapping.stub';
+
+
     private $values = [];
 
     public function __construct()

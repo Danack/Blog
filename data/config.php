@@ -8,6 +8,8 @@ $default = [
     'app_name' => 'blog',
     'phpfpm_www_maxmemory' => '16M', 
     //'github_root_directory' => '/home/github/',
+
+    Config::REPOSITORY_MAPPING => Config::REPOSITORY_MAPPING_SQL
 ];
 
 $socketDir = '/var/run/php-fpm';
@@ -65,9 +67,12 @@ $dev = [
 $live = [
     Config::LIBRATO_STATSSOURCENAME => 'blog.com',
     Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_CHECK_EXISTS,
-    Config::SCRIPT_PACKING => true
+    Config::SCRIPT_PACKING => true,
 ];
 
+$stub_repo = [
+    Config::REPOSITORY_MAPPING => Config::REPOSITORY_MAPPING_STUB
+];
 
 $perf = [
     Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_CHECK_EXISTS,
