@@ -64,7 +64,7 @@ $setupRepoInjection = function (Config $config) {
     $repoParams[Config::REPOSITORY_MAPPING_STUB] = [
         'Blog\Repository\BlogPostRepo' => 'Blog\Repository\Stub\BlogPostStubRepo',
         'Blog\Repository\LoginRepo' => 'Blog\Repository\\Blog\Mapper\Stub\LoginStubRepo',
-        'Blog\Repository\SourceFileRepo' => 'Blog\Repository\SQL\SourceFileSQLRepo',
+        'Blog\Repository\SourceFileRepo' => 'Blog\Repository\Stub\SourceFileStubRepo',
     ];
 
     $configValue = $config->getKey(Config::REPOSITORY_MAPPING);

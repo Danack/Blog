@@ -8,7 +8,7 @@ use FileFilter\Storage;
 use Blog\Service\SourceFileFetcher;
 use Blog\Repository\SourceFileRepo;
 
-class DBSourceFileFetcher implements SourceFileFetcher
+class RepoSourceFileFetcher implements SourceFileFetcher
 {
     private $sourceFileRepo;
 

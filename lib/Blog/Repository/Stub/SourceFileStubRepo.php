@@ -3,15 +3,9 @@
 namespace Blog\Repository\Stub;
 
 use Blog\Repository\SourceFileRepo;
-//use Intahwebz\TableMap\SQLQueryFactory;
-//use Blog\DB\SourceFileTable;
-//use Blog\Repository\BlogPostNotFoundException;
-//use Blog\Repository\SourceFileNotFoundException;
-//use Blog\DTO\SourceFileDTO;
-
 use Blog\Content\SourceFile;
 
-class SourceFileSQLRepo implements SourceFileRepo
+class SourceFileStubRepo implements SourceFileRepo
 {
     /**
      * @inherit
