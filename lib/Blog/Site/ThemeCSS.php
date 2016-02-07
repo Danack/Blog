@@ -20,8 +20,11 @@ class ThemeCSS
     public function addCSS()
     {
         $domain = $this->serverRequest->getUri()->getHost();
+        $query = $this->serverRequest->getUri()->getQuery();
+        parse_str($query, $params);
 
-        if (stripos($domain, 'bloglight') !== false) {
+        if (stripos($domain, 'bloglight') !== false ||
+            array_key_exists('light', $params) === true) {
             $this->scriptInclude->addCSSFile("bootstrap_light");
             $this->scriptInclude->addCSSFile("bootswatch_light");
             $this->scriptInclude->addCSSFile("code_highlight_light");
