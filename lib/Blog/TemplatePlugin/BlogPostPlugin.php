@@ -9,6 +9,7 @@ use Jig\Jig;
 use Auryn\Injector;
 use Michelf\MarkdownExtra;
 use Blog\Site\CodeHighlighter;
+use Blog\Service\BlogJig;
 
 class BlogPostPlugin extends BasicPlugin
 {
@@ -57,12 +58,14 @@ class BlogPostPlugin extends BasicPlugin
 
     public function highlightCodeBlockRenderStart($extraParam)
     {
+        $lang = BlogJig::extractLanguage($extraParam);
+
         return '<div class="tab-content codeContent"><pre class="code">';
     }
     
     public static function highlightCodeBlockRenderEnd($contents)
     {
-        $text = trim(CodeHighlighter::highlight(trim($contents)));
+        $text = trim(CodeHighlighter::highlight(trim($contents), 'php'));
         $text .= '</pre></div>';
 
         return $text;

@@ -9,6 +9,7 @@ use Blog\Service\BlogJig;
 use Jig\Plugin;
 use Jig\Plugin\BasicPlugin;
 use ScriptHelper\ScriptInclude;
+use Blog\Site\CodeHighlighter;
 
 class BlogPlugin extends BasicPlugin
 {
@@ -21,6 +22,9 @@ class BlogPlugin extends BasicPlugin
      * @var \Blog\Model\TemplateBlogPostFactory
      */
     private $templateBlogPostFactory;
+    
+    private $currentHighlightLang;
+    
     
     public function __construct(
         ScriptInclude $scriptInclude,
@@ -179,9 +183,9 @@ END;
 
     public function syntaxHighlightBlockRenderStart($segmentText)
     {
-        $lang = BlogJig::extractLanguage($segmentText);
+        $this->currentHighlightLang  = BlogJig::extractLanguage($segmentText);
 
-        return "<pre class='brush: $lang; toolbar: false;'>";
+        return '<div class="tab-content codeContent"><pre class="code">';
     }
 
     /**
@@ -190,35 +194,29 @@ END;
      */
     public function syntaxHighlightBlockRenderEnd($content)
     {
-        $wrapper = "%s\n</pre>";
-        $newContent = sprintf(
-            $wrapper,
-            htmlentities($content, ENT_DISALLOWED | ENT_HTML401 | ENT_NOQUOTES, 'UTF-8')
-        );
+        $text = CodeHighlighter::highlight($content, $this->currentHighlightLang);
+        $text .= '</pre></div>';
 
-        return $newContent;
+        return $text;
     }
     
     public function syntaxHighlighterBlockRenderStart($segmentText)
     {
-        $lang = BlogJig::extractLanguage($segmentText);
+        $this->currentHighlightLang = BlogJig::extractLanguage($segmentText);
 
-        return "<pre class='brush: $lang; toolbar: false;'>";
+        return '<div class="tab-content codeContent"><pre class="code">';
     }
-
+    
     /**
      * @param $content
      * @return string
      */
     public function syntaxHighlighterBlockRenderEnd($content)
     {
-        $wrapper = "%s\n</pre>";
-        $newContent = sprintf(
-            $wrapper,
-            htmlentities($content, ENT_DISALLOWED | ENT_HTML401 | ENT_NOQUOTES, 'UTF-8')
-        );
+        $text = CodeHighlighter::highlight($content, $this->currentHighlightLang);
+        $text .= '</pre></div>';
 
-        return $newContent;
+        return $text;
     }
     
 }

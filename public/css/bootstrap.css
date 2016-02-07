@@ -1528,7 +1528,7 @@ code {
   padding: 2px 0px;
   font-size: 90%;
   color: #cccccc;
-  background-color: inherit;
+  background-color: #222222;
   border-radius: 4px;
 }
 kbd {
@@ -6729,4 +6729,26 @@ button.close {
 }
 .pastLinks {
   padding-top: 20px;
+}
+.activeColor {
+  color: #1ab2ff;
+}
+.blogPostDate {
+  color: #ffffff;
+  font-size: 12px;
+}
+li.active {
+  background-color: transparent;
+}
+.linkToCode {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  padding: 5px 20px;
+  background-color: #666666;
+}
+.linkToCode:hover {
+  background-color: #999999;
 }

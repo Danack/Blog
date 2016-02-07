@@ -6,6 +6,7 @@ use Jig\Jig;
 use Jig\JigConfig;
 use Jig\Converter\JigConverter;
 use Jig\JigException;
+use Blog\Site\CodeHighlighter;
 
 class BlogJig extends Jig
 {
@@ -35,7 +36,7 @@ class BlogJig extends Jig
     public function processSyntaxHighlighterEnd(JigConverter $jigConverter)
     {
         $jigConverter->setLiteralMode(null);
-        $jigConverter->addText("</pre>");
+        $jigConverter->addText('</pre></div> </div>');
     }
 
     public static function extractLanguage($segmentText)
@@ -43,7 +44,7 @@ class BlogJig extends Jig
         $pattern = '#lang=[\'"]([\.\w]+)[\'"]#u';
         $matchCount = preg_match($pattern, $segmentText, $matches);
         if ($matchCount == 0) {
-            throw new JigException("Could not extract lang from [$segmentText] for syntaxHighlighter.");
+            return null;
         }
         $lang = $matches[1];
         
@@ -58,7 +59,6 @@ class BlogJig extends Jig
     public function processSyntaxHighlighterStart(JigConverter $jigConverter, $segmentText)
     {
         $lang = self::extractLanguage($segmentText);
-    
         $srcFile = false;
     
         $pattern = '#file=[\'"]([\.\w-]+)[\'"]#u';
@@ -67,16 +67,9 @@ class BlogJig extends Jig
             $srcFile = $matches[1];
         }
 
-        $jigConverter->addText("<!-- SyntaxHighlighter Start -->");
-    
         if (!$srcFile) {
             throw new \Exception("syntax highlight without file is no longer supported. use syntaxHighlightCode instead.");
         }
-
-        //TODO - add error checking.
-        $rawLink = "/sourceFile/".$srcFile;
-        $jigConverter->addText("\n\n<pre class='brush: $lang; toolbar: true;' data-link='$rawLink'>");
-        $jigConverter->setLiteralMode('SyntaxHighlighter');
 
         try {
             $contents = $this->sourceFileFetcher->fetch($srcFile);
@@ -85,10 +78,19 @@ class BlogJig extends Jig
             $contents = "Oops can't find source for: ".$srcFile;
         }
 
-        $fileContents = htmlentities($contents, ENT_QUOTES);
-        $fileContents = str_replace("<?php ", "&lt;php", $fileContents);
-        $fileContents = str_replace("? >", "?&gt;", $fileContents);
+        $rawLink = "/sourceFile/".$srcFile;
+        $jigConverter->addText('<div><div class="tab-content codeContent" style="position: relative">');
+        
+        $rawLinkHTML = <<< HTML
+  <a href="$rawLink" class="linkToCode">
+    Raw text
+  </a>
+HTML;
 
+        $jigConverter->addText($rawLinkHTML);
+        $jigConverter->addText('<pre class="code">');
+        $jigConverter->setLiteralMode('SyntaxHighlighter');
+        $fileContents = CodeHighlighter::highlight($contents, $lang);
         $jigConverter->addText($fileContents);
     }
 }

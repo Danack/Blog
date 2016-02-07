@@ -1,5 +1,20 @@
 <?php
 
+$prefixes = ['blog', 'bloglight'];
+
+$domainList = ['.test', '.basereality.test', 'blog.basereality.com', '.test.basereality.com'];
+
+$domains = '';
+$separator = '';
+
+foreach ($prefixes as $prefix) {
+    foreach ($domainList as $domain) {
+        $domains .= $separator.$prefix.$domain;
+        $separator = ' ';
+    }
+}
+
+
 $config = <<< END
 
 server {
@@ -20,7 +35,7 @@ server {
 
     listen 80;
     # listen 8080;
-    server_name blog.test blog.basereality.test blog.basereality.com blog.test.basereality.com;
+    server_name $domains;
 
     access_log  ${'nginx_log_directory'}/blog.access.log;
     error_log  ${'nginx_log_directory'}/blog.error.log;

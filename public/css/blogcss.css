@@ -5,19 +5,7 @@
     text-decoration: none;
 }
 
-.activeColor {
-    color: #1ab2ff;
-}
 
-.blogPostDate {
-    color: #ffffff;
-    font-size: 12px;
-}
-
-li.active {
-    /* color: #ffffff; */
-    background-color: #4f4f4f;
-}
 
 
 .nav-sidebar {
@@ -123,7 +111,3 @@ li.active {
     }
 }
 
-/*  
-.blogPostTitle a {
-    color: #2f9dd3;
-} */

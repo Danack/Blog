@@ -131,8 +131,12 @@ class CodeHighlighter
      * @param string $prefix
      * @return string
      */
-    public static function highlight($code, $prefix = "php_")
+    public static function highlight($code, $language, $prefix = "php_")
     {
+        if (strcasecmp($language, 'php') !== 0) {
+            return $code;
+        }
+        
         // caches tokenizer constants
         static $tokenStrings = null;
 
@@ -242,7 +246,7 @@ class CodeHighlighter
         }
     
         $code = implode("", $codeLines);
-        $highLightedCode = CodeHighlighter::highlight($code);
+        $highLightedCode = CodeHighlighter::highlight($code, 'php');
         $jigConverter->addText($highLightedCode);
     }
     
@@ -332,7 +336,7 @@ class CodeHighlighter
     
     public static function highlightCodeEnd(JigConverter $jigConverter, $blockText)
     {
-        $text = CodeHighlighter::highlight($blockText);
+        $text = CodeHighlighter::highlight($blockText, 'php');
         $jigConverter->addText($text);
         $jigConverter->addText('</pre>');
         $jigConverter->addText('</div>');

@@ -11,15 +11,10 @@
 {/block}
 
     {$scriptInclude->addCSSFile("jQuery/jquery-ui-1.10.0.custom")}
-    {$scriptInclude->addCSSFile("bootstrap")}
-    {* $scriptInclude->addCSS("bootstrap-theme") *}
-    {$scriptInclude->addCSSFile("bootswatch")}
+    
+    {inject name='themeCSS' type='Blog\Site\ThemeCSS'}
+    {$themeCSS->addCSS()}
     {$scriptInclude->addCSSFile("blogcss")}
-    {* $scriptInclude->addCSS("blogPrint", 'print') *}
-    {$scriptInclude->addCSSFile("SyntaxHighlighter/shCoreRDark")}
-    {$scriptInclude->addCSSFile("SyntaxHighlighter/shThemeRDark")}
-    {$scriptInclude->addCSSFile("code_highlight_danack")}
-
     {$scriptInclude->renderCSSLinks() | nofilter}
 
     <link rel="alternate" type="application/atom+xml" href="/rss" />

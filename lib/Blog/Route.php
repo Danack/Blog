@@ -36,7 +36,7 @@ class Route
     
     public function listSourceFiles()
     {
-    return "/listFiles";
+        return "/listFiles";
     }
     
     public static function showUploadFile()
@@ -91,5 +91,4 @@ class Route
     {
         return "/sourceFile/".$sourceFile->filename;
     }
-    
 }

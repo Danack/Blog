@@ -46,15 +46,17 @@ function createMySQLiConnection(
 /**
  * @return JigConfig
  */
-function createJigConfig(Config $config)
-{
+function createJigConfig(Config $config,
+    \Jig\JigTemplatePath $jigTemplatePath,
+    \Jig\JigCompilePath $jigCompilePath
+) {
     $jigConfig = new JigConfig(
-        __DIR__."/../templates/",
-        __DIR__."/../var/compile/",
+        $jigTemplatePath,
+        $jigCompilePath,
         $config->getKey(Config::JIG_COMPILE_CHECK),
         'tpl'
     );
-    
+
     return $jigConfig;
 }
 
