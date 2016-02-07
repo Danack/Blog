@@ -2,7 +2,7 @@
 
 $prefixes = ['blog', 'bloglight'];
 
-$domainList = ['.test', '.basereality.test', 'blog.basereality.com', '.test.basereality.com'];
+$domainList = ['.test', '.basereality.test', '.basereality.com', '.test.basereality.com'];
 
 $domains = '';
 $separator = '';
