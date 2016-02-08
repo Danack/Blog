@@ -87,11 +87,7 @@ HTML;
 
         $jigConverter->addText($html);
 
-        $rawLinkHTML = <<< HTML
 
-HTML;
-
-//        $jigConverter->addText($rawLinkHTML);
 
         $jigConverter->setLiteralMode('SyntaxHighlighter');
         $fileContents = CodeHighlighter::highlight($contents, $lang);

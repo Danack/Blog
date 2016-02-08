@@ -16,8 +16,8 @@ class ThemeCSS
         $this->scriptInclude = $scriptInclude;
         $this->serverRequest = $serverRequest;
     }
-
-    public function addCSS()
+    
+    private function isLight()
     {
         $domain = $this->serverRequest->getUri()->getHost();
         $query = $this->serverRequest->getUri()->getQuery();
@@ -25,6 +25,43 @@ class ThemeCSS
 
         if (stripos($domain, 'bloglight') !== false ||
             array_key_exists('light', $params) === true) {
+            return true;
+        }
+
+        return false;
+    }
+    
+    
+    public function renderThemeButton()
+    {
+        $uri = $this->serverRequest->getUri();
+        
+        $host = $uri->getHost();
+        $firstDotPosition = strpos($host, '.');
+
+        $text = "Go light";
+        $prefix = 'bloglight';
+
+        if ($this->isLight()) {
+            $text = "Go dark";
+            $prefix = 'blog';
+        }
+
+        $newHost = $prefix.substr($host, $firstDotPosition);
+        $uri = $uri->withHost($newHost);
+
+        $html = <<< HTML
+<a href="$uri" class="linkToCode">
+    $text
+</a>
+HTML;
+
+        return $html;
+    }
+
+    public function addCSS()
+    {
+        if ($this->isLight()) {
             $this->scriptInclude->addCSSFile("bootstrap_light");
             $this->scriptInclude->addCSSFile("bootswatch_light");
             $this->scriptInclude->addCSSFile("code_highlight_light");
@@ -33,7 +70,6 @@ class ThemeCSS
             $this->scriptInclude->addCSSFile("bootstrap");
             $this->scriptInclude->addCSSFile("bootswatch");
             $this->scriptInclude->addCSSFile("code_highlight_dark");
-
         }
     }
 }

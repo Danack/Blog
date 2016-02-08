@@ -6747,10 +6747,12 @@ li.active {
   border: 1px solid #cccccc;
   border-radius: 2px;
   padding: 5px 20px;
-  background-color: #666666;
+  background-color: #2e2e2e;
+  /* font-weight: 600; */
 }
 .linkToCode:hover {
   background-color: #999999;
+  color: #1f4f72;
 }
 .codeHolder {
   background-color: #cccccc;

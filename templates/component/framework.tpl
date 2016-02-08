@@ -58,6 +58,10 @@
         <div class="col-md-10">
                 <a href="/" class="siteTitle">Blog@basereality</a>
         </div>
+        <div>
+            {$themeCSS->renderThemeButton() | nofilter}
+        </div>
+        
     </div>
 
 {block name='title'}
