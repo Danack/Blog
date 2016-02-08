@@ -67,47 +67,70 @@
 
 @media (min-width: 992px) {
     .blogPostBody p {
-        width: 66%;
+        /* width: 66%; */
     }
     
+    /*
     .blogPostBody ul {
         width: 66%;
     }
+    */
 
     .blogPostBody h1 {
         font-size: 30px;
-        /* width: 50%; */
     }
 
     .blogPostBody h2 {
         font-size: 26px;
-        /* width: 100%; */
     }
 
     .blogPostBody h3 {
         font-size: 22px;
-        width: 66%;
+        /* width: 66%; */
     }
 
     .blogPostBody h4 {
         font-size: 18px;
-        width: 66%;
+        /* width: 66%; */
     }
 
     .blogPostBody h5 {
         font-size: 14px;
-        width: 66%;
+        /* width: 66%; */
     }
 
     .blogPostBody h6 {
         font-size: 10px;
-        width: 66%;
+        /* width: 66%; */
     }
     
     .blogPostContent {
-        min-width: 700px;
         padding-left: 30px;
         padding-right: 30px;    
     }
 }
 
+    .borderTestOuter {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: -31px;
+      top: -31px;
+      z-index: -1;
+    }
+
+    .borderTest {
+      /* border-image-source: url(http://blog.basereality.com/images/border.png); */
+      border-image-source: url(http://blog.basereality.com/images/border.png);
+      border-width: 31px;
+      margin-right: -62px;
+      border-image-slice: 31;
+      margin-bottom: 0px;
+      position: relative;
+      height: 100%;
+    }
+
+.codeContent {
+    min-width: 800px;
+    margin-bottom: 1.5em;
+}

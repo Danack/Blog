@@ -1548,7 +1548,8 @@ kbd kbd {
 pre {
   display: block;
   padding: 9.5px;
-  margin: 0 0 10px;
+  /* margin: 0 0 (@line-height-computed / 2); */
+  margin: 0;
   font-size: 13px;
   line-height: 1.42857143;
   word-break: break-all;

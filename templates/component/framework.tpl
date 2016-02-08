@@ -28,14 +28,6 @@
 
 {$scriptInclude->addJSFile('jquery-1.9.1')}
 {$scriptInclude->addJSFile('jquery-ui-1.10.0.custom.min')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/XRegExp')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shCore')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushJScript')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushPhp')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushJava')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushBash')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushPlain')}
-{$scriptInclude->addJSFile('SyntaxHighlighter/shBrushConf')}
 {$scriptInclude->addJSFile('blog')}
 {$scriptInclude->addJSFile('Form/Form')}
 
@@ -75,13 +67,10 @@
             {include file='panels/pastPosts'}
         </div>
         
-        <div class="col-md-9 columnAdjust">
+        <div class="col-md-6 columnAdjust">
             {block name='mainContent'}
                 Main content goes here.
             {/block}        
-        </div>
-
-         <div class="col-md-1">
         </div>
     </div>
 
