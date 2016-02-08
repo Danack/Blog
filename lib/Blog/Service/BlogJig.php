@@ -30,14 +30,7 @@ class BlogJig extends Jig
         );
     }
 
-    /**
-     * @param JigConverter $jigConverter
-     */
-    public function processSyntaxHighlighterEnd(JigConverter $jigConverter)
-    {
-        $jigConverter->setLiteralMode(null);
-        $jigConverter->addText('</pre></div> </div>');
-    }
+
 
     public static function extractLanguage($segmentText)
     {
@@ -79,18 +72,39 @@ class BlogJig extends Jig
         }
 
         $rawLink = "/sourceFile/".$srcFile;
-        $jigConverter->addText('<div><div class="tab-content codeContent" style="position: relative">');
-        
-        $rawLinkHTML = <<< HTML
-  <a href="$rawLink" class="linkToCode">
+
+        $html = <<< HTML
+  <div class="tab-content codeContent" style="position: relative;" >
+    <div style="position: relative;" class="codeHolder" >
+      <div class="borderTestOuter">
+        <div class="borderTest"></div>    
+        </div>
+        <a href="$rawLink" class="linkToCode">
     Raw text
-  </a>
+</a>
+        <pre class="code">
 HTML;
 
-        $jigConverter->addText($rawLinkHTML);
-        $jigConverter->addText('<pre class="code">');
+        $jigConverter->addText($html);
+
+        $rawLinkHTML = <<< HTML
+
+HTML;
+
+//        $jigConverter->addText($rawLinkHTML);
+
         $jigConverter->setLiteralMode('SyntaxHighlighter');
         $fileContents = CodeHighlighter::highlight($contents, $lang);
         $jigConverter->addText($fileContents);
+    }
+    
+    /**
+     * @param JigConverter $jigConverter
+     */
+    public function processSyntaxHighlighterEnd(JigConverter $jigConverter)
+    {
+        $jigConverter->setLiteralMode(null);
+        $jigConverter->addText('</pre></div></div>');
+
     }
 }

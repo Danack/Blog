@@ -183,9 +183,7 @@ END;
 
     public function syntaxHighlightBlockRenderStart($segmentText)
     {
-        $this->currentHighlightLang  = BlogJig::extractLanguage($segmentText);
-
-        return '<div class="tab-content codeContent"><pre class="code">';
+        return $this->syntaxHighlighterBlockRenderStart($segmentText);
     }
 
     /**
@@ -194,26 +192,21 @@ END;
      */
     public function syntaxHighlightBlockRenderEnd($content)
     {
-        $text = CodeHighlighter::highlight($content, $this->currentHighlightLang);
-        $text .= '</pre></div>';
-
-        return $text;
+        return $this->syntaxHighlighterBlockRenderEnd($content);
     }
-    
+
     public function syntaxHighlighterBlockRenderStart($segmentText)
     {
         $this->currentHighlightLang = BlogJig::extractLanguage($segmentText);
 
         $html = <<< 'HTML'
   <div class="tab-content codeContent" style="position: relative;" >
-    <div style="position: relative;" >
+    <div style="position: relative;" class="codeHolder" >
       <div class="borderTestOuter">
         <div class="borderTest"></div>    
         </div>
         <pre class="code">
-
 HTML;
-
 
         return $html;
     }

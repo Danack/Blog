@@ -23,6 +23,8 @@ class BlogPostPlugin extends BasicPlugin
      */
     private $injector;
     
+    private $currentHighlightLang = null;
+    
     public function __construct(
         Jig $jig,
         Injector $injector
@@ -56,20 +58,51 @@ class BlogPostPlugin extends BasicPlugin
         return array_merge($functions, $parentFunctions);
     }
 
-    public function highlightCodeBlockRenderStart($extraParam)
+//    public function highlightCodeBlockRenderStart($extraParam)
+//    {
+//        $lang = BlogJig::extractLanguage($extraParam);
+//
+//        return '<div class="tab-content codeContent"><pre class="code">';
+//    }
+//    
+//    public static function highlightCodeBlockRenderEnd($contents)
+//    {
+//        $text = trim(CodeHighlighter::highlight(trim($contents), 'php'));
+//        $text .= '</pre></div>';
+//
+//        return $text;
+//    }
+    
+    
+        public function highlightCodeBlockRenderStart($segmentText)
     {
-        $lang = BlogJig::extractLanguage($extraParam);
+        $this->currentHighlightLang = BlogJig::extractLanguage($segmentText);
 
-        return '<div class="tab-content codeContent"><pre class="code">';
+        $html = <<< 'HTML'
+  <div class="tab-content codeContent" style="position: relative;" >
+    <div style="position: relative;"  class="codeHolder">
+      <div class="borderTestOuter">
+        <div class="borderTest"></div>    
+        </div>
+        <pre class="code">
+HTML;
+
+        return $html;
     }
     
-    public static function highlightCodeBlockRenderEnd($contents)
+    /**
+     * @param $content
+     * @return string
+     */
+    public function highlightCodeBlockRenderEnd($content)
     {
-        $text = trim(CodeHighlighter::highlight(trim($contents), 'php'));
-        $text .= '</pre></div>';
+        $text = CodeHighlighter::highlight($content, $this->currentHighlightLang);
+        $text .= '</pre></div></div>';
 
         return $text;
     }
+    
+    
     
 
     public function markdownBlockRenderStart($segmentText)
