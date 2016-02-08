@@ -32,7 +32,7 @@
 {$scriptInclude->addJSFile('blog')}
 {$scriptInclude->addJSFile('Form/Form')}
 
-<header class="navbar navbar-static-top bs-docs-nav visible-xs visible-sm" id="top" role="banner">
+<header class="navbar navbar-static-top bs-docs-nav visible-xs visible-sm" id="top">
   <div class="container">
     <div class="nav navbar-nav menuBackground btn-group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -94,9 +94,7 @@
     {$debug->render() | nofilter}
 </div>
 
-</body>
-
 {* Yui compressor is currently breaking this, and it's already minified.*}
 <script src="/js/bootstrap.min.js"></script>
-
+</body>
 </html>
