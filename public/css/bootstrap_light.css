@@ -6778,6 +6778,18 @@ li.active {
   box-sizing: content-box;
 }
 .codeContent {
-  min-width: 800px;
   margin-bottom: 1.5em;
+  max-width: 900px;
+  display: inline-block;
+  min-width: 400px;
+}
+@media (min-width: 1500px) {
+  .codeContent {
+    max-width: 1200px;
+  }
+}
+@media (min-width: 2000px) {
+  .codeContent {
+    max-width: 1600px;
+  }
 }

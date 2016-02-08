@@ -3,6 +3,7 @@ pre.code {
   font-size: 12px;
   padding: 5px;
   color: #cccccc;
+  padding-right: 20px;
   background-color: #222222;
 }
 .php_T_OPEN_TAG,

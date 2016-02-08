@@ -13,10 +13,10 @@
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .columnAdjust {
+    /*.columnAdjust {
         padding-left: 65px;
         padding-right: 30px;
-    }
+    } */
 }
 
 @media (min-width: 1200px) {
