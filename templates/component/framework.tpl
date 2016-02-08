@@ -18,9 +18,9 @@
     {$scriptInclude->renderCSSLinks() | nofilter}
 
     <link rel="alternate" type="application/atom+xml" href="/rss" />
-    
+
     {include file='component/favicon'}
-    
+    {* <link rel="canonical" href="http://example.com/" /> *}
 </head>
 
 <body class="main">
@@ -33,22 +33,20 @@
 
 <header class="navbar navbar-static-top bs-docs-nav visible-xs visible-sm" id="top" role="banner">
   <div class="container">
-    <ul class="nav navbar-nav menuBackground">
-      <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-           Past posts <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="/">Home</a></li>
-        {inject name='blogList' type='Blog\Service\BlogList'}
-        {foreach $blogList->getBlogs() as $blogPost}
-          <li>
-            {$blogPost->renderTitle() | nofilter}
-          </li>
-        {/foreach}
-        </ul>
-      </div>
-    </ul>
+    <div class="nav navbar-nav menuBackground btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+         Past posts <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="/">Home</a></li>
+      {inject name='blogList' type='Blog\Service\BlogList'}
+      {foreach $blogList->getBlogs() as $blogPost}
+        <li>
+          {$blogPost->renderTitle() | nofilter}
+        </li>
+      {/foreach}
+      </ul>
+    </div>
   </div>
 </header>
 
@@ -71,7 +69,7 @@
             {include file='panels/pastPosts'}
         </div>
         
-        <div class="col-md-6 columnAdjust">
+        <div class="col-sm-10 col-lg-7 columnAdjust">
             {block name='mainContent'}
                 Main content goes here.
             {/block}        

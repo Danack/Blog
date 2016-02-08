@@ -5,16 +5,12 @@
     text-decoration: none;
 }
 
-
-
-
 .nav-sidebar {
     display: inline-block;
     padding-top: 8px;
     padding-bottom: 4px;
     min-width: 190px;
 }
-
 
 @media (min-width: 992px) and (max-width: 1200px) {
     .columnAdjust {
@@ -64,18 +60,16 @@
     width: 100%;
 }
 
+.blogPostContent {
+    padding-left: 10px;
+    padding-right: 10px;    
+}
+
 
 @media (min-width: 992px) {
     .blogPostBody p {
-        /* width: 66%; */
-    }
-    
-    /*
-    .blogPostBody ul {
-        width: 66%;
-    }
-    */
 
+    }
     .blogPostBody h1 {
         font-size: 30px;
     }
