@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 {plugin type='Blog\TemplatePlugin\BlogPlugin'}
