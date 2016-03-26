@@ -27,8 +27,14 @@
     </rule>
     
     
+    <rule ref="Squiz.Scope.MethodScope.Missing">
+        <exclude-pattern>*Article*</exclude-pattern>
+    </rule>
+    
+    
+    
     <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
-        <exclude-pattern>*phpunit_bootstrap.php</exclude-pattern>
+        <exclude-pattern>*phpunit_*.php</exclude-pattern>
     </rule>
     
     
