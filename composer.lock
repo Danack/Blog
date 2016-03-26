@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dd6783afc4f67c1b5b127394d0a85e47",
+    "hash": "2eb32b9844068c8569e31f1a4a6253be",
     "packages": [
         {
             "name": "amphp/amp",
@@ -251,6 +251,64 @@
             ],
             "description": "A userland replacement for PHP's session management.",
             "time": "2015-12-01 02:36:11"
+        },
+        {
+            "name": "danack/configurator",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/Configurator.git",
+                "reference": "bcfc46c7171fbe4d4751dbbfd7211dc05c395983"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/Configurator/zipball/bcfc46c7171fbe4d4751dbbfd7211dc05c395983",
+                "reference": "bcfc46c7171fbe4d4751dbbfd7211dc05c395983",
+                "shasum": ""
+            },
+            "require": {
+                "danack/console": "^2.6.1",
+                "php": "^5.4 || ^7.0",
+                "rdlowrey/auryn": "^1.0.2"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.4.0",
+                "phpunit/phpunit": "4.4.5",
+                "squizlabs/php_codesniffer": "^2.0.0",
+                "symfony/yaml": "^2.8.2"
+            },
+            "bin": [
+                "bin/configurate",
+                "bin/genenv",
+                "bin/fpmconv"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Configurator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "Generates config files from PHP, JSON and Yaml data files.",
+            "keywords": [
+                "config",
+                "configuration",
+                "environment",
+                "php",
+                "tool",
+                "utf-8"
+            ],
+            "time": "2016-03-18 18:31:17"
         },
         {
             "name": "danack/console",
@@ -645,16 +703,16 @@
         },
         {
             "name": "danack/tier",
-            "version": "0.3.9",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Tier.git",
-                "reference": "08279a5995fc82bc8cbac946fdf5403714f09034"
+                "reference": "6fc206b71505fc7e6615a80c048161fb75504faa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Tier/zipball/08279a5995fc82bc8cbac946fdf5403714f09034",
-                "reference": "08279a5995fc82bc8cbac946fdf5403714f09034",
+                "url": "https://api.github.com/repos/Danack/Tier/zipball/6fc206b71505fc7e6615a80c048161fb75504faa",
+                "reference": "6fc206b71505fc7e6615a80c048161fb75504faa",
                 "shasum": ""
             },
             "require": {
@@ -662,7 +720,7 @@
                 "zendframework/zend-diactoros": "^1.3.2"
             },
             "require-dev": {
-                "danack/jig": "^0.20.4",
+                "danack/jig": "^0.21.2",
                 "mockery/mockery": "0.9.1",
                 "nikic/fast-route": "0.3.0",
                 "phpunit/phpunit": "3.7.*",
@@ -694,7 +752,7 @@
                 "di",
                 "example"
             ],
-            "time": "2016-02-07 17:16:29"
+            "time": "2016-02-18 21:12:10"
         },
         {
             "name": "daverandom/libdns",
@@ -778,63 +836,6 @@
                 "unmarshall"
             ],
             "time": "2015-07-01 14:47:22"
-        },
-        {
-            "name": "intahwebz/configurator",
-            "version": "0.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/Configurator.git",
-                "reference": "7d4ffdd641fa048ba99044df7a8cd15d7e9cec61"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Configurator/zipball/7d4ffdd641fa048ba99044df7a8cd15d7e9cec61",
-                "reference": "7d4ffdd641fa048ba99044df7a8cd15d7e9cec61",
-                "shasum": ""
-            },
-            "require": {
-                "danack/console": "^2.6.1",
-                "rdlowrey/auryn": "^1.0.2"
-            },
-            "require-dev": {
-                "mikey179/vfsstream": "^1.4.0",
-                "phpunit/phpunit": "4.4.5",
-                "squizlabs/php_codesniffer": "^2.0.0",
-                "symfony/yaml": "^2.8.2"
-            },
-            "bin": [
-                "bin/configurate",
-                "bin/genenv",
-                "bin/fpmconv"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Configurator": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com"
-                }
-            ],
-            "description": "Generates config files from PHP, JSON and Yaml data files.",
-            "keywords": [
-                "config",
-                "configuration",
-                "environment",
-                "php",
-                "tool",
-                "utf-8"
-            ],
-            "time": "2016-01-26 13:55:46"
         },
         {
             "name": "intahwebz/core",
@@ -1565,16 +1566,16 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "1.1.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/auryn.git",
-                "reference": "f57eaf665a601dbe061c8b1426d84f58c003e6a8"
+                "reference": "2e4240791162dfe073d59654d8dc06df0eb0b73f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/f57eaf665a601dbe061c8b1426d84f58c003e6a8",
-                "reference": "f57eaf665a601dbe061c8b1426d84f58c003e6a8",
+                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/2e4240791162dfe073d59654d8dc06df0eb0b73f",
+                "reference": "2e4240791162dfe073d59654d8dc06df0eb0b73f",
                 "shasum": ""
             },
             "require": {
@@ -1622,7 +1623,7 @@
                 "dic",
                 "ioc"
             ],
-            "time": "2015-08-26 16:31:48"
+            "time": "2016-03-14 20:10:19"
         },
         {
             "name": "rdlowrey/nbsock",
@@ -1769,20 +1770,20 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.3.3",
+            "version": "1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "4d54fde709664562eb63356f0250d527824d05de"
+                "reference": "b1d59735b672865dbeb930805029c24f226e3e77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/4d54fde709664562eb63356f0250d527824d05de",
-                "reference": "4d54fde709664562eb63356f0250d527824d05de",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/b1d59735b672865dbeb930805029c24f226e3e77",
+                "reference": "b1d59735b672865dbeb930805029c24f226e3e77",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4",
+                "php": "^5.4 || ^7.0",
                 "psr/http-message": "~1.0"
             },
             "provide": {
@@ -1815,7 +1816,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2016-01-04 21:37:32"
+            "time": "2016-03-17 18:02:05"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -3481,16 +3482,16 @@
         },
         {
             "name": "react/promise",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/promise.git",
-                "reference": "3b6fca09c7d56321057fa8867c8dbe1abf648627"
+                "reference": "8ffacee1171e33a1c129f424bf1ec36e062eba82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/3b6fca09c7d56321057fa8867c8dbe1abf648627",
-                "reference": "3b6fca09c7d56321057fa8867c8dbe1abf648627",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/8ffacee1171e33a1c129f424bf1ec36e062eba82",
+                "reference": "8ffacee1171e33a1c129f424bf1ec36e062eba82",
                 "shasum": ""
             },
             "require": {
@@ -3521,7 +3522,7 @@
                 }
             ],
             "description": "A lightweight implementation of CommonJS Promises/A for PHP",
-            "time": "2015-07-03 13:48:55"
+            "time": "2016-03-24 21:20:22"
         },
         {
             "name": "sebastian/comparator",
@@ -3641,16 +3642,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.3.3",
+            "version": "1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "6e7133793a8e5a5714a551a8324337374be209df"
+                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6e7133793a8e5a5714a551a8324337374be209df",
-                "reference": "6e7133793a8e5a5714a551a8324337374be209df",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
+                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
                 "shasum": ""
             },
             "require": {
@@ -3687,7 +3688,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2015-12-02 08:37:27"
+            "time": "2016-02-26 18:40:46"
         },
         {
             "name": "sebastian/exporter",
@@ -3973,16 +3974,16 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v2.8.2",
+            "version": "v2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
-                "reference": "a93dffaf763182acad12a4c42c7efc372899891e"
+                "reference": "6b2085020b4e86fcb7ae44c3ab8ddb91774b33d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/a93dffaf763182acad12a4c42c7efc372899891e",
-                "reference": "a93dffaf763182acad12a4c42c7efc372899891e",
+                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/6b2085020b4e86fcb7ae44c3ab8ddb91774b33d2",
+                "reference": "6b2085020b4e86fcb7ae44c3ab8ddb91774b33d2",
                 "shasum": ""
             },
             "require": {
@@ -4026,20 +4027,20 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-12 17:46:01"
+            "time": "2016-01-27 11:34:40"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v2.8.2",
+            "version": "v2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "ac06d8173bd80790536c0a4a634a7d705b91f54f"
+                "reference": "8d83ff9777cdbd83e7f90d9c48f4729823791a5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/ac06d8173bd80790536c0a4a634a7d705b91f54f",
-                "reference": "ac06d8173bd80790536c0a4a634a7d705b91f54f",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/8d83ff9777cdbd83e7f90d9c48f4729823791a5e",
+                "reference": "8d83ff9777cdbd83e7f90d9c48f4729823791a5e",
                 "shasum": ""
             },
             "require": {
@@ -4079,20 +4080,20 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-03 15:33:41"
+            "time": "2016-01-27 05:14:19"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v2.8.2",
+            "version": "v2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "650d37aacb1fa0dcc24cced483169852b3a0594e"
+                "reference": "e1a4b4c83f5ee6f5902f1d53035e3718909a0c11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/650d37aacb1fa0dcc24cced483169852b3a0594e",
-                "reference": "650d37aacb1fa0dcc24cced483169852b3a0594e",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/e1a4b4c83f5ee6f5902f1d53035e3718909a0c11",
+                "reference": "e1a4b4c83f5ee6f5902f1d53035e3718909a0c11",
                 "shasum": ""
             },
             "require": {
@@ -4135,11 +4136,11 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-03 15:33:41"
+            "time": "2016-02-28 16:20:50"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -4198,16 +4199,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.2",
+            "version": "v2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "34c8a4b51e751e7ea869b8262f883d008a2b81b8"
+                "reference": "2a4ee40acb880c56f29fb1b8886e7ffe94f3b995"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/34c8a4b51e751e7ea869b8262f883d008a2b81b8",
-                "reference": "34c8a4b51e751e7ea869b8262f883d008a2b81b8",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/2a4ee40acb880c56f29fb1b8886e7ffe94f3b995",
+                "reference": "2a4ee40acb880c56f29fb1b8886e7ffe94f3b995",
                 "shasum": ""
             },
             "require": {
@@ -4243,7 +4244,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-13 10:28:07"
+            "time": "2016-02-23 07:41:20"
         }
     ],
     "aliases": [],

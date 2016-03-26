@@ -6,6 +6,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 {block name='page_title'}
     <title>Bloggity blog</title>
@@ -19,7 +20,6 @@
     {$scriptInclude->renderCSSLinks() | nofilter}
 
     <link rel="alternate" type="application/atom+xml" href="/rss" />
-
     {include file='component/favicon'}
     {* <link rel="canonical" href="http://example.com/" /> *}
 </head>
@@ -70,7 +70,7 @@
             {include file='panels/pastPosts'}
         </div>
         
-        <div class="col-sm-10 col-lg-7 columnAdjust">
+        <div class="col-sm-10 col-lg-7 columnAdjust widthAdjust">
             {block name='mainContent'}
                 Main content goes here.
             {/block}        

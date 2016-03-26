@@ -11,7 +11,3 @@
 
 {block name='drafts'}
 {/block}
-
-{block name='gohome'}
-    This is a blog page.
-{/block}

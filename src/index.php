@@ -4,10 +4,11 @@ use Composer\Autoload\ClassLoader;
 use Configurator\ConfiguratorException;
 use Tier\Executable;
 use Tier\InjectionParams;
-use Tier\Tier;
+use Tier\TierFunction;
 use Tier\TierHTTPApp;
 use Room11\HTTP\Request\CLIRequest;
 use Blog\Config;
+use Tier\HTTPFunction;
 
 ini_set('display_errors', 'on');
 
@@ -25,9 +26,9 @@ $autoloader = require __DIR__.'/../vendor/autoload.php';
 //}
 
 // Contains helper functions for the application.
-require "appFunctions.php";
+//require "appFunctions.php";
 
-Tier::setupErrorHandlers();
+HTTPFunction::setupErrorHandlers();
 
 ini_set('display_errors', 'off');
 
@@ -40,12 +41,12 @@ if (strcasecmp(PHP_SAPI, 'cli') == 0) {
     $request = new CLIRequest('/', 'blog.basereality.com');
 }
 else {
-    $request = Tier::createRequestFromGlobals();
+    $request = HTTPFunction::createRequestFromGlobals();
 }
 
-// Create the first Tier that needs to be run.
+// Create the routing Executable that needs to be run.
 $routingExecutable = new Executable(
-    ['Tier\JigBridge\Router', 'routeRequest'],
+    ['Tier\Bridge\FastRouter', 'routeRequest'],
     null,
     null,
     'Room11\HTTP\Body' //skip if this has already been produced
@@ -78,7 +79,6 @@ $setupRepoInjection = function (Config $config) {
     return $injectionParams;
 };
 
-
 // Create the Tier application
 $app = new TierHTTPApp($injectionParams);
 
@@ -92,8 +92,8 @@ $app->addInitialExecutable($setupRepoInjection);
 $app->addBeforeGenerateBodyExecutable(['FCForms\HTTP', 'processFormRedirect']);
 
 $app->addGenerateBodyExecutable($routingExecutable);
-$app->addBeforeSendExecutable('addSessionHeader');
-$app->addSendExecutable(['Tier\Tier', 'sendBodyResponse']);
+$app->addBeforeSendExecutable('Blog\App::addSessionHeader');
+$app->addSendExecutable(['Tier\HTTPFunction', 'sendBodyResponse']);
 
 $app->createStandardExceptionResolver();
 

@@ -2,14 +2,14 @@
 
 namespace Blog\TemplatePlugin;
 
-use Jig\Plugin;
-use Jig\Plugin\BasicPlugin;
-use Blog\Content\BlogPost;
-use Jig\Jig;
 use Auryn\Injector;
-use Michelf\MarkdownExtra;
+use Blog\Content\BlogPost;
 use Blog\Site\CodeHighlighter;
 use Blog\Service\BlogJig;
+use Jig\Plugin;
+use Jig\Plugin\BasicPlugin;
+use Jig\Jig;
+use Michelf\MarkdownExtra;
 
 class BlogPostPlugin extends BasicPlugin
 {
@@ -58,23 +58,7 @@ class BlogPostPlugin extends BasicPlugin
         return array_merge($functions, $parentFunctions);
     }
 
-//    public function highlightCodeBlockRenderStart($extraParam)
-//    {
-//        $lang = BlogJig::extractLanguage($extraParam);
-//
-//        return '<div class="tab-content codeContent"><pre class="code">';
-//    }
-//    
-//    public static function highlightCodeBlockRenderEnd($contents)
-//    {
-//        $text = trim(CodeHighlighter::highlight(trim($contents), 'php'));
-//        $text .= '</pre></div>';
-//
-//        return $text;
-//    }
-    
-    
-        public function highlightCodeBlockRenderStart($segmentText)
+    public function highlightCodeBlockRenderStart($segmentText)
     {
         $this->currentHighlightLang = BlogJig::extractLanguage($segmentText);
 
@@ -101,9 +85,6 @@ HTML;
 
         return $text;
     }
-    
-    
-    
 
     public function markdownBlockRenderStart($segmentText)
     {

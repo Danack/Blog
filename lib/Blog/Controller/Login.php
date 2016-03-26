@@ -11,7 +11,7 @@ use Blog\Repository\LoginRepo;
 use Room11\HTTP\Response;
 use Room11\HTTP\Body\RedirectBody;
 use Room11\HTTP\VariableMap;
-use Tier\Tier;
+use Tier\Bridge\JigExecutable;
 
 class Login
 {
@@ -33,7 +33,10 @@ class Login
             $loginForm->validate();
         }
 
-        return Tier::getRenderTemplateTier('pages/login', ['BaseReality\Form\LoginForm' => $loginForm]);
+        return JigExecutable::createWithSharedObjects(
+            'pages/login',
+            ['BaseReality\Form\LoginForm' => $loginForm]
+        );
     }
 
     /**

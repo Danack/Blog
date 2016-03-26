@@ -10,7 +10,7 @@ use Blog\Debug;
 use Blog\UserPermissions;
 use Blog\BlogPermissionException;
 use Room11\HTTP\Body\TextBody;
-use Tier\Tier;
+use Tier\Bridge\JigExecutable;
 
 function processUploadedFile(UploadedFile $uploadedFile)
 {
@@ -43,12 +43,18 @@ class FileUpload
         
         $dataStoredInSession = $sourceFileUploadForm->initFromStorage();
         if (!$dataStoredInSession) {
-            return Tier::getRenderTemplateTier('pages/sourceFile/displayUploadForm', [$sourceFileUploadForm]);
+            return JigExecutable::createWithSharedObjects(
+                'pages/sourceFile/displayUploadForm',
+                [$sourceFileUploadForm]
+            );
         }
         $valid = $sourceFileUploadForm->validate();
 
         if (!$valid) {
-            return Tier::getRenderTemplateTier('pages/sourceFile/displayUploadForm', [$sourceFileUploadForm]);
+            return JigExecutable::createWithSharedObjects(
+                'pages/sourceFile/displayUploadForm',
+                [$sourceFileUploadForm]
+            );
         }
 
         list($filename, $text) = $sourceFileUploadForm->getBlogUpload();
@@ -56,7 +62,7 @@ class FileUpload
 
         $debug->add("sourcefile uploaded Id is $sourceFileID"); 
 
-        return Tier::getRenderTemplateTier('pages/uploadSuccess');
+        return JigExecutable::create('pages/uploadSuccess');
     }
 
     /**
@@ -64,12 +70,12 @@ class FileUpload
      */
     public function uploadResult()
     {
-        return Tier::getRenderTemplateTier('pages/uploadSuccess');
+        return JigExecutable::create('pages/uploadSuccess');
     }
     
     public function listFiles()
     {
-        return Tier::getRenderTemplateTier('pages/sourceFile/listFiles');
+        return JigExecutable::create('pages/sourceFile/listFiles');
     }
     
     public function showFile(SourceFileRepo $sourceFileRepo, $filename)

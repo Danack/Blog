@@ -2,9 +2,6 @@
 {inject name='adminLinks' type='Blog\Site\AdminLinks'}
 {$adminLinks->render() | nofilter}
 
-{block name='homelink'}
-{/block}
-
 
 <div class="row panel panel-default pastLinks">
     <div class="col-md-12">

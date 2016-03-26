@@ -97,10 +97,16 @@
         font-size: 10px;
         /* width: 66%; */
     }
-    
+
     .blogPostContent {
-        padding-left: 30px;
-        padding-right: 30px;    
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
+@media (max-width: 992px) {
+    .widthAdjust {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}

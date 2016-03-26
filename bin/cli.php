@@ -1,101 +1,25 @@
 <?php
 
+use Tier\CLIFunction;
+use Tier\TierCLIApp;
 
-use Danack\Console\Application;
-use Danack\Console\Output\BufferedOutput;
-use Danack\Console\Command\Command;
-use Danack\Console\Input\InputArgument;
-use Auryn\Injector;
+ini_set('display_errors', 'on');
 
 $autoloader = require_once realpath(__DIR__).'/../vendor/autoload.php';
 
+CLIFunction::setupErrorHandlers();
+
+require __DIR__."/../autogen/appEnv.php";
+
+ini_set('display_errors', 'off');
 
 $injectionParams = require_once __DIR__."/../src/injectionParams.php";
 
-chdir(realpath(__DIR__));
-
-
-$injector = new Injector();
-
-\Intahwebz\Functions::load();
-\Intahwebz\MBExtra\Functions::load();
-
-require_once __DIR__."/../src/appFunctions.php";
-require_once __DIR__."/../lib/Tier/tierFunctions.php";
-
-Tier\addInjectionParams($injector, $injectionParams);
-
-use Blog\GeneratedSourcePath;
-
-//$path = new GeneratedSourcePath(__DIR__.'/../var/compile');
-
-$injector->share(__DIR__.'/../var/compile');
-
-$dbParams = array(
-    ':host'     => MYSQL_SERVER,
-    ':username' => MYSQL_USERNAME,
-    ':password' => MYSQL_PASSWORD,
-    ':port'     => MYSQL_PORT,
-    ':socket'   => MYSQL_SOCKET_CONNECTION
+$injectionParams->alias(
+    'Danack\Console\Application',
+    'Blog\ConsoleApplication'
 );
 
-$injector->define(
-    'Intahwebz\DB\Connection',
-    $dbParams
-);
-
-
-try {
-    $application = createApplication();
-}
-catch(\Exception $e) {
-    echo "Exception: ".$e->getMessage()."\n";
-}
-
-//Figure out what Command was requested.
-try {
-    $parsedCommand = $application->parseCommandLine();
-}
-catch(\Exception $e) {
-    //@TODO change to just catch parseException when that's implemented 
-    $output = new BufferedOutput();
-    $application->renderException($e, $output);
-    echo $output->fetch();
-    exit(-1);
-}
-
-try {
-    $input = $parsedCommand->getInput();
-    foreach ($parsedCommand->getParams() as $key => $value) {
-        $injector->defineParam($key, $value);
-    }
-    $injector->execute($parsedCommand->getCallable());
-}
-catch(\Exception $e) {
-    echo "Unexpected exception of type ".get_class($e)." running imagick-demos: ".$e->getMessage().PHP_EOL;
-    echo $e->getTraceAsString();
-    exit(-2);
-}
-
-
-
-/**
- * Creates a console application with all of the commands attached.
- * @return Application
- */
-function createApplication()
-{
-    $envWriteCommand = new Command('genEnvSettings', 'Blog\Config\EnvConfWriter::writeEnvFile');
-    $envWriteCommand->setDescription("Write an env setting bash script.");
-    $envWriteCommand->addArgument('env', InputArgument::REQUIRED, 'Which environment the settings should be generated for.');
-    $envWriteCommand->addArgument('filename', InputArgument::REQUIRED, 'The file name that the env settings should be written to.');
-
-    $upgradeCommand = new Command('upgrade', ['Blog\Tool\Upgrade', 'main']);
-    $upgradeCommand->setDescription('Upgrade the database to the latest defined schema');
- 
-    $console = new Application("Blog", "1.0.0");
-    $console->add($envWriteCommand);
-    $console->add($upgradeCommand);
-
-    return $console;
-}
+$tierApp = new TierCLIApp($injectionParams);
+$tierApp->addInitialExecutable('Tier\Bridge\ConsoleRouter::routeCommand');
+$tierApp->execute();

@@ -178,7 +178,7 @@ END;
 
     public function articleImage($imageFilename, $size, $float = 'left', $description = false)
     {
-        return articleImage($imageFilename, $size, $float, $description);
+        return \Blog\App::articleImage($imageFilename, $size, $float, $description);
     }
 
     public function syntaxHighlightBlockRenderStart($segmentText)

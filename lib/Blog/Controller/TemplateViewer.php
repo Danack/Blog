@@ -6,8 +6,8 @@ use Auryn\Injector;
 use Blog\Data\TemplateList;
 use Room11\HTTP\VariableMap;
 use Room11\HTTP\Body\HtmlBody;
-use Tier\Tier;
-
+use Tier\TierFunction;
+use Tier\Bridge\JigExecutable;
 
 class TemplateViewer
 {
@@ -18,14 +18,14 @@ class TemplateViewer
         
         if ($templateName == false ||
             $displayAsPre == false) {
-            return Tier::getRenderTemplateTier('pages/test/templateTest');
+            return JigExecutable::create('pages/test/templateTest');
         }
 
         $srcPath = __DIR__."/../../../templates/";
         $templates = getTemplates($srcPath);
         
         if (!in_array($templateName, $templates)) {
-            return Tier::getRenderTemplateTier('pages/test/templateTest');
+            return JigExecutable::create('pages/test/templateTest');
         }
 
         $templateInjector = clone $injector;
@@ -50,11 +50,9 @@ class TemplateViewer
         $html = $templateInjector->execute([$className, 'render']);
 
         if ($displayAsPre) {
-            
-            
             $templateList = new TemplateList($templates);
 
-            return Tier::getRenderTemplateTier(
+            return JigExecutable::createWithSharedObjects(
                 'pages/test/templateViewer',
                 [
                     'Blog\Model\TemplateHTML' => new \Blog\Model\TemplateHTML($html),

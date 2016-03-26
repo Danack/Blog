@@ -34,7 +34,7 @@ class Route
         return "/upload";
     }
     
-    public function listSourceFiles()
+    public static function listSourceFiles()
     {
         return "/listFiles";
     }

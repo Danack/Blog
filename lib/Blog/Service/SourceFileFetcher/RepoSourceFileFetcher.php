@@ -2,9 +2,6 @@
 
 namespace Blog\Service\SourceFileFetcher;
 
-use FileFilter\StorageDownloadFilter;
-use Blog\Value\CachePath;
-use FileFilter\Storage;
 use Blog\Service\SourceFileFetcher;
 use Blog\Repository\SourceFileRepo;
 

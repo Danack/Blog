@@ -7,7 +7,7 @@ use Blog\Form\BlogReplaceForm;
 use Blog\Repository\BlogPostRepo;
 use Blog\UserPermissions;
 use Blog\BlogPermissionException;
-use Tier\Tier;
+use Tier\Bridge\JigExecutable;
 
 class BlogEdit
 {
@@ -29,17 +29,17 @@ class BlogEdit
                 $isActive = $blogEditForm->getValue('end', 'isActive');
                 $blogPostMapper->updateBlogPost($title, $isActive, $blogPostID);
 
-                return Tier::getRenderTemplateTier('pages/blogEditSuccess');
+                    return JigExecutable::create('pages/blogEditSuccess');
             }
             else {
-                return Tier::getRenderTemplateTier('pages/blogEdit', [$blogEditForm]);
+                return JigExecutable::createWithSharedObjects('pages/blogEdit', [$blogEditForm]);
             }
         }
         
         $blogPost = $blogPostMapper->getBlogPost($blogPostID);
         $blogEditForm->initFromBlogPost($blogPost);
 
-        return Tier::getRenderTemplateTier('pages/blogEdit', [$blogEditForm]);
+        return JigExecutable::createWithSharedObjects('pages/blogEdit', [$blogEditForm]);
     }
 
     /**
@@ -69,15 +69,21 @@ class BlogEdit
                 $fileContents = file_get_contents($uploadedFile->getFilename());
                 $blogPostMapper->updateBlogPostText($blogPostID, trim($fileContents));
 
-                return Tier::getRenderTemplateTier('pages/replaceSuccess');
+                return JigExecutable::create('pages/replaceSuccess');
             }
             else {
-                return Tier::getRenderTemplateTier('pages/displayReplaceForm', [$blogReplaceForm]);
+                return JigExecutable::createWithSharedObjects(
+                    'pages/displayReplaceForm',
+                    [$blogReplaceForm]
+                );
             }
         }
 
         $blogReplaceForm->initFromData([]);
 
-        return Tier::getRenderTemplateTier('pages/displayReplaceForm', [$blogReplaceForm]);
+        return JigExecutable::createWithSharedObjects(
+            'pages/displayReplaceForm',
+            [$blogReplaceForm]
+        );
     }
 }

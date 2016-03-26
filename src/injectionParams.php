@@ -58,18 +58,18 @@ $aliases = [
 
 // Delegate the creation of types to callables.
 $delegates = [
-    'ASM\Session' => 'createSession',
-    'ASM\File\FileDriver' => 'createASMFileDriver',
+    'ASM\Session' => 'Blog\App::createSession',
+    'ASM\File\FileDriver' => 'Blog\App::createASMFileDriver',
     'Amp\Reactor' => 'Amp\getReactor',
-    'Blog\Data\TemplateList' => 'createTemplateList',
+    'Blog\Data\TemplateList' => 'Blog\App::createTemplateList',
     'Blog\Site\EditBlogPostBox' => ['Blog\Site\EditBlogPostBox', 'createEditBox'],
-    'Blog\UserPermissions' => 'createUserPermissions',
-    'FastRoute\Dispatcher' => 'createDispatcher',
-    'GithubService\GithubArtaxService\GithubService' => 'createGithubArtaxService',
-    'Intahwebz\DB\MySQLiConnection' => 'createMySQLiConnection',
-    'Jig\JigConfig' => 'createJigConfig',
-    'Room11\Caching\LastModifiedStrategy' => 'createCaching',
-    'ScriptHelper\ScriptInclude' => 'createScriptInclude',
+    'Blog\UserPermissions' => 'Blog\App::createUserPermissions',
+    'FastRoute\Dispatcher' => 'Blog\App::createDispatcher',
+    'GithubService\GithubArtaxService\GithubService' => 'Blog\App::createGithubArtaxService',
+    'Intahwebz\DB\MySQLiConnection' => 'Blog\App::createMySQLiConnection',
+    'Jig\JigConfig' => 'Blog\App::createJigConfig',
+    'Room11\Caching\LastModifiedStrategy' => 'Blog\App::createCaching',
+    'ScriptHelper\ScriptInclude' => 'Blog\App::createScriptInclude',
 ];
 
 // If necessary, define some params that can be injected purely by name.
@@ -85,7 +85,7 @@ $defines = [
 ];
 
 $prepares = [
-    'Jig\Jig' => 'prepareJig'
+    'Jig\Jig' => 'Blog\App::prepareJig'
 ];
 
 $injectionParams = new InjectionParams(

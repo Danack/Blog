@@ -37,7 +37,7 @@ class Config
     public function __construct()
     {
         $this->values = [];
-        $this->values = array_merge($this->values, getAppEnv());
+        $this->values = array_merge($this->values, \getAppEnv());
         
         if ($this->values[Config::KEYS_LOADER] == self::KEYS_LOADER_CLAVIS) {
             require __DIR__."/../../../clavis.php";

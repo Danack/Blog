@@ -2,13 +2,15 @@
 
 namespace Blog\Controller;
 
+use Blog\Content\BlogPost;
+use Blog\Model\ActiveBlogPost;
 use Blog\Repository\BlogPostRepo;
 use Blog\Value\BlogDraftPath;
-use Tier\InjectionParams; 
+use Blog\Repository\BlogPostNotFoundException;
 use Room11\HTTP\Body\TextBody;
-use Blog\Model\ActiveBlogPost;
-use Blog\Content\BlogPost;
-use Tier\Tier;
+use Tier\Bridge\JigExecutable;
+use Tier\InjectionParams; 
+
 
 class Blog
 {
@@ -17,21 +19,20 @@ class Blog
      */
     public function index()
     {
-        return Tier::getRenderTemplateTier('pages/index');
+        return JigExecutable::create('pages/index');
     }
-    
-    
+
     public function perfTest()
     {
-        return Tier::getRenderTemplateTier('pages/perfTest');
+        return JigExecutable::create('pages/perfTest');
     }
 
     public function showDraft(
         BlogDraftPath $storagePath,
         $filename
     ) {
-        $draftDirectory = $storagePath->getPath();// ->getSafePath('blogDraft');
-        $blogPath = $draftDirectory."/".ensureAbsoluteFilename($filename).".tpl.md";
+        $draftDirectory = $storagePath->getPath();
+        $blogPath = $draftDirectory."/".\Blog\App::ensureAbsoluteFilename($filename).".tpl.md";
 
         $blogPost = new BlogPost();
         $blogPost->blogPostID = 0;
@@ -41,27 +42,30 @@ class Blog
         $blogPost->blogPostText = file_get_contents($blogPath);
         $blogPost->datestamp = date('Y-m-d');
         
-        $activeBlogPost = new ActiveBlogPost($blogPost);
-        $params = ['Blog\Model\ActiveBlogPost' => $activeBlogPost];
-        //$injectionParams = new InjectionParams();
-        //InjectionParams::shareObjects($params);
-        //$injectionParams->share*(
-        
-        return Tier::getRenderTemplateTier('pages/displayBlogPost', $params);
+        $injectionParams = InjectionParams::fromShareObjects([
+            'Blog\Model\ActiveBlogPost' => new ActiveBlogPost($blogPost)
+        ]);
+
+        return JigExecutable::create('pages/displayBlogPost', $injectionParams);
     }
 
     public function showDrafts()
     {
-        return Tier::getRenderTemplateTier('pages/drafts');
+        return JigExecutable::create('pages/drafts');
     }
-
 
     public function display(
         BlogPostRepo $blogPostMapper,
         $blogPostID,
         $format = 'html'
     ) {
-        $blogPost = $blogPostMapper->getBlogPost($blogPostID);
+        try {
+            $blogPost = $blogPostMapper->getBlogPost($blogPostID);
+        }
+        catch (BlogPostNotFoundException $bpnfe) {
+            return new TextBody("Blog post not found", 404);
+        }
+
         if ($format == 'text') {
             return new TextBody($blogPost->blogPostText);
         }
@@ -69,6 +73,6 @@ class Blog
         $activeBlogPost = new ActiveBlogPost($blogPost);
         $params = ['Blog\Model\ActiveBlogPost' => $activeBlogPost];
 
-        return Tier::getRenderTemplateTier('pages/displayBlogPost', $params);
+        return JigExecutable::createWithSharedObjects('pages/displayBlogPost', $params);
     }
 }

@@ -5,12 +5,11 @@ namespace Blog\Controller;
 
 use Blog\Repository\BlogPostRepo;
 use Blog\Form\BlogUploadForm;
-use Intahwebz\UploadedFile;
-use ASM\Session;
 use Blog\Debug;
 use Blog\UserPermissions;
 use Blog\BlogPermissionException;
-use Tier\Tier;
+use Intahwebz\UploadedFile;
+use Tier\Bridge\JigExecutable;
 
 function processUploadedFile(UploadedFile $uploadedFile)
 {
@@ -33,7 +32,6 @@ class BlogUpload
 {
     public function showUpload(
         UserPermissions $userPermissions,
-        Session $session,
         BlogUploadForm $blogUploadForm,
         BlogPostRepo $blogPostRepo,
         Debug $debug
@@ -44,13 +42,19 @@ class BlogUpload
         
         $dataStoredInSession = $blogUploadForm->initFromStorage();
         if (!$dataStoredInSession) {
-            return Tier::getRenderTemplateTier('pages/displayUploadForm', [$blogUploadForm]);
+            return JigExecutable::createWithSharedObjects(
+                'pages/displayUploadForm',
+                [$blogUploadForm]
+            );
         }
         //$session->save();
         $valid = $blogUploadForm->validate();
 
         if (!$valid) {
-            return Tier::getRenderTemplateTier('pages/displayUploadForm', [$blogUploadForm]);
+            return JigExecutable::createWithSharedObjects(
+                'pages/displayUploadForm',
+                [$blogUploadForm]
+            );
         }
 
         list($title, $text, $isActive) = $blogUploadForm->getBlogUpload();
@@ -58,7 +62,7 @@ class BlogUpload
 
         $debug->add("blog post ID is $blogPostID"); 
 
-        return Tier::getRenderTemplateTier('pages/uploadSuccess');
+        return JigExecutable::create('pages/uploadSuccess');
     }
 
     /**
@@ -66,6 +70,6 @@ class BlogUpload
      */
     public function uploadResult()
     {
-        return Tier::getRenderTemplateTier('pages/uploadSuccess');
+        return JigExecutable::create('pages/uploadSuccess');
     }
 }
