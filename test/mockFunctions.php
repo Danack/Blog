@@ -16,7 +16,6 @@ function mockEmptyRequest()
 }
 
 
-
 /**
  * @return JigConfig
  */

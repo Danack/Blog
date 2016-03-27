@@ -8,6 +8,9 @@
         <testsuite name="Blog Test Suite">
             <directory>../test/</directory>
             <exclude>../test/compile</exclude>
+            
+            <!-- These have their own test suites, and may not run under PHP 5.x -->
+            <exclude>../test/Article</exclude>
         </testsuite>
     </testsuites>
 
