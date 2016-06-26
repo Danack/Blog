@@ -4,7 +4,7 @@ namespace BlogTest\Contorller;
 
 use BlogTest\BaseTestCase;
 use Mockery\Mock;
-use Arya\Response;
+
 
 /**
  * Class BlogUpload
@@ -26,49 +26,51 @@ class BlogUploadTest extends BaseTestCase
         $this->injector = createTestInjector();
     }
 
+    private function createInjectorForLoggedIn()
+    {
+        $mocks = ['Blog\UserPermissions' => new \Blog\User\LoggedInPermissions('admin')];
+
+        return createTestInjector($mocks);
+    }
+    
     public function testShowUpload()
     {
-        $injector = createTestInjector();
-        $uploadForm = $injector->make('BaseReality\Form\BlogUploadForm');
-        
+        $injector = $this->createInjectorForLoggedIn();
+        $uploadForm = $injector->make('Blog\Form\BlogUploadForm');
         $mock = \Mockery::mock($uploadForm)
             ->shouldReceive('validate')
             ->andReturn(true)
             ->mock();
-
-        $injector = createTestInjector(['BaseReality\Form\BlogUploadForm' => $mock]);
+        
+        $injector->share('Blog\Form\BlogUploadForm', $mock);
         $result = $injector->execute('Blog\Controller\BlogUpload::showUpload');
-        $this->assertInstanceOf('Tier\Tier', $result);
+        $this->assertInstanceOf('Tier\Executable', $result);
     }
     
     
     public function testShowUploadInvalid()
     {
-        $injector = createTestInjector();
-        $uploadForm = $injector->make('BaseReality\Form\BlogUploadForm');
-        
+        $injector = $this->createInjectorForLoggedIn();
+        $uploadForm = $injector->make('Blog\Form\BlogUploadForm');
         $mock = \Mockery::mock($uploadForm)
             ->shouldReceive('false')
             ->andReturn(true)
             ->mock();
 
-        $injector = createTestInjector(['BaseReality\Form\BlogUploadForm' => $mock]);
+        $injector->share('Blog\Form\BlogUploadForm', $mock);
         $result = $injector->execute('Blog\Controller\BlogUpload::showUpload');
-        $this->assertInstanceOf('Tier\Tier', $result);
+        $this->assertInstanceOf('Tier\Executable', $result);
     }
-    
-    
-    
-    
-    public function testUploadPost()
-    {
-        $this->injector->execute('Blog\Controller\BlogUpload::uploadPost');
-    }
+
+//    public function testUploadPost()
+//    {
+//        $this->injector->execute('Blog\Controller\BlogUpload::uploadPost');
+//    }
 
 
     public function testUploadResult()
     {
         $result = $this->injector->execute('Blog\Controller\BlogUpload::uploadResult');
-        $this->assertInstanceOf('Tier\Tier', $result);
+        $this->assertInstanceOf('Tier\Executable', $result);
     }
 }

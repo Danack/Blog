@@ -2,11 +2,13 @@
 
 namespace Blog\Model;
 
+use Auryn\Injector;
+use Blog\App;
 use Blog\Content\BlogPost;
+use Blog\Route;
 use Intahwebz\ObjectCache;
 use Jig\Jig;
-use Auryn\Injector;
-use Blog\Route;
+use Zend\Escaper\Escaper;
 
 class TemplateBlogPost
 {
@@ -19,6 +21,8 @@ class TemplateBlogPost
      * @var Jig
      */
     private $jig;
+    
+    private $escaper;
 
     const SYNTAX_START  =  "<!-- SyntaxHighlighter Start -->";
 
@@ -26,7 +30,8 @@ class TemplateBlogPost
         BlogPost $blogPost,
         ObjectCache $objectCache,
         Jig $jig,
-        Injector $injector
+        Injector $injector,
+        Escaper $escaper
     ) {
         $this->blogPost = $blogPost;
         $this->objectCache = $objectCache;
@@ -35,13 +40,21 @@ class TemplateBlogPost
 
         $this->jig->addDefaultPlugin('Blog\TemplatePlugin\BlogPlugin');
         $this->jig->addDefaultPlugin('Blog\TemplatePlugin\BlogPostPlugin');
+        $this->escaper = $escaper;
     }
 
     public function renderTitle()
     {
         $url = Route::blogPost($this->blogPost);
 
-        return sprintf("<a href='%s'>%s</a>", addslashes($url), safeText($this->blogPost->title));
+//        Escaper::
+//        escapeHtml
+        
+        return sprintf(
+            "<a href='%s'>%s</a>",
+            $this->escaper->escapeHtmlAttr($url),
+            $this->escaper->escapeHtml($this->blogPost->title)
+        );
     }
 
     public function renderDate($includeYear = false)
@@ -51,7 +64,7 @@ class TemplateBlogPost
             $dateFormat = $dateFormat." Y";
         }
 
-        return formatDateString($this->blogPost->datestamp, $dateFormat);
+        return App::formatDateString($this->blogPost->datestamp, $dateFormat);
     }
 
     public function showPreview($length = 400)

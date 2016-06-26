@@ -7,7 +7,7 @@ use Mockery\Mock;
 use Jig\JigConfig;
 use Blog\Content\BlogPost;
 use Blog\Data\TemplateList;
-use Blog\Mapper\Stub\BlogPostRepo;
+use Blog\Repository\Stub\BlogPostStubRepo;
 
 class ViewsTest extends BaseTestCase
 {
@@ -22,11 +22,14 @@ class ViewsTest extends BaseTestCase
         $this->injector = createTestInjector();
     }
 
+    
+    
+    
     public function testIndex()
-    {
+    { 
         $jigRender = $this->injector->make('Jig\Jig');
         $className = $jigRender->getFQCNFromTemplateName('pages/index');
-        $jigRender->checkTemplateCompiled('pages/index');
+        $jigRender->compile('pages/index');
 
         $html = $this->injector->execute([$className, 'render']);
     }
@@ -69,14 +72,14 @@ class ViewsTest extends BaseTestCase
         $injector = clone $this->injector;
 
         $srcPath = __DIR__."/../../../templates/";
-        $templates = getTemplates($srcPath);
+        $templates = \Blog\App::getTemplates($srcPath);
         $templateList = new TemplateList($templates);
         $injector->share($templateList);
 
-        $blogPostID = BlogPostRepo::getNextBlogPostID();
+        $blogPostID = BlogPostStubRepo::getNextBlogPostID();
         $blogPostTextID = $blogPostID;
         
-        $blogPost = BlogPostRepo::create(
+        $blogPost = BlogPost::create(
             $blogPostID,
             $title = "Hello world",
             $text = "This is a template",
@@ -91,7 +94,7 @@ class ViewsTest extends BaseTestCase
         $jigRender->addDefaultPlugin('Blog\TemplatePlugin\BlogPlugin');
 
         $className = $jigRender->getFQCNFromTemplateName($templateName);
-        $jigRender->checkTemplateCompiled($templateName);
+        $jigRender->compile($templateName);
         
         $html = $injector->execute([$className, 'render']);
         $this->assertGreaterThan(0, strlen($html), "Template failed to return any content.");

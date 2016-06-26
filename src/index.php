@@ -87,6 +87,26 @@ $app->addExpectedProduct('Room11\HTTP\Body');
 
 $app->addInitialExecutable($setupRepoInjection);
 
+$dbTest = function (\Intahwebz\DB\Connection $connection){
+
+    $statement = $connection->prepareStatement("select wordFrequencyID, word, frequency from basereality.wordFrequency;");
+    $result = $statement->execute();
+    $result->bind_result($wordFrequencyID, $word, $frequency);
+    
+    while ($result->fetch()) {
+        var_dump($wordFrequencyID, $word, $frequency);
+        echo "<br/>";
+    }
+    
+    
+    echo "harro";
+    exit(0);
+    
+};
+
+//$app->addInitialExecutable($dbTest);
+
+
 // Check to see if a form has been submitted, and we need to do 
 // a POST/GET redirect
 $app->addBeforeGenerateBodyExecutable(['FCForms\HTTP', 'processFormRedirect']);

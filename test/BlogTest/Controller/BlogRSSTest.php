@@ -3,8 +3,6 @@
 namespace BlogTest\Contorller;
 
 use BlogTest\BaseTestCase;
-use Mockery\Mock;
-use Arya\Response;
 
 class BlogRSTest extends BaseTestCase
 {
@@ -17,7 +15,6 @@ class BlogRSTest extends BaseTestCase
     {
         parent::setUp();
         $this->injector = createTestInjector();
-
     }
 
     public function testRSSFeed()

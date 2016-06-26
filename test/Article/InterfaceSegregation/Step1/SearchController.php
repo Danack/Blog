@@ -4,6 +4,8 @@ namespace Article\InterfaceSegregation\Step1;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 
+
+//Example SearchController_before
 class SearchController
 {
     function search(Request $request, DataSource $dataSource)
@@ -19,3 +21,4 @@ class SearchController
         return $dataSource->searchForItems($searchOptions);
     }
 }
+//Example end

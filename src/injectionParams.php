@@ -34,6 +34,9 @@ $aliases = [
     'ArtaxServiceBuilder\ResponseCache' => 'ArtaxServiceBuilder\ResponseCache\NullResponseCache',
     'ASM\Driver' => 'ASM\File\FileDriver',
     'Blog\Service\SourceFileFetcher' => 'Blog\Service\SourceFileFetcher\RepoSourceFileFetcher',
+    
+    'Blog\Site\LoginStatus' => 'Blog\Site\LoginStatus\SessionLoginStatus',
+    'Blog\Site\ThemeCSS' => 'Blog\Site\ThemeCSS\ThemeCSSImpl', 
     'FCForms\Escaper' => 'FCForms\Bridge\ZendEscaperBridge',
     'FCForms\Render' => 'FCForms\Render\BootStrapRender',
     'FCForms\DataStore' => 'Blog\Bridge\SessionDataStore',
@@ -53,6 +56,8 @@ $aliases = [
     'ScriptHelper\ScriptVersion' => 'ScriptHelper\ScriptVersion\DateScriptVersion',
     'ScriptHelper\ScriptURLGenerator' => 'ScriptHelper\ScriptURLGenerator\StandardScriptURLGenerator',
     'Zend\Diactoros\Response\EmitterInterface' => 'Zend\Diactoros\Response\SapiEmitter',
+    
+    
 ];
 
 

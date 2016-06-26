@@ -58,10 +58,10 @@ class BlogPostPlugin extends BasicPlugin
         return array_merge($functions, $parentFunctions);
     }
 
-    public function highlightCodeBlockRenderStart($segmentText)
+    
+    
+    public static function codeBlockStart()
     {
-        $this->currentHighlightLang = BlogJig::extractLanguage($segmentText);
-
         $html = <<< 'HTML'
   <div class="tab-content codeContent" style="position: relative;" >
     <div style="position: relative;"  class="codeHolder">
@@ -70,6 +70,19 @@ class BlogPostPlugin extends BasicPlugin
         </div>
         <pre class="code">
 HTML;
+        return $html;
+    }
+    
+    public static function codeBlockEnd()
+    {
+        return '</pre></div></div>';
+    }
+    
+    
+    public function highlightCodeBlockRenderStart($segmentText)
+    {
+        $this->currentHighlightLang = BlogJig::extractLanguage($segmentText);
+        $html = self::codeBlockStart();
 
         return $html;
     }
@@ -81,7 +94,7 @@ HTML;
     public function highlightCodeBlockRenderEnd($content)
     {
         $text = CodeHighlighter::highlight($content, $this->currentHighlightLang);
-        $text .= '</pre></div></div>';
+        $text = self::codeBlockEnd();
 
         return $text;
     }

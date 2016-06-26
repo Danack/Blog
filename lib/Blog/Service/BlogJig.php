@@ -28,6 +28,13 @@ class BlogJig extends Jig
             [$this, 'processSyntaxHighlighterStart'],
             [$this, 'processSyntaxHighlighterEnd']
         );
+        
+        $this->bindCompileBlock(
+            'renderExampleCode',
+            ['Blog\Site\CodeHighlighter', 'renderExampleCodeStart'],
+            ['Blog\Site\CodeHighlighter', 'renderExampleCodeEnd']
+        );
+        
     }
 
 

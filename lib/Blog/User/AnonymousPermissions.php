@@ -17,3 +17,5 @@ class AnonymousPermissions implements UserPermissions
         return null;
     }
 }
+
+

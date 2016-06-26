@@ -2,6 +2,7 @@
 
 namespace Blog\Controller;
 
+use Blog\App;
 use Blog\Value\StoragePath;
 use Blog\Repository\BlogPostRepo;
 use Blog\Model\TemplateBlogPostFactory;
@@ -70,7 +71,7 @@ class BlogRSS
             $rss->addItem($item);
         }
 
-        ensureDirectoryExists($filePath);
+        App::ensureDirectoryExists($filePath);
         $rss->saveFeed("RSS1.0", $filePath, false);
     }
 }

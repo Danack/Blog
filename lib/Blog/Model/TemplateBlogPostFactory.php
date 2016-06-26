@@ -8,6 +8,7 @@ use Intahwebz\ObjectCache;
 use Jig\Jig;
 use Auryn\Injector;
 use Blog\Service\SourceFileFetcher;
+use Zend\Escaper\Escaper;
 
 class TemplateBlogPostFactory
 {
@@ -20,12 +21,14 @@ class TemplateBlogPostFactory
         ObjectCache $objectCache,
         Jig $jig,
         Injector $injector,
-        SourceFileFetcher $sourceFileFetcher
+        SourceFileFetcher $sourceFileFetcher,
+        Escaper $escaper
     ) {
         $this->objectCache = $objectCache;
         $this->jig = $jig;
         $this->injector = $injector;
         $this->sourceFileFetcher = $sourceFileFetcher;
+        $this->escaper = $escaper;
     }
 
     public function create(BlogPost $blogPost)
@@ -35,7 +38,7 @@ class TemplateBlogPostFactory
             $this->objectCache,
             $this->jig,
             $this->injector,
-            $this->sourceFileFetcher
+            $this->escaper
         );
     }
 }

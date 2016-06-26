@@ -16,6 +16,11 @@ class BlogSiteTest extends \PHPUnit_Framework_TestCase
     
     public function setup()
     {
+        if (!ini_get('allow_url_fopen')) {
+            $this->markTestSkipped("allow_url_fopen is not open");
+            return;
+        }
+        
         $this->driver = new \Behat\Mink\Driver\GoutteDriver();
         $this->session = new \Behat\Mink\Session($this->driver);
         $this->session->start();  // start session:

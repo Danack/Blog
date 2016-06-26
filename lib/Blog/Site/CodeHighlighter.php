@@ -3,7 +3,7 @@
 namespace Blog\Site;
 
 use Jig\Converter\JigConverter;
-
+use Blog\TemplatePlugin\BlogPostPlugin;
 
 function getExampleClassnameFromTemplate($exampleName)
 {
@@ -246,7 +246,9 @@ class CodeHighlighter
         }
     
         $code = implode("", $codeLines);
-        $highLightedCode = CodeHighlighter::highlight($code, 'php');
+        $highLightedCode = BlogPostPlugin::codeBlockStart();
+        $highLightedCode .= CodeHighlighter::highlight($code, 'php');
+        $highLightedCode .= BlogPostPlugin::codeBlockEnd();
         $jigConverter->addText($highLightedCode);
     }
     
@@ -256,9 +258,9 @@ class CodeHighlighter
         $endPattern = "//Example end";
     
         $srcDirectories = [
-            __DIR__ . '/../../test',
-            __DIR__ . '/../../lib',
-            __DIR__ . '/../../src',
+            __DIR__ . '/../../../test',
+            __DIR__ . '/../../../lib',
+            __DIR__ . '/../../../src',
         ];
     
         foreach ($srcDirectories as $srcDirectory) {

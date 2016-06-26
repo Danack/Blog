@@ -322,4 +322,40 @@ class App
     {
         $jig->addDefaultPlugin('Blog\TemplatePlugin\BlogPostPlugin');
     }
+    
+    /**
+     * ensureDirectoryExists by creating it with 0755 permissions and throwing
+     * an exception if it does not exst after that mkdir call.
+     * @param $outputFilename
+     * @throws \Exception
+     */
+    public function ensureDirectoryExists($outputFilename)
+    {
+        $directoryName = dirname($outputFilename);
+        @mkdir($directoryName, 0755, true);
+        //TODO - double-check umask
+        if (file_exists($directoryName) === false) {
+            throw new \Exception("Directory $directoryName does not exist and could not be created");
+        }
+    }
+    
+    //Converts an SQL datestamp into a formatted string
+// e.g. 2008-11-11 16:20:24
+// -> 11th Nov 08
+    public static function formatDateString($datestamp, $format, $offsetTime = 0)
+    {
+        $year = intval(mb_substr($datestamp, 0, 4));
+        $month = intval(mb_substr($datestamp, 5, 2));
+        $day = intval(mb_substr($datestamp, 8, 2));
+
+        $hours = intval(mb_substr($datestamp, 11, 2));
+        $minutes = intval(mb_substr($datestamp, 14, 2));
+        $seconds = intval(mb_substr($datestamp, 17, 2));
+
+        $unixTimestamp = mktime($hours, $minutes, $seconds, $month, $day, $year);
+        $unixTimestamp += $offsetTime;
+
+        return date($format, $unixTimestamp);
+    }
+
 }
