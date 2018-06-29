@@ -1,0 +1,42 @@
+version: "3"
+services:
+  blog_php_backend:
+    build: docker/php_backend
+    image: blog_php_backend:latest
+    volumes:
+      - .:/var/www
+    restart: always
+  blog_php_backend_debug:
+    build: docker/php_backend_debug
+    image: blog_php_backend_debug:latest
+    depends_on:
+      - blog_php_backend
+    environment:
+      DB_TESTS_ALLOWED: allowed
+    volumes:
+      - .:/var/www
+    restart: always
+#      - ./docker/php_backend/config:/etc/config
+#      - ./config.php:/var/www/config.php
+  web_server:
+    build: docker/web_server
+    image: app_web_server:latest
+    command: ["/usr/sbin/nginx", "-c", "/etc/config/nginx.conf"]
+    depends_on:
+      - blog_php_backend
+      - blog_php_backend_debug
+    volumes:
+      - .:/var/www
+      - ./docker/web_server/config:/etc/config
+    ports:
+      - "80:8000"
+    restart: always
+
+
+#  redis:
+#    image: redis:4.0.6
+#    ports:
+#      - "6379:6379"
+#    volumes:
+#      - ./config/localdev:/usr/local/etc
+#    command: ["redis-server", "/usr/local/etc/redis.conf"]
