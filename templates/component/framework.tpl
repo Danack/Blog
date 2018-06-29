@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html>
 
-{plugin type='Blog\TemplatePlugin\BlogPlugin'}
-{inject name='scriptInclude' type='ScriptHelper\ScriptInclude'}
+{# plugin type='Blog\TemplatePlugin\BlogPlugin' #}
+{# inject name='scriptInclude' type='ScriptHelper\ScriptInclude' #}
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{block name='page_title'}
+{% block page_title %}
     <title>Bloggity blog</title>
-{/block}
+{% endblock %}
 
-    {$scriptInclude->addCSSFile("jQuery/jquery-ui-1.10.0.custom")}
-    
-    {inject name='themeCSS' type='Blog\Site\ThemeCSS'}
-    {$themeCSS->addCSS()}
-    {$scriptInclude->addCSSFile("blogcss")}
-    {$scriptInclude->renderCSSLinks() | nofilter}
-
+    <link rel='stylesheet' type='text/css'  media='screen' href='/css/bootstrap.css' />
+    <link rel='stylesheet' type='text/css'  media='screen' href='/css/bootswatch.css' />
+    <link rel='stylesheet' type='text/css'  media='screen' href='/css/blogcss.css' />
+    <link rel='stylesheet' type='text/css'  media='screen' href='/css/code_highlight_dark.css' />
     <link rel="alternate" type="application/atom+xml" href="/rss" />
-    {include file='component/favicon'}
-    {* <link rel="canonical" href="http://example.com/" /> *}
+    {% include 'component/favicon.tpl' %}
 </head>
 
 <body class="main">
 
-
-{$scriptInclude->addJSFile('jquery-1.9.1')}
-{$scriptInclude->addJSFile('jquery-ui-1.10.0.custom.min')}
-{$scriptInclude->addJSFile('blog')}
-{$scriptInclude->addJSFile('Form/Form')}
 
 <header class="navbar navbar-static-top bs-docs-nav visible-xs visible-sm" id="top">
   <div class="container">
@@ -40,12 +31,7 @@
       </button>
       <ul class="dropdown-menu" role="menu">
         <li><a href="/">Home</a></li>
-      {inject name='blogList' type='Blog\Service\BlogList'}
-      {foreach $blogList->getBlogs() as $blogPost}
-        <li>
-          {$blogPost->renderTitle() | nofilter}
-        </li>
-      {/foreach}
+          {{ renderBlogList() }}
       </ul>
     </div>
   </div>
@@ -58,43 +44,34 @@
                 <a href="/" class="siteTitle">Blog@basereality</a>
         </div>
         <div>
-            {$themeCSS->renderThemeButton() | nofilter}
+            {# $themeCSS->renderThemeButton() | nofilter #}
+            theme button goes here.
         </div>
-        
     </div>
 
-{block name='title'}
-{/block}
+{% block title %}
+{% endblock %}
+
     <div class="row">
         <div class="col-md-2 navPanel visible-md visible-lg">
-            {include file='panels/pastPosts'}
+            {% include 'panels/pastPosts.tpl' %}
         </div>
         
         <div class="col-sm-10 col-lg-7 columnAdjust widthAdjust">
-            {block name='mainContent'}
+            {% block mainContent %}
                 Main content goes here.
-            {/block}        
+            {% endblock %}
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-8">
-            {peakMemory() | nofilter}
+            {{ memory_debug() }}
         </div>
     </div>
-
 </div>
 
-{$scriptInclude->addBodyLoadJS("SyntaxHighlighter.all({  gutter: false  });")}
-{$scriptInclude->renderJSLinks() | nofilter}
-{$scriptInclude->renderOnBodyLoadJavascript() | nofilter}
-
-<div>
-    {inject name='debug' type='Blog\Debug'}
-    {$debug->render() | nofilter}
-</div>
-
-{* Yui compressor is currently breaking this, and it's already minified.*}
+<script type='text/javascript' src='/js/blog?version=2018_06_29'></script>
 <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,28 +1,13 @@
 
-{inject name='adminLinks' type='Blog\Site\AdminLinks'}
-{$adminLinks->render() | nofilter}
 
 
 <div class="row panel panel-default pastLinks">
-    <div class="col-md-12">
-    {inject name='activeBlogPost' type='Blog\Model\ActiveBlogPost'}
+  <div class="col-md-12">
+    {# inject name='activeBlogPost' type='Blog\Model\ActiveBlogPost' #}
     <ul class="nav nav-list smallPadding">
-        {inject name='blogList' type='Blog\Service\BlogList'}
-        {foreach $blogList->getBlogs() as $blogPost}
-            {if $blogPost->blogPost->blogPostID == $activeBlogPost->blogPost->blogPostID}
-                <li class="active">
-            {else}
-                <li>
-            {/if}
-
-            {$blogPost->renderTitle() | nofilter}
-            </li>
-        {/foreach}
-
+        {{ renderBlogPostList() }}
         <li><a href='/rss'>RSS feed</a></li>
-        
         <li><a href='http://docs.basereality.com'>RFCs + slides</a></li>
     </ul>
-
-    </div>
+  </div>
 </div>

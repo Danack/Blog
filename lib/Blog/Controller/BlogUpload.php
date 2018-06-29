@@ -47,7 +47,6 @@ class BlogUpload
                 [$blogUploadForm]
             );
         }
-        //$session->save();
         $valid = $blogUploadForm->validate();
 
         if (!$valid) {

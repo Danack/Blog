@@ -14,6 +14,7 @@ use GithubService\GithubArtaxService\GithubService;
 use Intahwebz\DB\StatementFactory;
 use Jig\Jig;
 use Jig\JigConfig;
+use Jig\JigDispatcher;
 use Psr\Log\LoggerInterface;
 use Room11\HTTP\Response;
 use Room11\HTTP\VariableMap;
@@ -70,7 +71,6 @@ class App
 
     public static function createDispatcher()
     {
-
         $dispatcher = \FastRoute\simpleDispatcher(['Blog\App', 'routesFunction']);
 
         return $dispatcher;
@@ -161,6 +161,16 @@ class App
      */
     public static function routesFunction(\FastRoute\RouteCollector $r)
     {
+        $r->addRoute('GET', "/react", ['Blog\Controller\ReactTest', 'reactTest']);
+
+        $r->addRoute('GET', "/setup2fa", ['Blog\Controller\Registration', 'setup2fa']);
+        $r->addRoute('GET', "/complete2fa", ['Blog\Controller\Registration', 'complete2fa']);
+
+        $r->addRoute('GET', "/reactapi", ['Blog\Controller\ReactTest', 'reactApi']);
+
+        $r->addRoute('POST', "/api/template_render", ['Blog\Controller\ReactTest', 'template_render']);
+
+
         $r->addRoute('GET', "/css/{commaSeparatedFilenames}", ['ScriptHelper\Controller\ScriptServer', 'serveCSS']);
         $r->addRoute('GET',
             '/js/{commaSeparatedFilenames}',
@@ -321,6 +331,12 @@ class App
     public static function prepareJig(Jig $jig, $injector)
     {
         $jig->addDefaultPlugin('Blog\TemplatePlugin\BlogPostPlugin');
+    }
+
+
+    public static function prepareJigDispatcher(JigDispatcher $jigDispatcher, $injector)
+    {
+        $jigDispatcher->addDefaultPlugin('Blog\TemplatePlugin\BlogPostPlugin');
     }
     
     /**

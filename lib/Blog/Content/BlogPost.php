@@ -2,11 +2,11 @@
 
 namespace Blog\Content;
 
-use Intahwebz\Cache\KeyName;
+// use Intahwebz\Cache\KeyName;
 
 class BlogPost
 {
-    use KeyName;
+    // use KeyName;
 
     public $datestamp;
     public $blogPostID;
@@ -62,8 +62,8 @@ class BlogPost
         return $this->text;
     }
 
-    public function getCacheKey($name)
-    {
-        return $this->getClassKey($name.'_'.$this->blogPostID);
-    }
+//    public function getCacheKey($name)
+//    {
+//        return $this->getClassKey($name.'_'.$this->blogPostID);
+//    }
 }

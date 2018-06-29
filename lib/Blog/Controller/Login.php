@@ -12,6 +12,8 @@ use Room11\HTTP\Response;
 use Room11\HTTP\Body\RedirectBody;
 use Room11\HTTP\VariableMap;
 use Tier\Bridge\JigExecutable;
+use Google\Authenticator\GoogleAuthenticator;
+use Blog\Config;
 
 class Login
 {
@@ -50,23 +52,30 @@ class Login
         VariableMap $variableMap,
         LoginForm $loginForm,
         Session $session,
-        LoginRepo $loginMapper
+        LoginRepo $loginMapper,
+        Config $config
     ) {
         $wasValid = false;
-        $validCallback = function(LoginForm $loginForm) use ($session, $loginMapper, &$wasValid) {
+        $validCallback = function(LoginForm $loginForm) use ($session, $loginMapper, $config, &$wasValid) {
             $username =  $loginForm->getValue('end', 'username');
             $password =  $loginForm->getValue('end', 'password');
+            $auth_code =  $loginForm->getValue('end', 'auth_code');
 
             if ($loginMapper->isLoginValid($username, $password) == true) {
-                $session->setSessionVariable(
-                    \Blog\Site\Constant::$userRole,
-                    Role::ADMIN
-                );
-                $wasValid = true;
+                $secret = $config->getKey(Config::GOOGLE_AUTHENTICATOR_SECRET);
+
+                $g = new GoogleAuthenticator();
+                if ($g->checkCode($secret, $auth_code)) {
+                    $session->setSessionVariable(
+                        \Blog\Site\Constant::$userRole,
+                        Role::ADMIN
+                    );
+                    $wasValid = true;
+                    return;
+                }
             } 
-            else {
-                $loginForm->setFormError("Username or password incorrect");
-            }
+
+            $loginForm->setFormError("Username or password or auth incorrect");
         };
 
         $loginForm->initFromSubmittedData($variableMap);

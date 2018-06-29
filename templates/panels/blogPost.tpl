@@ -23,7 +23,15 @@
             </div>
         </div>
         <div>
-            {showTweetButton() | nofilter}
+            <a href='https://twitter.com/share'
+               class='twitter-share-button'
+               data-via='MrDanack' data-dnt='true'>
+                Tweet
+            </a>
+
+            <script>
+                addTwitterDelayed();
+            </script>
         </div>
         
         <div>

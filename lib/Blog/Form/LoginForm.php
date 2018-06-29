@@ -51,6 +51,16 @@ class LoginForm extends Form
                     )
                 ),
                 array(
+                    'type' => 'FCForms\FormElement\Text',
+                    'label' => 'Authenticator',
+                    'name' => 'auth_code',
+                    'validation' => array(
+                        "Zend\\Validator\\StringLength" => array(
+                            'min' => 4,
+                        ),
+                    )
+                ),
+                array(
                     'submitButton',
                     'type' => 'FCForms\FormElement\SubmitButton',
                     'name' => 'submit',

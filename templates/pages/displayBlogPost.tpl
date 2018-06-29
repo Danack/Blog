@@ -1,13 +1,12 @@
-{extends file='component/framework'}
+{% extends 'component/framework.tpl' %}
 
-{block name='page_title'}
-    {inject name='activeBlogPost' type='Blog\Model\ActiveBlogPost'}
-    <title>{$activeBlogPost->blogPost->getTitle()}</title>
-{/block}
 
-{block name='mainContent'}    
-   {include file='panels/blogPost'}
-{/block}
+{% block page_title %}
+    {{ renderActiveBlogPostTitle() }}
+{% endblock %}
 
-{block name='drafts'}
-{/block}
+
+
+{% block mainContent %}
+    {{ renderActiveBlogPostBody() }}
+{% endblock %}

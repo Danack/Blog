@@ -15,6 +15,8 @@ class Config
 
     const JIG_COMPILE_CHECK = 'jig.compilecheck';
 
+    const GOOGLE_AUTHENTICATOR_SECRET = 'google.authenticator';
+
     const DOMAIN_CANONICAL = 'domain.canonical';
     const DOMAIN_CDN_PATTERN= 'domain.cdn.pattern';
     const DOMAIN_CDN_TOTAL= 'domain.cdn.total';

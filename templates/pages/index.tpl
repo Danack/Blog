@@ -1,12 +1,11 @@
-{extends file='component/framework'}
+{% extends 'component/framework.tpl' %}
 
+{% block mainContent %}
 
-{block name='mainContent'}
-      
 <div class="row">
-  <div class="col-md-12 panel panel-default">    
-    {include file='panels/indexList'}
+  <div class="col-md-12 panel panel-default">
+    {{ renderBlogPostListFrontPage() }}
   </div>
 </div>
-{/block}
+{% endblock %}
 

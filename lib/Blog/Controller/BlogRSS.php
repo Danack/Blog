@@ -6,6 +6,7 @@ use Blog\App;
 use Blog\Value\StoragePath;
 use Blog\Repository\BlogPostRepo;
 use Blog\Model\TemplateBlogPostFactory;
+use Danack\Response\TextResponse;
 use Room11\HTTP\Body\FileBody;
 use UniversalFeedCreator;
 use Blog\Route;
@@ -13,27 +14,36 @@ use Blog\Route;
 class BlogRSS
 {
     public function rssFeed(
-        StoragePath $storagePath,
-        BlogPostRepo $blogPostRepo,
-        TemplateBlogPostFactory $templateBlogPostFactory
+        // StoragePath $storagePath,
+        BlogPostRepo $blogPostRepo// ,
+        // TemplateBlogPostFactory $templateBlogPostFactory
     ) {
-        $filePath = $storagePath->getPath()."/cache/rss/feed.xml";
-        if (!@file_exists($filePath) || @filemtime($filePath) < time() - 7200) {
-            $this->genFeed($filePath, $blogPostRepo, $templateBlogPostFactory);
-        }
+//        $filePath = $storagePath->getPath()."/cache/rss/feed.xml";
+//        if (!@file_exists($filePath) || @filemtime($filePath) < time() - 7200) {
+//            $this->genFeed($filePath, $blogPostRepo, $templateBlogPostFactory);
+//        }
 
-        $fileBody = new FileBody(
-            $filePath,
-            "application/xml; charset=UTF-8; filename=feed.xml"
-        );
+        $feedText = $this->genFeed(/* $filePath,*/ $blogPostRepo);
 
-        return $fileBody;
+        $headers = [
+            'Content-Type' => 'text/plain'
+        ];
+
+
+        return new TextResponse($feedText, $headers);
+
+//        $fileBody = new FileBody(
+//            $filePath,
+//            "application/xml; charset=UTF-8; filename=feed.xml"
+//        );
+//
+//        return $fileBody;
     }
     
     private function genFeed(
-        $filePath,
-        BlogPostRepo $blogPostRepo,
-        TemplateBlogPostFactory $templateBlogPostFactory
+        // $filePath,
+        BlogPostRepo $blogPostRepo//,
+//        TemplateBlogPostFactory $templateBlogPostFactory
     ) {
         //TODO validate with http://validator.w3.org/feed/
         $rss = new UniversalFeedCreator();
@@ -45,7 +55,6 @@ class BlogRSS
         $rss->link = "http://blog.basereality.com/";
         $rss->syndicationURL = "http://blog.basereality.com/rss";
 
-        //$year = date('Y');
         $year = 2014;
         
         $blogPostsList = $blogPostRepo->getBlogPostsForYear($year, false);
@@ -58,8 +67,11 @@ class BlogRSS
             $item = new \FeedItem();
             $item->title = $blogPost->getTitle();
             $item->link = Route::blogPost($blogPost);
-            $templateBlogPost = $templateBlogPostFactory->create($blogPost);
-            $item->description = $templateBlogPost->showPreview(400);
+
+            $item->description = $blogPost->getText();
+
+            //$templateBlogPost = $templateBlogPostFactory->create($blogPost);
+            //$item->description = $templateBlogPost->showPreview(400);
 
             //optional
             $item->descriptionTruncSize = 500;
@@ -71,7 +83,9 @@ class BlogRSS
             $rss->addItem($item);
         }
 
-        App::ensureDirectoryExists($filePath);
-        $rss->saveFeed("RSS1.0", $filePath, false);
+        //App::ensureDirectoryExists($filePath);
+        //$rss->saveFeed("RSS1.0", $filePath, false);
+
+        return $rss->createFeed("RSS1.0");
     }
 }
