@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Hello SyntaxHighlighter</title>
+
+	<script type="text/javascript" src="../src/js/xregexp.js"></script>
+	<script type="text/javascript" src="../src/js/shCore.js"></script>
+	<script type="text/javascript" src="../src/js/shBrushJScript.js"></script>
+	<link type="text/css" rel="stylesheet" href="css/shCoreDefault.css">
+
+	<style type="text/css">
+		body {
+			background: white;
+			font-family: helvetica sans-serif;
+		}
+
+        @media (min-width: 900px) {
+            .shContainer {
+                width: 800px;
+                font-size: 14px;
+            }
+        }
+        @media (min-width: 640px) and (max-width: 900px) {
+            .shContainer {
+                width: 600px;
+                font-size: 10px;
+            }
+        }
+        @media (max-width: 640px) {
+            .shContainer {
+                width: auto;
+                font-size: 8px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h1>Hello SyntaxHighlighter</h1>
+
+<div class="shContainer">
+<pre class="brush: js;" data-link="http://www.google.com">
+function helloWorld()
+{
+	return "hi there!";
+}
+</pre>
+</div>
+</body>
+
+<script type="text/javascript">
+var rawLink = function (text) {
+    output = "<a href='";
+    output += text;
+    output += "' target='_blank'>Raw text</a>";
+    return output;
+};
+
+var params = {
+	toolbarElements: [
+		{data:'link', func: rawLink}
+	]
+};
+
+SyntaxHighlighter.all(params);
+</script>
+
+</html>
