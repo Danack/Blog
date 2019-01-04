@@ -45,7 +45,7 @@
         </div>
         <div>
             {# $themeCSS->renderThemeButton() | nofilter #}
-            theme button goes here.
+            <!-- DJA - theme button goes here. -->
         </div>
     </div>
 
