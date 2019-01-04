@@ -265,8 +265,17 @@ function renderBlogList(Blog\Service\BlogList $blogList)
 //
 
 
-function renderBlogPostListFrontPage(Blog\Service\BlogList $blogList)
-{
+/**
+ * @param \Blog\Service\BlogList $blogList
+ * @param \Blog\BlogPostRenderer $blogPostRenderer
+ * @throws Twig_Error_Loader
+ * @throws Twig_Error_Runtime
+ * @throws Twig_Error_Syntax
+ */
+function renderBlogPostListFrontPage(
+    Blog\Service\BlogList $blogList,
+    \Blog\BlogPostRenderer $blogPostRenderer
+) {
     $html = <<< HTML
       <div class="row">
           <div class="col-md-12">
@@ -291,7 +300,10 @@ HTML;
 
     foreach ($blogList->getBlogs() as $blogPost) {
         $text = $blogPost->getText();
-        $preview = substr($text, 0, 200);
+//        $preview = substr($text, 0, 200);
+
+        $preview = $blogPostRenderer->renderBlogPostPreview($blogPost);
+
         printf(
             $html,
             Route::blogPost($blogPost),
@@ -313,53 +325,104 @@ function renderActiveBlogPostTitle(Blog\Model\ActiveBlogPost $activeBlogPost)
 }
 
 
+/**
+ * @param \Blog\Model\ActiveBlogPost $activeBlogPost
+ * @param Twig_Environment $twig
+ * @throws Exception
+ * @throws Throwable
+ * @throws Twig_Error_Loader
+ * @throws Twig_Error_Syntax
+ */
 function renderActiveBlogPostBody(
     Blog\Model\ActiveBlogPost $activeBlogPost,
-    Twig_Environment $twig)
-{
+    Twig_Environment $twig,
+    \Blog\BlogPostRenderer $blogPostRenderer
+) {
 
     $html = <<< HTML
     <div class="col-md-12">
         <div class="panel panel-default blogPostContent" >
-            <h3>%s
+            <h2>%s
             <small>
                 %s
             </small>
-            </h3>
-            
+            </h2>
         
             <div class="blogPostBody">
                 %s
             </div>
         </div>
-        <div>
-           <a href='https://twitter.com/share'
-               class='twitter-share-button'
-               data-via='MrDanack' data-dnt='true'>
-                Tweet
-            </a>
+        <!--<div>-->
+           <!--<a href='https://twitter.com/share'-->
+               <!--class='twitter-share-button'-->
+               <!--data-via='MrDanack' data-dnt='true'>-->
+                <!--Tweet-->
+            <!--</a>-->
 
-            <script>
-                addTwitterDelayed();
-            </script>
-        </div>
-        
+            <!--<script>-->
+                <!--addTwitterDelayed();-->
+            <!--</script>-->
+        <!--</div>-->
+        <!---->
         <div>
             <a href="%s">Back to index</a>
         </div>
     </div>
-
 HTML;
 
-    $bodyHtml = $activeBlogPost->blogPost->getText();
-    $template = $twig->createTemplate($bodyHtml);
-    $html = $template->render([]);
+    $bodyText = $activeBlogPost->blogPost->getText();
+    $template = $twig->createTemplate($bodyText);
+//    $bodyHtml = $template->render([]);
+    $bodyHtml = $blogPostRenderer->renderBlogPost($activeBlogPost->blogPost);
 
     printf(
         $html,
         $activeBlogPost->blogPost->getTitle(),
         $activeBlogPost->blogPost->getDatestamp(),
-        $html,
+        $bodyHtml,
         Route::index()
     );
 }
+
+
+function articleImage($imageFilename, $size, $float = 'left', $description = false)
+{
+    $output = '';
+    $marginClass = '';
+    if ($float == 'left') {
+        $marginClass = 'articleMarginFloatLeft';
+    }
+    if ($float == 'right') {
+        $marginClass = 'articleMarginFloatRight';
+    }
+    $output .= "<div class='articleImage $marginClass' style='float: $float;'>";
+    $thumbnailURL = Route::staticImage($imageFilename, $size);
+    $fullImageURL = Route::staticImage($imageFilename);
+    $output .= "<a href='$fullImageURL' target='_blank' class='plainLink'>";
+    $output .= "<img src='$thumbnailURL'/> ";
+    //Size could actually just be setting the height - which would be annoying.
+    //So we don't support that.
+    $width = intval($size);
+    if ($description != false) {
+        $output .= "<br/>";
+        $output .= "<div style='width: ".$width."px'>";
+        $output .= $description;
+        $output .= "</div>";
+    }
+    $output .= "</a></div>";
+
+    return $output;
+}
+
+
+function syntaxHighlighter($code)
+{
+    $text = "<div><pre>";
+    $text .= \Blog\Site\CodeHighlighter::highlight($code, 'php');
+    $text .= "</pre></div>";
+
+    return $text;
+}
+
+
+

@@ -2,12 +2,12 @@
 
 namespace Blog\Content;
 
-use Intahwebz\Cache\KeyName;
+//use Intahwebz\Cache\KeyName;
 
 
 class SourceFile
 {
-    use KeyName;
+//    use KeyName;
 
     public $sourceFileID;
     public $filename;
@@ -25,6 +25,6 @@ class SourceFile
 
     public function getCacheKey($name)
     {
-        return $this->getClassKey($name.'_'.$this->sourceFileID);
+        return 'foobar';//$this->getClassKey($name.'_'.$this->sourceFileID);
     }
 }

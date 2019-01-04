@@ -9,3 +9,7 @@ composer.phar
 appDevDebugProjectContainer.php
 code_highlight_danack.css
 vendor_otw
+node_modules
+data/mysql/mysql
+data/mysql
+.idea

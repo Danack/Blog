@@ -61,9 +61,4 @@ class BlogPost
     {
         return $this->text;
     }
-
-//    public function getCacheKey($name)
-//    {
-//        return $this->getClassKey($name.'_'.$this->blogPostID);
-//    }
 }

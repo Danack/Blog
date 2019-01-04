@@ -26,7 +26,7 @@ class Route
     {
         $imageName = $filename;
         $sizeString = $size;
-        return "/staticImage/".$sizeString."/".urlencode($imageName);
+        return "/staticImage/" . urlencode($imageName) . "?size=" . $sizeString;
     }
 
     public static function showUpload()

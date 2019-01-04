@@ -6,8 +6,8 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 require_once __DIR__ . '/factories.php';
 require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/../posts/postList.php';
 require_once __DIR__ . '/injectionParamsHttp.php';
-// require_once __DIR__ . '/functions_test.php';
 
 set_error_handler('saneErrorHandler');
 
@@ -17,6 +17,8 @@ $injectionParams->addToInjector($injector);
 $injector->share($injector);
 
 $container = new \Slim\Container;
+
+
 
 
 // TODO - this should be moved to just the services that require a session.

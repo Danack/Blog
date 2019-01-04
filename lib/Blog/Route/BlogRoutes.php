@@ -68,7 +68,7 @@ class BlogRoutes implements Routes
         [
             '/staticImage/{filename:[^/]+}[/{size:\w+}]',
             'GET',
-            'Blog\Controller\ProxyController::staticImage'
+            'Blog\Controller\Proxy::staticImage'
         ],
 
         //['GET', '/templateViewer', ['Blog\Controller\TemplateViewer', 'index']],
@@ -93,7 +93,8 @@ class BlogRoutes implements Routes
         //['GET', '/uploadResult', ['Blog\Controller\BlogUpload', 'uploadResult']);
         //['GET', '/blogreplace/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'showReplace']);
         //['POST', '/blogreplace/{blogPostID:\d+}', ['Blog\Controller\BlogEdit', 'processReplace']);
-        //['GET', '/staticFile/{filename:[^/]+}', ['Blog\Controller\Proxy', 'staticFile']);
+
+        ['GET', '/staticFile/{filename:[^/]+}', 'Blog\Controller\Proxy::staticFile'],
 
         //['GET', '/perfTest', ['Blog\Controller\Blog', 'perfTest']);
         // ['GET', '/sourceFile/{filename:.+}', ['Blog\Controller\FileUpload', 'showFile']);
