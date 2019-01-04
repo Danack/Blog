@@ -13,3 +13,5 @@ node_modules
 data/mysql/mysql
 data/mysql
 .idea
+data/mysql_import
+backupSQLToS3.sh
