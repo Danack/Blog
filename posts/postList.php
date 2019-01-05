@@ -9,6 +9,13 @@ function createManualBlogPostRepo()
     $blogPosts = new ManualBlogPostRepo();
 
     $blogPosts->add(
+        19,
+        "Docker rebuild errors, a note to my future self",
+        '19_Docker_rebuild_errors.tpl',
+        '5th Jan 2019'
+    );
+
+    $blogPosts->add(
         18,
         "Interface segregation, the forgotten 'i' in SOLID",
         '18_Interface_segregation.tpl',

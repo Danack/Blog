@@ -10,7 +10,7 @@ A common anti-pattern (aka mistake) people make when trying to write re-usable c
 
     I want to make these classes define some mandatory functions such as createProduct, updateProduct, getCategories, getOrders. Each of these marketplaces requires different format of data and so the functions require different types and numbers of parameters. For example:
 </i>
-{highlightCode}
+```
 // Interface for Ebay
 interface Marketplace {
     public function createProduct($product, $multi);
@@ -20,7 +20,7 @@ interface Marketplace {
 interface Marketplace {
     public function createProduct(array $products, $multi, $variations);
 }
-{/highlightCode}
+```
 
 <i>
 In such case I cannot implement a single 'Marketplace' interface as each of the implementations is different. How should I create an interface for these classes?
@@ -30,13 +30,13 @@ In such case I cannot implement a single 'Marketplace' interface as each of the 
 
 The original poster's code is trying to put both of these things into a single interface:
 
-{highlightCode}
+```
 interface Marketplace {
     public function createProduct($product, $multi);
     // or
     public function createProduct(array $products, $multi, $variations);
 }
-{/highlightCode}
+```
 
 
 The fundamental problem is that these are just inherently incompatible interfaces.
@@ -66,7 +66,7 @@ some images and text, with prices and then select to upload that to either Amazo
 So the first part of the program is to figure out which uploaders need calling, and the uploading part
 is separate:
 
-{highlightCode}
+```
 // Upload a list of product to Amazon
 function uploadAmazonProducts(AmazonClient $ac, ProductList $productList) {
 ...
@@ -103,7 +103,7 @@ foreach ($uploaderList as $uploader) {
     // the dependencies for each uploader.
     $injector->execute($uploader);
 }
-{/highlightCode}
+```
 
 
 ### How to refactor the code - 2nd stage
@@ -112,8 +112,7 @@ So separating the functions that uploaded to Amazon/Ebay is nice...but I would s
 
 So let us separate the two of them as well, using the delegate functionality. These factory functions are not abstract at all, they create ProductLists specific to each retailer.
 
-{highlightCode}
-{literal}
+```
 
 function createAmazonProductListFromUserInput(UserInput $ui) : AmazonProductList {
     return AmazonProductList::fromUserInput($ui);
@@ -162,8 +161,7 @@ foreach ($uploaderList as $uploader) {
     $injector->execute($uploader);
 }
 
-{/literal}
-{/highlightCode}
+```
 
 Yay! We have perfectly understandable code, without any need for abstractions!
 
@@ -187,7 +185,7 @@ Instead of solving this with just code, that solution is solving it with 'code t
 
 Worse than this that, it just makes the code really hard to think about. Without going to look at the internal lines of code that make up the resolver function:
 
-{highlightCode}
+```
 protected function setResolver(OptionsResolver $resolver)
 {
     $resolver
@@ -196,7 +194,7 @@ protected function setResolver(OptionsResolver $resolver)
     ->setAllowedTypes('multi', 'boolean')
     ->setDefaults(array('multi' => true));
 }
-{/highlightCode}
+```
 
 it is impossible to understand what parameters need to be set. Making code be hard to reason about like this is a very bad trade-off.
 

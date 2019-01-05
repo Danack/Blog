@@ -61,9 +61,9 @@ Or by to define multiple parameters for a single class:
 {{ syntaxHighlighter(code_to_highlight, 'php') }}
 
 
-    ## Variadics are a different problem
+## Variadics are a different problem
 
-    Here is some example code where one of the parameters is variadic:
+Here is some example code where one of the parameters is variadic:
 
 {% set code_to_highlight %}
 class Foo {

@@ -15,20 +15,9 @@ RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee -a /
     php7.2-mysql  php7.2-curl php7.2-gd php7.2-xml php7.2-mbstring \
     php7.2-intl php7.2-redis php7.2-zip tidy graphviz
 
-# php7.2-imagick
-# php7.2-memcached
-
 WORKDIR /var/www
 
-# Set up configuration volumes
-RUN mkdir -p /etc/config
-
-
-
-# Used by Jenkins to package code in to container
 COPY ./ /var/www
-
-# CMD ["/usr/sbin/php-fpm7.2", "--nodaemonize", "--fpm-config=/etc/config/fpm.conf", "-c", "/etc/config/php.ini"]
 
 CMD /usr/sbin/php-fpm7.2 \
       --nodaemonize \
