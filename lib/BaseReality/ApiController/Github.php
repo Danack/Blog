@@ -72,7 +72,8 @@ class Github
 
     public function pushNotificationFake()
     {
-        $json = \file_get_contents(__DIR__ .'/example.json');
+//        $json = \file_get_contents(__DIR__ .'/example.json');
+        $json = \file_get_contents(__DIR__ .'/webhook.json');
         $data = json_decode_safe($json);
 
         return $this->pushNotification(new FakeInputData($data));

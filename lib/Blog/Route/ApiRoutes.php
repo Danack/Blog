@@ -55,7 +55,6 @@ class ApiRoutes implements Routes
 
 
 
-
             ['/test/caught_exception', 'GET', 'Osf\ApiController\Debug::testCaughtException'],
             ['/test/uncaught_exception', 'GET', 'Osf\ApiController\Debug::testUncaughtException'],
 
