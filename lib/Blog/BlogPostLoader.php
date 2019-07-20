@@ -14,9 +14,10 @@ use Twig_SourceContextLoaderInterface;
 use Twig_Source;
 use Twig_Error_Loader;
 
+use Twig\Loader\LoaderInterface;
+use Twig\Loader\SourceContextLoaderInterface;
 
-
-class BlogPostLoader implements Twig_SourceContextLoaderInterface, Twig_LoaderInterface
+class BlogPostLoader implements SourceContextLoaderInterface, LoaderInterface
 {
     /** @var BlogPost  */
     private $blogPost;

@@ -26,7 +26,8 @@ function injectionParams()
 
     // Delegate the creation of types to callables.
     $delegates = [
-        \Twig_Environment::class => 'createTwigForSite',
+        \Twig\Environment::class  => 'createTwigForSite',
+//        \Twig_Environment::class  => 'createTwigForSite',
         \Blog\Repository\BlogPostRepo::class => 'createManualBlogPostRepo',
     ];
 
