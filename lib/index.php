@@ -2,12 +2,9 @@
 
 error_reporting(E_ALL);
 
-require_once __DIR__ . "/../vendor/autoload.php";
 
 require_once __DIR__ . '/factories.php';
 require_once __DIR__ . '/functions.php';
-require_once __DIR__ . '/../posts/postList.php';
-require_once __DIR__ . '/injectionParamsHttp.php';
 
 set_error_handler('saneErrorHandler');
 

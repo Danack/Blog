@@ -425,4 +425,45 @@ function syntaxHighlighter($code)
 }
 
 
+/**
+ * Decode JSON with actual error detection
+ *
+ * @param mixed $json
+ * @return mixed
+ * @throws \BaseReality\Exception\JsonException
+ * @throws \Seld\JsonLint\ParsingException
+ */
+function json_decode_safe($json)
+{
+    if ($json === null) {
+        throw new \BaseReality\Exception\JsonException("Error decoding JSON: cannot decode null.");
+    }
 
+    $data = json_decode($json, true);
+
+    if (json_last_error() === JSON_ERROR_NONE) {
+        return $data;
+    }
+
+    $parser = new \Seld\JsonLint\JsonParser();
+    $parsingException = $parser->lint($json);
+
+    if ($parsingException !== null) {
+        throw $parsingException;
+    }
+
+    if ($data === null) {
+        throw new \BaseReality\Exception\JsonException("Error decoding JSON: null returned.");
+    }
+
+    throw new \BaseReality\Exception\JsonException("Error decoding JSON: " . json_last_error_msg());
+}
+
+
+function getPostJsonData()
+{
+    $json = file_get_contents('php://input');
+    $data = json_decode_safe($json);
+
+    return $data;
+}

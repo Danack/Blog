@@ -34,6 +34,7 @@ class ComposerStaticInit2d75d192599170a566f1d313c99cc7b1
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Slim\\' => 5,
+            'Seld\\JsonLint\\' => 14,
         ),
         'P' => 
         array (
@@ -88,6 +89,10 @@ class ComposerStaticInit2d75d192599170a566f1d313c99cc7b1
         'Slim\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
+        ),
+        'Seld\\JsonLint\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/seld/jsonlint/src/Seld/JsonLint',
         ),
         'Psr\\Http\\Message\\' => 
         array (
