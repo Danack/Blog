@@ -15,6 +15,7 @@ function injectionParams() : InjectionParams
     $aliases = [
         \VarMap\VarMap::class => \VarMap\Psr7InputMapWithVarMap::class,
         Blog\Route\Routes::class => \Blog\Route\ApiRoutes::class,
+        \BaseReality\Service\InputData\InputData::class => \BaseReality\Service\InputData\PostInputData::class
     ];
 
     // Delegate the creation of types to callables.
