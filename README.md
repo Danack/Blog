@@ -41,7 +41,6 @@ npm run build
 php -S 127.0.0.1:8000 -t www/
 
 
-
 babel --plugins transform-react-jsx www/js/app/main.js
 
 TODO - use webpack following:
