@@ -59,6 +59,7 @@ class Github
     public function pushNotification(InputData $inputData)
     {
         $data = $inputData->getData();
+
         $fullName = $data['repository']["full_name"];
         $this->deploySiteNotifier->pushBuildNotification($fullName, 'github_push');
 
@@ -73,7 +74,7 @@ class Github
     public function pushNotificationFake()
     {
 //        $json = \file_get_contents(__DIR__ .'/example.json');
-        $json = \file_get_contents(__DIR__ .'/webhook.json');
+        $json = \file_get_contents(__DIR__ .'/example2.json');
         $data = json_decode_safe($json);
 
         return $this->pushNotification(new FakeInputData($data));

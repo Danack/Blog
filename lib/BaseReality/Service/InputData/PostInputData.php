@@ -8,12 +8,9 @@ class PostInputData implements InputData
 {
     public function getData()
     {
-        function getPostJsonData()
-        {
-            $json = file_get_contents('php://input');
-            $data = json_decode_safe($json);
+        $json = file_get_contents('php://input');
+        $data = json_decode_safe($json);
 
-            return $data;
-        }
+        return $data;
     }
 }
