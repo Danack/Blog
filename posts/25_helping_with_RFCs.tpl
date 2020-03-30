@@ -41,7 +41,7 @@ By helping people new to the project run a successful RFC, not only does it help
 
 ## Lowers the barrier of getting stuff done
 
-Even for people who are not new to PHP internals, the skill needed to write RFCs is outside the normal skillset that most developers have.
+Even for people who are not new to PHP internals, the skill needed to write RFCs is outside the normal skill set that most developers have.
 
 This is an even greater problem for people who are non-native English speakers.
 
