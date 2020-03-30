@@ -9,6 +9,13 @@ function createManualBlogPostRepo()
     $blogPosts = new ManualBlogPostRepo();
 
     $blogPosts->add(
+        25,
+        "Why I help people with PHP RFCs",
+        '25_helping_with_RFCs.tpl',
+        '29th March 2020'
+    );
+
+    $blogPosts->add(
         19,
         "Docker rebuild errors, a note to my future self",
         '19_Docker_rebuild_errors.tpl',
