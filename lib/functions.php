@@ -267,8 +267,11 @@ function renderSocialData(
             ->add('description', $preview)
             ->add('language', 'en')
             ->add('canonical', $url)
-//        ->add('image', 'your image url')
+            // ->add('image', 'your image url')
+            ->add('twitter:card', 'summary')
             ->build();
+
+        $header_chunk = str_replace("/>", "/> \n", $header_chunk);
 
         echo $header_chunk;
     }
