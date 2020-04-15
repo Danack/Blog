@@ -57,7 +57,8 @@ function addBlogFunctionsToTwig(Twig_Environment $twig, \Auryn\Injector $injecto
         'renderBlogList',
         'renderBlogPostListFrontPage',
         'renderActiveBlogPostTitle',
-        'renderActiveBlogPostBody'
+        'renderActiveBlogPostBody',
+        'renderSocialData'
     ];
 
     foreach ($injectorFunctions as $fnName) {

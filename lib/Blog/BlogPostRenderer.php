@@ -44,13 +44,6 @@ class BlogPostRenderer
      */
     public function renderBlogPostPreview(BlogPost $blogPost)
     {
-        $finalHtml = $this->blogPostTwig->renderBlogPost($blogPost);
-
-        $endPreviewPosition = strpos($finalHtml, "<!-- end_preview -->");
-        if ($endPreviewPosition !== false) {
-            return substr($finalHtml, 0, $endPreviewPosition);
-        }
-
-        return substr($finalHtml, 0, 200);
+        return renderBlogPostPreview($this->blogPostTwig, $blogPost);
     }
 }

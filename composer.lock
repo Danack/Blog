@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fb17f5ab8754d915552040c51ca67d4",
+    "content-hash": "3619c8a68664db562911c245fe925d41",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -35,6 +35,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
+            "abandoned": "psr/container",
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
@@ -602,6 +603,7 @@
                 "scss",
                 "stylesheet"
             ],
+            "abandoned": "scssphp/scssphp",
             "time": "2016-01-15T02:50:06+00:00"
         },
         {
@@ -843,6 +845,7 @@
                 "php",
                 "stylesheet"
             ],
+            "abandoned": true,
             "time": "2014-03-17T04:51:51+00:00"
         },
         {
@@ -1456,6 +1459,54 @@
             "time": "2019-06-18T15:35:16+00:00"
         },
         {
+            "name": "utlime/seo-meta-tags",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/utlime/php-seo-meta-tags.git",
+                "reference": "bf130fa2e5773ab08f70a73389b7eb597e601686"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/utlime/php-seo-meta-tags/zipball/bf130fa2e5773ab08f70a73389b7eb597e601686",
+                "reference": "bf130fa2e5773ab08f70a73389b7eb597e601686",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Utlime\\SeoMetaTags\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Vysotsky",
+                    "email": "utlime@gmail.com"
+                }
+            ],
+            "description": "Social Meta Tags: Open Graph Tags, Facebook, Twitter, LinkedIn, Google+, Pinterest and etc",
+            "keywords": [
+                "meta",
+                "og",
+                "open graph",
+                "seo",
+                "social",
+                "twitter card"
+            ],
+            "time": "2018-05-06T16:49:44+00:00"
+        },
+        {
             "name": "zendframework/zend-diactoros",
             "version": "1.8.6",
             "source": {
@@ -1517,6 +1568,7 @@
                 "psr",
                 "psr-7"
             ],
+            "abandoned": "laminas/laminas-diactoros",
             "time": "2018-09-05T19:29:37+00:00"
         },
         {
@@ -1562,6 +1614,7 @@
                 "escaper",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-escaper",
             "time": "2018-04-25T15:48:53+00:00"
         }
     ],

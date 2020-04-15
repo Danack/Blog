@@ -1,0 +1,15 @@
+<head>
+    <title>stub title</title>
+    <meta name="description" content="stub description" />
+    <meta content="stub language" http-equiv="content-language"/>
+    <link href="stub canonical" rel="canonical"/>
+    <meta name="twitter:title" content="stub title" />
+    <meta name="twitter:description" content="stub description" />
+    <meta name="twitter:image" content="stub image" />
+    <meta property="og:title" content="stub title" />
+    <meta property="og:description" content="stub description" />
+    <meta property="og:locale" content="stub language" />
+    <meta property="og:url" content="stub canonical" />
+    <meta property="og:image" content="stub image" />
+    <meta property="og:image" content="stub og:image" />
+</head>

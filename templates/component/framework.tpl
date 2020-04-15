@@ -18,6 +18,9 @@
     <link rel='stylesheet' type='text/css'  media='screen' href='/css/code_highlight_dark.css' />
     <link rel="alternate" type="application/atom+xml" href="/rss" />
     {% include 'component/favicon.tpl' %}
+
+    {{ renderSocialData() }}
+
 </head>
 
 <body class="main">

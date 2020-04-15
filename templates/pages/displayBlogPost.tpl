@@ -2,7 +2,7 @@
 
 
 {% block page_title %}
-    {{ renderActiveBlogPostTitle() }}
+    {# renderActiveBlogPostTitle() #}
 {% endblock %}
 
 

@@ -239,6 +239,49 @@ function renderBlogList(Blog\Service\BlogList $blogList)
 }
 
 
+function renderSocialData(
+    Blog\Model\ActiveBlogPost $activeBlogPost,
+    \Blog\BlogPostTwig $blogPostTwig
+) {
+    $builder = new Utlime\SeoMetaTags\BuilderDelegate(
+        new Utlime\SeoMetaTags\CommonBuilder(),
+        new Utlime\SeoMetaTags\TwitterBuilder(),
+        new Utlime\SeoMetaTags\OpenGraphBuilder()
+    );
+
+    if ($activeBlogPost->blogPost->blogPostID === null) {
+        return;
+    }
+
+    try {
+        $preview = renderBlogPostPreview(
+            $blogPostTwig,
+            $activeBlogPost->blogPost
+        );
+
+
+        $url = Route::blogPost($activeBlogPost->blogPost);
+
+        $header_chunk = $builder
+            ->add('title', $activeBlogPost->blogPost->getTitle())
+            ->add('description', $preview)
+            ->add('language', 'en')
+            ->add('canonical', $url)
+//        ->add('image', 'your image url')
+            ->build();
+
+        echo "dja";
+
+//        var_dump($activeBlogPost);
+
+        echo $header_chunk;
+        echo "dja";
+    }
+    catch (\Throwable $t) {
+        // currently don't care.
+    }
+}
+
 //public function renderTitle()
 //{
 //    $url = Route::blogPost($this->blogPost);
@@ -466,4 +509,18 @@ function getPostJsonData()
     $data = json_decode_safe($json);
 
     return $data;
+}
+
+function renderBlogPostPreview(
+    \Blog\BlogPostTwig $blogPostTwig,
+    \Blog\Content\BlogPost $blogPost
+) {
+    $finalHtml = $blogPostTwig->renderBlogPost($blogPost);
+
+    $endPreviewPosition = strpos($finalHtml, "<!-- end_preview -->");
+    if ($endPreviewPosition !== false) {
+        return substr($finalHtml, 0, $endPreviewPosition);
+    }
+
+    return substr($finalHtml, 0, 200);
 }

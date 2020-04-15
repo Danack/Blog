@@ -26,6 +26,10 @@ class ComposerStaticInit2d75d192599170a566f1d313c99cc7b1
             'Zend\\Escaper\\' => 13,
             'Zend\\Diactoros\\' => 15,
         ),
+        'U' => 
+        array (
+            'Utlime\\SeoMetaTags\\' => 19,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -77,6 +81,10 @@ class ComposerStaticInit2d75d192599170a566f1d313c99cc7b1
         'Zend\\Diactoros\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
+        ),
+        'Utlime\\SeoMetaTags\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/utlime/seo-meta-tags/src',
         ),
         'Twig\\' => 
         array (

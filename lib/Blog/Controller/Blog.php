@@ -64,7 +64,7 @@ class Blog
             $blogPost = $blogPostMapper->getBlogPost($blogPostID);
         }
         catch (BlogPostNotFoundException $bpnfe) {
-            return new TextResponse("Blog post not found", 404);
+            return new TextResponse("Blog post not found", [], 404);
         }
 
         if ($format == 'text') {
@@ -72,7 +72,7 @@ class Blog
         }
 
         $activeBlogPost = new ActiveBlogPost($blogPost);
-        $params = ['Blog\Model\ActiveBlogPost' => $activeBlogPost];
+//        $params = ['Blog\Model\ActiveBlogPost' => $activeBlogPost];
 
         $injector->share($activeBlogPost);
 
