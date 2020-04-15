@@ -270,12 +270,7 @@ function renderSocialData(
 //        ->add('image', 'your image url')
             ->build();
 
-        echo "dja";
-
-//        var_dump($activeBlogPost);
-
         echo $header_chunk;
-        echo "dja";
     }
     catch (\Throwable $t) {
         // currently don't care.
