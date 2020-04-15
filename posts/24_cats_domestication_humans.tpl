@@ -45,7 +45,7 @@ My dad has multiple cats, one of which is very smart and full of character. In t
 
 A similar thing is happening to the crows in rural France. They are becoming more wary of vehicles due to occasionally being struck by them. Near where my dad lives in Normandy, the roads are long and have little traffic. The crows will fly off when a vehicle gets to within 300 meters of them.
 
-### Humans against human violence
+### Human against human violence
 
 Aggressive dogs and vehicles are two big risks to cats individual survival that still occur, but another big risk to cats being able to pass on their genes has been humans killing other humans.
 
