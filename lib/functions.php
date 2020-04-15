@@ -267,7 +267,7 @@ function renderSocialData(
             ->add('description', $preview)
             ->add('language', 'en')
             ->add('canonical', $url)
-            // ->add('image', 'your image url')
+            ->add('image', 'http://blog.basereality.com/images/Portrait.jpg')
             ->add('twitter:card', 'summary')
             ->build();
 
