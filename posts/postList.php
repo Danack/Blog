@@ -9,6 +9,13 @@ function createManualBlogPostRepo()
     $blogPosts = new ManualBlogPostRepo();
 
     $blogPosts->add(
+        26,
+        "Cats survival strategy",
+        '24_cats_domestication_humans.tpl',
+        '15th April 2020'
+    );
+
+    $blogPosts->add(
         25,
         "Why I help people with PHP RFCs",
         '25_helping_with_RFCs.tpl',
@@ -87,7 +94,7 @@ function createManualBlogPostRepo()
 
     $blogPosts->add(
         7,
-        "Go home PHP; you're drunk ",
+        "Go home PHP; you're drunk",
         '7_Go_home_PHP_youre_drunk.tpl',
         '4th Jul 2013'
     );
