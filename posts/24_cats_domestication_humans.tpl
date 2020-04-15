@@ -21,7 +21,7 @@ People wouldn't do this for fun, but when the winter has been long, and their ch
 
 People are, in general, not completely stupid.
 
-Even if you're desperately hungry, you're not going to grab the nearest cat to kill. You're going to figure out which cats would be missed least and pick of those.
+Even if you're desperately hungry, you're not going to grab the nearest cat to kill. You're going to figure out which cats would be missed least and pick one of those.
 
 A cat that has demonstrated how many mice it can kill is going to be viewed as a useful member of the community. A cat that just eats the mice it catches away from human view is not going to be viewed as useful, and so is far more likely to be selected for stew.
 
@@ -47,7 +47,7 @@ A similar thing is happening to the crows in rural France. They are becoming mor
 
 ### Humans against human violence
 
-Aggressive dogs and vehicles are two big risks to cats individual survival that still occur, but I think the biggest risk to cats being able to pass on their genes has been humans killing other humans.
+Aggressive dogs and vehicles are two big risks to cats individual survival that still occur, but another big risk to cats being able to pass on their genes has been humans killing other humans.
 
 Due to the current lockdown, people are currently rediscovering that being stuck at home is kind of annoying. But being stuck in a home with the modern internet is not too bad.
 
@@ -73,6 +73,8 @@ Obviously there is no direct way for cats to stop violence between humans, howev
 
 Kittens are adorable, and adult cats will play with each other, or with humans if they have a piece of string. Even today, cats playing this provides a nice bit of stimulation and entertainment to humans despite all the other sources of entertainment we have available.
 
-For most of human-cat co-existance, any genes in cats that result in providing entertainment for humans would have had strong natural-selection benefits over a long period of time, which is why cats today are so good at playing.
+It's very easy to imagine that for many families and tribes, the entertainment provided would be the difference between violence breaking out or not.
+
+For most of human-cat co-existance, any genes in cats that result in providing entertainment for humans would have had strong natural-selection benefits over a long period of time, which is why cats today are so good at entertaining humans.
 
 The corresponding natural selection for humans who like cats and find them entertaining are probably also worth considering.
