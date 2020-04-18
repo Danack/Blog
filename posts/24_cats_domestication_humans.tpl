@@ -1,5 +1,5 @@
 
-A lot of words have been written about the behaviour of cats and how living with humans for ten thousand words has affected that behaviour.
+A lot of words have been written about the behaviour of cats and how living with humans for ten thousand years has affected that behaviour.
 
 I have two 'pet' theories that seem kind of obvious to me, but I haven't seen elsewhere.
 
