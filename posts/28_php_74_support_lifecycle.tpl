@@ -1,5 +1,5 @@
 
-There is one major inaccuracy in the article [PHP showing its maturity in release 7.4](https://lwn.net/SubscriberLink/818973/507f4b5e09ab9870/). In particular, the part "PHP is likely to continue with releases in the 7.x branch, adding incremental improvements,".
+There is one major inaccuracy in the article ['PHP showing its maturity in release 7.4'](https://lwn.net/SubscriberLink/818973/507f4b5e09ab9870/). In particular, the part "PHP is likely to continue with releases in the 7.x branch, adding incremental improvements,".
 
 That is not the case.
 
