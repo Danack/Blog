@@ -56,7 +56,22 @@ Dividing the communication into channels for people who want to do the work, but
 
 ## Moderation / code of conduct
 
+
+
 ## Mute-able
+
+Everyone in a group needs to be able to mute/ignore messages from other people. That includes replies to those people.
+
+There probably needs to be an exception for
+
+Except room-owners
+
+## Suspensions
+
+
+
+
+
 
 
 

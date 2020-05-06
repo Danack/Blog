@@ -9,6 +9,13 @@ function createManualBlogPostRepo()
     $blogPosts = new ManualBlogPostRepo();
 
     $blogPosts->add(
+        27,
+        "PHP 7.4 support lifecycle",
+        '28_php_74_support_lifecycle.tpl',
+        '6th May 2020'
+    );
+
+    $blogPosts->add(
         26,
         "Cats survival strategy",
         '24_cats_domestication_humans.tpl',

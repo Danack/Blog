@@ -2,6 +2,8 @@
 
 (This is part of a series of posts that I'm writing at the same time. There will be overlap between them, and I may need to refactor them to make more sense.)
 
+asd
+
 This guide is a suggestion on how to go about making an RFC for PHP. Although it is aimed at people who are relatively new to the project, there may be lessons for everyone.
 
 If you've submitted RFCs before, the current RFC process is an adequate way to get your RFC being considered.
