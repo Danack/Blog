@@ -33,10 +33,10 @@ More info about Rector, [text form](https://www.tomasvotruba.com/blog/2018/02/19
 
 The PHP ecosystem has also seen a rapid improvement in the static code analyzers that are available to PHP users:
 
-* https://phpstan.org/
-* https://psalm.dev/
-* https://github.com/phan/phan
-* https://github.com/Roave/BackwardCompatibilityCheck
+* [phpstan.org](https://phpstan.org/)
+* [psalm.dev](https://psalm.dev/)
+* [github.com/phan/phan](https://github.com/phan/phan)
+* [github.com/Roave/BackwardCompatibilityCheck](https://github.com/Roave/BackwardCompatibilityCheck)
 
 Sometimes healthy competition is better than projects working together. But I digress, back to the matter of the short time period of PHP 7.4 support.
 
