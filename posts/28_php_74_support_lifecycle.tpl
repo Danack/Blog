@@ -23,7 +23,7 @@ The thing that balances this out imo, is that the PHP project also takes greater
 
 Not only is the work less than compared to other languages, we also have some better tools for upgrades than other languages.
 
-Rector is a good example. https://getrector.org/ It is an automated refactoring tool that understands PHP code, and has plugin based rules for how code should be refactored. When a PHP version is released, some Rector rules are written that:
+[Rector](https://getrector.org/) is a good example. It is an automated refactoring tool that understands PHP code, and has plugin based rules for how code should be refactored. When a PHP version is released, some Rector rules are written that:
 
 * understands which bits of the code are subject to a BC break
 * how to refactor those bits into equivalent code that works on the new version, or when possible into a version that works on both versions.
