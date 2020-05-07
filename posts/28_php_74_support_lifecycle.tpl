@@ -47,3 +47,7 @@ There is time between now and the planned end of support for PHP 7.4 for an alte
 If any group could be found or formed now, separate to the current core maintainers, and could do the work to come up with a plan to maintain a LTS version of PHP 7.4, then there is plenty of time over the next 18 months to discuss and implement that plan.
 
 That would be strongly preferable to having a drama filled conversation close to the end of support deadline. In that scenario, I suspect people might use emotionally charged language to try to pressure the current core maintainers into maintaining a version of PHP that they don't want to support.
+
+To be clear, I don't have the bandwidth to be part of maintaining a LTS version of PHP 7.4, but I do have enough energy to drive the conversation forward. So that people who are interested in doing the work can find each other, I've opened an issue ['PHP 7.4 LTS'](https://github.com/Danack/RfcCodex/issues/17) with the aim of people leaving their contact details, or for me to link to interested parties.
+
+As the release of PHP 8 is fast approaching, I won't raise this on list just now, but will wait until the PHP 8 feature freeze has occurred.
