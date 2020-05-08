@@ -56,6 +56,7 @@ Dividing the communication into channels for people who want to do the work, but
 
 ## Moderation / code of conduct
 
+See this link for full details moderation_requirements.tpl
 
 
 ## Mute-able
@@ -70,7 +71,10 @@ Except room-owners
 
 
 
+## Forkable
 
+
+Note, that it can easily be the case that a community might decide to take conversations in a direction that the moderators may disagree with. e.g. see all the discussions of manga/anime
 
 
 
