@@ -9,6 +9,22 @@ function createManualBlogPostRepo()
     $blogPosts = new ManualBlogPostRepo();
 
     $blogPosts->add(
+        30,
+        "General food notes",
+        '30_tasty_food.tpl',
+        '30th Nov 2020'
+    );
+
+    $blogPosts->add(
+        29,
+        "General food notes",
+        '29_general_food_notes.tpl',
+        '29th Nov 2020'
+    );
+
+
+
+    $blogPosts->add(
         27,
         "PHP 7.4 support lifecycle",
         '28_php_74_support_lifecycle.tpl',
