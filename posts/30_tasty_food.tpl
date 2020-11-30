@@ -3,6 +3,8 @@ I commented to a friend that I cook food at home most days, with 'recipes' that 
 
 These are notes on them rather than full recipes.
 
+<!-- end_preview -->
+
 ## Eggs as either Omelette or Frittata
 
 Fry 3 fillings chosen from say bacon, onion, mushroom, tomato, broccoli. Crack three eggs into a bowl and add a tiny splash of mil. When the things are finished frying:

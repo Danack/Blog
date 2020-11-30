@@ -1,6 +1,8 @@
 
 I commented to a friend that I cook food at home most days, with 'recipes' that are quick and easy to prepare, cook and cleanup afterwards. These are some notes on how things I consider when deciding on what to eat.
 
+<!-- end_preview -->
+
 Every meal should contain some vegetable. Even if it's just a fresh tomato cut up.
 
 Don't eat 'reduced fat' stuff. If you're want to eat less fat, eat less stuff that contains fat.
