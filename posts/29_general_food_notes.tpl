@@ -23,7 +23,7 @@ Using spices to make your food tasty, is much healthier than dousing them with s
 
 If your food needs a little something, but you're not such what, you either need to add more garlic or salt. Or maybe a splash of lemon juice.
 
-Cooking and freezing soups, bolognese and curries are a great way to have tasty food for very cost. And having food ready to pull from a freezer, is awesome for days when you don't feel like cooking.
+Cooking and freezing soups, bolognese and curries are a great way to have tasty food for very little cost. And having food ready to pull from a freezer, is awesome for days when you don't feel like cooking.
 
 Cooked rice and pasta can be frozen at home.
 

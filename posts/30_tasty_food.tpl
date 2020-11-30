@@ -45,7 +45,7 @@ Chop up some onion. Grate a couple of carrots with a box grater. Start frying so
 
 Optionally, when it's browned, add quite a bit of white wine. Add the onion and carrots, and about the same amount of canned chopped tomato as the meat.
 
-Simmer on low for at least 3 hours. Add some herbs + spices at some point, I typically add bayleaf, a tiny amount of little chilli power, mace, and lots of black pepper. Add Worcester sauce about half way through, and some miso paste near the end.
+Simmer on low for at least 3 hours. Add some herbs + spices at some point, I typically add bayleaf, a tiny amount of chilli power, [mace](https://www.schwartz.co.uk/discover/mace-ground), and lots of black pepper. Add Worcester sauce about half way through, and some miso paste near the end.
 
 ## Cheesy bacony spaghetti sauce
 
