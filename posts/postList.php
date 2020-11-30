@@ -10,7 +10,7 @@ function createManualBlogPostRepo()
 
     $blogPosts->add(
         30,
-        "General food notes",
+        "Tasty things to cook",
         '30_tasty_food.tpl',
         '30th Nov 2020'
     );
