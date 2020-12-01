@@ -21,16 +21,8 @@ services:
     build: docker/nginx
     depends_on:
       - blog_php_fpm
-      - blog_php_fpm_debug
     labels:
       com.datadoghq.ad.logs: '[{"source": "nginx", "service": "blog_nginx"}]'
     volumes:
       - .:/var/www
     restart: always
-#  server:
-#    build: docker/server
-#    volumes:
-#      - .:/var/www
-#    ports:
-#      - "80:80"
-#    restart: always
