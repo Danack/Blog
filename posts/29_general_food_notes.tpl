@@ -17,11 +17,11 @@ Salad needs a lot of salt. And a balsamic vinegar + oil dressing.
 
 Dry cured bacon is the only type of bacon worth buying.
 
-Topping food with a small amount parmesan cheese is tastier, and healthier than topping with cheddar cheese.
+Topping food with a small amount of parmesan cheese is tastier, and healthier than topping with cheddar cheese.
 
 Using spices to make your food tasty, is much healthier than dousing them with sauce.
 
-If your food needs a little something, but you're not such what, you either need to add more garlic or salt. Or maybe a splash of lemon juice.
+If your food tastes as if it needs a little something, but you're not such what, you either need to add more garlic or salt. Or maybe a splash of lemon juice.
 
 Cooking and freezing soups, bolognese and curries are a great way to have tasty food for very little cost. And having food ready to pull from a freezer, is awesome for days when you don't feel like cooking.
 
