@@ -21,7 +21,7 @@ Topping food with a small amount of parmesan cheese is tastier, and healthier th
 
 Using spices to make your food tasty, is much healthier than dousing them with sauce.
 
-If your food tastes as if it needs a little something, but you're not such what, you either need to add more garlic or salt. Or maybe a splash of lemon juice.
+If your food tastes as if it needs a little something, but you're not sure what, you either need to add more garlic or salt. Or maybe a splash of lemon juice.
 
 Cooking and freezing soups, bolognese and curries are a great way to have tasty food for very little cost. And having food ready to pull from a freezer, is awesome for days when you don't feel like cooking.
 
