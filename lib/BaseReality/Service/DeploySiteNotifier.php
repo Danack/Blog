@@ -15,6 +15,7 @@ class DeploySiteNotifier
         "Danack/Imagick-demos",
         "Danack/OpenSourceFees",
         "Danack/TierJigDocs",
+        "PHPOpenDocs/PHPOpenDocs",
     ];
 
 
