@@ -9,6 +9,13 @@ function createManualBlogPostRepo()
     $blogPosts = new ManualBlogPostRepo();
 
     $blogPosts->add(
+        32,
+        "EU decision making incoherency.",
+        '32_eu_vaccine_shitshow.tpl',
+        '3rd Feb 2021'
+    );
+
+    $blogPosts->add(
         30,
         "Tasty things to cook",
         '30_tasty_food.tpl',

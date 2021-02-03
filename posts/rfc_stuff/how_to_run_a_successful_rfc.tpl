@@ -2,8 +2,6 @@
 
 (This is part of a series of posts that I'm writing at the same time. There will be overlap between them, and I may need to refactor them to make more sense.)
 
-asd
-
 This guide is a suggestion on how to go about making an RFC for PHP. Although it is aimed at people who are relatively new to the project, there may be lessons for everyone.
 
 If you've submitted RFCs before, the current RFC process is an adequate way to get your RFC being considered.
@@ -100,6 +98,10 @@ People do legitimately disagree about things, particular when it comes to making
 
 
 
+### Say thank you to it and move on
 
 
 
+https://www.huffingtonpost.co.uk/entry/marie-kondo-saying-thank-you_l_5c49ebc9e4b06ba6d3bb31e6
+
+https://konmari.com/marie-kondo-gratitude/

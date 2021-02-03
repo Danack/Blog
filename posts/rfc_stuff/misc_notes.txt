@@ -8,7 +8,8 @@ https://www.latimes.com/opinion/op-ed/la-xpm-2013-apr-07-la-oe-0407-silk-ring-th
 "Stuff needs encouragement more than it needs feedback. Feedback is just data".
 
 
-
+https://en.wikipedia.org/wiki/Anekantavada
+So, what is reality for one individual may not be the reality for others. Anekantavad brings forth a synthesis, a happy blend and proposes that reality has many forms as seen by various individuals and all must respect the reality perceived by one-another. This is the way the society can progress and this is the way to resolve conflicts and to aim at peace in society.
 
 
 
@@ -20,3 +21,11 @@ Which, she adds, isn't necessarily a bad thing. "Question Time probably is servi
 20) To manage the web of relationships, rights and responsibilities of data will require technological and social tools that don’t exist yet.
 
 https://kk.org/thetechnium/data-manifesto/
+
+
+https://seldo.com/posts/php_needs_to_die_what_will_replace_it
+
+
+
+Communication problems
+PHP has historically had trouble with no one outside the core team knowing what was happening. In the last several months, there has been considerably more communication with OS vendors and others affected by changes and the release timeline. Some of them came to us, but in other cases we went to them.

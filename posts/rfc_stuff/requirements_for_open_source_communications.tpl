@@ -26,6 +26,12 @@ People don't expect messages in chat rooms to be written formally, which saves a
 
 Communication via chat messages takes much less emotional energy than longer form messages.
 
+### Wibbling
+
+Sometimes it is good to start talking even when the point you're trying to make is unclear.
+
+This is because sometimes it is easier to
+
 
 ### Long format position piece
 
@@ -58,6 +64,9 @@ Dividing the communication into channels for people who want to do the work, but
 
 See this link for full details moderation_requirements.tpl
 
+## Voting for consensus
+
+Make this as easy as possible.
 
 ## Mute-able
 
