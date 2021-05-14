@@ -16,6 +16,7 @@ class DeploySiteNotifier
         "Danack/OpenSourceFees",
         "Danack/TierJigDocs",
         "PHPOpenDocs/PHPOpenDocs",
+        "PHPOpenDocs/Sadness",
     ];
 
 
