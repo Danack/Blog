@@ -2,6 +2,7 @@ autogen
 test/compile
 testcoverage
 var
+vendor
 scripts/trc
 scripts/gdb_notes.txt
 data/config_template/letsencrypt.nginx.conf
