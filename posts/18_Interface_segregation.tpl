@@ -19,14 +19,13 @@ The example below hopefully shows wtf I mean.
 Imagine you have a SearchController that allows users to search some sort of data source. First I want you to look at the signature of the controller, without the actual body of the method:
 
 
-{% set code_to_highlight %}
+```
 class SearchController {
     function search(DataSource $dataSource, Request $request) {
     ...
     }
 }
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
 
 
 
@@ -44,7 +43,7 @@ Ok, so now let's look at what the controller is actually using the request objec
 
 
 
-{% set code_to_highlight %}
+```
 class SearchController
 {
     function search(Request $request, DataSource $dataSource)
@@ -62,8 +61,7 @@ class SearchController
         return $dataSource->searchForItems($searchOptions);
     }
 }
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
 
 
 Ok, now you can see that the only thing that the controller is using the server request for, is to be able to pull variables from the query params of the request.
@@ -78,7 +76,7 @@ We'll extract an interface called VariableMap and also refactor the controller c
 
 
 
-{% set code_to_highlight %}
+```
 interface VariableMap
 {
     /**
@@ -98,8 +96,7 @@ class SearchController
         return $dataSource->searchForItems($searchOptions);
     }
 }
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
 
 
 I hope you can agree that this is not a complex interface. In fact for a lot of interfaces that are 'extracted' from alrady written code, a large proportion of them will be single method interfaces like this one.
@@ -107,7 +104,7 @@ I hope you can agree that this is not a complex interface. In fact for a lot of 
 Ok, we now need to create an implementation that implements this interface. The first we'll create is the one that would be used in production to allow the `searchTerms` to be pulled out of the HTTP request.
 
 
-{% set code_to_highlight %}
+```
 use Psr\\Http\\Message\\ServerRequestInterface;
 
 class PSR7VariableMap implements VariableMap
@@ -136,8 +133,7 @@ class PSR7VariableMap implements VariableMap
 // need to alias the VariableMap to the specific implementation.
 $injector->alias('VariableMap', 'PSR7VariableMap');
 
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
 
 
 However for testing we can don't need to touch an actual request object.
@@ -146,7 +142,7 @@ Instead let's make a class that implements the VariableMap interface, but instea
 
 
 
-{% set code_to_highlight %}
+```
 class ArrayVariableMap implements VariableMap
 {
     public function __construct(array $variables)
@@ -164,8 +160,7 @@ class ArrayVariableMap implements VariableMap
         return $this->variables[$variableName];
     }
 }
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
 
 
 The ArrayVariableMap implementation makes it much easier to write unit tests for this controller.
@@ -178,7 +173,7 @@ Here is the code needed to test this controller before extracting and segregatin
 
 
 
-{% set code_to_highlight %}
+```
 /**
 * Returns the keywords of the search terms as the results.
 * @package Article\\InterfaceSegregation\\Step2
@@ -216,8 +211,7 @@ class SearchControllerTest extends \\PHPUnit_Framework_TestCase
     }
 }
 
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
 
 
 ## Is doing this worth it?

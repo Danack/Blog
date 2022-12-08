@@ -23,74 +23,83 @@ First, a table of when the UK and EU placed initial orders for vaccines, the tim
       <th>Vaccine status</th>
     </tr>
   </thead>
-
-    <tbody>
-        <tr>
-            <td>Astrazeneca</td>
-            <td><a href="https://www.cambridgeindependent.co.uk/business/astrazeneca-to-begin-supplying-100-million-doses-of-covid-19-vaccine-to-uk-from-september-if-trials-succeed-9110892/">100 million  25 May 2020</a></td>
-            <td><a href="https://ec.europa.eu/cyprus/news/20200827_2_en">300 million 27 August 2020</a></td>
-            <td>3 months</td>
-            <td>Approved</td>
-        </tr>
-
-        <tr>
-            <td>CureVac</td>
-            <td>No order</td>
-            <td><a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_20_2136">225 million  17 November 2020</a></td>
-            <td>N/A</td>
-            <td>Phase 2b/3</td>
-        </tr>
-
-        <tr>
-            <td>GSK/Sanofi</td>
-            <td><a href="https://pharmaphorum.com/news/uk-places-order-for-60m-doses-of-sanofi-gsks-covid-19-vaccine/">60 million July 29, 2020</a></td>
-            <td><a href="https://www.sanofi.com/en/media-room/press-releases/2020/2020-09-18-12-52-46">300 million September 18, 2020</a></td>
-            <td>7 weeks</td>
-            <td>Ineffective </td>
-        </tr>
-
-        <tr>
-            <td>Johnson and Johnson/Janssen</td>
-            <td><a href="https://www.biopharma-reporter.com/Article/2020/08/17/UK-strikes-deals-with-J-J-Novavax-to-source-90m-COVID-19-vaccines">30 million 17th Aug 2020</a></td>
-            <td><a href="https://www.pharmaceutical-technology.com/news/eu-jj-covid-vaccine/">400 million 22nd Oct 2020</a></td>
-            <td>9 weeks</td>
-            <td>Phase 3 trials</td>
-        </tr>
-
-        <tr>
-            <td>Moderna</td>
-            <td><a href="https://www.gov.uk/government/news/government-secures-5-million-doses-of-moderna-vaccine">5 million 16th Nov 2020</a></td>
-            <td><a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_20_2200">80 million 25th Nov 2020</a></td>
-            <td>9 days</td>
-            <td>Phase 3 trials</td>
-        </tr>
-
-        <tr>
-            <td>Novavax</td>
-            <td><a href="https://www.biopharma-reporter.com/Article/2020/08/17/UK-strikes-deals-with-J-J-Novavax-to-source-90m-COVID-19-vaccines">60 million 17th Aug 2020</a></td>
-            <td>No order</td>
-            <td>N/A</td>
-            <td>Phase 3 trials</td>
-        </tr>
-
-        <tr>
-            <td>Pfizer/BioNTech</td>
-            <td><a href="https://www.bloomberg.com/news/articles/2020-07-20/u-k-orders-90-million-vaccine-doses-from-pfizer-valneva">30 million July 20, 2020</a></td>
-            <td><a href="https://www.pfizer.com/news/press-release/press-release-detail/pfizer-and-biontech-reach-agreement-supply-eu-200-million">200 million November 11, 2020</a></td>
-            <td>4 months</td>
-            <td>approved</td>
-        </tr>
-
-        <tr>
-            <td>Valneva</td>
-            <td><a href="https://www.bloomberg.com/news/articles/2020-07-20/u-k-orders-90-million-vaccine-doses-from-pfizer-valneva">60 million July 20, 2020</a></td>
-            <td>No order</td>
-            <td>N/A</td>
-            <td>Phase 1/2 trials</td>
-        </tr>
-
-    </tbody>
-
+  <tbody>
+    <tr>
+      <td>Astrazeneca</td>
+      <td>
+        <a href="https://www.cambridgeindependent.co.uk/business/astrazeneca-to-begin-supplying-100-million-doses-of-covid-19-vaccine-to-uk-from-september-if-trials-succeed-9110892/">100
+              million 25 May 2020</a></td>
+      <td><a href="https://ec.europa.eu/cyprus/news/20200827_2_en">300 million 27 August 2020</a></td>
+      <td>3 months</td>
+      <td>Approved</td>
+    </tr>
+    <tr>
+      <td>CureVac</td>
+      <td>No order</td>
+      <td><a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_20_2136">225 million 17 November 2020</a>
+      </td>
+      <td>N/A</td>
+      <td>Phase 2b/3</td>
+    </tr>
+    <tr>
+      <td>GSK/Sanofi</td>
+      <td>
+        <a href="https://pharmaphorum.com/news/uk-places-order-for-60m-doses-of-sanofi-gsks-covid-19-vaccine/">60
+              million July 29, 2020</a></td>
+      <td>
+        <a href="https://www.sanofi.com/en/media-room/press-releases/2020/2020-09-18-12-52-46">300 million September
+              18, 2020</a></td>
+      <td>7 weeks</td>
+      <td>Ineffective</td>
+    </tr>
+    <tr>
+      <td>Johnson and Johnson/Janssen</td>
+      <td>
+        <a href="https://www.biopharma-reporter.com/Article/2020/08/17/UK-strikes-deals-with-J-J-Novavax-to-source-90m-COVID-19-vaccines">30
+              million 17th Aug 2020</a></td>
+      <td><a href="https://www.pharmaceutical-technology.com/news/eu-jj-covid-vaccine/">400 million 22nd Oct 2020</a>
+      </td>
+      <td>9 weeks</td>
+      <td>Phase 3 trials</td>
+    </tr>
+    <tr>
+      <td>Moderna</td>
+      <td><a href="https://www.gov.uk/government/news/government-secures-5-million-doses-of-moderna-vaccine">5 million
+              16th Nov 2020</a></td>
+      <td><a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_20_2200">80 million 25th Nov 2020</a></td>
+      <td>9 days</td>
+      <td>Phase 3 trials</td>
+    </tr>
+    <tr>
+      <td>Novavax</td>
+      <td>
+        <a href="https://www.biopharma-reporter.com/Article/2020/08/17/UK-strikes-deals-with-J-J-Novavax-to-source-90m-COVID-19-vaccines">60
+              million 17th Aug 2020</a></td>
+      <td>No order</td>
+      <td>N/A</td>
+      <td>Phase 3 trials</td>
+    </tr>
+    <tr>
+      <td>Pfizer/BioNTech</td>
+      <td>
+        <a href="https://www.bloomberg.com/news/articles/2020-07-20/u-k-orders-90-million-vaccine-doses-from-pfizer-valneva">30
+              million July 20, 2020</a></td>
+      <td>
+        <a href="https://www.pfizer.com/news/press-release/press-release-detail/pfizer-and-biontech-reach-agreement-supply-eu-200-million">200
+              million November 11, 2020</a></td>
+      <td>4 months</td>
+      <td>approved</td>
+    </tr>
+    <tr>
+      <td>Valneva</td>
+      <td>
+        <a href="https://www.bloomberg.com/news/articles/2020-07-20/u-k-orders-90-million-vaccine-doses-from-pfizer-valneva">60
+              million July 20, 2020</a></td>
+      <td>No order</td>
+      <td>N/A</td>
+      <td>Phase 1/2 trials</td>
+    </tr>
+  </tbody>
 </table>
 
 The EU is consistently far behind the UK in placing orders for the vaccines.

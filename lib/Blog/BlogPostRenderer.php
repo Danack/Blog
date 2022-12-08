@@ -6,6 +6,8 @@ namespace Blog;
 
 use Blog\Content\BlogPost;
 
+echo "screw BlogPostRenderer";
+exit(-1);
 
 class BlogPostRenderer
 {

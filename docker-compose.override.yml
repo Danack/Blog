@@ -1,8 +1,10 @@
 version: "3"
 services:
+  installer:
+    environment:
+      - ENV_DESCRIPTION=default,local
   nginx:
     ports:
       - "80:8000"
       - "8000:8000"
       - "8001:8001"
-

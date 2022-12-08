@@ -12,6 +12,10 @@ use Michelf\MarkdownExtra;
 use Twig_Error_Loader;
 use Auryn\Injector;
 
+echo "Screw BlogPostTwig.";
+
+exit(-1);
+
 class BlogPostTwig
 {
     /** @var BlogPostLoader */

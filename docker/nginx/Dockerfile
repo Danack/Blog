@@ -1,17 +1,18 @@
-FROM debian:9-slim
+FROM debian:11-slim
 
 USER root
 
 RUN apt-get update -qq \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y nginx \
-    ca-certificates
+    ca-certificates curl
+
+RUN chown -R www-data:www-data /var/lib/nginx /var/log/nginx
 
 WORKDIR /var/www
 
-# Set up configuration volumes
-RUN mkdir -p /etc/config
+USER www-data
 
-# Copy everything to a standard place
-COPY ./ /var/www
+CMD echo "what is nginx box doing?"
+# CMD tail -f /var/www/README.md
 
 CMD ["/usr/sbin/nginx", "-c", "/var/www/docker/nginx/config/nginx.conf"]

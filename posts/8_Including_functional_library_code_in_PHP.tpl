@@ -26,7 +26,7 @@ An example is a library file for adding extra multi-byte strings which haven't b
 
 
 
-{% set code_to_highlight %}
+```
 
 namespace Intahwebz\\MBExtra{
     class Functions{
@@ -54,8 +54,7 @@ namespace {
     }
     //And all the other functions are available at https://github.com/Danack/mb_extra
 }
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
 
 
 

@@ -1,11 +1,8 @@
-{% set md_text %}
-
 As much as I like arguing on the Internet, one thing that irritates me is when people repeatedly claim facts with no basis in reality about why Apple has 'special' advantages sellings it's products that other companies don't have.
 
 These false claims are:
 
 ## Apple have devoted fans who buy Apple products
-
 
 The first claim is that Apple have (and have always had) a vast pool of fanboys; people who like Apple products mostly because the fanboys think it is fashionable to like Apple products. It is only because of this pool of fanboys that the iPod and then iPhone became so popular.
 
@@ -17,7 +14,7 @@ or
 don't own either a Mac or Windows PC - i.e. they're teenagers for whom the iPhone is first internet capable device they've owned.
 This can be pretty clearly demonstrated by the number of iPhones sold when compared to the number of Mac PCs that people own. The install base of Mac compputers was 22 million just before the iPhone launched. Seeing as 250 million
 
-## iPhone was the first smart phone to the market and so has first mover advantage.
+## iPhone was the first smartphone to the market and so has first mover advantage.
 
 That's not true - Nokia and SonyEricsson had many smart phones which are functionally equivalent to an iPhone (i.e. name something the iPhone 1 can do that the Nokia smart phones released at that time couldn't do).
 
@@ -48,6 +45,3 @@ i) The audio is really, really quiet, leading to a very calming effect, which is
 
 ii) They show people using the product, with almost no other explanation about the product, which ties back into Apple products being so functionally obvious and easy to use, that people can understand what they do just from simple visual demos.
 
-{% endset %}
-
-{{ markdown(md_text) }}

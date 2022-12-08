@@ -228,57 +228,17 @@ HTML;
 }
 
 
-function renderBlogList(Blog\Service\BlogList $blogList)
-{
-    foreach ($blogList->getBlogs() as $blogPost) {
-        printf(
-            "<li>%s</li>",
-            $blogPost->getTitle()
-        );
-    }
-}
+//function renderBlogList(Blog\Service\BlogList $blogList)
+//{
+//    foreach ($blogList->getBlogs() as $blogPost) {
+//        sprintf(
+//            "<li>%s</li>",
+//            $blogPost->getTitle()
+//        );
+//    }
+//}
 
 
-function renderSocialData(
-    Blog\Model\ActiveBlogPost $activeBlogPost,
-    \Blog\BlogPostTwig $blogPostTwig
-) {
-    $builder = new Utlime\SeoMetaTags\BuilderDelegate(
-        new Utlime\SeoMetaTags\CommonBuilder(),
-        new Utlime\SeoMetaTags\TwitterBuilder(),
-        new Utlime\SeoMetaTags\OpenGraphBuilder()
-    );
-
-    if ($activeBlogPost->blogPost->blogPostID === null) {
-        return;
-    }
-
-    try {
-        $preview = renderBlogPostPreview(
-            $blogPostTwig,
-            $activeBlogPost->blogPost
-        );
-
-
-        $url = Route::blogPost($activeBlogPost->blogPost);
-
-        $header_chunk = $builder
-            ->add('title', $activeBlogPost->blogPost->getTitle())
-            ->add('description', $preview)
-            ->add('language', 'en')
-            ->add('canonical', $url)
-            ->add('image', 'http://blog.basereality.com/images/Portrait.jpg')
-            ->add('twitter:card', 'summary')
-            ->build();
-
-        $header_chunk = str_replace("/>", "/> \n", $header_chunk);
-
-        echo $header_chunk;
-    }
-    catch (\Throwable $t) {
-        // currently don't care.
-    }
-}
 
 //public function renderTitle()
 //{
@@ -306,54 +266,7 @@ function renderSocialData(
 //
 
 
-/**
- * @param \Blog\Service\BlogList $blogList
- * @param \Blog\BlogPostRenderer $blogPostRenderer
- * @throws Twig_Error_Loader
- * @throws Twig_Error_Runtime
- * @throws Twig_Error_Syntax
- */
-function renderBlogPostListFrontPage(
-    Blog\Service\BlogList $blogList,
-    \Blog\BlogPostRenderer $blogPostRenderer
-) {
-    $html = <<< HTML
-      <div class="row">
-          <div class="col-md-12">
-          <h3>
-              <span class='blogPostTitle'>
-                <a href="%s">
-                  %s
-                </a>
-              </span>     
-              
-              <span class='blogPostDate'>
-                  %s
-              </span>
-          </h3>
-          </div>
-      
-          <div class="col-md-12">
-              %s
-          </div>
-      </div>
-HTML;
 
-    foreach ($blogList->getBlogs() as $blogPost) {
-        $text = $blogPost->getText();
-//        $preview = substr($text, 0, 200);
-
-        $preview = $blogPostRenderer->renderBlogPostPreview($blogPost);
-
-        printf(
-            $html,
-            Route::blogPost($blogPost),
-            $blogPost->getTitle(),
-            $blogPost->getDatestamp(),
-            $preview
-        );
-    }
-}
 
 
 
@@ -366,64 +279,6 @@ function renderActiveBlogPostTitle(Blog\Model\ActiveBlogPost $activeBlogPost)
 }
 
 
-/**
- * @param \Blog\Model\ActiveBlogPost $activeBlogPost
- * @param Twig_Environment $twig
- * @throws Exception
- * @throws Throwable
- * @throws Twig_Error_Loader
- * @throws Twig_Error_Syntax
- */
-function renderActiveBlogPostBody(
-    Blog\Model\ActiveBlogPost $activeBlogPost,
-    Twig_Environment $twig,
-    \Blog\BlogPostRenderer $blogPostRenderer
-) {
-
-    $html = <<< HTML
-    <div class="col-md-12">
-        <div class="panel panel-default blogPostContent" >
-            <h2>%s
-            <small>
-                %s
-            </small>
-            </h2>
-        
-            <div class="blogPostBody">
-                %s
-            </div>
-        </div>
-        <!--<div>-->
-           <!--<a href='https://twitter.com/share'-->
-               <!--class='twitter-share-button'-->
-               <!--data-via='MrDanack' data-dnt='true'>-->
-                <!--Tweet-->
-            <!--</a>-->
-
-            <!--<script>-->
-                <!--addTwitterDelayed();-->
-            <!--</script>-->
-        <!--</div>-->
-        <!---->
-        <div>
-            <a href="%s">Back to index</a>
-        </div>
-    </div>
-HTML;
-
-    $bodyText = $activeBlogPost->blogPost->getText();
-    $template = $twig->createTemplate($bodyText);
-//    $bodyHtml = $template->render([]);
-    $bodyHtml = $blogPostRenderer->renderBlogPost($activeBlogPost->blogPost);
-
-    printf(
-        $html,
-        $activeBlogPost->blogPost->getTitle(),
-        $activeBlogPost->blogPost->getDatestamp(),
-        $bodyHtml,
-        Route::index()
-    );
-}
 
 
 function articleImage($imageFilename, $size, $float = 'left', $description = false)
@@ -510,10 +365,12 @@ function getPostJsonData()
 }
 
 function renderBlogPostPreview(
-    \Blog\BlogPostTwig $blogPostTwig,
+//   \Blog\BlogPostTwig $blogPostTwig,
     \Blog\Content\BlogPost $blogPost
 ) {
-    $finalHtml = $blogPostTwig->renderBlogPost($blogPost);
+    $finalHtml = $blogPost->getText();
+
+//    $finalHtml = $blogPostTwig->renderBlogPost($blogPost);
 
     $endPreviewPosition = strpos($finalHtml, "<!-- end_preview -->");
     if ($endPreviewPosition !== false) {
@@ -521,4 +378,124 @@ function renderBlogPostPreview(
     }
 
     return substr($finalHtml, 0, 200);
+}
+
+function getExceptionText(\Throwable $exception): string
+{
+    $text = "";
+    do {
+        $text .= get_class($exception) . ":" . $exception->getMessage() . "\n\n";
+        $text .= $exception->getTraceAsString();
+
+        $exception = $exception->getPrevious();
+    } while ($exception !== null);
+
+    return $text;
+}
+
+function showTotalErrorPage(\Throwable $exception)
+{
+    $exceptionText = null;
+
+    $exceptionText = "Failed to get exception text.";
+
+    try {
+        $exceptionText = getExceptionText($exception);
+
+        \error_log("Exception in code and Slim error handler failed also: " . get_class($exception) . " " . $exceptionText);
+    }
+    catch (\Throwable $exception) {
+        // Does nothing.
+    }
+
+    http_response_code(503);
+
+    if ($exceptionText !== null) {
+        var_dump(get_class($exception));
+        echo nl2br($exceptionText);
+    }
+}
+
+
+/**
+ * Creates the objects that map StubResponse into PSR7 responses
+ * @return mixed
+ */
+function getResultMappers(\Auryn\Injector $injector)
+{
+    return [
+        \SlimAuryn\Response\StubResponse::class =>
+            'SlimAuryn\mapStubResponseToPsr7',
+//        \Bristolian\Page::class => 'mapBristolianPageToPsr7',
+
+        ResponseInterface::class =>
+            'SlimAuryn\passThroughResponse',
+
+        'string' =>
+            'Blog\StringToHtmlPageConverter::convertStringToHtmlResponse',
+    ];
+}
+
+
+function memory_debug()
+{
+    $memory_used = memory_get_usage(true);
+    return "<!-- " . number_format($memory_used) . " -->";
+}
+
+
+/**
+ * @param $lang
+ * @param $file
+ * @return string[]
+ */
+function syntax_highlighter_file(string $lang, string $file)
+{
+    $filepath = __DIR__ . "/../files/" . $file;
+
+    if (realpath($filepath) === false) {
+        return ["File $file is not available in the files directory.\n"];
+    }
+
+    $contents = file_get_contents($filepath);
+
+    if ($contents === false) {
+        return ["Failed to read file $file \n"];
+    }
+
+    $lines = [];
+
+    $lines []= "<div><pre>";
+    $lines []= $contents;//\Blog\Site\CodeHighlighter::highlight($contents, 'php');
+    $lines []= "</pre></div>";
+
+    return $lines; //["Ho ho ho $lang, $file \n", $contents];
+}
+
+
+function replace_special_markdown(string $line)
+{
+    $callbacks = [
+        "#{syntaxHighlighterFile lang='(?P<lang>.+)' file='(?P<file>.+)'}#iu" => 'syntax_highlighter_file',
+    ];
+
+    foreach ($callbacks as $pattern => $callback) {
+        $result = preg_match($pattern, $line, $matches);
+        if ($result === 0) {
+            continue;
+        }
+
+        $params = [];
+        foreach ($matches as $key => $value) {
+            if (is_string($key)) {
+                $params[':' . $key] = $value;
+            }
+        }
+
+        $injector = new Injector();
+        // echo "need to call $callback with " . var_export($params, true) . "\n";
+        return $injector->execute($callback, $params);
+    }
+
+    return [$line];
 }

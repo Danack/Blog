@@ -1,0 +1,81 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace Blog\Middleware;
+
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Blog\Service\RequestNonce;
+use Blog\Data\ApiDomain;
+use Blog\App;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
+
+class ContentSecurityPolicyMiddleware implements MiddlewareInterface
+{
+    /** @var RequestNonce */
+    private $requestNonce;
+
+    /** @var ApiDomain */
+    private $apiDomain;
+
+    public function __construct(
+        RequestNonce $requestNonce,
+        ApiDomain $apiDomain
+    ) {
+        $this->requestNonce = $requestNonce;
+        $this->apiDomain = $apiDomain;
+    }
+
+    public function process(Request $request, RequestHandler $handler): Response
+    {
+        $response = $handler->handle($request);
+
+        $connectSrcDomains = [
+//            'https://checkout.stripe.com',
+//            'https://api.stripe.com',
+            $this->apiDomain->getDomain()
+        ];
+
+        $scriptSrcDomains = [
+//            'https://js.stripe.com/'
+        ];
+
+        $frameSrcDomains = [
+            'https://youtube.com',
+            'https://www.youtube.com',
+//            'https://hooks.stripe.com',
+        ];
+
+        $cspLines = [];
+        $cspLines[] = "default-src 'self'";
+        $cspLines[] = sprintf(
+            "connect-src 'self' %s",
+            implode(' ', $connectSrcDomains)
+        );
+
+        $cspLines[] = sprintf(
+            "frame-src 'self' %s",
+            implode(' ', $frameSrcDomains)
+        );
+
+        $cspLines[] = "img-src * data:";
+        $cspLines[] = sprintf(
+            // TODO - remove the unsafe eval
+            "script-src 'self' 'nonce-%s' %s 'unsafe-eval'",
+            $this->requestNonce->getRandom(),
+            implode(' ', $scriptSrcDomains)
+        );
+        $cspLines[] = "object-src *";
+        $cspLines[] = "style-src 'self'";
+        $cspLines[] = "report-uri " . $this->apiDomain->getDomain() . App::CSP_REPORT_PATH;
+
+        $response = $response->withHeader(
+            'Content-Security-Policy',
+            implode("; ", $cspLines)
+        );
+
+        return $response;
+    }
+}

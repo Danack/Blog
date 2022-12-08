@@ -3,7 +3,7 @@ So this works.
 
 <!-- end_preview -->
 
-{% set code_to_highlight %}
+```
 const ✓ = true;
 const ✕ = false;
 
@@ -31,14 +31,13 @@ echo ≡($a, $b).\"\\n\";
 
 echo ≅($a, $a + 0.000001).\"\\n\";
 
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
 
 
 And the code below:
 
 
-{% set code_to_highlight %}
+```
 $fileHandle = fopen("lolwut.php", 'w');
 
 echo "\xE2\x80\x8B";
@@ -59,14 +58,14 @@ fwrite($fileHandle, "    foo();\n");
 fwrite($fileHandle, "?>");
 fclose($fileHandle);
 
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
+
 
 
 Generates some code that looks like this:
 
 
-{% set code_to_highlight %}
+```
 <?php
 
     $​ = 'magix';
@@ -79,8 +78,7 @@ Generates some code that looks like this:
     foo();
 ?>
 
-{% endset %}
-{{ syntaxHighlighter(code_to_highlight, 'php') }}
+```
 
 
 Which outputs the following when run

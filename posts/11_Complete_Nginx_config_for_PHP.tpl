@@ -28,23 +28,21 @@ By just saving the original URI and passing that into the QUERY_STRING for PHP-F
 ### Base PHP-FPM config file that is used by all sites.
 
 {syntaxHighlighterFile lang='js' file='example_php-fpm.conf'}
-{/syntaxHighlighterFile}
+
 
 ### Site Nginx config that routes requests to either static files, or the front controller.
 
 {syntaxHighlighterFile lang='js' file='example_site.nginx.conf'}
-{/syntaxHighlighterFile}
 
 ### PHP-FPM config for a site, which creates pools and workers.
 
 {syntaxHighlighterFile lang='js' file='example_site.php-fpm.conf'}
-{/syntaxHighlighterFile}
 
 
 
 ### FastCGI config, to avoid repetition in the above fle.
 
-{syntaxHighlighter lang='js'}
+<pre>
 
     fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
 
@@ -73,6 +71,6 @@ By just saving the original URI and passing that into the QUERY_STRING for PHP-F
 
     # PHP only, required if PHP was built with --enable-force-cgi-redirect
     fastcgi_param  REDIRECT_STATUS    200;
+</pre>
 
-{/syntaxHighlighter}
 

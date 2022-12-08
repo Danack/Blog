@@ -7,18 +7,18 @@ RUN apt-get update -qq \
     mariadb-client wget curl \
     ca-certificates lsb-release apt-transport-https gnupg nginx procps
 
-# Install 3rd party PHP 7.2 packages
+# Install 3rd party PHP 8.1 packages
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee -a /etc/apt/sources.list.d/php.list \
     && curl https://packages.sury.org/php/apt.gpg | apt-key add - \
     && apt-get update -qq \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y php7.2 php7.2-common php7.2-cli php7.2-fpm \
-    php7.2-mysql  php7.2-curl php7.2-gd php7.2-xml php7.2-mbstring \
-    php7.2-intl php7.2-redis php7.2-zip nginx
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y php8.1 php8.1-common php8.1-cli php8.1-fpm \
+    php8.1-mysql  php8.1-curl php8.1-gd php8.1-xml php8.1-mbstring \
+    php8.1-intl php8.1-redis php8.1-zip nginx
 
 #    tidy graphviz
 
-# php7.2-imagick
-# php7.2-memcached
+# php8.1-imagick
+# php8.1-memcached
 
 WORKDIR /var/www
 
@@ -32,9 +32,9 @@ COPY ./ /var/www
 
 RUN rm -rf /etc/nginx/nginx.conf
 
-# CMD ["/usr/sbin/php-fpm7.2", "--nodaemonize", "--fpm-config=/etc/config/fpm.conf", "-c", "/etc/config/php.ini"]
+# CMD ["/usr/sbin/php-fpm8.1", "--nodaemonize", "--fpm-config=/etc/config/fpm.conf", "-c", "/etc/config/php.ini"]
 
-#CMD /usr/sbin/php-fpm7.2 \
+#CMD /usr/sbin/php-fpm8.1 \
 #      --nodaemonize \
 #      --fpm-config=/var/www/docker/php_backend/config/fpm.conf \
 #      -c /var/www/docker/php_backend/config/php.ini

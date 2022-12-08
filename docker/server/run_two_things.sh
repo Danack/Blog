@@ -33,7 +33,7 @@ function check_process_running () {
 
 COMMANDS=()
 
-COMMANDS+=("/usr/sbin/php-fpm7.2 \
+COMMANDS+=("/usr/sbin/php-fpm8.1 \
   --nodaemonize \
   --fpm-config=/var/www/docker/server/config/php/fpm.conf \
   -c /var/www/docker/server/config/php/php.ini")

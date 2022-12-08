@@ -3,8 +3,6 @@ services:
   blog_php_fpm:
     build: docker/php_fpm
     image: blog_php_fpm:latest
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "nginx", "service": "blog_phpfpm"}]'
     volumes:
       - .:/var/www
     restart: always
@@ -12,17 +10,20 @@ services:
     build: docker/php_fpm_debug
     depends_on:
       - blog_php_fpm
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "nginx", "service": "blog_phpfpm_debug"}]'
     volumes:
       - .:/var/www
     restart: always
+  installer:
+    build: docker/installer
+    environment:
+      - COMPOSER_CACHE_DIR=/var/app/var/cache/composer
+      - COMPOSER_ALLOW_SUPERUSER=1
+    volumes:
+      - .:/var/app
   nginx:
     build: docker/nginx
     depends_on:
       - blog_php_fpm
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "nginx", "service": "blog_nginx"}]'
     volumes:
       - .:/var/www
     restart: always
