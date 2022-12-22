@@ -1,4 +1,0 @@
-
-
-{include file='includedTemplateIsCompiled/fileToInclude'}
-

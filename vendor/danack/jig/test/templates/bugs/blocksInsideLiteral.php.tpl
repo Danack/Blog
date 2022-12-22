@@ -1,4 +1,0 @@
-{literal}
-{trim}
-{/trim}
-{/literal}
