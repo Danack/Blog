@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9f7ecab49496b345e8fe19d0fc7e012",
+    "content-hash": "af18d874ef3673ecfce6c7d01adec0b3",
     "packages": [
         {
             "name": "danack/asm",
@@ -339,12 +339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/PHPUnitHelper.git",
-                "reference": "83a8b84fd099c02b832aae69564740566a650ed7"
+                "reference": "11ce2b5025d1e964a820bd6360b2f5ed2085d316"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/PHPUnitHelper/zipball/83a8b84fd099c02b832aae69564740566a650ed7",
-                "reference": "83a8b84fd099c02b832aae69564740566a650ed7",
+                "url": "https://api.github.com/repos/Danack/PHPUnitHelper/zipball/11ce2b5025d1e964a820bd6360b2f5ed2085d316",
+                "reference": "11ce2b5025d1e964a820bd6360b2f5ed2085d316",
                 "shasum": ""
             },
             "require": {

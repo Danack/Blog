@@ -25,7 +25,7 @@
         "twig/twig": "v3.4.3",
         "laminas/laminas-diactoros": "2.22.0",
         "utlime/seo-meta-tags": "2.0",
-        "danack/php-unit-helper": "dev-main as 0.3.1"
+        "danack/php-unit-helper": "dev-main#11ce2b5025d1e964a820bd6360b2f5ed2085d316 as 0.3.1"
     },
     "autoload": {
         "psr-0": {
