@@ -40,11 +40,11 @@ fi
 #
 ## Generate nginx config file for the centos,dev environment
 ## This is done in installer.
-#php vendor/bin/configurate \
-#    -p config.source.php \
-#    containers/nginx/config/nginx.conf.php \
-#    containers/nginx/config/nginx.conf \
-#    $ENV_TO_USE
+php vendor/bin/configurate \
+    -p config.source.php \
+    docker/nginx/config/nginx.conf.php \
+    docker/nginx/config/nginx.conf \
+    $ENV_TO_USE
 
 
 

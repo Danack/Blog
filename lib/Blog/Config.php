@@ -3,65 +3,148 @@
 namespace Blog;
 
 
+//function getAppOptions()
+//{
+//    $options = [
+//        'domain.canonical' => 'phpimagick.test',
+//        'domain.cdn.pattern' => 'phpimagick.test',
+//        'domain.cdn.total' => 1,
+//        'domain.internal' => 'internal.phpimagick.com',
+//        'redis.password' => 'rVBNDdJWA2Vx4n2Fh9ahRR2vTCLkT5tw',
+//        'environment' => 'local',
+//    ];
+//
+//
+//    return $options;
+//}
 
 class Config
-{    
-    const GITHUB_ACCESS_TOKEN = 'github.access_token';
-    const GITHUB_REPO_NAME = 'github.repo_name';
+{
+    const BLOG_ENVIRONMENT = 'blog.env';
 
-    const LIBRATO_KEY = 'librato.key';
-    const LIBRATO_USERNAME = 'librato.username';
-    const LIBRATO_STATSSOURCENAME = 'librato.stats_source_name';
+    const BLOG_COMMIT_SHA = 'blog.sha';
+    const BLOG_DEPLOY_TIME = 'blog.deploy_time';
 
-    const JIG_COMPILE_CHECK = 'jig.compilecheck';
 
-    const GOOGLE_AUTHENTICATOR_SECRET = 'google.authenticator';
-
-    const DOMAIN_CANONICAL = 'domain.canonical';
-    const DOMAIN_CDN_PATTERN= 'domain.cdn.pattern';
-    const DOMAIN_CDN_TOTAL= 'domain.cdn.total';
-
-    const CACHING_SETTING = 'caching.setting';
-    
-    const SCRIPT_VERSION = 'script.version';
-    const SCRIPT_PACKING = 'script.packing';
-
-    const REPOSITORY_MAPPING = 'repo.mapping';
-    const REPOSITORY_MAPPING_SQL = 'repo.mapping.sql';
-    const REPOSITORY_MAPPING_STUB = 'repo.mapping.stub';
-
-    const KEYS_LOADER = 'keys_loader';
-    const KEYS_LOADER_NONE = 'keys_loader.none';
-    const KEYS_LOADER_CLAVIS = 'keys_loader.clavis';
-
-    private $values = [];
-
-    public function __construct()
+    /**
+     * @param $key
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function get($key)
     {
-        $this->values = [];
-        $this->values = array_merge($this->values, \getAppEnv());
-        
-        if ($this->values[Config::KEYS_LOADER] == self::KEYS_LOADER_CLAVIS) {
-            require __DIR__."/../../../clavis.php";
-            $this->values = array_merge($this->values, getAppKeys());
+        static $values = null;
+        if ($values === null) {
+            $values = getGeneratedConfig();
+        }
+
+        if (array_key_exists($key, $values) == false) {
+            throw new \Exception("No value for " . $key);
+        }
+
+        return $values[$key];
+    }
+
+    public static function testValuesArePresent(): void
+    {
+        $rc = new \ReflectionClass(self::class);
+        $constants = $rc->getConstants();
+
+        foreach ($constants as $constant) {
+            $value = self::get($constant);
         }
     }
 
-    public function getKey($key)
-    {
-        if (array_key_exists($key, $this->values) == false) {
-            throw new \Exception("Missing config value of $key");
-        }
 
-        return $this->values[$key];
+
+    public static function getVersion(): string
+    {
+        return self::get(self::BLOG_ENVIRONMENT) . "_" . self::get(self::BLOG_COMMIT_SHA);
     }
 
-    public function getKeyWithDefault($key, $default)
+    public static function getDeployTime(): string
     {
-        if (array_key_exists($key, $this->values) === false) {
-            return $default;
+        return self::get(self::BLOG_DEPLOY_TIME);
+    }
+
+    public static function getEnvironment(): string
+    {
+        return self::get(self::BLOG_ENVIRONMENT);
+    }
+
+    public static function isProductionEnv(): bool
+    {
+        if (self::getEnvironment() === App::ENVIRONMENT_LOCAL) {
+            return false;
         }
 
-        return $this->values[$key];
+        return true;
     }
+
+
+//    public function __construct()
+//    {
+////        require_once __DIR__."/../../../clavis.php";
+////        require_once __DIR__ . "/../../config.php";
+//
+//        $this->values = [];
+//        $this->values = array_merge($this->values, getAppOptions());
+////        $this->values = array_merge($this->values, getAppKeys());
+//    }
+//
+//    public function getKey($key)
+//    {
+//        if (array_key_exists($key, $this->values) == false) {
+//            throw new \Exception("Missing config value of $key");
+//        }
+//
+//        return $this->values[$key];
+//    }
+//
+////    private function getKeyWithDefault($key, $default)
+////    {
+////        if (array_key_exists($key, $this->values) === false) {
+////            return $default;
+////        }
+////
+////        return $this->values[$key];
+////    }
+//
+//    public function getRedisPassword()
+//    {
+//        return $this->getKey(Config::REDIS_PASSWORD);
+//    }
+//
+//    public function getJigCompileCheck()
+//    {
+//        return $this->getKey(self::JIG_COMPILE_CHECK);
+//    }
+//
+//    public function getCachingSetting()
+//    {
+//        return $this->getKey(Config::CACHING_SETTING);
+//    }
+//
+//    public function isProductionEnv()
+//    {
+//        if ($this->getEnvironment() === self::ENVIRONMENT_LOCAL) {
+//            return false;
+//        }
+//
+//        return true;
+//    }
+//
+//    public function useSsl()
+//    {
+//        if ($this->getEnvironment() !== self::ENVIRONMENT_LOCAL) {
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//
+//    public function getEnvironment()
+//    {
+//        return $this->getKey(self::ENVIRONMENT);
+//    }
 }

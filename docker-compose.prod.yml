@@ -1,5 +1,8 @@
 version: "3"
 services:
+  installer:
+    environment:
+      - ENV_DESCRIPTION=prod
   nginx:
     ports:
       - "8002:8000"

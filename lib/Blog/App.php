@@ -2,49 +2,53 @@
 
 namespace Blog;
 
-use Amp\Artax\Client as ArtaxClient;
-use ArtaxServiceBuilder\ResponseCache;
+//use Amp\Artax\Client as ArtaxClient;
+//use ArtaxServiceBuilder\ResponseCache;
 use ASM\Session;
 use ASM\SessionConfig;
 use ASM\SessionManager;
 use Blog\Config;
 use Blog\Data\TemplateList;
 use Blog\Route;
-use GithubService\GithubArtaxService\GithubService;
-use Intahwebz\DB\StatementFactory;
+//use GithubService\GithubArtaxService\GithubService;
+//use Intahwebz\DB\StatementFactory;
 use Jig\Jig;
 use Jig\JigConfig;
 use Jig\JigDispatcher;
 use Psr\Log\LoggerInterface;
-use Room11\HTTP\Response;
-use Room11\HTTP\VariableMap;
-use Room11\HTTP\HeadersSet;
-use Tier\TierApp;
+//use Room11\HTTP\Response;
+//use Room11\HTTP\VariableMap;
+//use Room11\HTTP\HeadersSet;
+//use Tier\TierApp;
 use FastRoute\Dispatcher;
 
 class App
 {
-    public static function createMySQLiConnection(
-        Config $config,
-        LoggerInterface $logger,
-        StatementFactory $statementWrapperFactory
-    ) {
-        $host = $config->getKey('MYSQL_SERVER');
-        $username = $config->getKey('MYSQL_USERNAME');
-        $password = $config->getKey('MYSQL_PASSWORD');
-        $port = $config->getKey('MYSQL_PORT');
-        $socket = $config->getKey('MYSQL_SOCKET_CONNECTION');
 
-        return new \Intahwebz\DB\MySQLiConnection(
-            $logger,
-            $statementWrapperFactory,
-            $host,
-            $username,
-            $password,
-            $port,
-            $socket
-        );
-    }
+    public const ENVIRONMENT_LOCAL = 'local';
+    public const ENVIRONMENT_PROD = 'prod';
+
+//    public static function createMySQLiConnection(
+//        Config $config,
+//        LoggerInterface $logger,
+//        StatementFactory $statementWrapperFactory
+//    ) {
+//        $host = $config->getKey('MYSQL_SERVER');
+//        $username = $config->getKey('MYSQL_USERNAME');
+//        $password = $config->getKey('MYSQL_PASSWORD');
+//        $port = $config->getKey('MYSQL_PORT');
+//        $socket = $config->getKey('MYSQL_SOCKET_CONNECTION');
+//
+//        return new \Intahwebz\DB\MySQLiConnection(
+//            $logger,
+//            $statementWrapperFactory,
+//            $host,
+//            $username,
+//            $password,
+//            $port,
+//            $socket
+//        );
+//    }
 
 
     /**
@@ -64,10 +68,10 @@ class App
         return $jigConfig;
     }
 
-    public static function createCaching()
-    {
-        return new \Room11\Caching\LastModified\Revalidate(3600, 1200);
-    }
+//    public static function createCaching()
+//    {
+//        return new \Room11\Caching\LastModified\Revalidate(3600, 1200);
+//    }
 
     public static function createDispatcher()
     {
@@ -77,34 +81,34 @@ class App
     }
 
 
-    /**
-     * @param ArtaxClient $client
-     * @param \Amp\Reactor $reactor
-     * @param ResponseCache $cache
-     * @return GithubService
-     */
-    public static function createGithubArtaxService(
-        ArtaxClient $client,
-        \Amp\Reactor $reactor,
-        ResponseCache $cache
-    ) {
-        return new GithubService($client, $reactor, $cache, "Danack/Tier");
-    }
+//    /**
+//     * @param ArtaxClient $client
+//     * @param \Amp\Reactor $reactor
+//     * @param ResponseCache $cache
+//     * @return GithubService
+//     */
+//    public static function createGithubArtaxService(
+//        ArtaxClient $client,
+//        \Amp\Reactor $reactor,
+//        ResponseCache $cache
+//    ) {
+//        return new GithubService($client, $reactor, $cache, "Danack/Tier");
+//    }
 
 
-    public static function createScriptInclude(
-        Config $config,
-        \ScriptHelper\ScriptURLGenerator $scriptURLGenerator
-    ) {
-        $packScript = $config->getKey(Config::SCRIPT_PACKING);
-
-        if ($packScript) {
-            return new \ScriptHelper\ScriptInclude\ScriptIncludePacked($scriptURLGenerator);
-        }
-        else {
-            return new \ScriptHelper\ScriptInclude\ScriptIncludeIndividual($scriptURLGenerator);
-        }
-    }
+//    public static function createScriptInclude(
+//        Config $config,
+//        \ScriptHelper\ScriptURLGenerator $scriptURLGenerator
+//    ) {
+//        $packScript = $config->getKey(Config::SCRIPT_PACKING);
+//
+//        if ($packScript) {
+//            return new \ScriptHelper\ScriptInclude\ScriptIncludePacked($scriptURLGenerator);
+//        }
+//        else {
+//            return new \ScriptHelper\ScriptInclude\ScriptIncludeIndividual($scriptURLGenerator);
+//        }
+//    }
 
 
     public static function correctUmask($filename)
@@ -115,11 +119,11 @@ class App
         return chmod($filename, $correctMode);
     }
 
-    public static function saveTmpFile($tmpName, $destFilename)
-    {
-        renameMultiplatform($tmpName, $destFilename);
-        self::correctUmask($destFilename);
-    }
+//    public static function saveTmpFile($tmpName, $destFilename)
+//    {
+//        renameMultiplatform($tmpName, $destFilename);
+//        self::correctUmask($destFilename);
+//    }
 
     public static function getTemplates($directory)
     {
@@ -297,24 +301,24 @@ class App
     }
 
 
-    /**
-     * @param Session $session
-     * @param HeadersSet $headerSet
-     */
-    public static function addSessionHeader(Session $session, HeadersSet $headerSet)
-    {
-        $session->save();
-        $headers = $session->getHeaders(
-            \ASM\SessionManager::CACHE_PRIVATE,
-            '/'
-        );
-
-        foreach ($headers as $key => $value) {
-            $headerSet->addHeader($key, $value);
-        }
-
-        return TierApp::PROCESS_CONTINUE;
-    }
+//    /**
+//     * @param Session $session
+//     * @param HeadersSet $headerSet
+//     */
+//    public static function addSessionHeader(Session $session, HeadersSet $headerSet)
+//    {
+//        $session->save();
+//        $headers = $session->getHeaders(
+//            \ASM\SessionManager::CACHE_PRIVATE,
+//            '/'
+//        );
+//
+//        foreach ($headers as $key => $value) {
+//            $headerSet->addHeader($key, $value);
+//        }
+//
+//        return TierApp::PROCESS_CONTINUE;
+//    }
 
     public static function createUserPermissions(Session $session)
     {
