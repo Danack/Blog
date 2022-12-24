@@ -112,7 +112,8 @@ $output = <<< OUTPUT
 
 # user www-data;
 worker_processes auto;
-pid /run/nginx.pid;
+# pid /run/nginx.pid;
+pid /usr/share/nginx/nginx.pid;
 #include /etc/nginx/modules-enabled/*.conf;
 daemon off;
 
