@@ -9,6 +9,13 @@ function createManualBlogPostRepo()
     $blogPosts = new ManualBlogPostRepo();
 
     $blogPosts->add(
+        34,
+        "Ukraine war, a year.",
+        '34_ukraine_war_anniversary.tpl',
+        '27th Feb 2023'
+    );
+
+    $blogPosts->add(
         32,
         "EU decision making incoherency.",
         '32_eu_vaccine_shitshow.tpl',
