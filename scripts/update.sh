@@ -10,7 +10,7 @@ REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
 
 
-printf '%(%Y-%m-%d %H:%M:%S)T\n' -1
+printf "%(%Y-%m-%d %H:%M:%S)T\n"
 
 if [ $LOCAL = $REMOTE ]; then
     echo "Up-to-date"
