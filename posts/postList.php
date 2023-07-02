@@ -10,6 +10,13 @@ function createManualBlogPostRepo()
 
     $blogPosts->add(
         34,
+        "Ukraine war, a year and a bit.",
+        '35_ukraine_war_anniversary_2.tpl',
+        '28th June 2023'
+    );
+
+    $blogPosts->add(
+        34,
         "Ukraine war, a year.",
         '34_ukraine_war_anniversary.tpl',
         '27th Feb 2023'
