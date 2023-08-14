@@ -8,8 +8,16 @@ function createManualBlogPostRepo()
 {
     $blogPosts = new ManualBlogPostRepo();
 
+
     $blogPosts->add(
-        34,
+        36,
+        "Loaded questions are a dangerous weapon",
+        '36_a_bad_question.tpl',
+        '12th August 2023'
+    );
+
+    $blogPosts->add(
+        35,
         "Ukraine war, a year and a bit.",
         '35_ukraine_war_anniversary_2.tpl',
         '28th June 2023'
