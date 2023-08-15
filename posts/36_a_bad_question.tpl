@@ -39,7 +39,7 @@ One of them deserves awards, the other is just producing pablum that even fans o
 
 ## Meta level
 
-I find it hilarious that the basic problem that Disney, that they are trapped by canon into making terrible content appears to be the storyline of Across the Spiderverse.
+I find it hilarious that the basic problem that Disney, that they are trapped by canon into making terrible content, appears to be the storyline of Across the Spiderverse.
 
 And I think I love how I think the story is going, though I suspect I, and many others, will be angry at some parts of the how the story resolves.
 
