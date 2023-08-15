@@ -36,3 +36,16 @@ One really good example is the difference between 'Hobie Brown' from Across the 
 You've got one team of writers who just asked "Hey why don't we re-use images of Superman", and the other team (or possibly single person) who said "we're going to have a character with multiple layers, and when he talks you really need to think about what he is saying, and if you do you'll understand and appreciate the message at the core of this film".
 
 One of them deserves awards, the other is just producing pablum that even fans of that material don't particularly like.
+
+## Meta level
+
+I find it hilarious that the basic problem that Disney, that they are trapped by canon into making terrible content appears to be the storyline of Across the Spiderverse.
+
+And I think I love how I think the story is going, though I suspect I, and many others, will be angry at some parts of the how the story resolves.
+
+There are two earlier pieces of media that I can see reflected in Across the Spiderverse:
+
+* The Zenith comics by 2000AD](https://en.wikipedia.org/wiki/Zenith_\(comics\)). Spoiler alert, people who think they saving a multiverse have actually been tricked into doing it harm, and the 'leader' isn't actually a good guy.
+
+* The novel ['Transition' by Iain Banks](https://en.wikipedia.org/wiki/Transition_\(novel\)), where the organisation that is setup to monitor the multiverse is, maybe, not such a force for good. And parts of the story are a metaphor for capitalism.  Spoiler alert, people who think they saving a multiverse have actually been tricked into doing it harm, and the 'leader' isn't actually a good guy.
+
