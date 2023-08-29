@@ -45,7 +45,7 @@ And I think I love how I think the story is going, though I suspect I, and many 
 
 There are two earlier pieces of media that I can see reflected in Across the Spiderverse:
 
-* The Zenith comics by 2000AD](https://en.wikipedia.org/wiki/Zenith_\(comics\)). Spoiler alert, people who think they saving a multiverse have actually been tricked into doing it harm, and the 'leader' isn't actually a good guy.
+* The [Zenith comics by 2000AD](https://en.wikipedia.org/wiki/Zenith_\(comics\)). Spoiler alert, people who think they saving a multiverse have actually been tricked into doing it harm, and the 'leader' isn't actually a good guy.
 
 * The novel ['Transition' by Iain Banks](https://en.wikipedia.org/wiki/Transition_\(novel\)), where the organisation that is setup to monitor the multiverse is, maybe, not such a force for good. And parts of the story are a metaphor for capitalism.  Spoiler alert, people who think they saving a multiverse have actually been tricked into doing it harm, and the 'leader' isn't actually a good guy.
 
